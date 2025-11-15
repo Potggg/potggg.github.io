@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>초구 / 강화 시뮬레이터</title>
+<link rel="shortcut icon" href="#">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* CSS 변수: 높이 통일 기준 */
+  :root {
+    --input-padding-y: 9px;
+    --button-padding-y: 10px;
+    --border-width: 1px;
+    /* 폰트 크기 15px 기준, 총 높이 약 41px로 통일 */
+  }
+
+  /* 폰트 변경: Noto Sans KR 적용 (이전 요청) */
+  body {
+    background:#0b1426;
+    color:#eaf2ff;
+    font-family:'Noto Sans KR', sans-serif; 
+    margin:0;
+    padding:15px; /* ✅ 여백 축소: 24px -> 15px */
+    text-align:center;
+  }
+  h1 {color:#ffd447;margin-bottom:15px;} /* ✅ 여백 축소: 20px -> 15px */
+  
+  /* [추가] 제목 이미지 스타일 */
+  .title-icon {
+    height: 30px; 
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  .tab-buttons{display:flex;justify-content:center;gap:10px;margin-bottom:15px;} /* ✅ 여백 축소: 20px -> 15px */
+  .tab-buttons button{background:rgba(15,25,45,0.9);border:1px solid #ffd447;color:#ffd447;font-weight:700;border-radius:10px;padding:10px 20px;cursor:pointer;transition:all .2s ease;}
+  .tab-buttons button.active{background:#ffd447;color:#111;}
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
+  
+  /* 전역 input 스타일 (다른 input에는 여전히 적용됨) */
+  input{background:rgba(15,25,45,0.9);color:#fff;border:1px solid #3ba4f7;padding:10px 14px;border-radius:8px;width:260px;margin-bottom:8px;} /* ✅ 여백 축소: 10px -> 8px */
+  
+  /* 전역 button 스타일 */
+  button{background:#ffd447;color:#111;font-weight:700;border:none;border-radius:8px;padding:10px 14px;cursor:pointer;margin:4px;transition:all .2s ease;}
+  button:hover{filter:brightness(1.1);}
+  
+  /* 검색창 그룹 스타일 */
+  .search-group {
+    display: flex; /* Grid 대신 Flex를 사용하여 내부 정렬 유지 */
+    justify-content: center;
+    align-items: center; /* 수직 중앙 정렬 */
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  #suggestions {
+    display: flex;
+    flex-wrap: wrap; /* 한 줄에 10개 정도 나오고 자동 줄바꿈 */
+    justify-content: center;
+    gap: 6px; /* 버튼 간격 */
+    max-width: 700px; /* 한 줄 길이 제한 (적당히 조절 가능) */
+    margin: 8px auto 0; /* 위쪽 여백 + 중앙 정렬 */
+  }
+
+  /* 검색 인풋 필드 */
+  #petName {
+    /* 기존 전역 스타일 재정의 */
+    padding: var(--input-padding-y) 10px; 
+    font-size: 14px;
+    border: var(--border-width) solid #3ba4f7;
+    border-radius: 8px;
+    background: #1e2b40;
+    color: #fff;
+    box-sizing: border-box; /* 패딩과 테두리를 너비에 포함 */
+    width: 240px;
+    /* height: 제거 */
+    margin-bottom: 0 !important; /* 컨테이너가 정렬을 맡으므로 마진 제거 */
+  }
+
+  /* 검색 버튼 */
+  #btnSearch {
+    /* 기존 전역 스타일 재정의 */
+    padding: var(--button-padding-y) 14px;
+    background: #3ba4f7;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    /* height: 제거 */
+    margin: 0 !important; /* 컨테이너가 정렬을 맡으므로 마진 제거 */
+  }
+
+  #btnClearInput {
+    padding: var(--button-padding-y) 14px;
+    background: #4a5d7c; /* 회색 계열 */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 0 !important; 
+  }
+  
+  #sgrade { 
+    font-size: 14px;
+  }
+  
+  .panel{margin-top:10px;background:rgba(15,25,45,0.9);border:1px solid #24324b;border-radius:10px;padding:10px;display: inline-block;}
+  /* .result 클래스 수정 (폰트 크기 14px, 초기 숨김) */
+  .result{
+    margin-top:15px;
+    white-space:pre-line;
+    text-align:left;
+    display:none; /* 초기 숨김 */
+    background:rgba(15,25,45,0.85);
+    border-radius:10px;
+    padding:14px;
+    border:1px solid #24324b;
+    font-family:"JetBrains Mono",monospace;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  #costDisplay{margin-top:10px;color:#ffd447;font-weight:700;}
+  .plus{color:#ff6b81;font-weight:700;}
+  .minus{color:#3ba4f7;font-weight:700;}
+  .zero{color:#a9b5cc;}
+
+  /* 경험치 계산기 레이아웃 수정 */
+  .wrapper{display:flex;justify-content:center;gap:10px;max-width:900px;margin:auto; flex-wrap: wrap;} /* ✅ 간격 축소: 20px -> 10px */
+  .card{background:rgba(20,30,50,0.9);border:1px solid #24324b;border-radius:16px;padding:16px;box-shadow:0 0 12px rgba(25,60,100,.25);} /* ✅ 패딩 축소: 24px -> 16px */
+  
+  /* ✅ 카드 제목 마진 축소 */
+  .card h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  
+  /* [주의] :first-child와 :last-child 대신, 클래스나 ID를 사용하여 명확하게 지정하는 것이 좋으나, 현재 구조를 유지함 */
+  #expTab .card:first-child { 
+      min-width: 300px; 
+      max-width: 450px; /* 경험치 계산기 크기 */
+  }
+  #expTab .card:last-child { 
+      min-width: 300px; 
+      max-width: 300px; /* 맹독 계산기 크기 */
+  }
+  
+  /* 검색창 그룹 스타일 재사용 및 미세 조정 */
+  #expTab .search-group {
+    /* 맹독 계산기 내의 search-group에만 적용 */
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    gap: 8px; 
+    flex-wrap: nowrap; 
+    margin-bottom: 0; 
+  }
+
+  /* ✅ 맹독 계산기 입력창 너비 및 스타일 조정 (이미지와 유사하게) */
+  #poisonPetName {
+    /* 기존 전역 input 스타일 재정의 */
+    width: 180px; /* ⬅️ 너비를 180px로 조정 */
+    padding: var(--input-padding-y) 10px; /* 초구 시뮬레이터와 동일한 패딩 */
+    font-size: 14px;
+    border: var(--border-width) solid #3ba4f7;
+    border-radius: 8px;
+    background: #1e2b40;
+    color: #fff;
+    box-sizing: border-box; 
+    margin-bottom: 0; /* 컨테이너가 정렬을 맡으므로 마진 제거 */
+  }
+  
+  /* ✅ 맹독 계산기 검색 버튼 스타일 조정 (이미지와 유사하게) */
+  #btnPoisonSearch {
+    /* 기존 전역 button 스타일 재정의 */
+    padding: var(--button-padding-y) 14px; /* 초구 시뮬레이터와 동일한 패딩 */
+    background: #ffd447; /* 이미지와 동일한 노란색 */
+    color: #111;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 0; /* 컨테이너가 정렬을 맡으므로 마진 제거 */
+  }
+
+
+  label{color:#a9b5cc;font-weight:600;font-size:14px;}
+  .row{display:grid;gap:6px;margin:0;}
+  
+  /* ✅ EXP 계산기 입력 그룹을 2x2 그리드로 변경 (공간 축소) */
+  .input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 1:1 비율로 2개 컬럼 */
+    gap: 8px; /* ✅ 간격 축소: 15px -> 8px */
+    margin-bottom: 10px; /* 버튼과의 간격 */
+    padding: 0; /* 내부 패딩 제거 */
+  }
+
+  /* ✅ input[type="number"] 스타일 조정 */
+  input[type="number"]{
+    width: auto; /* 그리드 컬럼 너비에 맞춤 */
+    padding:10px 8px; /* 패딩 줄이기 */
+    border:1px solid #3ba4f7;
+    border-radius:10px;
+    background:rgba(15,25,45,0.85);
+    color:#fff;
+    outline:none;
+    font-size:15px; /* 폰트 크기 15px로 통일 */
+    margin-bottom: 0; /* .row가 margin을 관리하도록 재정의 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+  }
+  
+  /* ✅ Select 박스 스타일 추가/수정 (강화 시뮬레이터용) */
+  select {
+    background:rgba(15,25,45,0.9);
+    color:#fff;
+    border:1px solid #3ba4f7;
+    padding:10px 14px;
+    border-radius:8px;
+    width: auto; /* input[type="number"]와 동일하게 조정 */
+    /* margin-left:10px; (제거) */
+    /* ✅ 시작 강화 등급 select 박스에 적용될 스타일 */
+    font-size: 14px; 
+    padding: 10px 12px; 
+  }
+
+  .row.buttons{display:flex;justify-content:space-between;gap:10px;margin-top:8px;padding: 0;} /* ✅ 마진 및 패딩 축소: margin-top 12px -> 8px, padding 0 10px -> 0 */
+  .row.buttons button{flex:1;width:48%;padding:10px 0;border-radius:8px;font-weight:700;}
+  
+  /* ✅ 수정: 예상 시간 및 일수와 남은 경험치가 1:1 비율로 한 줄에 나오도록 설정 (공간 축소) */
+  .results{
+    display:grid;
+    grid-template-columns: 1fr 1fr; /* 1:1 비율로 2개 컬럼 */
+    gap:8px; /* 간격 축소 */
+    margin-top:10px; /* ✅ 마진 축소: 18px -> 10px */
+    padding: 0; /* 패딩 제거 */
+  }
+  
+  .stat{background:rgba(15,25,45,0.9);border:1px solid #24324b;border-radius:14px;padding:8px;text-align:center;} /* ✅ 패딩 축소: 12px -> 8px */
+  .stat small{display:block;color:#a9b5cc;}
+  .stat strong{display:block;margin-top:4px;font-size:13.3333px;color:#ffd447;}
+
+  .result-header, .result-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+    font-family: "JetBrains Mono", monospace;
+    column-gap: 40px;
+  }
+
+  .result-header {
+    color: #3ba4f7;
+    font-weight: 700;
+    margin-top: 6px;
+    border-bottom: 1px solid #24324b;
+    padding-bottom: 3px;
+  }
+
+  .result-row {
+    margin-top: 4px;
+  }
+  
+  /* ==================================== */
+  /* ✅ [추가/수정] 강화 시뮬레이터 스타일 */
+  /* ==================================== */
+  #enhancementStats {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    background: #1e2b40;
+    border: 1px solid #3ba4f7;
+    border-radius: 8px;
+    padding: 10px 15px;
+    text-align: center;
+    min-width: 100px;
+  }
+  .stat-box small {
+    display: block;
+    color: #a9b5cc;
+    font-size: 12px;
+  }
+  .stat-box strong {
+    display: block;
+    font-size: 18px;
+    color: #ffd447;
+    margin-top: 2px;
+  }
+  
+  /* 강화 시뮬레이션 결과 로그 테이블 스타일 */
+  #enhancementLog {
+    margin-top: 5px;
+    background: rgba(15, 25, 45, 0.85);
+    border-radius: 10px;
+    padding: 14px;
+    border: 1px solid #24324b;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    max-height: 195px;
+    overflow-y: auto; /* 스크롤바 */
+    display: none;
+  }
+  #enhancementLog b { color: #ffffff; }
+  .enh-success { color: #00ffff; }
+  .enh-fail { color: #ff6b81; } /* 등급 유지 (실패) */
+  .enh-destroy { color: #ff00ff; } /* 파괴 */
+  
+  /* ✅ [수정] 컨트롤 그룹 스타일 (너비 축소 및 3열 배치) */
+  .enh-controls {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    gap: 15px; /* 항목 간 간격 조정 */
+    margin-top: 15px;
+    flex-wrap: wrap;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .enh-controls .control-group {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    flex: 1; /* 가용 공간을 균등하게 분배 */
+    min-width: 130px; /* ⬅️ 최소 너비를 줄여서 각 컨트롤의 폭을 줄임 */
+  }
+  .enh-controls select {
+    width: 100%; /* ⬅️ 부모 요소의 너비를 따르도록 수정 */
+    margin-left: 0; /* 인라인 스타일 override 방지 */
+  }
+  .enh-controls label {
+    margin-bottom: 5px;
+    text-align: center;
+  }
+  
+  /* ==================================== */
+  /* ✅ 미디어 쿼리: 모바일 최적화 (600px 이하) */
+  /* ==================================== */
+  @media (max-width: 600px) {
+    body {
+        padding: 10px; /* ✅ 모바일 여백 축소: 15px -> 10px */
+    }
+
+    /* 탭 버튼: 공간 확보 */
+    .tab-buttons {
+        gap: 5px;
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 각 행에 2개씩 버튼 배치 */
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px; /* ✅ 모바일 여백 축소 */
+    }
+    .tab-buttons button {
+        flex-grow: 1;
+        min-width: unset;
+    }
+    
+    /* 경험치 계산기 입력 그리드: 2열 -> 1열로 변경 */
+    .input-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+    #expTab input[type="number"] {
+        width: 100%;
+        box-sizing: border-box; /* 패딩과 보더를 너비에 포함 */
+    }
+    .row.buttons {
+        padding: 0;
+    }
+    .results {
+        padding: 0;
+    }
+
+
+    /* 시뮬레이션 버튼: 2열 배치 */
+    .sim-buttons-group {
+        gap: 5px;
+        /* 버튼이 2열로 배치되도록 width 설정 */
+    }
+    .sim-buttons-group button {
+        width: calc(50% - 5px); /* 50% 너비에서 gap을 뺀 값 */
+        margin: 0; /* 기존 margin 제거 */
+    }
+    
+    /* 강화 시뮬레이션 버튼 그룹 */
+    #enhancementButtons {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      gap: 5px;
+      margin: 15px auto;
+      max-width: 400px;
+    }
+    #enhancementButtons button {
+      flex-grow: 1;
+      min-width: unset;
+      padding: 12px 0;
+    }
+
+    /* 강화 스탯 박스 */
+    #enhancementStats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        max-width: 400px;
+        margin: 15px auto;
+    }
+    .stat-box {
+        min-width: unset;
+        padding: 12px 10px;
+    }
+    .stat-box strong {
+        font-size: 16px;
+    }
+    
+    /* 강화 컨트롤 그룹 */
+    .enh-controls {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+        max-width: 400px;
+        margin: 15px auto;
+    }
+    .enh-controls .control-group {
+        flex: 1;
+        min-width: unset; /* 모바일에서는 flex-grow가 1이므로 최소 너비 해제 */
+        flex-direction: column;
+        align-items: center;
+    }
+    /* select의 width: auto 때문에 모바일에서 100%로 보일 것임 */
+    .enh-controls select,
+    .enh-controls input {
+        width: 100%;
+        margin-left: 0;
+    }
+    .enh-controls label {
+        margin-bottom: 5px;
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+    }
+  }
+  
+  #thx {
+    margin-top: 20px;
+    font-size: 14px; 
+}
+</style>
+</head>
+<body>
+<h1>🕹️ 초구 / 강화 시뮬레이터</h1>
+
+<div class="tab-buttons">
+  <button id="tabSim" class="active">🎲 초구 시뮬레이터</button>
+  <button id="tabEnh">🏹 강화 시뮬레이터</button> 
+  <button id="tabExp">📘 경험치 계산기</button>
+  <button id="tabHome" onclick="location.href='https://novasa.pages.dev/'">🔢 페트 계산기</button>
+</div>
+
+<div id="simTab" class="tab-content active">
+  <div class="search-group">
+    <input id="petName" placeholder="🔍 페트를 입력해 주세요." />
+    <button id="btnSearch">검색</button>
+    <button id="btnClearInput">초기화</button>
+  </div>
+  <div id="suggestions" style="margin-top:8px;"></div>
+  <div id="sgrade" class="panel">페트를 입력하면 S급 기준 능력치가 표시됩니다.</div>
+  <div style="margin-top:10px;">
+    <button id="sim1">🎲 초구 1회</button>
+    <button id="sim5">🎲 초구 5회</button>
+    <button id="simUntil">🔥 정석 뽑기</button>
+    <button id="clear">🧹</button>
+  </div>
+  <div id="costDisplay">💰 총 소모 : 0원</div>
+  <div id="result" class="result" style="display:none;"></div>
+  <div id="thx">제작도움 : 지원(sup_bot)님</div>
+</div>
+
+<div id="enhTab" class="tab-content">
+  
+  <div class="enh-controls">
+    <div class="control-group">
+        <label for="initialEnhancementLevel">시작 강화 등급</label>
+        <select id="initialEnhancementLevel">
+            <option value="0">+0</option>
+            <option value="1">+1</option>
+            <option value="2">+2</option>
+            <option value="3">+3</option>
+            <option value="4">+4</option>
+            <option value="5">+5</option>
+            <option value="6">+6</option>
+            <option value="7">+7</option>
+            <option value="8">+8</option>
+            <option value="9">+9</option>
+        </select>
+    </div>
+    
+    <div class="control-group">
+        <label for="enhancementCube">사용 큐브</label>
+        <select id="enhancementCube">
+            <option value="NORMAL_CUBE" data-rate-increase="0">일반 큐브 (+0%)</option>
+            <option value="ADVANCED_CUBE" data-rate-increase="5">고급 큐브 (+5%)</option>
+        </select>
+    </div>
+    <div class="control-group">
+        <label for="enhancementAid">강화 보조제</label>
+        <select id="enhancementAid">
+            <option value="NONE" data-rate-increase="0">사용 안 함 (+0%)</option>
+            <option value="AID_5" data-rate-increase="5">강화 보조제 (+5%)</option>
+            <option value="AID_10" data-rate-increase="10">강화 보조제 (+10%)</option>
+            <option value="AID_15" data-rate-increase="15">강화 보조제 (+15%)</option>
+            <option value="AID_20" data-rate-increase="20">강화 보조제 (+20%)</option>
+        </select>
+    </div>
+  </div>
+
+  <div id="enhancementStats">
+    <div class="stat-box"><small>현재 등급</small><strong id="enhCurrentLevel">+0</strong></div>
+    <div class="stat-box"><small>총 큐브 소모</small><strong id="enhTotalCubes">0 개</strong></div> 
+    <div class="stat-box"><small>파괴된 장비 수</small><strong id="enhDestroyedCount">0 개</strong></div>
+    <div class="stat-box"><small>총 스톤 소모</small><strong id="enhTotalCost">0 S</strong></div>
+  </div>
+  
+  <div style="margin-top:15px;" id="enhancementButtons">
+    <button id="enhSim1">🧊 강화하기</button>
+    <button id="enhSimUntilMax">🔥 +10강 제작</button>
+    <button id="enhReset">🧹 초기화</button>
+  </div>
+
+  <div id="enhancementRates" style="margin-top:0px; font-weight:700; font-size: 14px;">
+    시도 확률
+  </div>
+  
+  <div id="enhancementLog" style="display:none;">
+    <b>🏹 강화 시뮬레이션 로그</b><br>
+    ────────────────────<br>
+  </div>
+</div>
+
+<div id="expTab" class="tab-content">
+  <div class="wrapper">
+    <div class="card" style="min-width: 300px; max-width: 450px;"> <h2>📘 레벨업 경험치 계산기</h2>
+      <div class="input-grid">
+        <div class="row">
+          <label for="currentLevel">현재 레벨</label>
+          <input id="currentLevel" type="number" />
+        </div>
+        <div class="row">
+          <label for="targetLevel">목표 레벨</label>
+          <input id="targetLevel" type="number" />
+        </div>
+        <div class="row">
+          <label for="currentPercent">현재 경험치(%)</label>
+          <input id="currentPercent" type="number" placeholder="예: 10" />
+        </div>
+        <div class="row">
+          <label for="xpPerHour">시간당 획득 경험치</label>
+          <input id="xpPerHour" type="number"  />
+        </div>
+      </div>
+      <div class="row buttons">
+        <button id="run">계산</button>
+        <button id="reset">초기화</button>
+      </div>
+      <div class="results" id="results" hidden>
+        <div class="stat"><small>남은 경험치</small><strong id="statRemain">-</strong></div>
+        <div class="stat"><small>예상 시간 (일수)</small><strong id="statTimeAndDays">-</strong></div>
+      </div>
+    </div>
+
+    <div class="card" style="min-width: 300px; max-width: 300px;">
+      <h2>☠️ 맹독 계산기</h2>
+      <div class="search-group">
+        <input id="poisonPetName" placeholder="🔍 페트를 입력해 주세요." />
+        <button id="btnPoisonSearch">검색</button>
+      </div>
+      <div id="poisonResult" class="result" style="display:none;"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  /* ======================================= */
+  /* ✅ [공통] 탭 전환 로직 */
+  /* ======================================= */
+  const showTab = id => {
+    document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));
+    document.querySelectorAll(".tab-buttons button").forEach(b=>b.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    document.getElementById(id==="simTab"?"tabSim":id==="expTab"?"tabExp":"tabEnh").classList.add("active"); 
+  };
+  document.getElementById("tabSim").onclick=()=>showTab("simTab");
+  document.getElementById("tabEnh").onclick=()=>showTab("enhTab"); 
+  document.getElementById("tabExp").onclick=()=>showTab("expTab");
+  showTab("simTab");
+
+
+  /* ======================================= */
+  /* ✅ [강화 시뮬레이터] 로직 */
+  /* ======================================= */
+  const ENH_STATS = [
+    { level: +1, success: 1.00, destroy: 0.00, cost: 35000 },
+    { level: +2, success: 0.80, destroy: 0.00, cost: 59800 },
+    { level: +3, success: 0.60, destroy: 0.00, cost: 106400 },
+    { level: +4, success: 0.50, destroy: 0.00, cost: 152710 },
+    { level: +5, success: 0.40, destroy: 0.60, cost: 273600 },
+    { level: +6, success: 0.40, destroy: 0.60, cost: 468530 },
+    { level: +7, success: 0.30, destroy: 0.70, cost: 552800 },
+    { level: +8, success: 0.20, destroy: 0.80, cost: 698470 },
+    { level: +9, success: 0.20, destroy: 0.80, cost: 857200 },
+    { level: +10, success: 0.10, destroy: 0.90, cost: 1195390 },
+  ];
+  
+  const CUBE_DATA = {
+    'NORMAL_CUBE': { name: '일반 큐브', rate_increase: 0, cost_multiplier: 1.0 },
+    'ADVANCED_CUBE': { name: '고급 큐브', rate_increase: 5, cost_multiplier: 2.0 },
+  };
+
+  const AID_DATA = {
+    'NONE': { name: '사용 안 함', rate_increase: 0 },
+    'AID_5': { name: '강화 보조제 (+5%)', rate_increase: 5 },
+    'AID_10': { name: '강화 보조제 (+10%)', rate_increase: 10 },
+    'AID_15': { name: '강화 보조제 (+15%)', rate_increase: 15 },
+    'AID_20': { name: '강화 보조제 (+20%)', rate_increase: 20 },
+  };
+
+  let isMaxSimulationRunning = false; 
+  let currentEnhLevel = 0;
+  let totalEnhCost = 0;
+  let totalCubes = 0; 
+  let destroyedCount = 0;
+  // ✅ 로그 항목 배열
+  let enhancementLogEntries = []; 
+
+  const enhCurrentLevelDisplay = document.getElementById("enhCurrentLevel");
+  const enhTotalCubesDisplay = document.getElementById("enhTotalCubes"); 
+  const enhDestroyedCountDisplay = document.getElementById("enhDestroyedCount");
+  const enhTotalCostDisplay = document.getElementById("enhTotalCost");
+  const enhLog = document.getElementById("enhancementLog");
+  const initialEnhancementLevelInput = document.getElementById("initialEnhancementLevel"); 
+  const cubeSelect = document.getElementById("enhancementCube");
+  const aidSelect = document.getElementById("enhancementAid");
+  // ✅ 추가: 확률 표시 영역
+  const enhancementRatesDisplay = document.getElementById("enhancementRates");
+  
+  const fmt = n => n.toLocaleString('ko-KR');
+
+  // ✅ 확률 표시 업데이트 함수 (사용자 요청 반영)
+  function updateEnhancementRatesDisplay(level) {
+      if (level >= 10) {
+          enhancementRatesDisplay.textContent = "";
+          return;
+      }
+      
+      const nextLevel = level + 1;
+      const dataIndex = nextLevel - 1;
+      const enhData = ENH_STATS[dataIndex];
+      
+      const selectedCube = CUBE_DATA[cubeSelect.value];
+      const selectedAid = AID_DATA[aidSelect.value];
+      
+      // 최종 성공 확률 계산 (enhance 함수 로직 재사용)
+      let baseSuccessRate = enhData.success * 100; 
+      const cubeBonus = selectedCube.rate_increase;
+      const aidBonus = selectedAid.rate_increase;
+      let finalSuccessRate = baseSuccessRate + cubeBonus + aidBonus;
+      
+      if (baseSuccessRate === 100) {
+          finalSuccessRate = 100;
+      } else if (finalSuccessRate > 100) { 
+          finalSuccessRate = 100;          
+      }
+      
+      const successRate = finalSuccessRate.toFixed(0);
+      const failRate = (100 - finalSuccessRate).toFixed(0);
+      
+      const failType = nextLevel >= 5 ? "파괴" : "유지";
+      
+      // ✅ 사용자 요청 출력 형식
+      enhancementRatesDisplay.innerHTML = `[+${level} → +${nextLevel}] <span style="color:#00ffff;">성공: ${successRate}%  <span style="color:#ff6b81;">실패(${failType}): ${failRate}%`;
+
+  }
+
+  function updateEnhLogDisplay() {
+    let logHtml = `<b>🏹 강화 시뮬레이션 로그</b><br>────────────────────<br>`;
+    logHtml += enhancementLogEntries.join("");
+    enhLog.innerHTML = logHtml;
+    enhLog.scrollTop = enhLog.scrollHeight;
+  }
+  
+  function updateEnhUI() {
+    enhCurrentLevelDisplay.textContent = `+${currentEnhLevel}`;
+    enhTotalCostDisplay.textContent = `${fmt(totalEnhCost)} S`;
+    enhTotalCubesDisplay.textContent = `${fmt(totalCubes)} 개`; 
+    enhDestroyedCountDisplay.textContent = `${fmt(destroyedCount)} 개`;
+    updateEnhancementRatesDisplay(currentEnhLevel); // ✅ 추가: 확률 업데이트
+  }
+  
+  function resetEnhancement(initialLevel = 0) {
+    if (initialLevel < 0) initialLevel = 0;
+    if (initialLevel > 9) initialLevel = 9; 
+    
+    currentEnhLevel = initialLevel;
+    totalEnhCost = 0;
+    totalCubes = 0; 
+    destroyedCount = 0;
+    isMaxSimulationRunning = false; 
+    enhancementLogEntries = []; // ✅ 로그 초기화
+    
+    if (initialLevel > 0) {
+        let initialCostSum = 0;
+        for (let i = 0; i < initialLevel; i++) {
+            initialCostSum += ENH_STATS[i].cost;
+        }
+        enhancementLogEntries.push(`+${initialLevel} 상태로 시작<br>`);
+    }
+
+    enhLog.style.display = "none";
+    updateEnhLogDisplay(); // 로그 출력 초기화
+    updateEnhUI(); // ✅ 확률 업데이트 포함
+  }
+  
+  resetEnhancement(parseInt(initialEnhancementLevelInput.value) || 0); 
+
+  function enhance(simulateUntilMax = false) {
+    if (currentEnhLevel >= 10) {
+        if (!simulateUntilMax) alert("+10 강화가 완료되었습니다. 초기화 후 다시 시작하세요.");
+        return;
+    }
+    
+    enhLog.style.display = "inline-block";
+    
+    isMaxSimulationRunning = simulateUntilMax;
+    
+    const selectedCube = CUBE_DATA[cubeSelect.value];
+    const selectedAid = AID_DATA[aidSelect.value];
+    const initialLevelFromInput = parseInt(initialEnhancementLevelInput.value) || 0; 
+
+    const runEnhancementStep = (level, targetLevel) => {
+        
+        const CHUNK_SIZE = isMaxSimulationRunning ? 500 : 1; 
+        let attempts = 0;
+        
+        while (level < targetLevel && attempts < CHUNK_SIZE) {
+            const nextLevel = level + 1;
+            const dataIndex = nextLevel - 1; 
+            const enhData = ENH_STATS[dataIndex];
+            
+            if (!enhData) break; 
+            
+            // 최종 성공 확률 계산
+            let baseSuccessRate = enhData.success * 100; 
+            const cubeBonus = selectedCube.rate_increase;
+            const aidBonus = selectedAid.rate_increase;
+            let finalSuccessRate = baseSuccessRate + cubeBonus + aidBonus;
+            
+            // ✅ 성공률 최대치 제한 (95%가 아닌 100%로 설정됨)
+            if (baseSuccessRate === 100) {
+                finalSuccessRate = 100;
+            } else if (finalSuccessRate > 100) { // 95 -> 100 수정
+                finalSuccessRate = 100;          // 95 -> 100 수정
+            }
+
+            const pSuccess = finalSuccessRate / 100.0; 
+            const cost = Math.round(enhData.cost * selectedCube.cost_multiplier);
+            
+            // 1. 비용/소모품 소모
+            totalEnhCost += cost;
+            totalCubes += 1; 
+            attempts++;
+
+            // 2. 판정 및 로그 기록
+            const roll = Math.random();
+            const logEntry = `[+${level} → +${nextLevel}] (확률 ${Math.round(finalSuccessRate)}%) : `;
+            let newLog = "";
+            
+            if (roll < pSuccess) {
+                // ✅ 성공
+                level = nextLevel;
+                if (!isMaxSimulationRunning) { 
+                    newLog = `${logEntry}<span class="enh-success">✅ 성공! (+${nextLevel})</span> (스톤 ${fmt(cost)} S)<br>`;
+                }
+            } else {
+                // ✅ 실패/파괴
+                const isDestructiveLevel = nextLevel >= 5; 
+                
+                if (isDestructiveLevel) {
+                    level = initialLevelFromInput;
+                    destroyedCount++;
+
+                    if (!isMaxSimulationRunning) { 
+                        newLog = `${logEntry}<span class="enh-destroy">💥 파괴!</span> (스톤 ${fmt(cost)} S)<br>`;
+                    }
+                } else {
+                    if (!isMaxSimulationRunning) { 
+                        newLog = `${logEntry}<span class="enh-fail">❌ 실패!</span> (스톤 ${fmt(cost)} S)<br>`;
+                    }
+                }
+            }
+            
+            if (newLog) { // Max 시뮬이 아닐 때만 로그를 추가
+                enhancementLogEntries.push(newLog);
+                // ✅ 로그 항목 개수 제한
+            }
+            
+            if (level >= 10) break; 
+        } 
+        
+        currentEnhLevel = level;
+        
+        updateEnhUI(); // 통계 및 확률 업데이트
+        updateEnhLogDisplay(); // 로그 출력 업데이트
+        
+        if (simulateUntilMax && currentEnhLevel < 10) {
+             setTimeout(() => runEnhancementStep(currentEnhLevel, 10), 0);
+        } else if (currentEnhLevel >= 10) {
+             // 최종 결과 출력 및 플래그 초기화
+             isMaxSimulationRunning = false;
+             if (simulateUntilMax) {
+               enhancementLogEntries.push(`<b style="color: #3ba4f7;">🎉 +10 강화 성공!</b> (큐브 ${fmt(totalCubes)}개 소모)<br>`);
+               updateEnhLogDisplay();
+             }
+        }
+    };
+    
+    if (simulateUntilMax) {
+        runEnhancementStep(currentEnhLevel, 10); 
+    } else {
+        runEnhancementStep(currentEnhLevel, currentEnhLevel + 1); 
+    }
+  }
+
+  // 강화 시뮬레이터 버튼 연결
+  document.getElementById("enhSim1").onclick = () => enhance(false);
+  
+  document.getElementById("enhSimUntilMax").onclick = () => {
+    if (currentEnhLevel >= 10) {
+        alert("+10 강화가 완료되었습니다. 초기화 후 다시 시작하세요.");
+        return;
+    }
+    if (isMaxSimulationRunning) return;
+
+    const initialLevel = parseInt(initialEnhancementLevelInput.value) || 0;
+    resetEnhancement(initialLevel);
+
+    enhance(true);
+  };
+  
+  document.getElementById("enhReset").onclick = () => {
+    const initialLevel = parseInt(initialEnhancementLevelInput.value) || 0;
+    resetEnhancement(initialLevel);
+  };
+  
+  initialEnhancementLevelInput.onchange = (e) => {
+    const level = parseInt(e.target.value) || 0;
+    resetEnhancement(level); 
+  };
+
+  cubeSelect.onchange = () => { updateEnhancementRatesDisplay(currentEnhLevel); }; // ✅ 큐브 변경 시 확률 업데이트
+  aidSelect.onchange = () => { updateEnhancementRatesDisplay(currentEnhLevel); }; // ✅ 보조제 변경 시 확률 업데이트
+
+  /* ======================================= */
+  /* ✅ [초구 시뮬레이터] 로직 */
+  /* ======================================= */
+  // 페트 데이터 로드 (Uploaded file logic)
+  async function loadPetData(){
+    const DATA_PATH = "data/pets.json"; // ⬅️ 경로 수정
+    try{
+      // ✅ /data/ 폴더에서 pets.json 파일을 로드하도록 경로 수정
+      const pets = await fetch(DATA_PATH).then(r => {
+        if (!r.ok) { // HTTP 응답 코드가 200-299 범위가 아닐 경우 에러 발생
+          throw new Error(`HTTP Error: ${r.status}`);
+        }
+        return r.json();
+      }); 
+      console.log("✅ JSON 로드 완료:", Object.keys(pets).length);
+      return pets;
+    }catch(e){
+      console.error("❌ JSON 불러오기 실패:",e);
+      // ✅ 오류 메시지 업데이트
+      alert("페트 데이터를 불러오지 못했습니다.\npets.json 파일을 '/data' 폴더에 배치했는지 확인하세요.");
+      return {}; // 빈 객체 반환으로 오류 처리 단순화
+    }
+  }
+
+  let PETS = {}, currentBase = null;
+  const sgradeBox=document.getElementById("sgrade");
+  const nameInput=document.getElementById("petName");
+  const resultBox=document.getElementById("result");
+  const costDisplay=document.getElementById("costDisplay");
+  let totalCost=0;
+  let totalCostPerfect = 0;
+
+  // ✅ loadPetData 실행 및 완료 시 초구/맹독 계산기 로직 통합
+  loadPetData().then(d => { 
+      PETS = d; 
+      
+      // ✅ 맹독 계산기 로직 통합 시작
+      const input = document.getElementById("poisonPetName");
+      const btn = document.getElementById("btnPoisonSearch");
+      const result = document.getElementById("poisonResult");
+
+      input.onkeydown = (e) => { 
+          if(e.key === "Enter") {
+              btn.click();
+          }
+      };
+
+      btn.onclick = () => {
+        const name = input.value.trim();
+        const p = PETS[name]; // 통합된 PETS 변수 사용
+        if (!p) {
+          result.style.display = "block";
+          result.textContent = "❌ 페트를 찾을 수 없습니다.";
+          return;
+        }
+
+        const k = p.k;
+        const u = { ...p.u };
+
+        // +2 적용
+        let stats = {
+          hp: u.hp + 2,
+          atk: u.atk + 2,
+          def: u.def + 2,
+          agi: u.agi + 2
+        };
+
+        // 랜덤으로 10포인트 분배
+        for (let i = 0; i < 10; i++) {
+          const r = Math.floor(Math.random() * 4);
+          if (r === 0) stats.hp++;
+          else if (r === 1) stats.atk++;
+          else if (r === 2) stats.def++;
+          else stats.agi++;
+        }
+
+        const total = k * stats.hp + k * stats.atk + k * stats.def + k * stats.agi;
+        let down = (total / 100 - 20) / 4;
+        if (down < 1) down = 1;
+        down = down.toFixed(2);
+
+        result.style.display = "block";
+        result.innerHTML = `💀 <b>맹독 데미지 = ${down}</b>`;
+      };
+      // ✅ 맹독 계산기 로직 통합 끝
+  }); // ✅ loadPetData.then 블록 닫힘
+
+  const safeName = s => (s || "").toLowerCase().trim();
+  nameInput.onkeydown = e => { if(e.key === "Enter") updatePet(); };
+  btnSearch.onclick = updatePet;
+  nameInput.onchange = updatePet;
+  
+  function showPetInfo(key) {
+    const s = PETS[key].s0;
+    currentBase = { name: key, hp: s.hp, atk: s.atk, def: s.def, agi: s.agi };
+    sgradeBox.innerHTML = `
+      <b>${key} S급 기준</b><br>
+      내구력 <b>${s.hp}</b> | 공격력 <b>${s.atk}</b> | 방어력 <b>${s.def}</b> | 순발력 <b>${s.agi}</b>`;
+    
+    totalCost = 0;
+    costDisplay.textContent = "💰 총 소모 : 0원";
+    resultBox.innerHTML = "";
+    resultBox.style.display = "none";
+  }
+
+  function updatePet() {
+    const n = safeName(nameInput.value);
+    const sugBox = document.getElementById("suggestions");
+    sugBox.innerHTML = "";
+
+    if (!n) return;
+
+    let key = Object.keys(PETS).find(k => safeName(k) === n);
+    if (!key) {
+      const partial = Object.keys(PETS).filter(k => safeName(k).includes(n));
+      if (partial.length === 1) key = partial[0];
+      else if (partial.length > 1) {
+        partial.forEach(k => {
+          const btn = document.createElement("button");
+          btn.textContent = k;
+          btn.style.background = "#24324b";
+          btn.style.color = "#ffd447";
+          btn.style.margin = "3px";
+          btn.style.padding = "6px 12px";
+          btn.style.borderRadius = "8px";
+          btn.style.border = "1px solid #3ba4f7";
+          btn.style.cursor = "pointer";
+          btn.onclick = () => {
+            nameInput.value = k;
+            sugBox.innerHTML = "";
+            showPetInfo(k);
+          };
+          sugBox.appendChild(btn);
+        });
+        currentBase = null;
+        return;
+      }
+    }
+
+    if (!key) {
+      sgradeBox.innerHTML = `<b style="color:#ff6b81">⚠️ [${n}] 데이터 없음</b>`;
+      currentBase = null;
+      return;
+    }
+
+    showPetInfo(key);
+  }
+
+  function simulate(t = 1) {
+    if (!currentBase) {
+      alert("페트 이름을 먼저 입력하세요.");
+      return;
+    }
+
+    resultBox.style.display = "inline-block";
+    
+    // 이전에 있던 로그를 지우지 않고 덮어씌우도록 수정 (1, 5회 시뮬레이션)
+    let o = `<b>${currentBase.name} 시뮬레이션</b><br>────────────────────<br>`;
+    o += `<div class="result-header">
+            <span>내구력</span>
+            <span>공격력</span>
+            <span>방어력</span>
+            <span>순발력</span>
+          </div>`;
+
+    for (let i = 1; i <= t; i++) {
+      const p = PETS[currentBase.name];
+
+      // 로직은 업로드된 파일의 로직을 그대로 사용
+      const tp = { ...p.u };
+      tp.hp += Math.floor(Math.random() * 5) - 2;
+      tp.atk += Math.floor(Math.random() * 5) - 2;
+      tp.def += Math.floor(Math.random() * 5) - 2;
+      tp.agi += Math.floor(Math.random() * 5) - 2;
+
+      for (let j = 0; j < 10; j++) {
+        const r = Math.floor(Math.random() * 4);
+        if (r === 0) tp.hp++;
+        else if (r === 1) tp.atk++;
+        else if (r === 2) tp.def++;
+        else tp.agi++;
+      }
+
+      const base = {
+        hp: p.k * tp.hp / 100,
+        atk: p.k * tp.atk / 100,
+        def: p.k * tp.def / 100,
+        agi: p.k * tp.agi / 100
+      };
+
+      const shown = {
+        hp: Math.floor(base.hp * 4 + base.atk + base.def + base.agi),
+        atk: Math.floor(base.hp * 0.1 + base.atk + base.def * 0.1 + base.agi * 0.05),
+        def: Math.floor(base.hp * 0.1 + base.atk * 0.1 + base.def + base.agi * 0.05),
+        agi: Math.floor(base.agi)
+      };
+
+      const SstatRaw = p.s0 || { hp: 0, atk: 0, def: 0, agi: 0 };
+      const SstatInt = {
+        hp: Math.floor(SstatRaw.hp),
+        atk: Math.floor(SstatRaw.atk),
+        def: Math.floor(SstatRaw.def),
+        agi: Math.floor(SstatRaw.agi)
+      };
+
+      const delta = {
+        hp: shown.hp - SstatInt.hp,
+        atk: shown.atk - SstatInt.atk,
+        def: shown.def - SstatInt.def,
+        agi: shown.agi - SstatInt.agi
+      };
+
+      const formatDelta = n => {
+        if (n > 0) return `<span style="color:#00ffff;">(+${n})</span>`;
+        if (n < 0) return `<span style="color:#ff0000;">(${n})</span>`;
+        return `<span style="color:#ffffff;">(0)</span>`;
+      };
+
+      o += `<div class="result-row">
+              <span>${shown.hp} ${formatDelta(delta.hp)}</span>
+              <span>${shown.atk} ${formatDelta(delta.atk)}</span>
+              <span>${shown.def} ${formatDelta(delta.def)}</span>
+              <span>${shown.agi} ${formatDelta(delta.agi)}</span>
+            </div>`;
+    }
+    resultBox.innerHTML=o;
+  }
+  
+  function simulateUntilPerfect() {
+    if (!currentBase) {
+      alert("페트 이름을 먼저 입력하세요.");
+      return;
+    }
+
+    totalCost = 0; // 초구 시뮬레이션 비용만 추적하도록 변경
+    totalCostPerfect = 0; // 정석 뽑기 비용은 별도 추적
+    costDisplay.textContent = "💰 총 소모 : 0원";
+
+    resultBox.style.display = "inline-block";
+
+    const p = PETS[currentBase.name];
+    
+    let runCount = 0;
+    const BATCH_SIZE = 5000;
+    const MAX_RUNS = 100000; // 최대 10만 회 제한
+
+    resultBox.innerHTML = `<b>${currentBase.name} 시뮬레이션</b><br>────────────────────<br>🔥 정석 이상 검색 중... 잠시만 기다려 주세요.<br>`;
+    costDisplay.textContent = `💰 총 소모 : ${totalCostPerfect.toLocaleString()}원 (0회 시도 중...)`;
+
+    const formatDelta = n => {
+      if (n > 0) return `<span style="color:#00ffff;">(+${n})</span>`;
+      if (n < 0) return `<span style="color:#ff0000;">(${n})</span>`;
+      return `<span style="color:#ffffff;">(0)</span>`;
+    };
+
+    function runBatch() {
+      for (let i = 0; i < BATCH_SIZE; i++) {
+        runCount++;
+        totalCostPerfect += 1000;
+
+        if (runCount > MAX_RUNS) {
+          totalCostPerfect = 0;
+          resultBox.innerHTML = `<b>${currentBase.name} 시뮬레이션</b><br>────────────────────<br>🚫 정석이 발견되지 않아 검색을 중단합니다.`;
+          costDisplay.textContent = `🚫 해당 페트는 정석이 존재하지 않습니다.`;
+          return;
+        }
+
+        // 로직은 업로드된 파일의 로직을 그대로 사용
+        const tp = { ...p.u };
+        tp.hp += Math.floor(Math.random() * 5) - 2;
+        tp.atk += Math.floor(Math.random() * 5) - 2;
+        tp.def += Math.floor(Math.random() * 5) - 2;
+        tp.agi += Math.floor(Math.random() * 5) - 2;
+
+        for (let j = 0; j < 10; j++) {
+          const r = Math.floor(Math.random() * 4);
+          if (r === 0) tp.hp++;
+          else if (r === 1) tp.atk++;
+          else if (r === 2) tp.def++;
+          else tp.agi++;
+        }
+
+        const base = {
+          hp: p.k * tp.hp / 100,
+          atk: p.k * tp.atk / 100,
+          def: p.k * tp.def / 100,
+          agi: p.k * tp.agi / 100
+        };
+
+        const shown = {
+          hp: Math.floor(base.hp * 4 + base.atk + base.def + base.agi),
+          atk: Math.floor(base.hp * 0.1 + base.atk + base.def * 0.1 + base.agi * 0.05),
+          def: Math.floor(base.hp * 0.1 + base.atk * 0.1 + base.def + base.agi * 0.05),
+          agi: Math.floor(base.agi)
+        };
+
+        const SstatRaw = p.s0 || { hp: 0, atk: 0, def: 0, agi: 0 };
+        const SstatInt = {
+          hp: Math.floor(SstatRaw.hp),
+          atk: Math.floor(SstatRaw.atk),
+          def: Math.floor(SstatRaw.def),
+          agi: Math.floor(SstatRaw.agi)
+        };
+
+        const delta = {
+          hp: shown.hp - SstatInt.hp,
+          atk: shown.atk - SstatInt.atk,
+          def: shown.def - SstatInt.def,
+          agi: shown.agi - SstatInt.agi
+        };
+
+        // ✅ 정석 이상 조건 (모든 스탯이 S 이상)
+        if (delta.hp >= 0 && delta.atk >= 0 && delta.def >= 0 && delta.agi >= 0) {
+          let o = `<b>${currentBase.name} 시뮬레이션</b><br>────────────────────<br>🔥 정석 발견! (${runCount.toLocaleString()}회 시도)<br>`;
+          o += `<div class="result-header">
+                  <span>내구력</span>
+                  <span>공격력</span>
+                  <span>방어력</span>
+                  <span>순발력</span>
+                </div>`;
+          o += `<div class="result-row">
+                  <span>${shown.hp} ${formatDelta(delta.hp)}</span>
+                  <span>${shown.atk} ${formatDelta(delta.atk)}</span>
+                  <span>${shown.def} ${formatDelta(delta.def)}</span>
+                  <span>${shown.agi} ${formatDelta(delta.agi)}</span>
+                </div>`;
+            
+            resultBox.innerHTML = o;
+            costDisplay.textContent = `💰 총 소모 : ${totalCostPerfect.toLocaleString()}원`;
+            return; 
+          }
+        } 
+        
+        costDisplay.textContent = `💰 총 소모 : ${totalCostPerfect.toLocaleString()}원 (${runCount.toLocaleString()}회 시도 중...)`;
+
+        setTimeout(runBatch, 0); 
+      }
+      
+      runBatch();
+    }
+
+  // 버튼 이벤트 핸들러 연결
+  sim1.onclick = () => {
+    if (!currentBase) {
+      resultBox.style.display = "inline-block";
+      resultBox.innerHTML = `<b style="color:#ff6b81;">⚠️ 먼저 페트 이름을 입력하세요.</b>`;
+      return;
+    }
+    
+    simulate(1);
+    totalCost += 1000;
+    costDisplay.textContent = `💰 총 소모 : ${totalCost.toLocaleString()}원`;
+  };
+
+  sim5.onclick = () => {
+    if (!currentBase) {
+      resultBox.style.display = "inline-block";
+      resultBox.innerHTML = `<b style="color:#ff6b81;">⚠️ 먼저 페트 이름을 입력하세요.</b>`;
+      return;
+    }
+    
+    simulate(5);
+    totalCost += 5000;
+    costDisplay.textContent = `💰 총 소모 : ${totalCost.toLocaleString()}원`;
+  };
+
+  simUntil.onclick = () => {
+    if (!currentBase) {
+      resultBox.style.display = "inline-block";
+      resultBox.innerHTML = `<b style="color:#ff6b81;">⚠️ 먼저 페트 이름을 입력하세요.</b>`;
+      return;
+    }
+    totalCost=0; // 일반 시뮬 비용 초기화
+    totalCostPerfect = 0;
+    costDisplay.textContent="💰 총 소모 : 0원";
+    
+    simulateUntilPerfect();
+  };
+  
+  clear.onclick=()=>{
+    resultBox.innerHTML="";
+    totalCost=0;
+    totalCostPerfect = 0;
+    costDisplay.textContent="💰 총 소모 : 0원";
+    resultBox.style.display="none"; 
+  };
+
+  document.getElementById("btnClearInput").onclick = () => {
+    nameInput.value = ""; 
+    document.getElementById("suggestions").innerHTML = "";
+    sgradeBox.innerHTML = "페트를 입력하면 S급 기준 능력치가 표시됩니다.";
+    currentBase = null;
+
+    resultBox.innerHTML="";
+    totalCost=0;
+    totalCostPerfect = 0;
+    costDisplay.textContent="💰 총 소모 : 0원";
+    resultBox.style.display="none"; 
+  };
+
+  /* ======================================= */
+  /* ✅ [경험치 계산기] 로직 */
+  /* ======================================= */
+  const $=s=>document.querySelector(s);
+  const fmtNum=n=>isFinite(n)?Number(n).toLocaleString():"-";
+    const EXP_TABLE={1:2,2:6,3:17,4:37,5:67,6:111,7:169,8:247,9:344,10:464,11:609,12:783,13:985,
+  14:1221,15:1491,16:1799,17:2145,18:2535,19:2968,20:3448,21:3977,22:4559,23:5193,24:5885,
+  25:6635,26:7447,27:8321,28:9263,29:10272,30:11352,31:12506,32:13734,33:15042,34:16429,
+  35:17899,36:19454,37:21098,38:22830,39:24656,40:26576,41:28594,42:30710,43:32930,44:35253,
+  45:37683,46:40222,47:42874,48:45638,49:48520,50:51520,51:54642,52:57886,53:61258,54:64757,
+  55:68387,56:72150,57:76050,58:80086,59:84264,60:106110,61:113412,62:121149,63:129352,
+  64:138044,65:147256,66:157019,67:167366,68:178334,69:189958,70:202282,71:215348,72:229205,
+  73:243901,74:259495,75:276041,76:293606,77:312258,78:332071,79:353126,80:375511,81:399318,
+  82:424655,83:451631,84:480370,85:511007,86:543686,87:578571,88:616838,89:655680,90:698312,
+  91:743970,92:795918,93:842442,94:901869,95:962553,96:1026899,97:1098354,98:1174419,99:1256664,
+  100:1407463,101:1576358,102:1765521,103:1977384,104:2214670,105:2480430,106:2778082,107:3111451,
+  108:3484825,109:3903005,110:4371365,111:4895929,112:5483440,113:6141453,114:6878428,115:7703839,
+  116:8628300,117:9663695,118:10823339,119:12122140,120:13576796,121:15206012,122:17030733,
+  123:19074421,124:21363352,125:23926954,126:26798189,127:30013971,128:33615648,129:37649526,
+  130:42167469,131:47227565,132:52894873,133:59242257,134:66351328,135:74313488,136:83231106,
+  137:93218839,138:104405100,139:116933712};
+  const getTotalExp=(s,t)=>{let sum=0;for(let lv=s;lv<t;lv++)if(EXP_TABLE[lv])sum+=EXP_TABLE[lv];return sum;};
+  $("#run").onclick=()=>{
+    try{
+      const c=+$("#currentLevel").value,cp=+($("#currentPercent").value)||0,t=+$("#targetLevel").value,ph=+$("#xpPerHour").value;
+      if(!c||!t||!ph)throw new Error("입력이 부족합니다.");
+      if(t<=c)throw new Error("목표 레벨은 현재보다 커야 합니다.");
+      const rem1=EXP_TABLE[c]*(1-(cp/100)),rem2=getTotalExp(c+1,t),remain=rem1+rem2;
+      const hrs=remain/ph,days=hrs/24,h=Math.floor(hrs),m=Math.round((hrs-h)*60);
+      $("#statRemain").textContent=fmtNum(remain.toFixed(0));
+      // ✅ 수정된 부분: 통합된 요소에 예상 시간과 일수를 함께 출력
+      $("#statTimeAndDays").textContent=`${h}시간 ${m}분 (${days.toFixed(2)}일)`;
+      $("#results").hidden=false;
+    }catch(e){alert(e.message);}
+  };
+  $("#reset").onclick=()=>{document.querySelectorAll("#expTab input").forEach(i=>i.value="");$("#results").hidden=true;};
+});
+</script>
+</body>
+</html>
