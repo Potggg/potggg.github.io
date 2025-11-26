@@ -78,9 +78,6 @@
       padding: 10px 0; /* 상하 패딩 유지, 좌우 패딩 제거 */
       margin: 0 4px; /* 버튼 간 작은 간격 추가 */
     }
-    #petList {
-      max-height: 185px; 
-    }
   }
   .card{background:var(--panel); border:1px solid #232a36; border-radius:14px; padding:16px; box-shadow:0 6px 24px rgba(0,0,0,.25);}
   .card h3{margin:4px 0 12px 0; font-size:16px}
@@ -238,6 +235,12 @@
   }
   .pet-search-row .col {
     flex: 1;
+  }
+
+  @media (max-width: 600px) {
+    #petList {
+      max-height: 170px !important; 
+    }
   }
 </style>
 </head>
