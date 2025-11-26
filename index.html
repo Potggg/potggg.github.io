@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>노바서버 페트 계산기</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.6.0/decimal.min.js"></script>
+<link rel="shortcut icon" href="#">
+<style>
+  /* 바디 레벨 플로팅 툴팁 */
+  .floating-tip{
+    position: fixed; z-index: 9999; max-width: 360px;
+    background:#0b1320; color:#cfe1ff; border:1px solid #2b3a55;
+    border-radius:10px; padding:8px 10px; font-size:12px; line-height:1.35;
+    box-shadow:0 8px 24px rgba(0,0,0,.35);
+    pointer-events:none; white-space:normal; word-break:keep-all;
+    opacity:0; transform: translateY(4px);
+    transition: opacity .12s ease, transform .12s ease;
+  }
+  .floating-tip.show{ opacity:1; transform: translateY(0); }
+  .floating-tip::after{
+    content:""; position:absolute; width:10px; height:10px; left:50%;
+    transform: translateX(-50%) rotate(45deg);
+    background:#0b1320; border-left:1px solid #2b3a55; border-top:1px solid #2b3a55;
+  }
+  .floating-tip[data-pos="top"]::after{ bottom:-5px; }
+  .floating-tip[data-pos="bottom"]::after{ top:-5px; transform: translateX(-50%) rotate(225deg); }
+
+  :root{
+    --bg:#0f1115; --panel:#161a22; --muted:#8a9099; 
+    --accent:#6aa0ff; /* 기존 악센트 색상 유지 또는 #7fd4ff (밝은 청색) 사용 */
+    --ok:#35c759; --warn:#ffb300; --bad:#ff5171; --chip:#232a36;
+    --ring:#1f2530; --text:#e8ecf3; --ring-size: 60px; --ring-thickness: 10px;
+    --hud-speed: 120; /* HUD 도는 속도(px/s) */
+    --glow: 8px;
+    /* [추가] 홀로그램/스윕 변수 */
+    --sweep-speed: 2.5s; /* 느리고 부드럽게 */
+    --sweep-blur: 2.5px; /* 부드러운 산란 효과 */
+    --sweep-opacity: 0.4; /* 희미하게 */
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+    background:linear-gradient(180deg,#0f1115 0%,#0c0f14 100%); color:var(--text);
+  }
+  header{
+    padding:0; /* 기존 padding:16px 20px; 제거 */
+    border-bottom:1px solid #232a36; 
+    background:rgba(0,0,0,.2);
+    position:static; top:auto; left:auto; right:auto; z-index:10;
+  }
+  .wrap{ max-width:1100px; margin:0 auto; }
+  .header-inner{ display:flex; align-items:center; justify-content:space-between; padding:16px 20px; }
+  h1{margin:0 0 6px; font-size:18px}
+  .brand{font-weight:700; letter-spacing:.3px}
+  .ver{color:var(--muted); font-size:13.3333px; display:flex; align-items:center; gap:10px}
+  .grid{ max-width:1100px; margin:20px auto 4px; padding:0 16px; display:grid; gap:16px; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 980px){ .grid{grid-template-columns:1fr} }
+  @media (max-width: 600px) { /* 모바일 환경으로 간주할 최대 너비 */
+    .header-inner{
+      flex-direction: column; /* 내용을 수직으로 쌓음 */
+      align-items: flex-start; /* 왼쪽 정렬 */
+      padding-bottom: 12px; /* 제목/버전과 아래 메뉴 사이의 간격 줄이기 */
+    }
+    .title{
+      margin-bottom: 8px; /* 제목 블록과 메뉴 사이 간격 추가 */
+    }
+    .ver{
+      width: 100%; /* 메뉴 컨테이너 너비 100% 확보 */
+      justify-content: space-around; /* 버튼들을 가로로 균등하게 배치 (선택 사항) */
+      display: flex; /* 메뉴 내부 버튼들을 flex로 처리 */
+    }
+    /* 버튼 간 간격을 위한 스타일 */
+    .ver .btn.ghost {
+      flex: 1; /* 버튼들이 컨테이너 내에서 균등한 공간을 차지하도록 함 */
+      text-align: center;
+      padding: 10px 0; /* 상하 패딩 유지, 좌우 패딩 제거 */
+      margin: 0 4px; /* 버튼 간 작은 간격 추가 */
+    }
+  }
+  .card{background:var(--panel); border:1px solid #232a36; border-radius:14px; padding:16px; box-shadow:0 6px 24px rgba(0,0,0,.25);}
+  .card h3{margin:4px 0 12px 0; font-size:16px}
+  .row{display:flex; gap:8px; flex-wrap:wrap}
+  .col{flex:1 1 0}
+  label{display:block; font-size:12px; color:var(--muted); margin:6px 0 4px 2px}
+  input[type="number"], input[type="text"]{
+    width:100%; padding:10px 12px; border-radius:10px; border:1px solid #2a3040;
+    background:#0e1218; color:var(--text); outline:none;
+  }
+  input[readonly]{opacity:.7; cursor:not-allowed}
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+  .btn{ padding:10px 14px; border-radius:10px; border:1px solid #334055; cursor:pointer; background:#142033; color:#cfe1ff; font-weight:600; }
+  .btn:hover{filter:brightness(1.1)}
+  .btn.primary{ background:linear-gradient(180deg,#2b71ff,#1d56cc); border-color:transparent; color:white;}
+  .btn.ghost{ background:transparent; text-decoration: none;}
+  .btn-sm{padding:6px 10px; font-size:12px; border-radius:8px}
+  .muted{color:var(--muted); font-size:12px}
+  .chips{display:flex; gap:8px; flex-wrap:wrap}
+  .chip{ background:var(--chip); color:#cfd6e3; border:1px solid #2b3242; border-radius:999px; padding:6px 10px; font-size:12px; cursor:pointer; }
+  .chip.on{outline:2px solid var(--accent)}
+  .kbd{display:inline-block; border:1px solid #404a5e; border-bottom-width:3px; padding:2px 6px; border-radius:6px; background:#0e131a; font-weight:700}
+  .chooser{display:grid; grid-template-columns: 1fr; gap:8px}
+  .list{ max-height:260px; overflow:auto; border:1px solid #2a3040; border-radius:10px; padding:6px; background:#0d1117; }
+  .item{padding:8px 10px; border-radius:8px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition: background .12s ease, outline-color .12s ease; font-size:12px;}
+  .item:hover{background:#19202b}
+  .item.selected{ background:#1b2535; outline:2px solid #30518d; }
+  .tags{display:flex; gap:6px; align-items:center}
+  .tag{font-size:11px;border:1px solid #2b3242;border-radius:999px;padding:2px 8px}
+  .tag.ok{border-color:#275a34; background:#102214; color:#35c759}
+  .tag.warn{border-color:#7a5b0e; background:#241a05; color:#ffb300}
+  .tag.rank8{border-color:#2b4a82; background:#0d1a33; color:#88b5ff}
+    /* ★ 즐겨찾기 배지 */
+  .tag.fav{cursor:pointer; user-select:none}
+  .tag.fav.on{border-color:#6a5600; background:#221c05; color:#ffd24a}
+  .kpis{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px}
+
+  @media (max-width: 720px){ .kpis{grid-template-columns: 1fr} }
+  .kpi{ display:flex; gap:14px; align-items:center; border:1px solid #2a3040; border-radius:14px; padding:14px; background:radial-gradient(120px 120px at 20% -10%, #11224444, transparent); }
+  .ringwrap{ position:relative; width:var(--ring-size); height:var(--ring-size); flex:0 0 var(--ring-size); }
+  svg{ display:block; width:100%; height:100%; }
+  .track{ stroke: var(--ring); fill:none; stroke-linecap: round; }
+  .fill { stroke: var(--accent); fill:none; stroke-linecap: round; transition: stroke .25s ease, stroke-dashoffset .25s linear; }
+
+  /* 성공 링 HUD */
+  .hud { filter: drop-shadow(0 0 var(--glow) rgba(160,200,255,.6)); }
+  .tail{ stroke: #9fc3ff; stroke-linecap: round; opacity:.7; fill:none; }
+  .core{ stroke: #fff;     stroke-linecap: round; fill:none; }
+  .flare{ fill: #fff; opacity:.95; }
+  /* 도넛(기본 게이지) — 크기 고정 + 마스크로 속빈 원 */
+  .ring{
+    width: var(--ring-size);
+    height: var(--ring-size);
+    flex: 0 0 var(--ring-size);
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    isolation: isolate;
+    --p: 0deg; /* JS에서 진행각 설정 */
+
+/* [수정] 코닉 그라디언트에 얇은 줄무늬 추가하여 홀로그램 효과 */
+  background: 
+    repeating-conic-gradient(
+      var(--accent) 0 var(--p), 
+      var(--ring) calc(var(--p) + 0.5deg) /* 0.5deg 간격으로 줄무늬 추가 */
+    );
+    
+/* [추가] 미세한 그림자로 떠 있는 느낌 부여 */
+  box-shadow: 0 0 15px rgba(121, 248, 255, 0.15); 
+
+/* 속 비우기(도넛) 마스크 */
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--ring-thickness)), #000 0);
+        mask: radial-gradient(farthest-side, transparent calc(100% - var(--ring-thickness)), #000 0);
+}
+
+
+  /* ★ 성공 링에만 HUD 스윕 */
+  #ringSuccess::after{
+      content:"";
+      position:absolute; inset:0;
+      border-radius:50%;
+      pointer-events:none;
+      /* [수정] 투명도 변수 사용 (매우 희미하게) */
+      opacity: calc(var(--sweep-on, 0) * var(--sweep-opacity)); 
+      /* [수정] 블러 변수 사용 (부드러운 산란 효과) */
+      filter: blur(var(--sweep-blur)); 
+      will-change: transform;
+      /* [수정] 속도 변수 사용 (느리게 회전) */
+      animation: ring-sweep var(--sweep-speed) linear infinite; 
+  /* 얇은 빛 웨지 패턴 */
+      background:
+        repeating-conic-gradient(
+          from -90deg,
+          rgba(255,255,255,0)   0deg 6deg,
+          rgba(255,255,255,.9)  6deg 7.2deg,
+          rgba(255,255,255,0)  7.2deg 14.4deg
+        );
+  /* (1) 도넛 모양으로 구멍 + (2) 진행각까지만 표시 */
+      -webkit-mask-image:
+        radial-gradient(farthest-side, transparent calc(100% - var(--ring-thickness)), #000 0),
+        conic-gradient(#000 0 calc(var(--p) + .0001deg), transparent 0); /* 0deg 버그회피용 +ε */
+      -webkit-mask-composite: source-in;
+            mask-image:
+        radial-gradient(farthest-side, transparent calc(100% - var(--ring-thickness)), #000 0),
+        conic-gradient(#000 0 calc(var(--p) + .0001deg), transparent 0);
+            mask-composite: intersect;
+  }
+
+  @keyframes ring-sweep{ to { transform: rotate(360deg); } }
+
+/* (선택) 숫자 폭 고정해서 레이아웃 흔들림 방지 */
+  #kpiSuccess, #kpiAppear{ display:inline-block; min-width: 9ch; font-variant-numeric: tabular-nums; }
+  #kpiTries{   display:inline-block; min-width: 6ch; font-variant-numeric: tabular-nums; }
+
+  .kpi strong{font-size:20px; color:var(--highlight)}
+  .kpi small{display:block; color:var(--muted)}
+  .table{width:100%; border-collapse:collapse; font-size:13px}
+  .table th,.table td{border-bottom:1px solid #262d3a; padding:8px 6px; text-align:right}
+  .table th:first-child,.table td:first-child{text-align:left}
+  .badge{display:inline-block; min-width:34px; font-size:12px; text-align:center; padding:2px 6px; border-radius:6px; background:#223; border:1px solid #356}
+  .ok{color:var(--ok)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+  .footer{max-width:1100px; margin:0px auto 30px; padding:0 16px; color:var(--muted); font-size:12px}
+  .imgbox{width:100%; aspect-ratio: 16/9; border:1px dashed #334055; border-radius:12px; display:grid; place-items:center; background:#0d1117; overflow:hidden;}
+  .imgbox img{width:100%; height:100%; object-fit:cover; display:block}
+  .stepper{display:flex; gap:6px; margin-top:6px}
+    /* 숫자 자릿수 고정 + 등폭 숫자 */
+  #kpiSuccess, #kpiAppear{
+    display:inline-block;
+    min-width: 9ch;               /* "100.0000%" 정도를 수용 */
+    font-variant-numeric: tabular-nums;
+  }
+  #kpiTries{
+    display:inline-block;
+    min-width: 6ch;               /* "123.45" 정도 */
+    font-variant-numeric: tabular-nums;
+  }
+  
+/* === Toast === */
+  .toastWrap{position:fixed; right:16px; bottom:16px; display:flex; flex-direction:column; gap:8px; font-size:12px; z-index:9999}
+  .toast{background:#101826; border:1px solid #2a3a59; color:#cfe3ff; padding:10px 12px; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,.3); opacity:0; transform:translateY(10px); transition: all .25s ease }
+  .toast.show{opacity:1; transform:translateY(0)}
+
+  #petList {
+    max-height: calc(5 * 40px);
+    overflow-y: auto;
+  }
+  
+  /* [수정 1] 검색 입력창과 버튼 수직 중앙 정렬 */
+  .pet-search-row {
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .pet-search-row .col {
+    flex: 1;
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner wrap">
+    <div class="title">
+      <h1>노바서버 페트 계산기</h1>
+      <div class="muted">패치노트 v3.5 적용</div>
+    </div>
+    <div class="ver">
+      <a class="btn ghost" id="btnDict" href="./petsfilter.html">페트 사전</a>
+      <a class="btn ghost" id="btnSimulator" href="./simulator.html">시뮬레이터</a>
+      <a class="btn ghost" id="btnAdmin" href="./admin.html">관리자</a>
+    </div>
+</header>
+
+<div class="grid">
+  <section class="card">
+    <h3>① 페트 선택</h3>
+    <div class="row">
+      <div class="col chooser">
+        <label>초성 키패드</label>
+        <div id="chosung" class="chips"></div>
+
+        <div class="row" style="margin-top:6px; align-items:center">
+          <span class="muted" style="min-width:78px">선택한 초성</span>
+          <div id="chosungTokens" class="chips" style="min-height:28px"></div>
+        </div>
+
+        <div class="row" style="margin-top:6px; align-items:center">
+          <span class="muted" style="min-width:78px">즐겨찾기<br>(최대 5개)</span>
+          <div id="favChips" class="chips" style="min-height:28px"></div>
+        </div>
+
+        <div class="pet-search-row">
+          <div class="col">
+            <input type="text" id="petSearch" placeholder="검색어를 입력해 주세요." />
+          </div>
+          <button class="btn" id="btnClear">지우기</button>
+        </div>
+        <div class="list" id="petList"></div>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:8px">팁: 초성만 눌러도 후보가 빠르게 걸러집니다. (예: 반기노 = <span class="kbd">ㅂ</span>→<span class="kbd">ㄱ</span>)</p>
+  </section>
+
+  <section class="card">
+    <h3>② 페트 초기치 입력</h3>
+
+    <div class="row">
+      <div class="col">
+        <label>S급 초기치 (체/공/방/순)</label>
+        <div class="row">
+          <div class="col"><input type="number" id="s0_hp"  step="0.01" readonly /></div>
+          <div class="col"><input type="number" id="s0_atk" step="0.01" readonly /></div>
+          <div class="col"><input type="number" id="s0_def" step="0.01" readonly /></div>
+          <div class="col"><input type="number" id="s0_agi" step="0.01" readonly /></div>
+        </div>
+
+        <label style="margin-top:10px">S급 성장치 (체/공/방/순)</label>
+        <div class="row">
+          <div class="col"><input type="number" id="sg_hp"  step="0.01" readonly /></div>
+          <div class="col"><input type="number" id="sg_atk" step="0.01" readonly /></div>
+          <div class="col"><input type="number" id="sg_def" step="0.01" readonly /></div>
+          <div class="col"><input type="number" id="sg_agi" step="0.01" readonly /></div>
+        </div>
+      </div>
+    </div>
+
+    <hr style="border:none;border-top:1px solid #2a3040; margin:14px 0" />
+
+    <div class="row">
+      <div class="col">
+        <label>1레벨 초기치 (체/공/방/순)</label>
+        <div class="row">
+          <div class="col">
+            <input type="number" id="obs_hp"  step="1" min="0" max="100" />
+            <div class="stepper">
+              <button class="btn btn-sm" data-target="obs_hp" data-delta="-1">-1</button>
+              <button class="btn btn-sm" data-target="obs_hp" data-delta="1">+1</button>
+            </div>
+          </div>
+          <div class="col">
+            <input type="number" id="obs_atk" step="1" min="0" max="100" />
+            <div class="stepper">
+              <button class="btn btn-sm" data-target="obs_atk" data-delta="-1">-1</button>
+              <button class="btn btn-sm" data-target="obs_atk" data-delta="1">+1</button>
+            </div>
+          </div>
+          <div class="col">
+            <input type="number" id="obs_def" step="1" min="0" max="100" />
+            <div class="stepper">
+              <button class="btn btn-sm" data-target="obs_def" data-delta="-1">-1</button>
+              <button class="btn btn-sm" data-target="obs_def" data-delta="1">+1</button>
+            </div>
+          </div>
+          <div class="col">
+            <input type="number" id="obs_agi" step="1" min="0" max="100" />
+            <div class="stepper">
+              <button class="btn btn-sm" data-target="obs_agi" data-delta="-1">-1</button>
+              <button class="btn btn-sm" data-target="obs_agi" data-delta="1">+1</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:12px">
+      <button class="btn primary" id="btnCalc">계산</button>
+      <button class="btn ghost" id="btnReset">리셋</button>
+      <span class="muted" style="margin-left:auto">스크롤 업/다운으로 수치 조정 가능</span>
+    </div>
+  </section>
+
+<section class="card" id="resultCard">
+<h3>③ 결과</h3>
+<div class="kpis">
+<div class="kpi">
+<div class="ringwrap">
+<svg viewBox="0 0 100 100" aria-hidden="true">
+<defs>
+<circle id="succPath" cx="50" cy="50" r="45"/>
+<mask id="succMask" maskUnits="userSpaceOnUse">
+<circle id="succMaskStroke" cx="50" cy="50" r="45"
+fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"
+transform="rotate(-90 50 50)"
+
+stroke-dasharray="0 1" stroke-dashoffset="0"/>
+</mask>
+</defs>
+
+<use href="#succPath" class="track" stroke-width="10" transform="rotate(-90 50 50)"/>
+<use id="succFill" href="#succPath" class="fill" stroke-width="10"
+transform="rotate(-90 50 50)" stroke-dasharray="0 1" stroke-dashoffset="0" style="stroke: none;"/>
+
+<g id="succHUD" class="hud" mask="url(#succMask)" style="opacity: 0;">
+<path id="succTail" class="tail" stroke-width="10"/>
+<path id="succCore" class="core" stroke-width="6"/>
+<circle id="succFlare" class="flare" r="3" cx="50" cy="5"/>
+</g>
+</svg>
+</div>
+
+<div>
+<strong id="kpiSuccess">0.0000%</strong>
+<small>8등급(환각) 확률</small>
+</div>
+</div>
+
+<div class="kpi">
+<div class="ringwrap">
+<svg viewBox="0 0 100 100" aria-hidden="true">
+<circle id="apPath" cx="50" cy="50" r="43" fill="none"/>
+<use href="#apPath" class="track" stroke-width="10" transform="rotate(-90 50 50)"/>
+<use id="apFill" href="#apPath" class="fill" stroke="#7fd4ff" stroke-width="10"
+transform="rotate(-90 50 50)" stroke-dasharray="0 1" stroke-dashoffset="0" style="stroke: none;"/>
+</svg>
+</div>
+
+<div>
+<strong id="kpiAppear">0.000000%</strong>
+<span id="apBadge" class="badge" style="display:none">2% ↑</span>
+
+<small>출현 확률</small>
+</div>
+</div>
+
+<div class="kpi">
+<div class="ringwrap">
+<svg viewBox="0 0 100 100" aria-hidden="true">
+<circle id="trPath" cx="50" cy="50" r="43" fill="none"/>
+<use href="#trPath" class="track" stroke-width="10" transform="rotate(-90 50 50)"/>
+<use id="trFill" href="#trPath" class="fill" stroke="#999" stroke-width="10"
+transform="rotate(-90 50 50)" stroke-dasharray="0 1" stroke-dashoffset="0" style="stroke: none;"/>
+</svg>
+</div>
+        <div>
+          <strong id="kpiTries">0회</strong>
+          <small style="white-space: nowrap;">기대 시도</small>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px">
+      <div class="row">
+        <div class="col"><span class="muted">총 매칭 :</span> <span class="badge" id="totMatches">0</span></div>
+        <div class="col"><span class="muted">8등급 매칭 :</span> <span class="badge" id="rank8Matches">0</span></div>
+        <div class="col"><span class="muted">전수값 :</span> <span class="badge">178,750</span></div>
+      </div>
+    </div>
+
+<div id="dist" style="margin-top:12px"></div>
+  </section>
+
+  <section class="card">
+    <div class="imgbox">
+      <img src="https://stoneage001.com/theme/basic/img/noti_board15.jpg" alt="StoneAge Nova" loading="lazy" decoding="async"/>
+    </div>
+    <p class="muted" style="margin-top:8px">이 계산기는 과장(kokodas.)님 오픈소스로 제작되었습니다. </p>
+    <style>
+      #visitCounter {
+        margin-top: 6px;
+        font-weight: 600;
+        font-size: 14px;
+        color: #aab7cc;
+      }
+    </style>
+    <div id="visitCounter">방문자 수 불러오는 중...</div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // 1. 페이지 키 생성
+        const today = new Date();
+        // YYYY_MM_DD 형식으로 키 생성
+        const dateKey = `${today.getFullYear()}_${today.getMonth() + 1}_${today.getDate()}`;
+    
+        // 현재 경로를 기반으로 키 생성 (루트 경로('/')는 'home'으로 설정)
+        const pathname = window.location.pathname;
+        const baseKey = pathname === "/"
+            ? "home"
+            : pathname.replace(/\W+/g, "_").toLowerCase(); // 비문자열을 '_'로 대체하고 소문자로 변환
+
+        const pageKey = `${baseKey}_${dateKey}`; // 누적 방문자 수를 계산하고 싶다면,  _${dateKey} 부분을 제거
+    
+        // 2. Worker 호출 (필수 수정: POST 메서드 사용)
+        fetch(`https://page-counter.potg.workers.dev/hit/${pageKey}`, {
+            method: 'POST', // 🚨 필수 수정! Worker의 hit 엔드포인트는 이제 POST만 허용
+            // body는 필요 없지만, 요청이 POST임을 명시해야 합니다.
+        })
+        .then(res => {
+            // HTTP 상태 코드가 200번대가 아니면 에러를 발생시킵니다.
+            if (!res.ok) {
+                // 예: 405 Method Not Allowed 에러가 발생했을 때
+                throw new Error(`Worker Error: ${res.status} ${res.statusText}`);
+            }
+            return res.json();
+        })
+        .then(d => {
+            // 결과값 표시
+            const count = d.value || 0;
+            document.getElementById("visitCounter").textContent =
+                `👋 오늘 방문자 수 : ${count.toLocaleString()}명`;
+        })
+        .catch(err => {
+            console.error("방문자 카운터 에러:", err);
+            // 에러 메시지를 사용자에게 표시
+            document.getElementById("visitCounter").textContent = "방문자 수 로드 실패 😢";
+        });
+    });
+    </script>
+</style>
+  </section>
+</div>
+
+<div class="footer">
+  <p>· “8등급”은 베이스 합계가 <b>+8</b>인 경우만 집계합니다. (각 항목 범위 −2..+2)</p>
+</div>
+
+  <div class="toastWrap" id="toastWrap"></div>
+
+<script src="main.js"></script>
+
+</body>
+</html>

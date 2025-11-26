@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Nova Pet Admin</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.6.0/decimal.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#161a22; --muted:#8a9099; --accent:#6aa0ff;
+    --ok:#35c759; --warn:#ffb300; --bad:#ff5171; --chip:#232a36;
+    --ring:#1f2530; --text:#e8ecf3; --highlight:#fff;
+    /* 탭 색상 변수 추가/수정 */
+    --tab-inactive: #232a36;
+    --tab-active: #161a22; 
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:#0f1115; color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; font-size: 14px;}
+  header{display:flex;align-items:center;justify-content:space-between; border-bottom:1px solid #232a36;background:#0c1016;position:sticky;top:0;z-index:10}
+  .brand{font-weight:700; display: flex; flex-direction: column; align-items: flex-start;}
+  .grid{max-width:1200px;margin:16px auto;padding:0 16px;display:grid;grid-template-columns: 340px 1fr;gap:14px}
+  .card{background:#161a22;border:1px solid #232a36;border-radius:12px; padding:12px}
+  .row{display:flex;gap:8px;flex-wrap:wrap}
+  .col{flex:1 1 0}
+  label{display:block;font-size:12px;color:var(--muted);margin:6px 0 4px 2px}
+  input,textarea,select{
+    width:100%; padding:10px 12px; border-radius:10px; border:1px solid #2a3040;
+    background:#0e1218; color:#e8ecf3; outline:none; font-size:14px; transition:border-color .2s;
+  }
+  input.input-bad{ border-color:var(--bad) }
+  textarea{min-height:84px; resize:vertical}
+  .btn{padding:10px 12px;border-radius:10px;border:1px solid #334055;background:#142033;color:#cfe1ff;cursor:pointer;font-weight:600}
+  .btn:hover{filter:brightness(1.06)}
+  .btn:disabled{ opacity:.5; cursor:not-allowed }
+  .btn.primary{background:linear-gradient(180deg,#2b71ff,#1d56cc);border-color:transparent;color:white}
+  .btn.ghost{background:transparent}
+  .btn.warn{border-color:#7a1e2e;background:#2a0f16;color:#ff8aa0}
+  .list{max-height:52vh;overflow:auto;border:1px solid #2a3040;border-radius:10px}
+  .item{padding:10px 12px;border-bottom:1px solid #222836;display:flex;align-items:center;justify-content:space-between;gap:8px;cursor:pointer}
+  .item:hover{background:#141924}
+  .muted{color:var(--muted)}
+  .tags{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+  .tag{font-size:11px;border:1px solid #2b3242;border-radius:999px;padding:2px 8px}
+  .tag.ok{border-color:#275a34;background:#102214;color:#35c759}
+  .tag.warn{border-color:#7a5b0e;background:#241a05;color:#ffb300}
+  .tag.bad{border-color:#5a1e2a;background:#201016;color:#ff7e92}
+  .grid2{display:grid;grid-template-columns: repeat(4,1fr);gap:8px}
+  .grid3{display:grid;grid-template-columns: repeat(3,1fr);gap:8px}
+  .hr{height:1px;background:#242a36;margin:10px -12px}
+  .note{font-size:12px;color:#b8bfd0}
+  .callout{border:1px solid #334055;background:#0f1420;border-radius:10px;padding:10px 12px}
+  .callout.bad{border-color:#5a1e2a;background:#1a0f14}
+  .callout.ok{border-color:#275a34;background:#0f1912}
+  .right{display:flex;gap:8px;align-items:center}
+  .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace}
+
+  /* ===== 8확정 리스트 정렬 고정 ===== */
+  .r8list{max-height:36vh; overflow:auto; border:1px solid #2a3040; border-radius:10px; padding:6px}
+  .r8item{
+    display:grid;
+    grid-template-columns: 22px 1fr auto; /* 체크박스 | 이름 | 태그 */
+    gap:8px; align-items:center; padding:8px; border-bottom:1px solid #222836; border-radius:8px;
+  }
+  .r8item:last-child{border-bottom:none}
+  .r8item input[type=checkbox]{ width:18px; height:18px; }
+  .r8item.disabled{opacity:.55}
+  .r8item .name{font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .r8item .extra{display:flex; gap:6px; align-items:center; justify-self:end; flex-wrap:wrap}
+
+  /* ===== 탭 UI ===== */
+  .tab-header{ display:flex; border-bottom:1px solid #232a36; background:#0c1016; margin:0 -12px; padding:0 12px 0 12px; }
+  .tab-btn{
+    padding:10px 14px; margin-bottom:-1px; cursor:pointer; font-weight:600;
+    border:1px solid transparent; 
+    border-bottom:1px solid #232a36; /* 비활성 탭에 하단 선 표시 */
+    color:var(--muted); transition:color .2s, border-color .2s;
+    background: var(--tab-inactive); /* 비활성 탭 배경색 */
+  }
+  .tab-btn.active{
+    border-color:#232a36; 
+    border-bottom-color:var(--tab-active); /* 활성 탭 하단 선 제거 효과 */
+    color:var(--text);
+    background: var(--tab-active); /* 활성 탭 배경색 */
+  }
+  .tab-panel{ display:none; padding-top:12px }
+  .tab-panel.active{ display:block }
+  
+  /* R8 미리보기 테이블 스타일 조정 */
+  .r8Preview table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+  }
+  .r8Preview th, .r8Preview td {
+    padding: 8px 0;
+    border-bottom: 1px solid #222836;
+    vertical-align: top;
+  }
+  .r8Preview thead th {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+    padding-bottom: 4px;
+  }
+  .r8Preview tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
+  /* 모바일 최적화 */
+  @media (max-width: 780px){
+    .grid{grid-template-columns:1fr;gap:10px}
+    header{flex-wrap:wrap;gap:8px}
+    .list{max-height:32vh}
+    input,textarea,select{font-size:14px;padding:12px 14px}
+    .btn{padding:12px 14px}
+    .grid2{grid-template-columns: repeat(2,1fr)}
+    .grid3{grid-template-columns: repeat(2,1fr)}
+    .r8item{ grid-template-columns: 24px 1fr; }
+    .r8item .extra{ grid-column: 2 / 3; justify-self:start; margin-top:2px; }
+  }
+
+  /* === 비밀번호 게이트 === */
+  body.locked{overflow:hidden}
+  body.locked header, body.locked .grid{display:none}
+  #gate{
+    position:fixed; inset:0; z-index:9999;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(15,17,21,.94)
+  }
+  #gate .panel{
+    width:min(420px,92vw); border-radius:14px; padding:18px;
+    background:#161a22; border:1px solid #232a36; color:#e8ecf3
+  }
+  #gate h2{margin:0 0 10px; font-size:18px}
+  #gate .row{display:flex; gap:8px; margin-top:8px}
+  #gate input{
+    flex:1 1 auto; padding:12px; border-radius:10px; border:1px solid #2a3040;
+    background:#0e1218; color:#e8ecf3; outline:none; font-size:14px
+  }
+  #gate button{
+    padding:12px 14px; border-radius:10px; border:1px solid #334055;
+    background:#142033; color:#cfe1ff; font-weight:600; cursor:pointer
+  }
+  #gate .err{margin-top:8px; color:#ff7e92; font-size:13px; min-height:18px}
+  /* 로딩 스피너 */
+  .loader { border: 4px solid #f3f3f3; border-top: 4px solid var(--accent); border-radius: 50%; width: 20px; height: 20px; animation: spin 2s linear infinite; margin-right: 8px; }
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 16px; /* 기존 header 패딩 값 적용 */
+    width: 100%; /* flex 컨테이너가 전체 너비를 차지하도록 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  /* [추가] GitHub Status Chip Style */
+  #ghStatus {
+    display: none; /* 초기에는 숨김 */
+    align-items: center;
+    background: var(--chip); /* 기본 배경색 */
+    color: var(--muted); /* 기본 글자색 */
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    white-space: nowrap;
+    border: 1px solid var(--chip);
+  }
+  #ghStatus .sha {
+    font-family: monospace;
+    margin-left: 4px;
+    color: var(--text);
+    font-weight: 600;
+  }
+  #ghStatus .status-text {
+    font-weight: 500;
+  }
+</style>
+</head>
+<body class="locked">
+  <div id="gate" role="dialog" aria-modal="true">
+    <div class="panel">
+      <h2>Nova Pet Admin</h2>
+      <div class="muted" style="font-size:13px">접근을 위해 비밀번호를 입력하세요.</div>
+      <div class="row">
+        <input id="gate_pass" type="text" placeholder="Password" autocomplete="current-password" />
+        <button id="gate_btn">입장</button>
+      </div>
+      <div id="gate_err" class="err"></div>
+      <div style="display: flex; justify-content: flex-start; align-items: center;">
+        <label style="display:flex;align-items:center;gap:4px;font-size:13px;color:#8a9099;">
+          <input id="gate_rem" type="checkbox" style="width:14px; height:14px;"> 브라우저 탭에서 2시간 기억하기
+        </label>
+      </div>
+    </div>
+  </div>
+
+<header>
+  <div class="header-inner">
+    
+    <div class="brand">
+      <div>Nova Pet Admin — 오버라이드 + 8등급 초기치 집계</div>
+      <div id="ghStatus" style="margin-top: 4px;"></div>
+    </div>
+    
+    <div class="right">
+      <button class="btn" id="btnReload">원격 새로고침</button>
+      <button class="btn ghost" id="btnExport">로컬 다운로드</button>
+    </div>
+  </div>
+</header>
+
+<div class="grid">
+  <section class="card">
+    <div class="row" style="margin-bottom:8px">
+      <input id="search" placeholder="이름 검색" />
+      <button class="btn" id="btnNew">+ 새 페트</button>
+    </div>
+    <div class="list" id="list"></div>
+  </section>
+
+  <section class="card">
+    <div class="tab-header">
+      <button class="tab-btn active" data-tab="editor">① 오버라이드 관리</button>
+      <button class="tab-btn" data-tab="r8">② 8등급 100% 초기치 집계</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-editor">
+      <div class="row">
+        <div class="col">
+          <label>이름</label>
+          <input id="name" placeholder="예: 골로스" />
+        </div>
+        <div class="col">
+          <label>메모(선택)</label>
+          <input id="note" placeholder="관리자 메모(내부용)" />
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <div>
+        <label>표기 초기치 S0 (체/공/방/순)</label>
+        <div class="grid2">
+          <input class="validate-num" id="s0_hp"  type="number" step="0.01" placeholder="hp 67.62" />
+          <input class="validate-num" id="s0_atk" type="number" step="0.01" placeholder="atk 14.83" />
+          <input class="validate-num" id="s0_def" type="number" step="0.01" placeholder="def 9.54" />
+          <input class="validate-num" id="s0_agi" type="number" step="0.01" placeholder="agi 8.26" />
+        </div>
+      </div>
+
+      <div style="margin-top:10px">
+        <label>표기 성장치 Sg (체/공/방/순)</label>
+        <div class="grid2">
+          <input class="validate-num" id="sg_hp"  type="number" step="0.01" placeholder="hp 10.51" />
+          <input class="validate-num" id="sg_atk" type="number" step="0.01" placeholder="atk 2.30" />
+          <input class="validate-num" id="sg_def" type="number" step="0.01" placeholder="def 1.48" />
+          <input class="validate-num" id="sg_agi" type="number" step="0.01" placeholder="agi 1.28" />
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="row" style="align-items:center">
+        <label style="margin:0 8px 0 2px">
+          <input type="checkbox" id="ovr_check" /> 수동 오버라이드(k/u 강제)
+        </label>
+        <button class="btn" id="btnSolve">S0/SG로 k/u 추정</button>
+        <button class="btn warn" id="btnClearKU">오버라이드 해제</button>
+        <span class="note">※ 아래 k/u는 <b>원래 u(JJYAL)</b> 기준으로 입력/저장/연산됩니다.</span>
+      </div>
+
+      <div class="row" style="margin-top:8px">
+        <div style="min-width:120px">
+          <label>k</label>
+          <input id="ku_k" type="number" step="1" placeholder="예: 28" />
+        </div>
+        <div class="col">
+          <label>u (hp / atk / def / agi) — <span class="muted">원래 u</span></label>
+          <div class="grid2">
+            <input id="ku_hp"  type="number" step="1" placeholder="예: 31" />
+            <input id="ku_atk" type="number" step="1" placeholder="예: 41" />
+            <input id="ku_def" type="number" step="1" placeholder="예: 20" />
+            <input id="ku_agi" type="number" step="1" placeholder="예: 25" />
+          </div>
+        </div>
+      </div>
+
+      <div id="consistency" class="callout" style="margin-top:10px;display:none"></div>
+
+      <div class="hr"></div>
+
+      <div class="row">
+        <button class="btn" id="btnSave">저장 (브라우저)</button>
+        <button class="btn primary" id="btnCommit" disabled>pets.json 커밋</button></div>
+    </div>
+
+    <div class="tab-panel" id="tab-r8">
+      <h3 style="margin:4px 0 10px">8등급 100% 확정 초기치 집계 관리</h3>
+      <div class="row" style="align-items:center;margin-bottom:8px">
+        <button class="btn primary" id="btnR8SelectNew">미집계 대상 선택</button>
+        <button class="btn" id="btnR8SelectAll">모두 선택</button>
+        <button class="btn ghost" id="btnR8ClearAll">선택 해제</button>
+        <span class="note">k/u가 있는 페트만 선택 가능(오버라이드 포함)</span>
+      </div>
+      <div class="r8list" id="r8List"></div>
+
+      <div class="row" style="margin-top:10px; align-items:center">
+        <button class="btn" id="btnR8Run">선택 대상 집계</button>
+        <button class="btn primary" id="btnR8Commit" disabled>rank8.json 커밋</button>
+        <div id="r8Status" class="note"></div>
+      </div>
+      <div id="r8Preview" class="callout r8Preview" style="margin-top:10px; display:none"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+/* '2시간 기억하기' 체크 시 유지 시간(ms) */
+const LOGIN_TTL_MS = 2 * 60 * 60 * 1000;
+
+async function sha256Hex(text){
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+function getSess(){ try{ return JSON.parse(sessionStorage.getItem("nova_admin_ok")||"null"); }catch{ return null; } }
+function setSess(){ sessionStorage.setItem("nova_admin_ok", JSON.stringify({h:WORKER_URL, t:Date.now()})); }
+function sessValid(){ const s = getSess(); return !!(s && s.h===WORKER_URL && (Date.now()-s.t) < LOGIN_TTL_MS); }
+function unlock(){ document.body.classList.remove("locked"); const g = document.getElementById("gate"); if(g) g.remove(); }
+
+document.addEventListener("DOMContentLoaded", ()=>{
+  const pass = document.getElementById("gate_pass");
+  const btn  = document.getElementById("gate_btn");
+  const err  = document.getElementById("gate_err");
+  const rem  = document.getElementById("gate_rem");
+
+  if(sessValid()){ unlock(); return; }
+
+  async function tryLogin(){
+    err.textContent = "";
+    const p = pass.value ?? "";
+    if(!p){ err.textContent="비밀번호를 입력하세요."; pass.focus(); return; }
+
+    const loadingSpinner = `<div class="loader"></div>`;
+    btn.innerHTML = loadingSpinner + " 확인 중";
+    btn.disabled = true;
+
+    try{
+      const hex = await sha256Hex(p); // 1. 클라이언트에서 비밀번호 해시 계산
+
+      // 2. ⭐️ Worker의 인증 엔드포인트 호출 (기존 WORKER_URL 사용)
+      const res = await fetch(`${WORKER_URL}/api/auth/verify`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ hash: hex }) // 계산된 해시 전송
+      });
+      
+      btn.innerHTML = "입장";
+      btn.disabled = false;
+
+      if(res.ok){
+        // 3. 성공 응답 (200 OK)
+        if(rem && rem.checked) setSess(); // 세션 저장
+        unlock();
+      }else if(res.status === 401){
+        // 4. 인증 실패 (401 Unauthorized)
+        err.textContent = "비밀번호가 올바르지 않습니다.";
+        pass.value = ""; pass.focus();
+      }else{
+        // 5. 기타 Worker 오류 처리
+        const errorText = await res.text().catch(()=>res.statusText);
+        err.textContent = `Worker 오류: ${res.status} ${errorText}`;
+      }
+    }catch(e){
+      btn.innerHTML = "입장";
+      btn.disabled = false;
+      err.textContent = "인증 서버 연결 오류: " + e.message;
+      console.error(e);
+    }
+  }
+
+  btn.addEventListener("click", tryLogin);
+  pass.addEventListener("keydown", e=>{ if(e.key==="Enter") tryLogin(); });
+  setTimeout(()=>pass.focus(), 0);
+});
+</script>
+
+<script>
+/* ====== 설정 ====== */
+const WORKER_URL = "https://github-proxy.potg.workers.dev";
+const REMOTE_PETS = "data/pets.json";
+const REMOTE_R8   = "data/rank8.json";
+
+const LS_KEY = "adminPetsCache_v2";
+
+/* ====== 상태 ====== */
+let DB = {}; let ORDER = []; let CURRENT = null;
+let R8_RESULT = {}; let R8_REMOTE_SHA = null;
+let AGGREGATED_R8_NAMES = new Set();
+
+/* ====== 유틸 ====== */
+function b64EncodeUnicode(str) {
+  // 1. 문자열을 UTF-8로 인코딩
+  const utf8String = encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, 
+    (match, p1) => String.fromCharCode(parseInt(p1, 16))
+  );
+  // 2. Base64로 인코딩
+  return btoa(utf8String);
+}
+function fetchJSON(url){
+  return fetch(url + `?v=${Date.now()}`, {cache:"no-store"})
+    .then(async r => {
+      if(r.status === 404) return {__404__:true};
+      if(!r.ok) throw new Error("HTTP "+r.status);
+      return r.json();
+    });
+}
+function saveLS(){ localStorage.setItem(LS_KEY, JSON.stringify(DB)); }
+function loadLS(){ try{ const s=localStorage.getItem(LS_KEY); return s? JSON.parse(s):null; }catch{ return null; } }
+function sortNames(){ ORDER = Object.keys(DB).sort((a,b)=>a.localeCompare(b,'ko')); }
+function $(id){ return document.getElementById(id); }
+const num = (v)=> (v===""||v==null||isNaN(+v)) ? null : +v;
+const floor4 = (a)=> a.map(x=>Math.floor(x??NaN));
+function toFixed2(x){ return new Decimal(x).toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toNumber(); }
+
+Decimal.set({ precision:50, rounding: Decimal.ROUND_DOWN });
+
+function cutDecimal(num, places) {
+  let decimal = new Decimal(num).toDP(places, Decimal.ROUND_HALF_UP);
+  return decimal.toString();
+}
+  
+function computeS0RealFromKU(k, u) {
+  const fac = k / 100;
+  const hpB  = (u.hp + 4.5) * fac;
+  const atkB = (u.atk + 4.5) * fac;
+  const defB = (u.def + 4.5) * fac;
+  const agiB = (u.agi + 4.5) * fac;
+  const hp  = hpB * 4 + atkB + defB + agiB;
+  const atk = hpB * 0.1 + atkB + defB * 0.1 + agiB * 0.05;
+  const def = hpB * 0.1 + atkB * 0.1 + defB + agiB * 0.05;
+  const agi = agiB;
+  return { hp, atk, def, agi };
+}
+
+function getAverageEValueFromU(u) {
+  const sumU = u.hp + u.atk + u.def + u.agi;
+  let minE, maxE;  
+  if (sumU >= 110) { minE = 410; maxE = 460; }  
+  else if (sumU >= 105) { minE = 430; maxE = 480; }  
+  else if (sumU >= 100) { minE = 450; maxE = 500; }  
+  else if (sumU >= 95) { minE = 470; maxE = 520; }  
+  else if (sumU >= 90) { minE = 490; maxE = 540; }  
+  else if (sumU >= 85) { minE = 510; maxE = 560; }  
+  else if (sumU >= 80) { minE = 530; maxE = 580; }  
+  else { minE = 550; maxE = 600; }
+  const avgE = (minE + maxE) / 2;
+  return { e: avgE };  
+}
+
+function computeSGRealFromE(u, e_value) {
+  const fac = e_value / 10000;
+  const uHp  = u.hp + 4.5;
+  const uAtk = u.atk + 4.5;
+  const uDef = u.def + 4.5;
+  const uAgi = u.agi + 4.5;
+  const hp  = fac * (uHp * 4 + uAtk + uDef + uAgi);
+  const atk = fac * (uHp * 0.1 + uAtk + uDef * 0.1 + uAgi * 0.05);
+  const def = fac * (uHp * 0.1 + uAtk * 0.1 + uDef + uAgi * 0.05);
+  const agi = fac * uAgi;
+  return { hp, atk, def, agi };
+}
+
+/* ====== [추가] GitHub Status Update ====== */
+function updateGhStatus(sha, message) {
+  const statusEl = document.getElementById("ghStatus");
+  
+  // [추가] 이전 타이머가 있다면 취소하여 메시지 자동 숨김을 막습니다.
+  if (statusEl.__timer) {
+    clearTimeout(statusEl.__timer);
+    statusEl.__timer = null;
+  }
+
+  if (!sha && !message) {
+    statusEl.style.display = 'none';
+    return;
+  }
+  statusEl.style.display = 'flex';
+  const shaText = sha ? sha.substring(0, 7) : 'n/a';
+  
+  // 기본/진행 상태 스타일로 초기화
+  statusEl.style.background = 'var(--chip)'; 
+  statusEl.style.borderColor = 'var(--chip)'; 
+  statusEl.style.color = 'var(--muted)'; 
+  
+  // 1. 최종 성공 메시지 처리
+  if (message.startsWith("Commit Success:")) {
+    // 성공 시 상태 표시 및 영구 유지
+    statusEl.style.background = 'var(--ok)'; 
+    statusEl.style.borderColor = 'var(--ok)'; 
+    statusEl.style.color = 'var(--text)'; 
+    statusEl.innerHTML = `
+      <span class="status-text">${message}</span>
+      <span class="sha" style="color:var(--text);">${shaText}</span>
+    `;
+  
+  // 2. 실패 메시지 처리 (Commit Failed: 일 경우)
+  } else if (message.startsWith("Commit Failed:")) { 
+    // 실패 시 상태 표시 및 5초 후 자동 숨김
+    statusEl.style.borderColor = 'var(--bad)'; 
+    statusEl.style.color = 'var(--bad)'; 
+    statusEl.innerHTML = `<span class="status-text">${message.split(':').shift()}</span>`; 
+    
+    // 실패 메시지를 잠깐 보여주기 위해 5초 후 숨김
+    statusEl.__timer = setTimeout(() => { statusEl.style.display = 'none'; }, 5000);
+
+  // 3. 'Status:' 등 일반 진행 중 메시지 처리
+  } else { 
+    // 'Status:'와 같은 진행 메시지는 자동 숨김 없이 다음 호출까지 유지
+    statusEl.innerHTML = `<span class="status-text">${message}</span>`;
+  }
+}
+
+/* ====== 입력 유효성 검사 ====== */
+function checkValidity(form){
+  let isValid = true;
+  document.querySelectorAll('.validate-num').forEach(input=>{
+    const v = input.value.trim();
+    // 공백 허용, 유효한 숫자만 허용
+    const isNum = v === "" || !isNaN(parseFloat(v)) && isFinite(v);
+    if(isNum){
+      input.classList.remove('input-bad');
+    }else{
+      input.classList.add('input-bad');
+      isValid = false;
+    }
+  });
+
+  const s0Ready = [form.s0.hp,form.s0.atk,form.s0.def,form.s0.agi].every(v=> v!==null);
+  const sgReady = [form.sg.hp,form.sg.atk,form.sg.def,form.sg.agi].every(v=> v!==null);
+
+  // S0/SG가 모두 채워져야 k/u 추정을 시도할 수 있습니다.
+  // 이 함수는 '오류'가 있는지 확인하는 것이 주 목적이므로, 빈칸 자체는 입력 검증 오류가 아닙니다.
+  // 다만, 잘못된 문자가 입력되는 경우를 체크합니다.
+
+  return isValid; // 입력된 값 중 유효하지 않은 문자열(숫자가 아닌 것)이 없는지 확인
+}
+
+/* ====== 추정/검증 로직 (원래 u용) ====== */
+const ESET = Array.from({ length: ((575 - 435) / 5) + 1 }, (_, i) => 575 - i*5);
+
+/* ★ S0: 원래 u를 넣으면 반드시 (u + 4.5)로 계산해야 함 */
+function s0_from_k_u_jjyal(k, u){
+  const fac = k/100;
+  const vhp  = (u.hp + 4.5) * fac;
+  const vatk = (u.atk+ 4.5) * fac;
+  const vdef = (u.def+ 4.5) * fac;
+  const vagi = (u.agi+ 4.5) * fac;
+  const s_hp = Math.floor((vhp*4 + vatk + vdef + vagi) + 1e-8);
+  const s_atk= Math.floor(vhp*0.1 + vatk + vdef*0.1 + vagi*0.05);
+  const s_def= Math.floor(vhp*0.1 + vatk*0.1 + vdef + vagi*0.05);
+  const s_agi= Math.floor(vagi);
+  return [s_hp,s_atk,s_def,s_agi];
+}
+
+/* ★ SG 역풀이: u.agi = round(SG.agi*10000/e - 4.5) */
+function solveUFromSG_STRICT(SG,e){
+  try{
+    if(!SG || ![SG.hp,SG.atk,SG.def,SG.agi].every(Number.isFinite)) return null;
+    Decimal.set({ precision:50, rounding: Decimal.ROUND_HALF_UP });
+
+    const eD = new Decimal(e);
+    const f  = eD.dividedBy(10000);
+
+    const u_agi = new Decimal(SG.agi).times(10000).dividedBy(eD).minus(4.5).round();
+    const dPlus45 = u_agi.plus(4.5);
+
+    // (u.hp+4.5)*4 + (u.atk+4.5) + (u.def+4.5) + (u.agi+4.5)
+    const rhs1 = new Decimal(SG.hp).minus( dPlus45.times(f) ).dividedBy(f);
+    // (u.hp+4.5)*0.1 + (u.atk+4.5) + (u.def+4.5)*0.1 + (u.agi+4.5)*0.05
+    const rhs2 = new Decimal(SG.atk).minus( dPlus45.times(f).times(0.05) ).dividedBy(f);
+    // (u.hp+4.5)*0.1 + (u.atk+4.5)*0.1 + (u.def+4.5) + (u.agi+4.5)*0.05
+    const rhs3 = new Decimal(SG.def).minus( dPlus45.times(f).times(0.05) ).dividedBy(f);
+
+    let A = [
+      [ new Decimal(4),   new Decimal(1),   new Decimal(1),   rhs1 ],
+      [ new Decimal(0.1), new Decimal(1),   new Decimal(0.1), rhs2 ],
+      [ new Decimal(0.1), new Decimal(0.1), new Decimal(1),   rhs3 ],
+    ];
+    // 가우스 소거
+    for(let i=0;i<3;i++){
+      let mr=i; let mv=A[i][i].abs();
+      for(let j=i+1;j<3;j++){ const t=A[j][i].abs(); if(t.greaterThan(mv)){mr=j; mv=t;} }
+      if(mr!==i){ const tmp=A[i]; A[i]=A[mr]; A[mr]=tmp; }
+      const piv=A[i][i];
+      for(let j=i;j<4;j++) A[i][j]=A[i][j].dividedBy(piv);
+      for(let k=0;k<3;k++){
+        if(k===i) continue;
+        const fac=A[k][i];
+        for(let j=i;j<4;j++) A[k][j]=A[k][j].minus( fac.times(A[i][j]) );
+      }
+    }
+    const aPrime=A[0][3], bPrime=A[1][3], cPrime=A[2][3];
+
+    // ★ unknown = (u + 4.5)였으므로 u = unknown - 4.5
+    const u_hp  = aPrime.minus(4.5).round();
+    const u_atk = bPrime.minus(4.5).round();
+    const u_def = cPrime.minus(4.5).round();
+
+    // SG 반올림 검증 (u + 4.5)
+    const r2 = x => new Decimal(x).toDecimalPlaces(2, Decimal.ROUND_HALF_UP);
+    const hp_chk  = r2( f.times( (u_hp.plus(4.5)).times(4).plus(u_atk.plus(4.5)).plus(u_def.plus(4.5)).plus(u_agi.plus(4.5)) ) );
+    const atk_chk = r2( f.times( (u_hp.plus(4.5)).times(0.1).plus(u_atk.plus(4.5)).plus(u_def.plus(4.5).times(0.1)).plus(u_agi.plus(4.5).times(0.05)) ) );
+    const def_chk = r2( f.times( (u_hp.plus(4.5)).times(0.1).plus(u_atk.plus(4.5).times(0.1)).plus(u_def.plus(4.5)).plus(u_agi.plus(4.5).times(0.05)) ) );
+    const agi_chk = r2( f.times( u_agi.plus(4.5) ) );
+
+    const ok = hp_chk.eq(r2(SG.hp)) && atk_chk.eq(r2(SG.atk)) && def_chk.eq(r2(SG.def)) && agi_chk.eq(r2(SG.agi));
+    if(!ok) return null;
+
+    return { u:{hp:+u_hp, atk:+u_atk, def:+u_def, agi:+u_agi}, e:+e };
+  }catch{ return null; }
+}
+
+function inferKU_STRICT(S0, SG){
+  const S0int = S0.map(x=>Math.floor(x));
+  for(const e of ESET){
+    const sol = solveUFromSG_STRICT(SG, e);
+    if(!sol) continue;
+    for(let k=10;k<=100;k++){
+      const s = s0_from_k_u_jjyal(k, sol.u);
+      if(s[0]===S0int[0] && s[1]===S0int[1] && s[2]===S0int[2] && s[3]===S0int[3]){
+        return {k:Math.round(k), u:sol.u, e:sol.e};
+      }
+    }
+  }
+  return null;
+}
+
+/* ====== R8 집계 엔진 (원래 u 사용) ====== */
+function collectR8ObsForKU(k,u){
+  Decimal.set({ precision:30, rounding: Decimal.ROUND_HALF_UP });
+  const fac = new Decimal(k).dividedBy(100);
+  const seen = new Map();
+
+  for(let ar=-2; ar<=2; ar++){
+    for(let dr=-2; dr<=2; dr++){
+      for(let gr=-2; gr<=2; gr++){
+        for(let hr=-2; hr<=2; hr++){
+          for(let ab=0; ab<=10; ab++){
+            for(let db=0; db<=10; db++){
+              for(let gb=0; gb<=10; gb++){
+                const hb = 10 - ab - db - gb;
+                if(hb < 0 || hb > 10) continue;
+
+                const baseA = new Decimal(u.atk + ar + ab);
+                const baseD = new Decimal(u.def + dr + db);
+                const baseG = new Decimal(u.agi + gr + gb);
+                const baseH = new Decimal(u.hp  + hr + hb);
+
+                const iA = baseA.times(fac);
+                const iD = baseD.times(fac);
+                const iG = baseG.times(fac);
+                const iH = baseH.times(fac);
+
+                const atk = iH.times(0.1).plus(iA).plus(iD.times(0.1)).plus(iG.times(0.05)).floor().toNumber();
+                const def = iH.times(0.1).plus(iA.times(0.1)).plus(iD).plus(iG.times(0.05)).floor().toNumber();
+                const agi = iG.floor().toNumber();
+                const hp  = iH.times(4).plus(iA).plus(iD).plus(iG).floor().toNumber();
+
+                const key = `${hp},${atk},${def},${agi}`;
+                let s = seen.get(key);
+                if(!s){ s = new Set(); seen.set(key, s); }
+                s.add(ar + dr + gr + hr);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  const out = [];
+  for(const [key, set] of seen.entries()){
+    if(set.size===1 && set.has(8)){
+      out.push(key.split(',').map(n=>+n));
+    }
+  }
+  out.sort((a,b)=> a[0]-b[0] || a[1]-b[1] || a[2]-b[2] || a[3]-b[3]);
+  return out;
+}
+
+/* ====== UI ====== */
+const listEl = $("list"), searchEl = $("search");
+
+function renderList(){
+  const kw = (searchEl.value||"").trim();
+  const show = ORDER.filter(n => kw ? n.includes(kw) : true);
+  listEl.innerHTML = "";
+  if(show.length===0){
+    const d = document.createElement('div'); d.className="item"; d.textContent="결과 없음";
+    listEl.appendChild(d); return;
+  }
+  for(const n of show){
+    const row = DB[n]||{};
+    const it = document.createElement('div'); it.className="item";
+    const left = document.createElement('div'); left.textContent = n;
+    const right = document.createElement('div'); right.className="tags";
+    const t1 = document.createElement('span');
+    t1.className = "tag " + (row?.s0 && row?.sg ? "ok" : "warn");
+    t1.textContent = row?.s0 && row?.sg ? "S0/SG" : "미완";
+    right.appendChild(t1);
+    if(row?.ku_override || (Number.isFinite(row?.k) && row?.u)){
+      const t2 = document.createElement('span'); t2.className="tag warn"; t2.textContent="k/u";
+      right.appendChild(t2);
+    }
+    it.appendChild(left); it.appendChild(right);
+    it.addEventListener('click', ()=>loadForm(n));
+    listEl.appendChild(it);
+  }
+}
+
+function loadForm(name){
+  CURRENT = name;
+  const r = DB[name] || {};
+  $("name").value = name;
+  $("note").value = r.note || "";
+  $("s0_hp").value  = r?.s0?.hp  ?? "";
+  $("s0_atk").value = r?.s0?.atk ?? "";
+  $("s0_def").value = r?.s0?.def ?? "";
+  $("s0_agi").value = r?.s0?.agi ?? "";
+  $("sg_hp").value  = r?.sg?.hp  ?? "";
+  $("sg_atk").value = r?.sg?.atk ?? "";
+  $("sg_def").value = r?.sg?.def ?? "";
+  $("sg_agi").value = r?.sg?.agi ?? "";
+  $("ovr_check").checked = !!r.ku_override;
+  $("ku_k").value   = r?.k ?? "";
+  $("ku_hp").value  = r?.u?.hp  ?? "";
+  $("ku_atk").value = r?.u?.atk ?? "";
+  $("ku_def").value = r?.u?.def ?? "";
+  $("ku_agi").value = r?.u?.agi ?? "";
+  
+  // 입력 검증 초기화
+  document.querySelectorAll('.validate-num').forEach(input=>{
+    input.classList.remove('input-bad');
+  });
+
+  updateConsistency();
+  renderR8List();
+}
+
+function gatherForm(){
+  const name = $("name").value.trim();
+
+  const s0 = {
+    hp: num($("s0_hp").value),
+    atk: num($("s0_atk").value),
+    def: num($("s0_def").value),
+    agi: num($("s0_agi").value)
+  };
+  const sg = {
+    hp: num($("sg_hp").value),
+    atk: num($("sg_atk").value),
+    def: num($("sg_def").value),
+    agi: num($("sg_agi").value)
+  };
+
+  const ovr = $("ovr_check").checked;
+
+  let k = num($("ku_k").value);
+  let u = {
+    hp: num($("ku_hp").value),
+    atk: num($("ku_atk").value),
+    def: num($("ku_def").value),
+    agi: num($("ku_agi").value)
+  };
+  // 오버라이드가 아니면 k/u 값 무시
+  if(!ovr){ k = null; u = null; }
+
+  return { name, s0, sg, ovr, k, u, note: $("note").value.trim() };
+}
+
+function updateConsistency(){
+  const box = $("consistency");
+  box.className = "callout";
+  box.style.display = "none";
+  box.innerHTML = "";
+
+  const f = gatherForm();
+  
+  // S0/SG 입력 상태와 유효성을 체크합니다.
+  const s0Ready = [f.s0.hp,f.s0.atk,f.s0.def,f.s0.agi].every(Number.isFinite);
+  const sgReady = [f.sg.hp,f.sg.atk,f.sg.def,f.sg.agi].every(Number.isFinite);
+  
+  const ready =
+    f?.ovr &&
+    Number.isFinite(f.k) &&
+    f.u && [f.u.hp, f.u.atk, f.u.def, f.u.agi].every(Number.isFinite) &&
+    s0Ready && sgReady;
+
+  if(!ready){ 
+    if(f.ovr && (!s0Ready || !sgReady)){
+      box.innerHTML = `<b>경고:</b> S0/SG 값이 모두 채워지지 않아 k/u 일관성 검사를 할 수 없습니다.`;
+      box.classList.add("warn");
+      box.style.display = "block";
+    }
+    return;
+  }
+
+  // ⭐️ [추가 시작] 예측 S0 및 SG 소수점 계산 로직 ⭐️
+  // 1. S0 소수점 계산
+  const s0Real = computeS0RealFromKU(f.k, f.u);
+  
+  // 2. SG 소수점 계산
+  const eAvg = getAverageEValueFromU(f.u).e; // SG 계산에 사용할 평균 e 값 추정
+  const sgReal = computeSGRealFromE(f.u, eAvg);
+  
+  // 3. 소수점 2자리까지 자르기 (Decimal 라이브러 함수 사용)
+  const s0_hp_cut = cutDecimal(s0Real.hp, 2);
+  const s0_atk_cut = cutDecimal(s0Real.atk, 2);
+  const s0_def_cut = cutDecimal(s0Real.def, 2);
+  const s0_agi_cut = cutDecimal(s0Real.agi, 2);
+  
+  const sg_hp_cut = cutDecimal(sgReal.hp, 2);
+  const sg_atk_cut = cutDecimal(sgReal.atk, 2);
+  const sg_def_cut = cutDecimal(sgReal.def, 2);
+  const sg_agi_cut = cutDecimal(sgReal.agi, 2);
+
+  // S0 정수 비교 (u + 4.5)
+  const sPred = s0_from_k_u_jjyal(f.k, f.u);
+  const sInt  = [f.s0.hp,f.s0.atk,f.s0.def,f.s0.agi].map(v=>Math.floor(v));
+  const okS0  = (sPred[0]===sInt[0] && sPred[1]===sInt[1] && sPred[2]===sInt[2] && sPred[3]===sInt[3]);
+
+  try{
+    Decimal.set({ precision:50, rounding: Decimal.ROUND_HALF_UP });
+
+    // SG 참고 e (u + 4.5)
+    const e = new Decimal(f.sg.agi).times(10000).dividedBy(new Decimal(f.u.agi).plus(4.5));
+    const fct = e.dividedBy(10000);
+    const r2  = x => new Decimal(x).toDecimalPlaces(2, Decimal.ROUND_HALF_UP);
+
+    const hpC  = r2( fct.times( (f.u.hp+4.5)*4 + (f.u.atk+4.5) + (f.u.def+4.5) + (f.u.agi+4.5) ) ).toNumber();
+    const atkC = r2( fct.times( (f.u.hp+4.5)*0.1 + (f.u.atk+4.5) + (f.u.def+4.5)*0.1 + (f.u.agi+4.5)*0.05 ) ).toNumber();
+    const defC = r2( fct.times( (f.u.hp+4.5)*0.1 + (f.u.atk+4.5)*0.1 + (f.u.def+4.5) + (f.u.agi+4.5)*0.05 ) ).toNumber();
+    const agiC = r2( fct.times( (f.u.agi+4.5) ) ).toNumber();
+
+    const hpDiff  = toFixed2(hpC  - f.sg.hp);
+    const atkDiff = toFixed2(atkC - f.sg.atk);
+    const defDiff = toFixed2(defC - f.sg.def);
+    const agiDiff = toFixed2(agiC - f.sg.agi);
+
+    const sgOk = (hpDiff===0 && atkDiff===0 && defDiff===0);
+    const eVal = e.toNumber();
+    
+    // SG 반올림 비교는 정보로만 제공하고, S0 정수부 일치 여부만 색상 결정에 사용
+    let isOK = okS0; 
+    
+    box.innerHTML = `
+      <div style="display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:6px">
+        <strong>일관성 검사</strong>
+        <span class="mono muted">k=${f.k}, u=(${f.u.hp},${f.u.atk},${f.u.def},${f.u.agi})</span>
+      </div>
+      <div class="${okS0?'ok':'bad'}">S0 정수부 일치: <b>${okS0?'OK':'불일치'}</b> (예측 ${sPred.join('/')}, 실제 ${sInt.join('/')})</div>
+      <div style="margin-top:6px">
+        <div>SG 참고(e≈<span class="mono">${eVal.toFixed(2)}</span>): 
+          HP: <span class="mono">${hpC.toFixed(2)}</span> (${hpDiff>=0?'+':''}${hpDiff}),
+          ATK: <span class="mono">${atkC.toFixed(2)}</span> (${atkDiff>=0?'+':''}${atkDiff}),
+          DEF: <span class="mono">${defC.toFixed(2)}</span> (${defDiff>=0?'+':''}${defDiff})
+          AGI: <span class="mono">${agiC.toFixed(2)}</span> (${agiDiff>=0?'+':''}${agiDiff})
+        </div>
+        <div class="${sgOk?'ok':'bad'}">SG 반올림 비교: <b>${sgOk?'OK':'차이 있음'}</b></div>
+      </div>
+<div class="hr" style="margin-top: 10px; margin-bottom: 8px;"></div>
+      <div style="font-size:13px; color:var(--text)">
+        <div style="font-weight:600; margin-bottom: 4px;">S0/SG 상세 소수점 (k/u 기준)</div>
+        <div>
+          초기치 | HP: <span class="mono">${s0_hp_cut}</span>, ATK: <span class="mono">${s0_atk_cut}</span>, DEF: <span class="mono">${s0_def_cut}</span>, AGI: <span class="mono">${s0_agi_cut}</span>
+        </div>
+        <div>
+          성장치 (e≈${eAvg.toFixed(2)}) | HP: <span class="mono">${sg_hp_cut}</span>, ATK: <span class="mono">${sg_atk_cut}</span>, DEF: <span class="mono">${sg_def_cut}</span>, AGI: <span class="mono">${sg_agi_cut}</span>
+        </div>
+      </div>
+      <div class="note" style="margin-top:6px">※ k/u는 항상 <b>원래 u</b> 기준입니다.</div>
+    `;
+    box.classList.add(isOK ? "ok" : "bad");
+    box.style.display = "block";
+  }catch(e){
+    box.innerHTML = `<b>일관성 검사 실패</b> (내부 계산 오류: ${e.message})`;
+    box.classList.add("bad");
+    box.style.display = "block";
+  }
+}
+
+/* ====== 이벤트 ====== */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    
+    this.classList.add('active');
+    $(`tab-${this.dataset.tab}`).classList.add('active');
+  });
+});
+
+$("btnReload").addEventListener("click", async ()=>{
+  await loadRemote();
+  alert("원격 데이터를 불러왔습니다.");
+});
+$("btnNew").addEventListener("click", ()=>{
+  const name = prompt("새 페트 이름?");
+  if(!name) return;
+  if(DB[name]){ alert("이미 존재하는 이름입니다."); return; }
+  DB[name] = { s0:{hp:null,atk:null,def:null,agi:null}, sg:{hp:null,atk:null,def:null,agi:null} };
+  sortNames(); renderList(); loadForm(name);
+});
+searchEl.addEventListener("input", renderList);
+
+$("btnSolve").addEventListener("click", ()=>{
+  const f = gatherForm();
+  
+  if(!f || !f.name){ alert("이름을 입력하세요."); return; }
+
+  // 1. S0/SG 입력 검증 (잘못된 문자열 입력 체크)
+  const isFormValid = checkValidity(f);
+  if(!isFormValid){
+    const box = $("consistency");
+    box.className = "callout bad";
+    box.innerHTML = `<b>입력 오류:</b> S0/SG 입력에 잘못된 문자(숫자가 아닌 값)가 포함되어 있습니다. 빨간색으로 표시된 필드를 확인하세요.`;
+    box.style.display = "block";
+    return;
+  }
+  
+  // 2. S0/SG 값 누락 체크
+  if([f.s0.hp,f.s0.atk,f.s0.def,f.s0.agi].some(v=>v==null) ||
+     [f.sg.hp,f.sg.atk,f.sg.def,f.sg.agi].some(v=>v==null)){
+    const box = $("consistency");
+    box.className = "callout warn";
+    box.innerHTML = `<b>경고:</b> S0/SG를 모두 채워 주세요.`;
+    box.style.display = "block";
+    return;
+  }
+  
+  const sol = inferKU_STRICT([f.s0.hp,f.s0.atk,f.s0.def,f.s0.agi], f.sg);
+
+  const box = $("consistency");
+  box.style.display = "block";
+  
+  if(!sol){
+    box.className = "callout bad";
+    box.innerHTML = `<b>추정 실패</b>: 입력된 S0/SG 값에 맞는 k/u 쌍을 찾을 수 없습니다 (STRICT 해 없음).`;
+    $("ku_k").value = $("ku_hp").value = $("ku_atk").value = $("ku_def").value = $("ku_agi").value = "";
+    $("ovr_check").checked = false;
+    //updateConsistency();
+    return;
+  }
+  
+  $("ku_k").value   = sol.k;
+  $("ku_hp").value  = sol.u.hp;
+  $("ku_atk").value = sol.u.atk;
+  $("ku_def").value = sol.u.def;
+  $("ku_agi").value = sol.u.agi;
+  $("ovr_check").checked = true;
+
+  // **[⭐️ S0 소수점 자동 입력 시작 ⭐️]**
+  const s0Real = computeS0RealFromKU(sol.k, sol.u);
+
+  // 소수점 2자리까지 반올림
+  const s0_hp_fixed = toFixed2(s0Real.hp);
+  const s0_atk_fixed = toFixed2(s0Real.atk);
+  const s0_def_fixed = toFixed2(s0Real.def);
+  const s0_agi_fixed = toFixed2(s0Real.agi);
+
+  // S0 입력 필드에 자동 입력
+  $("s0_hp").value  = s0_hp_fixed;
+  $("s0_atk").value = s0_atk_fixed;
+  $("s0_def").value = s0_def_fixed;
+  $("s0_agi").value = s0_agi_fixed;
+
+  updateConsistency();
+  
+  // 성공 피드백
+  box.className = "callout ok";
+  box.innerHTML = `
+    <b>✅ 추정 성공!</b> k=${sol.k}, u=(${sol.u.hp},${sol.u.atk},${sol.u.def},${sol.u.agi})로 추정되어 **자동 입력 및 브라우저 저장**되었습니다. 
+    <br>아래 **일관성 검사** 결과를 확인하세요.
+  `;
+  
+  // 성공 후 자동 저장
+  saveFormToDB(f.name, gatherForm());
+  saveLS();
+  $("btnCommit").disabled = false;
+});
+
+["ovr_check","ku_k","ku_hp","ku_atk","ku_def","ku_agi","s0_hp","s0_atk","s0_def","s0_agi","sg_hp","sg_atk","sg_def","sg_agi"]
+  .forEach(id => $(id).addEventListener("input", updateConsistency));
+
+document.querySelectorAll('.validate-num').forEach(input => {
+  input.addEventListener("input", ()=>{
+    const v = input.value.trim();
+    const isNum = v === "" || !isNaN(parseFloat(v)) && isFinite(v);
+    if(isNum){
+      input.classList.remove('input-bad');
+    }else{
+      input.classList.add('input-bad');
+    }
+    updateConsistency(); // S0/SG 입력 변화 시 일관성 검사 갱신
+  });
+});
+
+$("btnClearKU").addEventListener("click", ()=>{
+  $("ovr_check").checked = false;
+  $("ku_k").value = $("ku_hp").value = $("ku_atk").value = $("ku_def").value = $("ku_agi").value = "";
+  updateConsistency();
+});
+
+function saveFormToDB(name, f){
+  if(CURRENT && CURRENT !== name){
+    if(DB[name]){ throw new Error("해당 이름은 이미 존재합니다."); }
+    DB[name] = DB[CURRENT];
+    delete DB[CURRENT];
+    CURRENT = name;
+  }
+  const row = DB[name] || {};
+  row.s0 = f.s0; row.sg = f.sg; row.note = f.note || undefined;
+  if(f.ovr){ row.k=f.k; row.u=f.u; row.ku_override=true; }
+  else { delete row.k; delete row.u; delete row.ku_override; }
+  DB[name] = row;
+  sortNames(); renderList(); loadForm(name);
+}
+
+$("btnSave").addEventListener("click", ()=>{
+  const f = gatherForm();
+
+  if(!f.name){ alert("이름을 입력하세요."); return; }
+
+  const isFormValid = checkValidity(f);
+  if(!isFormValid){
+    alert("입력 필드에 오류가 있습니다. 빨간색으로 표시된 필드를 확인하세요.");
+    return;
+  }
+
+  // S0/SG 값 누락 체크
+  if([f.s0.hp,f.s0.atk,f.s0.def,f.s0.agi].some(v=>v==null) ||
+     [f.sg.hp,f.sg.atk,f.sg.def,f.sg.agi].some(v=>v==null)){
+    alert("S0/SG를 모두 채워 주세요."); return;
+  }
+  if(f.ovr){
+    if(!(Number.isFinite(f.k) && f.u && [f.u.hp,f.u.atk,f.u.def,f.u.agi].every(Number.isFinite))){
+      alert("오버라이드 k/u를 모두 채워 주세요."); return;
+    }
+  }
+
+  try{
+    saveFormToDB(f.name, f);
+    saveLS();
+    alert("저장(브라우저) 완료. 커밋하려면 우측 버튼을 사용하세요.");
+    $("btnCommit").disabled = false;
+  }catch(e){
+    alert(e.message);
+  }
+});
+
+$("btnCommit").addEventListener("click", commitPets);
+
+$("btnExport").addEventListener("click", ()=>{
+  const blob = new Blob([JSON.stringify(DB, null, 2)], {type:"application/json;charset=utf-8"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "pets.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+$("btnCommit").addEventListener("click", commitPets);
+
+async function commitPets(){
+  // ⭐️ 1단계: SHA 조회 시작 메시지
+  updateGhStatus(null, "Status: 1. 원격 SHA 조회 중..."); // [추가]
+  await new Promise(r => setTimeout(r, 10));
+
+  // 1. SHA 조회 요청을 Worker의 메타 조회 엔드포인트로 변경
+  const metaUrl = `${WORKER_URL}/api/meta/pets.json`; 
+  const metaRes = await fetch(metaUrl, {headers:{Accept:"application/vnd.github+json"}});
+  
+  if(!metaRes.ok){ 
+    updateGhStatus(null, `Commit Failed: pets.json (SHA check HTTP ${metaRes.status})`); 
+    return;
+  }
+  const meta = await metaRes.json();
+  const sha = meta.sha;
+  
+  // ⭐️ 2단계: 내용 준비 메시지
+  updateGhStatus(null, "Status: 2. DB 내용 준비 및 인코딩 중..."); // [추가]
+  await new Promise(r => setTimeout(r, 10));
+  
+  const f = gatherForm(); // DB에 저장하기 위해 form 데이터 갱신
+  saveFormToDB(f.name, f); // DB 업데이트
+  const out = DB; // DB 전체를 커밋 (pets.json 전체)
+  
+  // 2. PUT 커밋 요청을 Worker의 커밋 엔드포인트로 변경
+  const jsonText = JSON.stringify(out, null, 2);
+  const contentB64 = b64EncodeUnicode(jsonText);
+  
+  // ⭐️ 3단계: 커밋 요청 전송 메시지
+  updateGhStatus(null, "Status: 3. GitHub 커밋 요청 전송 중..."); // [추가]
+  await new Promise(r => setTimeout(r, 10));
+  
+  const putRes = await fetch(`${WORKER_URL}/api/commit-pets`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ path: 'pets.json', content: contentB64, sha: sha, message: "Update pets.json via Admin" })
+  });
+
+  if(!putRes.ok){
+    const t = await putRes.text();
+    console.error("Commit PUT Failed:", t);
+    updateGhStatus(null, `Commit Failed: pets.json (HTTP ${putRes.status})`); 
+    return;
+  }
+  
+  const successData = await putRes.json();
+  const newSha = successData.content.sha;
+  
+  // ⭐️ 4단계: 최종 성공 메시지
+  updateGhStatus(newSha, "Commit Success: pets.json"); 
+  
+  renderList();
+  renderR8List();
+  checkConsistency();
+}
+
+/* ====== R8 UI ====== */
+function renderR8List(){
+  const box = $("r8List");
+  box.innerHTML = "";
+  ORDER.forEach(n=>{
+    const r = DB[n]||{};
+    const hasKU = Number.isFinite(r?.k) && r?.u && [r.u.hp,r.u.atk,r.u.def,r.u.agi].every(Number.isFinite);
+
+    const lab = document.createElement('label');
+    lab.className = "r8item" + (hasKU ? "" : " disabled");
+
+    const cb = document.createElement('input');
+    cb.type = "checkbox"; cb.value = n; cb.disabled = !hasKU;
+    lab.appendChild(cb);
+
+    const nameSpan = document.createElement('span'); nameSpan.className = "name"; nameSpan.textContent = n;
+    lab.appendChild(nameSpan);
+
+    const extra = document.createElement('span'); extra.className = "extra";
+    if(r?.ku_override){ const tag = document.createElement('span'); tag.className="tag warn"; tag.textContent="override"; extra.appendChild(tag); }
+    if(!hasKU){ const tag = document.createElement('span'); tag.className="tag"; tag.textContent="k/u 없음"; extra.appendChild(tag); }
+    
+    // 이미 집계된 페트 표시
+    if(AGGREGATED_R8_NAMES.has(n)){ 
+      const tag = document.createElement('span'); tag.className="tag ok"; tag.textContent="집계 완료"; extra.appendChild(tag);
+    } // ◀ 집계 완료 태그 추가
+
+    lab.appendChild(extra);
+
+    box.appendChild(lab);
+  });
+}
+
+function selectNewR8Pets(){
+  document.querySelectorAll("#r8List input[type=checkbox]").forEach(cb => {
+    cb.checked = false; // Clear all first
+  });
+
+  ORDER.forEach(name => {
+    const r = DB[name] || {};
+    // k/u가 있고, 아직 집계되지 않은 경우
+    const hasKU = Number.isFinite(r?.k) && r?.u && [r.u.hp,r.u.atk,r.u.def,r.u.agi].every(Number.isFinite);
+    const isAggregated = AGGREGATED_R8_NAMES.has(name);
+
+    if(hasKU && !isAggregated){
+      const cb = document.querySelector(`#r8List input[type=checkbox][value="${name}"]:not(:disabled)`);
+      if(cb) cb.checked = true;
+    }
+  });
+  
+  alert(`새로 추가되었거나 집계가 필요한 페트 ${document.querySelectorAll("#r8List input[type=checkbox]:checked").length}종을 선택했습니다.`);
+} // ◀ 새 선택 로직 추가
+
+$("btnR8SelectNew").addEventListener("click", selectNewR8Pets); // ◀ 이벤트 리스너 추가
+
+$("btnR8SelectAll").addEventListener("click", ()=>{
+  document.querySelectorAll("#r8List input[type=checkbox]:not(:disabled)").forEach(cb=>cb.checked=true);
+});
+$("btnR8ClearAll").addEventListener("click", ()=>{
+  document.querySelectorAll("#r8List input[type=checkbox]").forEach(cb=>cb.checked=false);
+});
+
+$("btnR8Run").addEventListener("click", async ()=>{
+  const picks = Array.from(document.querySelectorAll("#r8List input[type=checkbox]:checked")).map(cb=>cb.value);
+  const btnRun = $("btnR8Run");
+  const statusEl = $("r8Status");
+  const pre = $("r8Preview");
+  
+  if(picks.length===0){ alert("대상을 선택하세요."); return; }
+  
+  btnRun.disabled = true;
+  pre.style.display="none";
+  $("btnR8Commit").disabled = true;
+
+  R8_RESULT = {};
+  const skipped = [];
+  const started = performance.now();
+  
+  const firstName = picks[0] || '...';
+  statusEl.innerHTML = `<div class="loader"></div> 집계 중... (1/${picks.length} - ${firstName})`;
+  await new Promise(r => setTimeout(r, 10)); // UI 갱신 대기
+
+  for(let i=0; i<picks.length; i++){
+    const name = picks[i];
+    const row = DB[name];
+    if(!(Number.isFinite(row?.k) && row?.u)){ skipped.push({name,reason:"k/u 없음"}); continue; }
+    
+    if (i > 0) {
+      statusEl.innerHTML = `<div class="loader"></div> 집계 중... (${i+1}/${picks.length} - ${name})`;
+      await new Promise(r => setTimeout(r, 1));
+    }
+    
+    const sets = collectR8ObsForKU(row.k, row.u);
+    R8_RESULT[name] = sets || [];
+  }
+
+  statusEl.innerHTML = `<div class="loader"></div> 집계 중... (${picks.length}/${picks.length} - 완료)`;
+  await new Promise(r => setTimeout(r, 10));
+
+  const ms = Math.round(performance.now()-started);
+  const totalSets = Object.values(R8_RESULT).reduce((a,arr)=>a+(arr?.length||0),0);
+
+  btnRun.disabled = false;
+  statusEl.innerHTML = "";
+  
+  pre.style.display="block";
+  pre.className = "callout r8Preview";
+  pre.innerHTML = `
+    <div><b>집계 완료</b> — 대상 ${picks.length}종, 결과 총 <b>${totalSets}</b> 세트, 시간 ${ms}ms</div>
+    ${skipped.length? `<div style="margin-top:6px" class="muted">스킵: ${skipped.map(s=>`${s.name}(${s.reason})`).join(', ')}</div>` : ''}
+    <details style="margin-top:8px"><summary>상세 미리보기</summary>
+      ${Object.keys(R8_RESULT).length===0 ? '<div class="muted">없음</div>' : `
+        <table style="margin-top:8px">
+          <thead><tr><th>이름</th><th>세트 수</th><th>예시 (hp,atk,def,agi)</th></tr></thead>
+          <tbody>
+            ${Object.entries(R8_RESULT).map(([n,arr])=>{
+              const ex = (arr[0] ? `<span class="mono">(${arr[0].join(', ')})</span>` : '-');
+              return `<tr><td>${n}</td><td>${arr.length}</td><td>${ex}</td></tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      `}
+    </details>
+  `;
+  $("btnR8Commit").disabled = Object.keys(R8_RESULT).length===0;
+});
+
+$("btnR8Commit").addEventListener("click", async ()=>{
+  if(Object.keys(R8_RESULT).length===0){ alert("먼저 집계를 실행하세요."); return; }
+
+  // ⭐️ 1단계: R8 SHA 조회 시작 메시지
+  updateGhStatus(null, "Status: 1. R8 SHA 및 기존 데이터 조회 중..."); // [추가]
+  await new Promise(r => setTimeout(r, 10));
+
+  // 1. SHA 조회 및 기존 데이터 로드 (Worker 프록시 사용)
+  let remoteMap = {}; let sha = null;
+  
+  // 메타 조회 URL을 Worker의 엔드포인트로 변경
+  const head = await fetch(`${WORKER_URL}/api/meta/rank8.json`, {
+    headers:{
+      "Accept":"application/vnd.github+json"
+      // ⚠️ X-Admin-Secret 헤더 제거
+    }
+  });
+  if(head.status===200){
+    const meta = await head.json();
+    sha = meta.sha;
+    // REMOTE_R8은 이미 Worker를 통하도록 설정되었으므로 그대로 사용
+    const text = await fetch(REMOTE_R8).then(r=>r.text());
+    try{ remoteMap = JSON.parse(text); }catch{ remoteMap = {}; }
+  }else if(head.status!==404){
+    updateGhStatus(null, `Commit Failed: R8 (SHA check HTTP ${head.status})`); // [기존 실패 메시지]
+    // alert("full.json 메타 조회 실패: HTTP "+head.status); 
+    return;
+  }
+
+  // ⭐️ 2단계: 내용 준비 및 병합 메시지
+  updateGhStatus(null, "Status: 2. R8 데이터 병합 및 인코딩 중..."); // [추가]
+  await new Promise(r => setTimeout(r, 10));
+
+  const out = {...remoteMap};
+  for(const [name, sets] of Object.entries(R8_RESULT)){
+    const prev = (remoteMap[name]?.obs_100_rank8) || remoteMap[name] || [];
+    const prevStr = new Set(prev.map(a=>a.join(',')));
+    const merged = [...prev];
+    sets.forEach(a=>{ const k=a.join(','); if(!prevStr.has(k)) merged.push(a); });
+    out[name] = { obs_100_rank8: merged, count: merged.length };
+  }
+
+  // 2. PUT 커밋 요청을 Worker의 R8 커밋 엔드포인트로 변경
+  
+  // ⭐️ 3단계: R8 커밋 요청 전송 메시지
+  updateGhStatus(null, "Status: 3. R8 GitHub 커밋 요청 전송 중..."); // [추가]
+  await new Promise(r => setTimeout(r, 10));
+
+  const res = await fetch(`${WORKER_URL}/api/commit-r8`, { // ◀ Worker의 R8 커밋 엔드포인트
+    method:"PUT",
+    headers:{
+      // ⚠️ Authorization 헤더 제거됨. Worker가 환경 변수의 PAT를 사용합니다.
+      "Accept":"application/vnd.github+json",
+      "Content-Type":"application/json"
+      // ⚠️ X-Admin-Secret 헤더 제거
+    },
+    body: JSON.stringify({
+      message: "Update rank8.json (Admin)",
+      content: b64EncodeUnicode(JSON.stringify(out, null, 2)),
+      // branch: GH_BRANCH, // ◀ Worker가 관리
+      ...(sha? {sha}: {})
+    })
+  });
+  if(!res.ok){
+    const t = await res.text().catch(()=>"(no body)");
+    updateGhStatus(null, `Commit Failed: R8 (HTTP ${res.status})`); // [기존 실패 메시지]
+    // alert("커밋 실패: " + res.status + "\n" + t);
+    return;
+  }
+  const successData = await res.json(); // [추가] 커밋 응답에서 SHA를 가져오기 위해
+  const newSha = successData.content.sha;
+  
+  // 커밋 성공 시 AGGREGATED_R8_NAMES를 갱신
+  AGGREGATED_R8_NAMES = new Set(Object.keys(out));
+  renderR8List(); 
+  
+  // ⭐️ 4단계: 최종 성공 메시지
+  updateGhStatus(newSha, "Commit Success: rank8"); // [기존 성공 메시지 유지]
+});
+
+/* ====== 데이터 로드 ====== */
+async function loadRemote(){
+  const obj = await fetchJSON(REMOTE_PETS);
+  DB = (obj && !obj.__404__) ? obj : {};
+  
+  // R8 Aggregated Data Load (New) ◀ 추가된 R8 로직
+  try{
+    const r8Obj = await fetchJSON(REMOTE_R8);
+    if(r8Obj && !r8Obj.__404__){
+      // 최상위 키(페트 이름)만 저장
+      AGGREGATED_R8_NAMES = new Set(Object.keys(r8Obj)); 
+    } else {
+      AGGREGATED_R8_NAMES = new Set();
+    }
+  }catch(e){
+    console.warn("R8 원격 데이터 로드 실패", e);
+    AGGREGATED_R8_NAMES = new Set();
+  } 
+  
+  sortNames(); renderList();
+  if(ORDER.length) loadForm(ORDER[0]);
+  saveLS();
+  renderR8List();
+}
+(async function init(){
+  const local = loadLS();
+  if(local && typeof local==="object"){
+    DB = local;
+    sortNames(); renderList();
+    if(ORDER.length) loadForm(ORDER[0]);
+  }
+  try{
+    await loadRemote();
+  }catch(e){
+    console.warn("원격 로드 실패, 로컬 캐시로 동작", e);
+    if(!local){ DB={}; renderList(); renderR8List(); }
+  }
+})();
+</script>
+</body>
+</html>
