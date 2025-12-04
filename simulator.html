@@ -224,18 +224,22 @@
   #pointCalcRoot input::-webkit-outer-spin-button,
   #pointCalcRoot input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 
-  /* 모바일 최적화 */
+  /* 모바일 최적화 (기존 @media 부분을 지우고 이걸로 붙여넣으세요) */
   @media (max-width: 600px) {
+    /* 기본 폰트 및 여백 조정 */
     body {font-size: 14px; padding: 10px;}
     h1 {font-size: 22px; margin-bottom: 10px;}
+    
+    /* 인풋 박스 크기 조정 */
     input:not(.input-compact), select {font-size: 14px !important; padding: 8px 10px !important;}
     
+    /* 그리드 레이아웃 조정 */
     .decimal-grid {grid-template-columns: auto 1fr; gap: 5px 10px;}
     #enhancementStats {display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 400px; margin: 15px auto;}
     .enh-controls {flex-direction: row; justify-content: center; gap: 10px; max-width: 400px; margin: 15px auto;}
     .enh-controls .control-group {flex: 1; min-width: unset; flex-direction: column; align-items: center;}
     
-    /* 탭 버튼 2x2 Grid */
+    /* 탭 버튼 2열 배치 */
     .tab-buttons { 
       display: grid; 
       grid-template-columns: 1fr 1fr; 
@@ -249,39 +253,36 @@
       flex-grow: unset; 
     }
 
-    /* 포인트 계산기 모바일 */
+    /* 포인트 계산기 패딩 */
     #pointCalcRoot { padding: 10px; }
     
-    /* 경험치 계산기 입력 그리드 */
-    .input-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-    }
-    #expTab input[type="number"] {
-        width: 100%;
-        box-sizing: border-box;
-    }
-    .row.buttons {
-        padding: 0;
-    }
-    .results {
-        padding: 0;
-    }
+    /* 경험치 계산기 입력창 */
+    .input-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    #expTab input[type="number"] { width: 100%; box-sizing: border-box; }
+    .row.buttons { padding: 0; }
+    .results { padding: 0; }
 
-    /* [수정됨] 강화 로그: 폰트 적용 후 간격 정상화 */
-    #enhancementLog {
-        font-size: 12px;
-        padding: 6px;
-        line-height: 1.5; /* 줄간격 확보 */
-        max-height: 250px;
-        letter-spacing: normal; /* 글자 겹침 방지 */
+    /* [중요] 초구/강화 결과창 강제 통일 설정 */
+    /* 1. 초구 결과창 (Grid 간격 축소) */
+    .result-header, .result-row {
+        column-gap: 4px !important; /* 기존 40px은 모바일에서 너무 넓음 -> 4px로 축소 */
+        font-size: 11px !important; /* 글자가 줄바꿈되지 않도록 크기 축소 */
+        white-space: nowrap; /* 글자가 칸을 넘어가도 강제로 한 줄 유지 */
     }
-
-    /* [수정됨] 초구 결과 창: 폰트 적용 후 간격 정상화 */
+    
     #result {
-        font-size: 12px;
-        line-height: 1.5 !important;
-        letter-spacing: normal !important; /* 글자 겹침 방지 */
+        padding: 10px !important;
+        font-family: 'JetBrains Mono', monospace !important; /* 폰트 강제 적용 */
+    }
+
+    /* 2. 강화 로그창 (줄바꿈 및 폰트 통일) */
+    #enhancementLog {
+        font-family: 'JetBrains Mono', monospace !important; /* 폰트 강제 적용 */
+        font-size: 12px !important;
+        padding: 8px;
+        line-height: 1.6;
+        letter-spacing: 0;
+        word-break: break-all; /* 긴 단어도 강제로 줄바꿈하여 레이아웃 유지 */
     }
   }
   
