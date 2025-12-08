@@ -1,0 +1,1313 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>노바서버 페트 사전</title>
+<link rel="shortcut icon" href="#">
+<style>
+  :root{
+    --bg:#0f1115; --panel:#161a22; --ink:#e8ecf3; --muted:#9aa1ad; --pri:#7aa2ff; --ring:#1f2632;
+    --earth-bg: rgba(0, 166, 81, 1);   /* ⬅️ 지 (초록) */
+    --earth-bd: rgba(0, 166, 81, 1);   /* ⬅️ 지 (초록) */
+    --earth-tx: #FFFFFF;
+    --water-bg: rgba(37, 75, 146, 1);  /* ⬅️ 수 (파랑) */
+    --water-bd: rgba(37, 75, 146, 1);  /* ⬅️ 수 (파랑) */
+    --water-tx: #FFFFFF;
+    --fire-bg: rgba(240, 0, 1, 1);     /* ⬅️ 화 (빨강) */
+    --fire-bd: rgba(240, 0, 1, 1);     /* ⬅️ 화 (빨강) */
+    --fire-tx: #FFFFFF;
+    --wind-bg: rgba(255, 119, 0, 1);   /* ⬅️ 풍 (주황) */
+    --wind-bd: rgba(255, 119, 0, 1);  /* ⬅️ 풍 (주황) */
+    --wind-tx: #FFFFFF;
+    --grade-normal-bg: radial-gradient(120% 120% at 20% 20%, #f0f0f0 0%, #bfbfbf 70%, #909090 100%);
+    --grade-normal-tx: #0f1115;
+    --grade-adv-bg: radial-gradient(120% 120% at 20% 20%, #a8ffdf 0%, #2ecc71 70%, #0f8f4f 100%);
+    --grade-adv-tx: #0b1b14;
+    --grade-top-bg: radial-gradient(130% 130% at 30% 30%, #e8ffff 0%, #b8e6ff 45%, #9bd9ff 70%, #e6f7ff 100%);
+    --grade-top-tx: #0a1a22;
+    --toast-bg: #101826;
+    --toast-bd: #2a3a59;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0; background:linear-gradient(180deg,#0f1115,#0c1016); color:var(--ink);
+       font:14px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Apple SD Gothic Neo, Noto Sans KR, sans-serif;}
+  header{position:static; top:auto; background:rgba(15,17,21,.75); backdrop-filter: blur(8px);
+         border-bottom:1px solid #15202c; z-index:10;}
+  .wrap{max-width:1280px; margin:0 auto; padding:12px 16px}
+
+  /* === 상단바 반응형 정돈 === */
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  .topbar .title{min-width:0}
+  .topbar-actions{
+    display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  }
+  @media (max-width: 760px){
+    .topbar{flex-wrap:wrap}
+    .topbar .title{flex: 1 0 100%}
+    .topbar-actions{flex: 1 0 100%; justify-content:flex-start; gap:8px}
+    #adminToolbar{order:1; width:100%; display:none;}
+    .backBtn, .adminLogin{order:2;}
+  }
+
+  .row{display:grid; gap:12px}
+  h1{margin:0 0 6px; font-size:18px}
+  /* ⬅️ index.html과 일치시키기 위해 패딩을 16px로 수정 */
+  .card{background:var(--panel); border:1px solid var(--ring); border-radius:14px; padding:16px} 
+  label{display:block; font-size:12px; color:var(--muted); margin-bottom:6px}
+  label.section{font-size:14px; font-weight:800; color:#cbd5e1; margin-bottom:8px; letter-spacing:.2px}
+  input[type="number"], select, input[type="text"], input[type="password"]{width:100%; background:#101521; border:1px solid #1c2433; color:var(--ink); border-radius:10px; padding:8px 10px}
+  input[readonly]{opacity:.7; pointer-events:none}
+  .checks{display:flex; gap:10px; flex-wrap:wrap}
+  .check{display:flex; gap:6px; align-items:center; font-size:13px}
+  .btn{background:#141c29; border:1px solid #1c2433; color:var(--ink); padding:8px 12px; border-radius:10px; cursor:pointer; height:38px; display:inline-flex; align-items:center; justify-content:center; text-decoration: none; font-size:13.3333px}
+  .btn:hover{border-color:#2a364b}
+  .pill{display:inline-flex; align-items:center; gap:6px; font-size:12px; padding:2px 8px; border-radius:999px; background:#111826; border:1px solid #1c2433}
+  .muted{color:var(--muted); font-size:12px} .name{font-weight:800; font-size:16px}
+  .badge{display:inline-block; font-size:10px; padding:2px 6px; border-radius:999px; border:1px solid #314058; color:#98a3b7; margin-left:6px}
+  .grid2{display:grid; grid-template-columns: 1fr 1fr; gap:12px; align-items:start}
+  @media (max-width: 1000px){ .grid2{grid-template-columns: 1fr} }
+  .lhs{display:grid; gap:12px} .rhs{display:grid; gap:12px}
+  .resultCard{display:flex; gap:12px; padding:12px; border:1px solid #1c2433; border-radius:12px; background:#0f141f}
+  .resultGrid{display:grid; grid-template-columns: 1fr; gap:12px; max-height: calc(100vh - 245px); overflow:auto; padding-right:4px}
+  .thumb{flex:0 0 25%; max-width:25%; background:#101521; border:1px solid #1c2433; border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden; min-height:180px; padding:10px}
+  .thumb img{max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; image-rendering:auto}
+  .info{flex:1 1 75%; display:grid; grid-template-rows: auto auto auto auto; gap:8px}
+  .rowline{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+  .kv{font-size:12px; color:var(--muted)}
+  .miniTable{border-collapse:collapse; width:auto; font-size:12px}
+  .miniTable th, .miniTable td{border:1px solid #263045; padding:6px 8px; text-align:center; white-space:nowrap}
+  .chips{display:flex; gap:6px; flex-wrap:wrap} .spacer{flex:1}
+  .attrWrap{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+  .oval{display:inline-flex; align-items:center; justify-content:center; /* min-width:32px; */ height:26px; padding:0 12px; border-radius:999px; font-weight:700; font-size:12px; letter-spacing:.2px; border:1px solid transparent; box-shadow: inset 0 0 0 1px rgba(255,255,255,.06)}
+  .a-earth{background:var(--earth-bg); border-color:var(--earth-bd); color:var(--earth-tx)} .a-water{background:var(--water-bg); border-color:var(--water-bd); color:var(--water-tx)}
+  .a-fire{background:var(--fire-bg); border-color:var(--fire-bd); color:var(--fire-tx)} .a-wind{background:var(--wind-bg); border-color:var(--wind-bd); color:var(--wind-tx)}
+  .oval.dom{box-shadow: none;}
+  .g-oval, .m-oval{display:inline-flex; align-items:center; justify-content:center; height:26px; padding:0 12px; border-radius:999px; font-weight:800; font-size:12px; letter-spacing:.3px; border:1px solid rgba(255,255,255,.15)}
+  .g-normal{background: #9e9e9e; color: #ffffff;} .g-adv{background: #ab47bc; color: #ffffff;} .g-top{background: #ffb300; color: #ffffff;}
+  .m-yes{background: #26a69a; color: #ffffff;} .m-no{background: #9e9e9e; color: #ffffff;}
+  .toolbar{display:flex; gap:8px; align-items:center} .hidden{display:none!important}
+  .editPanel{display:none; grid-template-columns: 1fr auto; gap:8px; align-items:center} .editing .editPanel{display:grid}
+  .toggleEdit.btn.active{outline:2px solid #2a364b} .u-input{width:100%; background:#0f141f; border:1px solid #263045; color:var(--ink); border-radius:10px; padding:6px 8px}
+
+  .adminLogin, .backBtn{
+    background: #0c0e11; 
+    border: 1px solid #364052; 
+    border-radius: 10px; 
+    color: #cfe1ff;
+    padding: 10px 14px; 
+    cursor: pointer;
+    height: 40px; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600; 
+    font-size: 13.3333px; 
+    text-decoration: none;
+    box-shadow: none; 
+   transition: all 0.2s ease;
+  }
+  .adminLogin:hover, .backBtn:hover{
+    border-color: #515f7a; /* 호버 시 테두리를 더 강조 */
+    background: #15181f; /* 호버 시 배경을 살짝 어둡게 변화 */
+  }
+
+  .dualAdv{display:none; margin-top:8px; gap:8px; grid-template-columns: 1fr 90px 1fr}
+  .dualAdv.active{display:grid}
+  .btnSm{height:36px; min-width:36px; padding:0 10px}
+  .toastWrap{position:fixed; right:16px; bottom:16px; display:flex; flex-direction:column; gap:8px; z-index:1000}
+  .toast{background:var(--toast-bg); border:1px solid var(--toast-bd); color:#cfe3ff; padding:10px 12px; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,.3); opacity:0; transform:translateY(10px); transition: all .25s ease}
+  .toast.show{opacity:1; transform:translateY(0)}
+  .loading{padding:24px; text-align:center; color:#9aa1ad}
+  /* gh-panel 스타일은 제거되었지만, 혹시 모를 충돌을 위해 관련 스타일은 유지 */
+  .gh-panel{display:none; grid-template-columns: repeat(3, 1fr); gap:8px; padding:10px; border:1px dashed #2a3a59; border-radius:12px; background:#0f141f; margin-top:10px}
+  .gh-panel.active{display:grid}
+  .gh-panel .wide{grid-column: 1 / -1}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="title">
+        <h1>노바서버 페트 사전</h1>
+        <div class="muted">패치노트 v3.5 적용</div>
+      </div>
+
+      <div class="topbar-actions">
+        <div class="toolbar hidden" id="adminToolbar" style="display:none">
+          <button class="btn" id="addPetBtn">새 페트 추가</button> <button class="btn" id="exportCsv">CSV 내보내기</button>
+          <button class="btn" id="exportJson">JSON 내보내기</button>
+          <button class="btn" id="importJsonBtn">JSON 불러오기</button>
+          <input id="importJson" type="file" accept="application/json" class="hidden"/>
+          <button class="btn" id="githubBtn">GitHub 커밋</button>
+          <button class="btn" id="adminLogoutBtn">로그아웃</button>
+        </div>
+        <a class="backBtn" id="backBtn" href="https://sanova.pages.dev">페트 계산기</a>
+        <button class="adminLogin" id="adminLoginBtn">관리자</button>
+      </div>
+    </div>
+    <div class="wide" id="ghStatusWrap" style="display:flex; gap:8px; align-items:center; margin-top:8px">
+        <div class="muted" id="ghStatus" style="align-self:center"></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="grid2">
+    <section class="lhs">
+      <div class="card hidden" id="addPetCard">
+        <label class="section">새 페트 추가</label>
+        <div class="row" style="grid-template-columns: 1fr 1fr; gap: 8px">
+          <div><label>이름</label><input type="text" id="new_name" placeholder="예) 반기노" /></div>
+          <div><label>등급</label><select id="new_grade">
+            <option value="일반">일반</option><option value="상급">상급</option><option value="최상급">최상급</option>
+          </select></div>
+        </div>
+        <div class="row" style="grid-template-columns: repeat(4, 1fr); margin-top:8px">
+          <div><label>속성 지</label><input type="number" id="new_attr_earth" min="0" max="10" step="1" placeholder="0"/></div>
+          <div><label>속성 수</label><input type="number" id="new_attr_water" min="0" max="10" step="1" placeholder="0"/></div>
+          <div><label>속성 화</label><input type="number" id="new_attr_fire" min="0" max="10" step="1" placeholder="0"/></div>
+          <div><label>속성 풍</label><input type="number" id="new_attr_wind" min="0" max="10" step="1" placeholder="0"/></div>
+        </div>
+        <div class="row" style="grid-template-columns: repeat(4, 1fr); margin-top:8px">
+          <div><label>초기 내구력</label><input type="number" id="new_init_hp" min="1" max="100" step="0.01" placeholder="0"/></div>
+          <div><label>초기 공격력</label><input type="number" id="new_init_atk" min="1" max="100" step="0.01" placeholder="0"/></div>
+          <div><label>초기 방어력</label><input type="number" id="new_init_def" min="1" max="100" step="0.01" placeholder="0"/></div>
+          <div><label>초기 순발력</label><input type="number" id="new_init_agi" min="1" max="100" step="0.01" placeholder="0"/></div>
+        </div>
+        <div class="row" style="grid-template-columns: repeat(4, 1fr); margin-top:8px">
+          <div><label>성장 내구력</label><input type="number" id="new_grow_hp" min="1" max="100" step="0.01" placeholder="0"/></div>
+          <div><label>성장 공격력</label><input type="number" id="new_grow_atk" min="1" max="100" step="0.01" placeholder="0"/></div>
+          <div><label>성장 방어력</label><input type="number" id="new_grow_def" min="1" max="100" step="0.01" placeholder="0"/></div>
+          <div><label>성장 순발력</label><input type="number" id="new_grow_agi" min="1" max="100" step="0.01" placeholder="0"/></div>
+        </div>
+        <div class="row" style="grid-template-columns: 1fr 1fr; gap: 8px; margin-top:8px">
+          <div><label>획득 경로 상세 (Route)</label><input type="text" id="new_route" placeholder="예) 속임수의 동굴 전역 포획" /></div>
+          <div><label>획득 경로 분류 (Channel)</label>
+            <select id="new_channel">
+              <option value="">(선택 안 함)</option>
+              <option value="포획">포획</option>
+              <option value="퀘스트">퀘스트</option>
+              <option value="레이드">레이드</option>
+              <option value="복권">복권</option>
+              <option value="지원">지원</option>
+              <option value="듀얼">듀얼</option>
+              <option value="이벤트">이벤트</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
+        </div>
+        <div class="row" style="grid-template-columns: 1fr 1fr; gap: 8px; margin-top:8px">
+           <div style="display:flex; align-items:flex-end; gap:10px; grid-column:1 / -1">
+              <label class="check"><input type="checkbox" id="new_mount"/> 탑승 가능</label>
+           </div>
+        </div>
+        <div style="margin-top:8px"><label>GIF 이미지 URL (img)</label><input type="text" id="new_img" placeholder="http://..." /></div>
+
+        <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:12px">
+          <button class="btn" id="cancelAddPet">취소</button>
+          <button class="btn" id="doAddPet" style="background:#57b846; border-color:#57b846; color:#0f1115; font-weight:bold">페트 생성 및 추가</button>
+        </div>
+      </div>
+      <div class="card">
+        <label class="section">이름 검색</label>
+        <div class="row" style="grid-template-columns: 1fr auto; gap: 8px; align-items: center;">
+          <input type="text" id="q" placeholder="검색어를 입력해 주세요." />
+          <button class="btn" id="resetFilters">초기화</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="row" style="grid-template-columns: 1fr;">
+          <div>
+            <label class="section">주 속성</label>
+            <select id="attrPick">
+              <option value="전체">전체</option>
+              <option value="지">지</option>
+              <option value="수">수</option>
+              <option value="화">화</option>
+              <option value="풍">풍</option>
+              <option value="듀얼">듀얼</option>
+            </select>
+          </div>
+          <div class="attr10-wrap hidden" style="margin-top:8px;">
+            <label class="check"><input type="checkbox" id="attr10Only" /> 속성값 10만 보기</label>
+          </div>
+          <div id="dualAdv" class="dualAdv">
+            <div>
+              <label class="section" style="margin-bottom:6px">듀얼 상위 값 (합계=10)</label>
+              <input type="number" id="dual_high" min="5" max="9" step="1" value="5" />
+            </div>
+            <div style="display:flex; align-items:end; gap:8px">
+              <button class="btn btnSm" id="dualDec">-1</button>
+              <button class="btn btnSm" id="dualInc">+1</button>
+            </div>
+            <div>
+              <label class="section" style="margin-bottom:6px">듀얼 하위 값 (자동=10-상위)</label>
+              <input type="number" id="dual_low" min="0" max="10" step="1" value="5" readonly />
+            </div>
+            <div class="wide" style="color:#9aa1ad; font-size:12px; margin-top:-2px">
+              정확히 2개 속성만 사용
+            </div>
+          </div>
+          <div style="margin-top:8px">
+            <label class="section" style="margin-bottom:4px">등급</label>
+            <div class="checks">
+              <label class="check"><input type="checkbox" class="grade" value="최상급" /> 최상급</label>
+              <label class="check"><input type="checkbox" class="grade" value="상급" /> 상급</label>
+              <label class="check"><input type="checkbox" class="grade" value="일반" /> 일반</label>
+            </div>
+          </div>
+          <div style="margin-top:8px">
+            <label class="section" style="margin-bottom:4px">탑승</label>
+            <div class="checks">
+              <label class="check"><input type="checkbox" class="mount" value="가능" /> 탑승 가능</label>
+              <label class="check"><input type="checkbox" class="mount" value="불가" /> 탑승 불가</label>
+            </div>
+          </div>
+          <div style="margin-top:8px">
+            <label class="section" style="margin-bottom:4px">획득 경로</label>
+            <div class="checks">
+              <label class="check"><input type="checkbox" class="channel" value="포획" /> 포획</label>
+              <label class="check"><input type="checkbox" class="channel" value="퀘스트" /> 퀘스트</label>
+              <label class="check"><input type="checkbox" class="channel" value="레이드" /> 레이드</label>
+              <label class="check"><input type="checkbox" class="channel" value="복권" /> 복권</label>
+              <label class="check"><input type="checkbox" class="channel" value="지원" /> 지원</label>
+              <label class="check"><input type="checkbox" class="channel" value="듀얼" /> 듀얼</label>
+              <label class="check"><input type="checkbox" class="channel" value="이벤트" /> 이벤트</label>
+              <label class="check"><input type="checkbox" class="channel" value="기타" /> 기타</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <label class="section">최소치 (이상)</label>
+        <div class="row" style="grid-template-columns: repeat(4, 1fr);">
+          <div><label>초기 내구력</label><input type="number" id="min_init_hp" min="1" max="100" step="0.01" placeholder="0"/></div>
+          <div><label>초기 공격력</label><input type="number" id="min_init_atk" min="1" max="100" step="0.01" placeholder="0"/></div>
+          <div><label>초기 방어력</label><input type="number" id="min_init_def" min="1" max="100" step="0.01" placeholder="0"/></div>
+          <div><label>초기 순발력</label><input type="number" id="min_init_agi" min="1" max="100" step="0.01" placeholder="0"/></div>
+        </div>
+        <div class="row" style="grid-template-columns: repeat(4, 1fr); margin-top:8px">
+          <div><label>성장 내구력</label><input type="number" id="min_grow_hp" min="1" max="100" step="0.01" placeholder="0"/></div>
+          <div><label>성장 공격력</label><input type="number" id="min_grow_atk" min="1" max="100" step="0.01" placeholder="0"/></div>
+          <div><label>성장 방어력</label><input type="number" id="min_grow_def" min="1" max="100" step="0.01" placeholder="0"/></div>
+          <div><label>성장 순발력</label><input type="number" id="min_grow_agi" min="1" max="100" step="0.01" placeholder="0"/></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rhs">
+      <div class="card">
+        <div class="row" style="grid-template-columns: auto 1fr auto; align-items:center">
+          <div class="chips" id="activeChips"></div>
+          <div class="spacer"></div>
+          <div class="pill"><strong id="countShow">0</strong>&nbsp;/&nbsp;<span id="totalShow">0</span> 개</div>
+        </div>
+        <div id="listWrap" class="resultGrid">
+          <div class="loading" id="loading">데이터를 불러오는 중…</div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div class="toastWrap" id="toastWrap"></div>
+
+<script>
+/* ========= 데이터 경로 ========= */
+
+const WORKER_BASE_URL = 'https://github-proxy.potg.workers.dev';
+const DATA_URL = "data/pets_filter.json";
+
+let PETS = [];
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+let ADMIN = false;
+
+/* ==== 관리자 세션(만료) 설정 ==== */
+const ADMIN_KEY = "pets_admin_unlocked_v2";      // 새 키(만료 포함)
+const ADMIN_TTL_MS = 30 * 60 * 1000;             // 30분 (원하는 값으로 조정)
+const USE_SESSION_ADMIN = false;                  // true: 탭/브라우저 닫으면 해제
+const ADMIN_STORAGE = USE_SESSION_ADMIN ? sessionStorage : localStorage;
+
+function isAdminAlive(){
+  try{
+    const raw = ADMIN_STORAGE.getItem(ADMIN_KEY);
+    if(!raw) return false;
+    const obj = JSON.parse(raw);
+    if(!obj || !obj.expires) return false;
+    if(Date.now() > obj.expires){ ADMIN_STORAGE.removeItem(ADMIN_KEY); return false; }
+    return true;
+  }catch{ return false; }
+}
+function refreshAdminTTL(){
+  ADMIN_STORAGE.setItem(ADMIN_KEY, JSON.stringify({ on:1, expires: Date.now() + ADMIN_TTL_MS }));
+}
+let adminTimer = null;
+function scheduleAdminAutoLock(){
+  clearTimeout(adminTimer);
+  if(!ADMIN) return;
+  const raw = ADMIN_STORAGE.getItem(ADMIN_KEY);
+  const exp = raw ? JSON.parse(raw).expires : Date.now();
+  const ms = Math.max(0, exp - Date.now());
+  adminTimer = setTimeout(()=>{
+    ADMIN = false;
+    ADMIN_STORAGE.removeItem(ADMIN_KEY);
+    render();
+    showToast("관리자 모드가 만료되었습니다.");
+  }, ms);
+}
+
+/* ========= UI 유틸 ========= */
+function showToast(msg, ms=1800) {
+  const wrap = $("#toastWrap");
+  const t = document.createElement("div");
+  t.className = "toast";
+  t.textContent = msg;
+  wrap.appendChild(t);
+  void t.offsetWidth;
+  t.classList.add("show");
+  setTimeout(() => {
+    t.classList.remove("show");
+    setTimeout(() => wrap.removeChild(t), 250);
+  }, ms);
+}
+
+function dominantAttrs(attr) {
+  const keys = ["지","수","화","풍"];
+  const vals = keys.map(k=> (attr && typeof attr[k]==="number") ? attr[k] : 0);
+  const maxv = Math.max(...vals);
+  if (maxv <= 0) return [];
+  return keys.filter((k,i)=>vals[i]===maxv);
+}
+
+function isDualExactSum10(attr, high) {
+  const low = 10 - high;
+  const keys = ["지","수","화","풍"];
+  const vs = keys.map(k=> (attr && typeof attr[k]==="number") ? attr[k] : 0).filter(v=>v>0).sort((a,b)=>b-a);
+  if (vs.length !== 2) return false;
+  return (vs[0] === high && vs[1] === low);
+}
+
+function fmt(x) { return (x==null || Number.isNaN(x)) ? "—" : (Math.round(x*100)/100).toFixed(2); }
+
+function getFilters() {
+  const highInput = $("#dual_high");
+  let high = parseInt(highInput?.value || "5", 10);
+  if (Number.isNaN(high)) high = 5;
+  high = Math.max(5, Math.min(9, high));     // ⬅️ 9까지만
+  const low = 10 - high;
+  if ($("#dual_low")) $("#dual_low").value = String(low);
+  return {
+    q: $("#q").value.trim(),
+    attrPick: $("#attrPick").value,
+    attr10Only: $("#attr10Only").checked, // ⭐️ 기능 추가: 속성값 10 필터
+    dualHigh: high,
+    dualLow: low,
+    grades: $$(".grade").filter(el=>el.checked).map(el=>el.value),
+    mounts: $$(".mount").filter(el=>el.checked).map(el=>el.value),
+    channels: $$(".channel").filter(el=>el.checked).map(el=>el.value),
+    min_init_hp: parseFloat($("#min_init_hp").value)||0,
+    min_init_atk: parseFloat($("#min_init_atk").value)||0,
+    min_init_def: parseFloat($("#min_init_def").value)||0,
+    min_init_agi: parseFloat($("#min_init_agi").value)||0,
+    min_grow_hp: parseFloat($("#min_grow_hp").value)||0,
+    min_grow_atk: parseFloat($("#min_grow_atk").value)||0,
+    min_grow_def: parseFloat($("#min_grow_def").value)||0,
+    min_grow_agi: parseFloat($("#min_grow_agi").value)||0,
+  };
+}
+
+function match(p, f) {
+  if (f.q) {
+    const ql = f.q.toLowerCase();
+    if (!(p.name||"").toLowerCase().includes(ql)) return false;
+  }
+  if (f.attrPick !== "전체") {
+    if (f.attrPick === "듀얼") {
+      if (!isDualExactSum10(p.attr, f.dualHigh)) return false;
+    } else {
+      const dom = dominantAttrs(p.attr);
+      if (!dom.includes(f.attrPick)) return false;
+      
+      // ⭐️ 기능 추가: 속성값 10 필터 로직
+      if (f.attr10Only) {
+        if ((p.attr?.[f.attrPick] || 0) !== 10) return false;
+      }
+    }
+  }
+  if (f.grades.length > 0 && !f.grades.includes(p.grade || "")) return false;
+  if (f.channels.length > 0 && !f.channels.includes(p.channel || "")) return false;
+  
+  const mountState = p.mount ? "가능" : "불가";
+  if (f.mounts.length > 0 && !f.mounts.includes(mountState)) return false;
+
+  const I = p.init||{}, G = p.grow||{};
+  if (I.hp==null && f.min_init_hp>0) return false;
+  if (I.atk==null && f.min_init_atk>0) return false;
+  if (I.def==null && f.min_init_def>0) return false;
+  if (I.agi==null && f.min_init_agi>0) return false;
+  if (G.hp==null && f.min_grow_hp>0) return false;
+  if (G.atk==null && f.min_grow_atk>0) return false;
+  if (G.def==null && f.min_grow_def>0) return false;
+  if (G.agi==null && f.min_grow_agi>0) return false;
+
+  if ((I.hp||0)  < f.min_init_hp) return false;
+  if ((I.atk||0) < f.min_init_atk) return false;
+  if ((I.def||0) < f.min_init_def) return false;
+  if ((I.agi||0) < f.min_init_agi) return false;
+  if ((G.hp||0)  < f.min_grow_hp) return false;
+  if ((G.atk||0) < f.min_grow_atk) return false;
+  if ((G.def||0)  < f.min_grow_def) return false;
+  if ((G.agi||0)  < f.min_grow_agi) return false;
+
+  return true;
+}
+
+function chip(text, onClear) {
+  const el = document.createElement("span");
+  el.className = "pill";
+  el.textContent = text;
+  if (onClear) {
+    el.style.cursor = "pointer";
+    el.title = "이 필터 지우기";
+    el.onclick = onClear;
+  }
+  return el;
+}
+
+function attrOval(k, v, isDom){
+  const span = document.createElement("span");
+  const cls = { "지":"a-earth", "수":"a-water", "화":"a-fire", "풍":"a-wind" }[k] || "";
+  span.className = "oval " + cls + (isDom ? " dom" : "");
+  span.textContent = k + "(" + v + ")";
+  span.title = k;
+  return span;
+}
+
+function gradeOval(grade){
+  if(!grade) return null;
+  const span = document.createElement("span");
+  span.className = "g-oval " + (grade==="일반" ? "g-normal" : grade==="상급" ? "g-adv" : "g-top");
+  span.textContent = grade;
+  return span;
+}
+
+function mountOval(isMount){
+  const span = document.createElement("span");
+  span.className = "m-oval " + (isMount ? "m-yes" : "m-no");
+  span.textContent = isMount ? "탑승 가능" : "탑승 불가";
+  return span;
+}
+
+// ⭐️ 기능 수정: 페트 수정/삭제 기능
+// (기존 makeEditPanel은 더 이상 사용되지 않음)
+
+// ⭐️ 기능 추가: 페트 삭제
+function deletePet(p) {
+  if (!ADMIN) return;
+  if (confirm(`'${p.name}' 페트를 정말 삭제하시겠습니까?\n이 작업은 되돌릴 수 없습니다.`)) {
+    const index = PETS.findIndex(pet => pet.name === p.name);
+    if (index > -1) {
+      PETS.splice(index, 1);
+      render();
+      showToast(`'${p.name}' 페트가 삭제되었습니다.`);
+    }
+  }
+}
+
+// ⭐️ 기능 추가: 페트 수정 폼 열기
+function openEditForm(p) {
+  if (!ADMIN) return;
+  const card = $("#addPetCard");
+  
+  // 폼에 페트 데이터 채우기
+  $("#new_name").value = p.name || "";
+  $("#new_grade").value = p.grade || "일반";
+  $("#new_attr_earth").value = p.attr?.지 || 0;
+  $("#new_attr_water").value = p.attr?.수 || 0;
+  $("#new_attr_fire").value = p.attr?.화 || 0;
+  $("#new_attr_wind").value = p.attr?.풍 || 0;
+  $("#new_init_hp").value = p.init?.hp || "";
+  $("#new_init_atk").value = p.init?.atk || "";
+  $("#new_init_def").value = p.init?.def || "";
+  $("#new_init_agi").value = p.init?.agi || "";
+  $("#new_grow_hp").value = p.grow?.hp || "";
+  $("#new_grow_atk").value = p.grow?.atk || "";
+  $("#new_grow_def").value = p.grow?.def || "";
+  $("#new_grow_agi").value = p.grow?.agi || "";
+  $("#new_route").value = p.route || "";
+  $("#new_channel").value = p.channel || "";
+  $("#new_mount").checked = !!p.mount;
+  $("#new_img").value = p.img || "";
+
+  // 폼 상태를 "수정 모드"로 변경
+  card.querySelector(".section").textContent = "페트 수정";
+  const btn = $("#doAddPet");
+  btn.textContent = "수정 완료";
+  btn.dataset.originalName = p.name; // 기존 이름을 저장하여 추적
+  
+  $("#addPetBtn").textContent = "수정 취소"; // 메인 토글 버튼 텍스트 변경
+  card.classList.remove("hidden");
+  card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+
+function petCard(p) {
+  const dom = dominantAttrs(p.attr);
+  const init = p.init||{}, grow = p.grow||{};
+
+  const card = document.createElement("div");
+  card.className = "resultCard";
+
+  const thumb = document.createElement("div");
+  thumb.className = "thumb";
+  if (p.img) {
+    const img = document.createElement("img");
+    img.src = p.img; img.alt = p.name;
+    thumb.appendChild(img);
+  } else {
+    thumb.textContent = "GIF";
+  }
+
+  const info = document.createElement("div");
+  info.className = "info";
+
+  const r1 = document.createElement("div");
+  r1.className = "rowline";
+  const name = document.createElement("div");
+  name.className = "name";
+  name.textContent = p.name || "—";
+  r1.appendChild(name);
+  r1.appendChild(mountOval(!!p.mount));
+  const g = gradeOval(p.grade);
+  if (g) r1.appendChild(g);
+
+  // ⭐️ 기능 추가: 관리자용 수정/삭제 버튼
+  if (ADMIN) {
+    r1.appendChild(document.createElement("div")).className = "spacer"; // 빈 공간
+
+    const delBtn = document.createElement("button");
+    delBtn.className = "btn btnSm"; delBtn.textContent = "삭제";
+    delBtn.style.background = "#c00"; delBtn.style.borderColor = "#c00"; delBtn.style.color="white";
+    delBtn.onclick = (e) => { e.stopPropagation(); deletePet(p); };
+    r1.appendChild(delBtn);
+
+    const editBtn = document.createElement("button");
+    editBtn.className = "btn btnSm"; editBtn.textContent = "수정";
+    editBtn.onclick = (e) => { e.stopPropagation(); openEditForm(p); };
+    r1.appendChild(editBtn);
+  }
+  
+  info.appendChild(r1);
+
+  const r2 = document.createElement("div");
+  const t = document.createElement("table");
+  t.className = "miniTable";
+  t.innerHTML = `
+    <thead>
+      <tr><th></th><th>내구력</th><th>공격력</th><th>방어력</th><th>순발력</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>초기</th><td>${fmt(init.hp)}</td><td>${fmt(init.atk)}</td><td>${fmt(init.def)}</td><td>${fmt(init.agi)}</td></tr>
+      <tr><th>성장</th><td>${fmt(grow.hp)}</td><td>${fmt(grow.atk)}</td><td>${fmt(grow.def)}</td><td>${fmt(grow.agi)}</td></tr>
+    </tbody>
+  `;
+  r2.appendChild(t);
+  info.appendChild(r2);
+
+  const r3 = document.createElement("div");
+  r3.className = "attrWrap";
+  ["지","수","화","풍"].forEach(k=>{
+    const isDom = dom.includes(k);
+    const v = (p.attr && typeof p.attr[k]==="number") ? p.attr[k] : 0;
+    if (v > 0) {
+      r3.appendChild(attrOval(k, v, isDom));
+    }  
+  });
+  info.appendChild(r3);
+
+  const r4 = document.createElement("div");
+  r4.className = "kv";
+  const routeText = p.route || "";
+  r4.textContent = routeText;
+  info.appendChild(r4);
+
+  // (기존 makeEditPanel 호출 로직은 관리자 버튼으로 대체되어 제거됨)
+
+  card.appendChild(thumb);
+  card.appendChild(info);
+  return card;
+}
+
+function sortRows(rows, f) {
+  const attrKey = f.attrPick;
+
+  // 1. 최소치 필터 중 가장 큰 값을 기준으로 정렬
+  const minFilterKeys = [
+    "min_init_hp", "min_init_atk", "min_init_def", "min_init_agi",
+    "min_grow_hp", "min_grow_atk", "min_grow_def", "min_grow_agi"
+  ];
+  
+  // 현재 활성화된(0보다 큰) 최소치 필터 찾기
+  const activeMinFilters = minFilterKeys.filter(k => f[k] > 0);
+
+  if (activeMinFilters.length > 0) {
+    // 활성화된 최소치 필터가 있다면 해당 스탯을 기준으로 정렬
+    return rows.slice().sort((a, b) => {
+      // a와 b에 대해, 활성화된 필터에 해당하는 스탯 값 중 가장 큰 값을 찾습니다.
+      const getStatValue = (pet, filterKey) => {
+        const type = filterKey.includes("init") ? "init" : "grow";
+        const stat = filterKey.split("_")[2]; // hp, atk, def, agi
+        return (pet[type]?.[stat] || 0);
+      };
+
+      const valA = Math.max(...activeMinFilters.map(k => getStatValue(a, k)));
+      const valB = Math.max(...activeMinFilters.map(k => getStatValue(b, k)));
+
+      if (valA !== valB) return valA - valB; // 스탯 값 내림차순
+      return (a.name || "").localeCompare(b.name || ""); // 동점일 경우 이름순
+    });
+  }
+
+
+  // 2. 속성 필터 기준으로 정렬 (기존 로직 유지)
+  if (attrKey !== "전체" && attrKey !== "듀얼") {
+    // 특정 속성 선택 시 속성 값 내림차순 + 이름순
+    return rows.slice().sort((a, b) => {
+      const va = (a.attr && typeof a.attr[attrKey] === "number") ? a.attr[attrKey] : 0;
+      const vb = (b.attr && typeof b.attr[attrKey] === "number") ? b.attr[attrKey] : 0;
+      if (vb !== va) return vb - va; // 속성 높은 순
+      return (a.name || "").localeCompare(b.name || ""); // 값 같으면 이름순
+    });
+  }
+
+  // 3. 기본 정렬 (이름 가나다순)
+  return rows.slice().sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+}
+
+function ensureMountAtLeastOne(e) {
+  render(); // 그냥 렌더만 실행
+}
+
+function render() {
+  const f = getFilters();
+  let rows = PETS.filter(p => match(p, f));
+  rows = sortRows(rows, f);
+
+  $("#totalShow").textContent = PETS.length;
+  $("#countShow").textContent = rows.length;
+
+  const chips = $("#activeChips");
+  chips.innerHTML = "";
+  if (f.q) chips.appendChild(chip(`이름: "${f.q}"`, ()=>{ $("#q").value=""; render(); }));
+  // ⬅️ searchable 필터 관련 칩 제거됨
+  if (f.attrPick!=="전체") {
+    if (f.attrPick==="듀얼") {
+      chips.appendChild(chip(`듀얼 = ${f.dualHigh}/${f.dualLow}(합계10)`, ()=>{ $("#attrPick").value="전체"; render(); }));
+    } else {
+      chips.appendChild(chip(`주속성: ${f.attrPick}`, ()=>{ $("#attrPick").value="전체"; render(); }));
+      // ⭐️ 기능 추가: 속성값 10 필터 칩
+      if (f.attr10Only) {
+         chips.appendChild(chip(`${f.attrPick} = 10`, ()=>{ $("#attr10Only").checked = false; render(); }));
+      }
+    }
+  }
+  const checkedGrades = $$(".grade").filter(c=>c.checked);
+  if (checkedGrades.length > 0) {
+    checkedGrades.forEach(c=>{
+      chips.appendChild(chip(`등급 포함: ${c.value}`, ()=>{
+        c.checked = false; // 클릭 시 해당 필터 해제
+        render();
+      }));
+    });
+  }
+  const mountAll = f.mounts.length===2;
+  const mountNone = f.mounts.length===0;
+  // ⭐️ 수정: 0개일 때(mountNone)는 필터 무시 (칩 생성 안 함)
+  if (!mountAll && !mountNone) {
+    f.mounts.forEach(mVal => {
+      chips.appendChild(chip(`탑승: ${mVal}`, ()=>{ 
+        $$(".mount").forEach(m=> {
+          if (m.value === mVal) m.checked = false;
+        }); 
+        render(); 
+      }));
+    });
+  }
+  const checkedChannels = $$(".channel").filter(c=>c.checked);
+  if (checkedChannels.length > 0) {
+    checkedChannels.forEach(c=>{
+      chips.appendChild(chip(`획득경로 포함: ${c.value}`, ()=>{
+        c.checked = false; // 클릭 시 해당 필터 해제
+        render();
+      }));
+    });
+  }
+  ["init_hp","init_atk","init_def","init_agi","grow_hp","grow_atk","grow_def","grow_agi"].forEach(k=>{
+    const key = "min_"+k, v = f[key];
+    if (v>0) chips.appendChild(chip(`최소 ${k.replace('_',' ').toUpperCase()}: ${v}`, ()=>{ $("#"+key).value=""; render(); }));
+  });
+
+  const grid = $("#listWrap");
+  grid.innerHTML = "";
+  if (rows.length === 0) {
+    const empty = document.createElement("div");
+    empty.className = "loading";
+    empty.textContent = "조건에 맞는 페트가 없습니다.";
+    grid.appendChild(empty);
+  } else {
+    rows.forEach(p => grid.appendChild(petCard(p)));
+  }
+
+  const adminTb = $("#adminToolbar");
+  if (ADMIN) { adminTb.classList.remove("hidden"); adminTb.style.display="flex"; }
+  else { adminTb.classList.add("hidden"); adminTb.style.display="none"; }
+  $("#adminLoginBtn").classList.toggle("hidden", ADMIN);
+
+  const dv = document.getElementById("dualAdv");
+  if (dv) dv.classList.toggle("active", $("#attrPick").value === "듀얼");
+
+  // ⭐️ 기능 추가: 속성값 10 체크박스 표시/숨김 로직
+  const attr10Wrap = $(".attr10-wrap");
+  if (attr10Wrap) {
+    const show = f.attrPick === "지" || f.attrPick === "수" || f.attrPick === "화" || f.attrPick === "풍";
+    attr10Wrap.classList.toggle("hidden", !show);
+    if (!show) $("#attr10Only").checked = false; // 숨겨질 때 값 초기화
+  }
+}
+
+function bindFilterEvents() {
+  // 이름 검색
+  document.querySelector("#q")?.addEventListener("input", render);
+  // 주 속성 선택
+  document.querySelector("#attrPick")?.addEventListener("change", render);
+  // ⭐️ 기능 추가: 속성값 10 필터
+  document.querySelector("#attr10Only")?.addEventListener("change", render);
+  // 등급 체크박스
+  document.querySelectorAll(".grade").forEach(el => el.addEventListener("change", render));
+  // 획득경로 체크박스
+  document.querySelectorAll(".channel").forEach(el => el.addEventListener("change", render));
+  // 탑승 체크박스 (최소 1개 유지 - 로직이 render() 호출로 변경됨)
+  document.querySelectorAll(".mount").forEach(el => {
+    el.removeEventListener?.("change", ensureMountAtLeastOne);
+    el.addEventListener("change", ensureMountAtLeastOne);
+  });
+  // 최소치 입력들
+  [
+    "min_init_hp","min_init_atk","min_init_def","min_init_agi",
+    "min_grow_hp","min_grow_atk","min_grow_def","min_grow_agi"
+  ].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener("input", render);
+    el.addEventListener("change", render);
+  });
+}
+
+function toCSV(rows) {
+  // searchable 필드 제거
+  const headers = ["name","grade","attr_지","attr_수","attr_화","attr_풍","dom_attr","init_hp","init_atk","init_def","init_agi","grow_hp","grow_atk","grow_def","grow_agi","route","channel","mount","img"];
+  const esc = (v) => {
+    if (v==null) return "";
+    const s = String(v).replace(/"/g,'""');
+    return '"' + s + '"';
+  };
+  const lines = [headers.join(",")];
+  rows.forEach(p=>{
+    const dom = dominantAttrs(p.attr);
+    lines.push([
+      p.name,
+      p.grade||"",
+      p.attr?.지||0, p.attr?.수||0, p.attr?.화||0, p.attr?.풍||0,
+      dom.join("/"),
+      p.init?.hp??"", p.init?.atk??"", p.init?.def??"", p.init?.agi??"",
+      p.grow?.hp??"", p.grow?.atk??"", p.grow?.def??"", p.grow?.agi??"",
+      p.route||"",
+      p.channel||"",
+      p.mount ? "1":"0",
+      p.img||""
+    ].map(esc).join(","));
+  });
+  return lines.join("\n");
+}
+
+function download(filename, text, mime="text/plain;charset=utf-8") {
+  // ⭐️ 수정: Excel 한글 호환성을 위해 UTF-8 BOM 추가
+  const blob = new Blob(["\uFEFF" + text], {type: mime});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename; a.click();
+  setTimeout(()=>URL.revokeObjectURL(url), 1000);
+}
+
+function currentFiltered() {
+  const f = getFilters();
+  let rows = PETS.filter(p => match(p, f));
+  rows = sortRows(rows, f);
+  return rows;
+}
+
+async function sha256Hex(str) {
+  const enc = new TextEncoder();
+  const buf = await crypto.subtle.digest("SHA-256", enc.encode(str));
+  const bytes = new Uint8Array(buf);
+  return Array.from(bytes).map(b=>b.toString(16).padStart(2,"0")).join("");
+}
+
+async function adminUnlock() {
+  const saved = ADMIN_STORAGE.getItem(ADMIN_KEY);
+  if (saved && isAdminAlive()) {
+    ADMIN = true;
+    return true;
+  }
+  const pw = prompt("관리자 비밀번호를 입력하세요");
+  if (!pw) return false;
+
+  try {
+    const h = await sha256Hex(pw); // 1. 클라이언트에서 비밀번호 해시 계산
+
+    // 2. ⭐️ 클라우드플레어 Worker의 인증 엔드포인트 호출
+    const res = await fetch(`${WORKER_BASE_URL}/api/auth/verify`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ hash: h }) // 계산된 해시 전송
+    });
+
+    if (res.ok) {
+      // 3. 성공 응답 (200 OK): Worker에서 해시 일치 확인됨
+      ADMIN = true;
+      refreshAdminTTL();
+      scheduleAdminAutoLock();
+      showToast("관리자 모드가 활성화되었습니다.");
+      return true;
+    } else if (res.status === 401) {
+      // 4. 인증 실패 (401 Unauthorized): Worker에서 해시 불일치 확인됨
+      showToast("비밀번호가 올바르지 않습니다.");
+      return false;
+    } else {
+      // 5. 기타 Worker 오류 처리
+      const errorText = await res.text();
+      showToast(`Worker 오류: ${res.status} ${errorText}`);
+      return false;
+    }
+  } catch(err) {
+    // 6. 네트워크 연결 또는 Fetch API 오류 처리
+    showToast("인증 서버 연결 오류: " + err.message);
+    return false;
+  }
+}
+
+/* ⬅️ 새로운 페트 추가 함수 */
+function collectNewPetData() {
+  const name = $("#new_name")?.value.trim();
+  if (!name) { showToast("페트 이름을 입력해야 합니다."); return null; }
+
+  // 필수 속성 체크 (1 이상이어야 함)
+  const attrSum = parseInt($("#new_attr_earth")?.value||0) + parseInt($("#new_attr_water")?.value||0) + parseInt($("#new_attr_fire")?.value||0) + parseInt($("#new_attr_wind")?.value||0);
+  // ⭐️ 수정: 0인 경우도 허용 (속성 없는 페트)
+  // if (attrSum <= 0) { showToast("속성 값의 합계가 1 이상이어야 합니다."); return null; }
+
+  // 입력 필드에서 데이터를 수집합니다.
+  const newPet = {
+    name: name,
+    grade: $("#new_grade")?.value,
+    attr: {
+      "지": parseInt($("#new_attr_earth")?.value||0),
+      "수": parseInt($("#new_attr_water")?.value||0),
+      "화": parseInt($("#new_attr_fire")?.value||0),
+      "풍": parseInt($("#new_attr_wind")?.value||0),
+    },
+    init: {
+      hp: parseFloat($("#new_init_hp")?.value||0),
+      atk: parseFloat($("#new_init_atk")?.value||0),
+      def: parseFloat($("#new_init_def")?.value||0),
+      agi: parseFloat($("#new_init_agi")?.value||0),
+    },
+    grow: {
+      hp: parseFloat($("#new_grow_hp")?.value||0),
+      atk: parseFloat($("#new_grow_atk")?.value||0),
+      def: parseFloat($("#new_grow_def")?.value||0),
+      agi: parseFloat($("#new_grow_agi")?.value||0),
+    },
+    route: $("#new_route")?.value.trim(),
+    channel: $("#new_channel")?.value.trim(), 
+    mount: $("#new_mount")?.checked,
+    // searchable 필드 제거됨
+    img: $("#new_img")?.value.trim(),
+  };
+
+  // 초기/성장 스탯이 0이면 제거하여 JSON 크기를 줄입니다. (기존 데이터 구조와 일치)
+  ["init", "grow"].forEach(k => {
+    Object.keys(newPet[k]).forEach(stat => {
+      if (newPet[k][stat] === 0 || Number.isNaN(newPet[k][stat])) delete newPet[k][stat];
+    });
+    if (Object.keys(newPet[k]).length === 0) delete newPet[k];
+  });
+
+  // 속성 값도 0이면 제거합니다.
+  Object.keys(newPet.attr).forEach(a => {
+    if (newPet.attr[a] === 0 || Number.isNaN(newPet.attr[a])) delete newPet.attr[a];
+  });
+  if (Object.keys(newPet.attr).length === 0) newPet.attr = null; // ⭐️ 수정: 속성이 아예 없으면 null
+  
+  if (newPet.route === "") delete newPet.route;
+  if (newPet.channel === "") delete newPet.channel; 
+  if (newPet.img === "") delete newPet.img;
+  
+  // 듀얼 속성 확인을 위해 전체 합이 10이 아니면 삭제 (속성 합이 10인 경우에만 attr 필드를 남김)
+  const totalAttr = (newPet.attr?.지||0) + (newPet.attr?.수||0) + (newPet.attr?.화||0) + (newPet.attr?.풍||0);
+  if (totalAttr === 0) {
+      newPet.attr = null; // 합계가 0이면 속성 자체를 null
+  } else if (totalAttr !== 10) {
+      // ⭐️ 수정: 10이 아니더라도 속성 값은 유지하되, 경고 표시 (단, 0은 위에서 처리)
+      // (기존 로직: 10이 아니면 null로 만듦)
+      // console.warn(`'${newPet.name}'의 속성 합계가 10이 아닙니다: ${totalAttr}`);
+  }
+
+  return newPet;
+}
+
+
+// ⭐️ 기능 수정: 페트 추가 및 업데이트 로직 통합
+function addOrUpdatePet() {
+  if (!ADMIN) return;
+  const newPetData = collectNewPetData();
+  if (!newPetData) return; // Validation failed in collectNewPetData
+
+  const btn = $("#doAddPet");
+  const originalName = btn.dataset.originalName;
+
+  if (originalName) {
+    // -----------------
+    //  수정 모드 (EDIT)
+    // -----------------
+    const petToUpdate = PETS.find(p => p.name === originalName);
+    if (!petToUpdate) {
+      showToast("오류: 수정할 페트를 찾지 못했습니다.");
+      return;
+    }
+    
+    // 이름이 변경되었고, 새 이름이 이미 존재하는지 확인
+    if (newPetData.name !== originalName && PETS.some(p => p.name === newPetData.name)) {
+      showToast(`오류: '${newPetData.name}' 이름은 이미 존재합니다.`);
+      return;
+    }
+
+    // 객체에 변경 사항 적용
+    Object.assign(petToUpdate, newPetData);
+    showToast(`'${newPetData.name}' 페트 정보가 수정되었습니다.`);
+    
+    // 폼 상태 초기화
+    delete btn.dataset.originalName;
+    $("#addPetCard").querySelector(".section").textContent = "새 페트 추가";
+    btn.textContent = "페트 생성 및 추가";
+    $("#addPetBtn").textContent = "새 페트 추가";
+    $("#addPetCard").classList.add("hidden");
+    
+  } else {
+    // -----------------
+    //  추가 모드 (ADD)
+    // -----------------
+    if (PETS.some(p => p.name === newPetData.name)) {
+      showToast(`이미 "${newPetData.name}" 이름의 페트가 존재합니다.`);
+      return;
+    }
+    PETS.push(newPetData);
+    showToast(`"${newPetData.name}" 페트가 목록에 추가되었습니다.`);
+    $("#addPetCard").classList.add("hidden");
+    $("#addPetBtn").textContent = "새 페트 추가";
+  }
+
+  render(); // 목록 새로고침
+}
+/* ⬅️ 새로운 페트 추가/수정 함수 끝 */
+
+/* ========== 이벤트 바인딩 ========== */
+$("#adminLoginBtn").addEventListener("click", async ()=>{ await adminUnlock(); render(); });
+
+/* ⬅️ 새 페트 추가 버튼 이벤트 핸들러 (수정됨) */
+$("#addPetBtn")?.addEventListener("click", ()=>{ 
+  if (!ADMIN) return;
+  const card = $("#addPetCard");
+  const isHidden = card.classList.contains("hidden");
+  
+  // 만약 "수정 모드"였다면, "수정 취소"로 동작
+  const editBtn = $("#doAddPet");
+  if (editBtn.dataset.originalName) {
+    delete editBtn.dataset.originalName;
+    $("#addPetCard").querySelector(".section").textContent = "새 페트 추가";
+    editBtn.textContent = "페트 생성 및 추가";
+  }
+
+  card.classList.toggle("hidden");
+  $("#addPetBtn").textContent = isHidden ? "취소" : "새 페트 추가";
+
+  // 폼 열 때 (isHidden이 true였을 때)
+  if (isHidden) {
+      // 텍스트, 숫자 입력 필드를 모두 빈 문자열로 초기화
+      $$("#addPetCard input[type='text'], #addPetCard input[type='number']").forEach(el => {
+          el.value = '';
+      });
+      $("#new_grade").value = "일반";
+      $("#new_channel").value = ""; 
+      $("#new_mount").checked = false; 
+      $("#new_name").focus();
+  }
+});
+
+// ⭐️ 기능 수정: 페트 생성/수정 버튼
+$("#doAddPet")?.addEventListener("click", addOrUpdatePet);
+
+// ⭐️ 기능 수정: 취소 버튼 (수정 모드 해제)
+$("#cancelAddPet")?.addEventListener("click", ()=>{
+  const btn = $("#doAddPet");
+  delete btn.dataset.originalName; // 수정 모드 해제
+  $("#addPetCard").querySelector(".section").textContent = "새 페트 추가";
+  btn.textContent = "페트 생성 및 추가";
+  
+  $("#addPetCard").classList.add("hidden");
+  $("#addPetBtn").textContent = "새 페트 추가";
+});
+/* ⬅️ 새 페트 추가 버튼 이벤트 핸들러 끝 */
+
+$("#exportCsv")?.addEventListener("click", ()=>{ if(!ADMIN) return; const rows = currentFiltered(); download("stoneage_pets_filtered.csv", toCSV(rows), "text/csv;charset=utf-8"); });
+$("#exportJson")?.addEventListener("click", ()=>{ if(!ADMIN) return; download("pets_filter.json", JSON.stringify(PETS, null, 2), "application/json;charset=utf-8"); });
+$("#importJsonBtn")?.addEventListener("click", ()=>{ if(!ADMIN) return; $("#importJson").click(); });
+$("#importJson")?.addEventListener("change", (e)=>{ if (!ADMIN) return;
+  const file = e.target.files?.[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ()=>{ try{ const arr = JSON.parse(reader.result);
+      if(!Array.isArray(arr)) throw new Error("JSON은 배열이어야 합니다.");
+      const byName = Object.fromEntries(PETS.map(p=>[p.name,p]));
+      arr.forEach(obj=>{ if(!obj || typeof obj!=="object") return;
+        const name = obj.name; if(!name) return;
+        byName[name] = Object.assign({}, byName[name]||{}, obj);
+      });
+      PETS.length = 0; Object.values(byName).forEach(v=>PETS.push(v));
+      render(); e.target.value = ""; showToast("JSON 병합 완료");
+    }catch(err){ showToast("JSON 파싱 실패: " + err.message); }
+  };
+  reader.readAsText(file, "utf-8");
+});
+
+// ⬇️ [수정] Worker를 사용하므로 패널을 열 필요가 없어졌습니다.
+$("#githubBtn")?.addEventListener("click", ()=>{ 
+  if(!ADMIN) return;
+  // 패널을 여는 대신 바로 커밋 로직 실행
+  doGithubCommit();
+});
+
+$("#adminLogoutBtn")?.addEventListener("click", ()=>{
+  ADMIN = false;
+  ADMIN_STORAGE.removeItem(ADMIN_KEY);
+  localStorage.removeItem("pets_admin_unlocked"); // 구버전 잔여키도 정리
+  render();
+  showToast("관리자 모드를 해제했습니다.");
+});
+
+/* 활동 시 TTL 자동 연장(선택) */
+["click","keydown","touchstart"].forEach(ev=>{
+  document.addEventListener(ev, ()=>{
+    if(ADMIN && isAdminAlive()){ refreshAdminTTL(); scheduleAdminAutoLock(); }
+  }, {passive:true});
+});
+
+/* ========= GitHub 커밋 도우미 (Worker용) ========= */
+function b64EncodeUnicode(str) {
+  return btoa(unescape(encodeURIComponent(str)));
+}
+
+async function doGithubCommit() {
+  if (!ADMIN) return;
+
+  const status = $("#ghStatus");
+  status.textContent = "SHA 조회 중...";
+
+  // 1. Worker의 메타데이터 엔드포인트를 통해 현재 파일의 SHA 값 조회
+  let sha = null;
+  try {
+    // Worker가 'pets_filter.json'의 메타데이터를 반환한다고 가정
+    const shaRes = await fetch(`${WORKER_BASE_URL}/api/meta/pets_filter.json`);
+    if (!shaRes.ok) {
+      status.textContent = "SHA 조회 실패: " + shaRes.statusText;
+      showToast("SHA 조회 실패");
+      return;
+    }
+    const shaData = await shaRes.json();
+    sha = shaData.sha; // Worker가 SHA를 포함하는 JSON 응답을 반환해야 함
+  } catch (err) {
+    status.textContent = "SHA 조회 오류: " + err.message;
+    showToast("SHA 조회 오류");
+    return;
+  }
+
+  // 2. Worker의 커밋 엔드포인트에 PUT 요청
+  status.textContent = "커밋 중…";
+  try {
+    const jsonText = JSON.stringify(PETS, null, 2);
+    const contentB64 = b64EncodeUnicode(jsonText);
+    
+    // Worker의 커밋 엔드포인트 호출
+    const res = await fetch(`${WORKER_BASE_URL}/api/commit-petsfilter`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: "Update pets_filter.json (Admin)", // 커밋 메세지
+        content: contentB64, 
+        sha: sha // 조회한 SHA 값 사용
+      })
+    });
+    
+    if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(`Worker 오류: ${res.status} ${res.statusText}. ${errorText}`);
+    }
+    
+    // Worker 응답 처리
+    const result = await res.json();
+    status.innerHTML = `커밋 성공!`; 
+    render();
+    showToast("GitHub 저장 완료! 폼을 닫고 다음 작업을 진행하세요.");
+    
+  } catch (err) {
+    status.textContent = err.message;
+    showToast("커밋 실패: " + err.message);
+  }
+}
+
+
+/* ========= 듀얼 상위값 10 방지 + 안내 ========= */
+let prevDualHigh = 5;
+function syncDualLow() {
+  const high = Math.max(5, Math.min(9, parseInt($("#dual_high")?.value || String(prevDualHigh), 10)));
+  const low = 10 - high;
+  if ($("#dual_low")) $("#dual_low").value = String(low);
+}
+const dualHighEl = $("#dual_high");
+if (dualHighEl) {
+  const handleDualHigh = (e) => {
+    let v = parseInt(e.target.value || "5", 10);
+    if (Number.isNaN(v)) v = prevDualHigh;
+    if (v < 5) {
+      showToast("듀얼 상위 값은 5 이상이어야 합니다.");
+      e.target.value = String(prevDualHigh);
+      syncDualLow();
+      return;
+    }
+    if (v >= 10) { // 10 방지 + 안내
+      showToast("주 속성 10은 지,수,화,풍 데이터를 이용하세요.");
+      v = 9;
+    }
+    if (v > 9) v = 9;
+    e.target.value = String(v);
+    prevDualHigh = v;
+    syncDualLow();
+    render();
+  };
+  dualHighEl.addEventListener("input", handleDualHigh);
+  dualHighEl.addEventListener("change", handleDualHigh);
+}
+$("#dualDec")?.addEventListener("click", ()=>{
+  const el = $("#dual_high");
+  let v = parseInt(el.value||"5",10);
+  if (v>5) { v--; el.value=String(v); prevDualHigh=v; syncDualLow(); render(); }
+  else showToast("듀얼 상위 값은 5 이상이어야 합니다.");
+});
+$("#dualInc")?.addEventListener("click", ()=>{
+  const el = $("#dual_high");
+  let v = parseInt(el.value||"5",10);
+  if (v<9) {
+    v++; el.value=String(v); prevDualHigh=v; syncDualLow(); render();
+  } else {
+    showToast("주 속성 10은 지,수,화,풍 데이터를 이용하세요.");
+  }
+});
+
+/* ========= 데이터 로드 ========= */
+async function loadPets(force=false) {
+  try {
+    $("#loading")?.classList.remove("hidden");
+    let url = DATA_URL;
+    if (force) {
+      url = DATA_URL + "?t=" + Date.now(); 
+    }
+    const res = await fetch(url); // 수정된 url 사용
+
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const arr = await res.json();
+    if (!Array.isArray(arr)) throw new Error("JSON 최상위는 배열이어야 합니다.");
+    PETS = arr;
+    console.log("✅ JSON 로드 완료:", PETS.length);
+    $("#totalShow").textContent = PETS.length;
+    render();
+  } catch (err) {
+    showToast("데이터 로드 실패: " + err.message);
+    const wrap = $("#listWrap");
+    if (wrap) { wrap.innerHTML = '<div class="loading">데이터를 불러오지 못했습니다. 경로와 CORS 설정을 확인해 주세요.</div>'; }
+  } finally {
+    $("#loading")?.classList.add("hidden");
+  }
+}
+
+// ⭐️ 기능 추가: 필터 초기화
+function resetAllFilters() {
+  $("#q").value = "";
+  $("#attrPick").value = "전체";
+  if ($("#attr10Only")) $("#attr10Only").checked = false;
+  
+  // 듀얼값 초기화
+  $("#dual_high").value = "5";
+  prevDualHigh = 5;
+  
+  $$(".grade").forEach(el => el.checked = false);
+  $$(".mount").forEach(el => el.checked = false); // 모두 false로 (필터 비활성화)
+  $$(".channel").forEach(el => el.checked = false);
+  
+  [
+    "min_init_hp","min_init_atk","min_init_def","min_init_agi",
+    "min_grow_hp","min_grow_atk","min_grow_def","min_grow_agi"
+  ].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = "";
+  });
+  
+  syncDualLow(); // 듀얼 하위 값 동기화
+  render();
+  showToast("모든 필터가 초기화되었습니다.");
+}
+
+/* ========= 부팅 ========= */
+/* 구버전 키 → 만료 키로 1회 이관 */
+if (localStorage.getItem("pets_admin_unlocked") === "1") {
+  localStorage.removeItem("pets_admin_unlocked");
+  ADMIN_STORAGE.setItem(ADMIN_KEY, JSON.stringify({ on:1, expires: Date.now() + ADMIN_TTL_MS }));
+}
+ADMIN = isAdminAlive();
+if (ADMIN) { scheduleAdminAutoLock(); }
+
+document.addEventListener("DOMContentLoaded", ()=>{
+  $$(".mount").forEach(el=>el.addEventListener("change", render));
+  const dv = document.getElementById("dualAdv");
+  if (dv) dv.classList.toggle("active", $("#attrPick").value === "듀얼");
+  syncDualLow();
+  bindFilterEvents();
+  
+  // ⭐️ 기능 추가: 필터 초기화 버튼 바인딩
+  $("#resetFilters")?.addEventListener("click", resetAllFilters);
+
+  loadPets();
+  render();
+
+/* 최소치 입력 필드에 소수점 입력 차단 (주석 처리됨) */
+//  const minStatIds = [ ... ];
+//  minStatIds.forEach(id => { ... });
+});
+</script>
+</body>
+</html>

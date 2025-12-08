@@ -1,0 +1,8001 @@
+[
+  {
+    "name": "베노노크",
+    "grade": "일반",
+    "attr": {
+      "화": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 55.99,
+      "atk": 8.87,
+      "def": 9.47,
+      "agi": 5.83
+    },
+    "grow": {
+      "hp": 11.07,
+      "atk": 1.75,
+      "def": 1.87,
+      "agi": 1.15
+    },
+    "route": "속임수의 동굴 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_OLiYxBeR_20c30191c4ef6b01599f7d8f3682d692994dc992.gif"
+  },
+  {
+    "name": "파베로스",
+    "grade": "일반",
+    "attr": {
+      "풍": 10
+    },
+    "init": {
+      "hp": 55.08,
+      "atk": 11.9,
+      "def": 6.93,
+      "agi": 9
+    },
+    "grow": {
+      "hp": 9.98,
+      "atk": 2.16,
+      "def": 1.26,
+      "agi": 1.63
+    },
+    "route": "지원 / 마일리지 포인트 상점",
+    "channel": "지원",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_ViqKEskT_f37e448fa4b9abe540adf866c8537a4d689031ea.gif"
+  },
+  {
+    "name": "갈푸스",
+    "grade": "일반",
+    "attr": {
+      "화": 9,
+      "풍": 1
+    },
+    "init": {
+      "hp": 54.36,
+      "atk": 12.33,
+      "def": 6.71,
+      "agi": 9
+    },
+    "grow": {
+      "hp": 9.85,
+      "atk": 2.23,
+      "def": 1.22,
+      "agi": 1.63
+    },
+    "route": "지원 / 마일리지 포인트 상점",
+    "channel": "지원",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_HbXL7T42_bfe6faed0c3229331c25ef71f0cf2e81927cacd3.gif"
+  },
+  {
+    "name": "샤크론",
+    "grade": "일반",
+    "attr": {
+      "수": 10
+    },
+    "init": {
+      "hp": 55.31,
+      "atk": 11.24,
+      "def": 6.69,
+      "agi": 8.62
+    },
+    "grow": {
+      "hp": 10.46,
+      "atk": 2.13,
+      "def": 1.26,
+      "agi": 1.63
+    },
+    "route": "지원 / 마일리지 포인트 상점",
+    "channel": "지원",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_LME4vrjm_4cad7e7f770fc80bc4a2a2d6f7dbd51edff8f697.gif"
+  },
+  {
+    "name": "카우거",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 53.7,
+      "atk": 11.64,
+      "def": 6.68,
+      "agi": 8.39
+    },
+    "grow": {
+      "hp": 10.16,
+      "atk": 2.2,
+      "def": 1.26,
+      "agi": 1.59
+    },
+    "route": "지원 / 마일리지 포인트 상점",
+    "channel": "지원",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_dWzgAFQY_f3791c3e68d9b02ad42701881031e52d79e62ea7.gif"
+  },
+  {
+    "name": "노스토로스",
+    "grade": "일반",
+    "attr": {
+      "화": 9,
+      "풍": 1
+    },
+    "init": {
+      "hp": 43.56,
+      "atk": 8.35,
+      "def": 7.27,
+      "agi": 6.6
+    },
+    "grow": {
+      "hp": 9.71,
+      "atk": 1.86,
+      "def": 1.62,
+      "agi": 1.47
+    },
+    "route": "JOT 코스 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_s9wdSQpL_e2e6d5803789ab95c20de0317feb2d68a688ed81.gif"
+  },
+  {
+    "name": "가우",
+    "grade": "일반",
+    "attr": {
+      "수": 6,
+      "화": 4
+    },
+    "init": {
+      "hp": 59.64,
+      "atk": 11.78,
+      "def": 7.03,
+      "agi": 9
+    },
+    "grow": {
+      "hp": 10.81,
+      "atk": 2.13,
+      "def": 1.27,
+      "agi": 1.63
+    },
+    "route": "JOT 코스 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_9eORL4i0_47397b0ed373110ade6955a8c41c196091becd99.gif"
+  },
+  {
+    "name": "블랙펄",
+    "grade": "일반",
+    "attr": {
+      "화": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 52.12,
+      "atk": 11.22,
+      "def": 6.27,
+      "agi": 8.88
+    },
+    "grow": {
+      "hp": 9.9,
+      "atk": 2.13,
+      "def": 1.19,
+      "agi": 1.69
+    },
+    "route": "JOT 코스 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_T691ybMO_8872a4f97d4a23727125a7f19f77236cffe6b1f5.gif"
+  },
+  {
+    "name": "골로스",
+    "grade": "최상급",
+    "attr": {
+      "화": 7,
+      "풍": 3
+    },
+    "init": {
+      "hp": 67.62,
+      "atk": 14.83,
+      "def": 9.54,
+      "agi": 8.26
+    },
+    "grow": {
+      "hp": 10.51,
+      "atk": 2.3,
+      "def": 1.48,
+      "agi": 1.28
+    },
+    "route": "환생 퀘스트 보상 페트 (5환)",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_LBGsK63N_b979fd6d483010712ffadc10532e2aa5b0c4311f.gif"
+  },
+  {
+    "name": "테로노돈",
+    "grade": "일반",
+    "attr": {
+      "수": 10
+    },
+    "init": {
+      "hp": 47.19,
+      "atk": 9.25,
+      "def": 5.09,
+      "agi": 8.47
+    },
+    "grow": {
+      "hp": 10.19,
+      "atk": 2,
+      "def": 1.1,
+      "agi": 1.83
+    },
+    "route": "교만의 방 (테로노돈) 레이드 랜덤 보상",
+    "channel": "레이드",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_Mz8eVRWl_7ad8ae7483935c79c5ef7ecd94beca6ccc12f3e9.gif"
+  },
+  {
+    "name": "크로아치",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3
+    },
+    "init": {
+      "hp": 54.4,
+      "atk": 11.75,
+      "def": 8.44,
+      "agi": 6.33
+    },
+    "grow": {
+      "hp": 10.29,
+      "atk": 2.22,
+      "def": 1.6,
+      "agi": 1.2
+    },
+    "route": "편견의 방 (크로아치) 레이드 랜덤 보상",
+    "channel": "레이드",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_iu4Paj5D_e489b5f06a60e3d7959ff757155509130490111a.gif"
+  },
+  {
+    "name": "로라미우스",
+    "grade": "일반",
+    "attr": {
+      "풍": 10
+    },
+    "init": {
+      "hp": 52.03,
+      "atk": 11.46,
+      "def": 8.29,
+      "agi": 5.61
+    },
+    "grow": {
+      "hp": 10.29,
+      "atk": 2.27,
+      "def": 1.64,
+      "agi": 1.11
+    },
+    "route": "바람의 정령 (파베로스) 레이드 랜덤 보상",
+    "channel": "레이드",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_nQMjD7kl_d9b909d2fbde1331953d4ee2b72c4530682949e3.gif"
+  },
+  {
+    "name": "미라미우스",
+    "grade": "일반",
+    "attr": {
+      "화": 9,
+      "풍": 1
+    },
+    "init": {
+      "hp": 52.03,
+      "atk": 12.07,
+      "def": 8.11,
+      "agi": 5.17
+    },
+    "grow": {
+      "hp": 10.29,
+      "atk": 2.39,
+      "def": 1.6,
+      "agi": 1.02
+    },
+    "route": "불의 정령 (카가로스) 레이드 랜덤 보상",
+    "channel": "레이드",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_VSFwp17l_029da16c81c47bc34b42f1d5035d9c38d0dbdf93.gif"
+  },
+  {
+    "name": "보라미우스",
+    "grade": "일반",
+    "attr": {
+      "지": 1,
+      "수": 9
+    },
+    "init": {
+      "hp": 55.11,
+      "atk": 11.52,
+      "def": 8.35,
+      "agi": 5.17
+    },
+    "grow": {
+      "hp": 10.9,
+      "atk": 2.28,
+      "def": 1.65,
+      "agi": 1.02
+    },
+    "route": "물의 정령 (마몽) 레이드 랜덤 보상",
+    "channel": "레이드",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_dhX0Oc2J_79ac3c53c0bcbf1b4755d7040666bd60c4295134.gif"
+  },
+  {
+    "name": "타라미우스",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 52.03,
+      "atk": 11.87,
+      "def": 8.31,
+      "agi": 5.17
+    },
+    "grow": {
+      "hp": 10.29,
+      "atk": 2.35,
+      "def": 1.64,
+      "agi": 1.02
+    },
+    "route": "땅의 정령 (쟈무시) 레이드 랜덤 보상",
+    "channel": "레이드",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_V8Jphqog_0401539a1c16c92436b40e529a31aceb99d1929b.gif"
+  },
+  {
+    "name": "차라쿠",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 50.27,
+      "atk": 11.08,
+      "def": 5.93,
+      "agi": 8.25
+    },
+    "grow": {
+      "hp": 9.94,
+      "atk": 2.19,
+      "def": 1.17,
+      "agi": 1.63
+    },
+    "route": "바람의 정령 (파베로스) 레이드 랜덤 보상",
+    "channel": "레이드",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_jCAqyTeK_f73c29863890d3613a6696093e9b8fb8a94bd9ed.gif"
+  },
+  {
+    "name": "토라쿠",
+    "grade": "일반",
+    "attr": {
+      "수": 2,
+      "화": 8
+    },
+    "init": {
+      "hp": 50.27,
+      "atk": 11.09,
+      "def": 6.14,
+      "agi": 8.03
+    },
+    "grow": {
+      "hp": 9.94,
+      "atk": 2.19,
+      "def": 1.21,
+      "agi": 1.59
+    },
+    "route": "불의 정령 (카가로스) 레이드 랜덤 보상",
+    "channel": "레이드",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_CqHO8A9R_054737e6f90dcafbbd3618dc0f2516acc6c73aa5.gif"
+  },
+  {
+    "name": "파라쿠",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8
+    },
+    "init": {
+      "hp": 51.81,
+      "atk": 11.13,
+      "def": 6.18,
+      "agi": 7.81
+    },
+    "grow": {
+      "hp": 10.24,
+      "atk": 2.2,
+      "def": 1.22,
+      "agi": 1.54
+    },
+    "route": "물의 정령 (마몽) 레이드 랜덤 보상",
+    "channel": "레이드",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_ME5AcvQ2_04f10470da0c90c285454655b55f8f298585707a.gif"
+  },
+  {
+    "name": "카라쿠",
+    "grade": "일반",
+    "attr": {
+      "지": 10
+    },
+    "init": {
+      "hp": 50.27,
+      "atk": 10.9,
+      "def": 6.34,
+      "agi": 8.03
+    },
+    "grow": {
+      "hp": 9.94,
+      "atk": 2.15,
+      "def": 1.25,
+      "agi": 1.59
+    },
+    "route": "땅의 정령 (쟈무시) 레이드 랜덤 보상",
+    "channel": "레이드",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_7bOcKYBM_18ec9ed8c8bcdcbc102ab9f619f1669857c53b99.gif"
+  },
+  {
+    "name": "스노밍코",
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7
+    },
+    "init": {
+      "hp": 52.65,
+      "atk": 8.89,
+      "def": 7.01,
+      "agi": 8.71
+    },
+    "grow": {
+      "hp": 10.43,
+      "atk": 1.76,
+      "def": 1.39,
+      "agi": 1.73
+    },
+    "route": "포우렌 (동432, 남712) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_GnTHP3E2_559336a34bb5023d1a1ef8e1d8ae1976b22ef65d.gif"
+  },
+  {
+    "name": "킹북이",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 39.3,
+      "atk": 6.53,
+      "def": 10.66,
+      "agi": 2.1
+    },
+    "grow": {
+      "hp": 10.12,
+      "atk": 1.68,
+      "def": 2.75,
+      "agi": 0.54
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (후르도)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_lQ7HsmSz_ed68ccb071e2947b9c43596563c520787715d5dc.gif"
+  },
+  {
+    "name": "크루거",
+    "grade": "상급",
+    "attr": {
+      "지": 3,
+      "수": 7
+    },
+    "init": {
+      "hp": 56.76,
+      "atk": 11.27,
+      "def": 7.39,
+      "agi": 9
+    },
+    "grow": {
+      "hp": 10.29,
+      "atk": 2.04,
+      "def": 1.34,
+      "agi": 1.63
+    },
+    "route": "맘모스 복권 1등 페트 (스라인)",
+    "channel": "복권",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_DAG2Fv6I_a406b1960199b28b8b14a595d2a2c3f1728adda8.gif"
+  },
+  {
+    "name": "차크론",
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7
+    },
+    "init": {
+      "hp": 51.96,
+      "atk": 11.07,
+      "def": 6.53,
+      "agi": 7.8
+    },
+    "grow": {
+      "hp": 10.28,
+      "atk": 2.19,
+      "def": 1.29,
+      "agi": 1.54
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (스라인)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_kdZRqh5f_7e2851cc36691af01e218c00684c1a81831a834e.gif"
+  },
+  {
+    "name": "아누",
+    "grade": "일반",
+    "attr": {
+      "수": 5,
+      "화": 5
+    },
+    "init": {
+      "hp": 41.69,
+      "atk": 8.68,
+      "def": 5.32,
+      "agi": 7.37
+    },
+    "grow": {
+      "hp": 9.76,
+      "atk": 2.03,
+      "def": 1.25,
+      "agi": 1.73
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (스라인)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_3soeNz0q_4d14460e2004919dcf91623542036ade6753b11c.gif"
+  },
+  {
+    "name": "블루문",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8
+    },
+    "init": {
+      "hp": 59.12,
+      "atk": 12.93,
+      "def": 7.76,
+      "agi": 8.12
+    },
+    "grow": {
+      "hp": 10.29,
+      "atk": 2.25,
+      "def": 1.35,
+      "agi": 1.41
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (스라인)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_Pea8JiM3_2771c3745977fbd193b810b360635bdcfd2fb8c3.gif"
+  },
+  {
+    "name": "카누",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5
+    },
+    "init": {
+      "hp": 40.15,
+      "atk": 7.78,
+      "def": 5.01,
+      "agi": 7.81
+    },
+    "grow": {
+      "hp": 9.76,
+      "atk": 1.89,
+      "def": 1.22,
+      "agi": 1.9
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (후르도)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_k9E358zF_42f548e9598b032830d4de210d459721c7922f5c.gif"
+  },
+  {
+    "name": "아르카",
+    "grade": "일반",
+    "attr": {
+      "화": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 47.4,
+      "atk": 9.77,
+      "def": 5.89,
+      "agi": 8.76
+    },
+    "grow": {
+      "hp": 9.78,
+      "atk": 2.02,
+      "def": 1.21,
+      "agi": 1.81
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (후르도)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_q0hQFskH_2eae55206cd4eb2736c74015a296644263a67768.gif"
+  },
+  {
+    "name": "카르카로돈",
+    "grade": "일반",
+    "attr": {
+      "지": 1,
+      "풍": 9
+    },
+    "init": {
+      "hp": 55.08,
+      "atk": 11.25,
+      "def": 7.58,
+      "agi": 9
+    },
+    "grow": {
+      "hp": 9.98,
+      "atk": 2.04,
+      "def": 1.37,
+      "agi": 1.63
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (후르도)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_VJiUa7gL_d1a4619db4c466f37426c4baf4f246b18f356145.gif"
+  },
+  {
+    "name": "노바티",
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "풍": 6
+    },
+    "init": {
+      "hp": 49.88,
+      "atk": 10.7,
+      "def": 7.11,
+      "agi": 6.62
+    },
+    "grow": {
+      "hp": 10.33,
+      "atk": 2.22,
+      "def": 1.47,
+      "agi": 1.37
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (카루타나)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_HjW3g8uo_db4abbcb68458800b8b30c4dcf1cb8ddf263bea8.gif"
+  },
+  {
+    "name": "링코",
+    "grade": "일반",
+    "attr": {
+      "지": 1,
+      "수": 9
+    },
+    "init": {
+      "hp": 70.95,
+      "atk": 9.45,
+      "def": 6.29,
+      "agi": 8.25
+    },
+    "grow": {
+      "hp": 14.03,
+      "atk": 1.87,
+      "def": 1.24,
+      "agi": 1.63
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (카루타나)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_LIfxV4wS_61a5853a0516c9c577035b43e95632536fb91777.gif"
+  },
+  {
+    "name": "모사크",
+    "grade": "일반",
+    "attr": {
+      "수": 10
+    },
+    "init": {
+      "hp": 57.72,
+      "atk": 12.44,
+      "def": 7.47,
+      "agi": 7.8
+    },
+    "grow": {
+      "hp": 10.46,
+      "atk": 2.25,
+      "def": 1.35,
+      "agi": 1.41
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (카루타나)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_A2gKsHm6_d442e5a4f7015895fdb4284020512fc607d6a303.gif"
+  },
+  {
+    "name": "타라티스",
+    "grade": "일반",
+    "attr": {
+      "수": 4,
+      "화": 6
+    },
+    "init": {
+      "hp": 56.76,
+      "atk": 12.93,
+      "def": 8.61,
+      "agi": 6.12
+    },
+    "grow": {
+      "hp": 10.29,
+      "atk": 2.34,
+      "def": 1.56,
+      "agi": 1.11
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (쟈쟈)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_pO8AqIFV_236f4e195308ad75c1cac3156d3c59875b2ab8c1.gif"
+  },
+  {
+    "name": "엘크룬",
+    "grade": "일반",
+    "attr": {
+      "화": 7,
+      "풍": 3
+    },
+    "init": {
+      "hp": 50.38,
+      "atk": 11.39,
+      "def": 6.22,
+      "agi": 7.88
+    },
+    "grow": {
+      "hp": 9.97,
+      "atk": 2.26,
+      "def": 1.23,
+      "agi": 1.56
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (쟈쟈)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_Bow9nKJl_85c672a1d34e4c2f5bdfb169de81dfcc373309b3.gif"
+  },
+  {
+    "name": "야크노",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 54.88,
+      "atk": 12.04,
+      "def": 7.32,
+      "agi": 6.88
+    },
+    "grow": {
+      "hp": 10.43,
+      "atk": 2.29,
+      "def": 1.39,
+      "agi": 1.31
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (마리너스)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_cIhH6rvF_ae998372966ca98610b785a60d2c95fe8e60ec72.gif"
+  },
+  {
+    "name": "다크무이",
+    "grade": "일반",
+    "attr": {
+      "수": 5,
+      "화": 5
+    },
+    "init": {
+      "hp": 55.08,
+      "atk": 9.87,
+      "def": 9.87,
+      "agi": 2.04
+    },
+    "grow": {
+      "hp": 11.36,
+      "atk": 2.04,
+      "def": 2.04,
+      "agi": 0.42
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (마리너스)",
+    "channel": "복권",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_XBz60aqe_ba397942a4575e72472d984a5fcfc2fde8be1bf2.gif"
+  },
+  {
+    "name": "하르가",
+    "grade": "일반",
+    "attr": {
+      "수": 7,
+      "화": 3
+    },
+    "init": {
+      "hp": 54.4,
+      "atk": 11.45,
+      "def": 6.89,
+      "agi": 8.16
+    },
+    "grow": {
+      "hp": 10.29,
+      "atk": 2.17,
+      "def": 1.3,
+      "agi": 1.54
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (샴기르)",
+    "channel": "복권",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_LUj10OYg_4570656831e2905dbf100c5c6a0d832a3f0a8aa3.gif"
+  },
+  {
+    "name": "케로푸스",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "수": 2
+    },
+    "init": {
+      "hp": 59.93,
+      "atk": 12.95,
+      "def": 9.44,
+      "agi": 5.85
+    },
+    "grow": {
+      "hp": 10.49,
+      "atk": 2.27,
+      "def": 1.65,
+      "agi": 1.02
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (샴기르)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_e4Vsc6av_34a575d86868621735c9fe8c98cbedeb53cc5e53.gif"
+  },
+  {
+    "name": "라이칸",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3
+    },
+    "init": {
+      "hp": 61.49,
+      "atk": 13.73,
+      "def": 8.82,
+      "agi": 7.41
+    },
+    "grow": {
+      "hp": 10.29,
+      "atk": 2.3,
+      "def": 1.48,
+      "agi": 1.24
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (샴기르)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_AtG1PVhO_3d310312ca9823cd670378414e20da44f38a3ffb.gif"
+  },
+  {
+    "name": "우리스타",
+    "grade": "상급",
+    "attr": {
+      "지": 4,
+      "수": 6
+    },
+    "init": {
+      "hp": 42.66,
+      "atk": 9.25,
+      "def": 5.53,
+      "agi": 6.55
+    },
+    "grow": {
+      "hp": 9.92,
+      "atk": 2.15,
+      "def": 1.29,
+      "agi": 1.52
+    },
+    "route": "새로운 모험 퀘스트 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_3jEaCR7O_87cb1214007ec5c915514c74414933eccf6fd93d.gif"
+  },
+  {
+    "name": "쿠오코마",
+    "grade": "일반",
+    "attr": {
+      "지": 9,
+      "수": 1
+    },
+    "init": {
+      "hp": 58.68,
+      "atk": 12.27,
+      "def": 8.6,
+      "agi": 5.88
+    },
+    "grow": {
+      "hp": 10.64,
+      "atk": 2.22,
+      "def": 1.56,
+      "agi": 1.07
+    },
+    "route": "SOT 코스 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_61Zc9Hps_d3e6cc611774c0218c66c3d39413afc8d0fe493a.gif"
+  },
+  {
+    "name": "다크론",
+    "grade": "일반",
+    "attr": {
+      "수": 7,
+      "화": 3
+    },
+    "init": {
+      "hp": 58.68,
+      "atk": 12.75,
+      "def": 8.65,
+      "agi": 6.36
+    },
+    "grow": {
+      "hp": 10.64,
+      "atk": 2.31,
+      "def": 1.57,
+      "agi": 1.15
+    },
+    "route": "SOT 코스 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_0NmZzAGX_56118ebfdfe33fb6e60e390e685e7ea269314c0d.gif"
+  },
+  {
+    "name": "데블로스",
+    "grade": "일반",
+    "attr": {
+      "수": 1,
+      "화": 9
+    },
+    "init": {
+      "hp": 38.74,
+      "atk": 8.42,
+      "def": 4.26,
+      "agi": 7.46
+    },
+    "grow": {
+      "hp": 9.5,
+      "atk": 2.06,
+      "def": 1.04,
+      "agi": 1.83
+    },
+    "route": "미선의 편지 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_N2hfPqeg_53fe9bcd6854cc9a0b844122a2be10105fd193c8.gif"
+  },
+  {
+    "name": "카르노스",
+    "grade": "상급",
+    "attr": {
+      "지": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 53.38,
+      "atk": 11.57,
+      "def": 7.74,
+      "agi": 7.38
+    },
+    "grow": {
+      "hp": 10.14,
+      "atk": 2.2,
+      "def": 1.47,
+      "agi": 1.4
+    },
+    "route": "포니를 찾아서 퀘스트 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_L3XeWxcM_c420a2d78814e9175952b88c72ed052685496c92.gif"
+  },
+  {
+    "name": "카가로스",
+    "grade": "일반",
+    "attr": {
+      "화": 7,
+      "풍": 3
+    },
+    "init": {
+      "hp": 55.12,
+      "atk": 12.54,
+      "def": 7.14,
+      "agi": 7.88
+    },
+    "grow": {
+      "hp": 10.03,
+      "atk": 2.28,
+      "def": 1.3,
+      "agi": 1.43
+    },
+    "route": "다섯 석상을 찾아 비밀을 풀어라 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_UEoiBgCP_9c779b082ba32ebed8a740ea522f312296ddbcd1.gif"
+  },
+  {
+    "name": "흑귀",
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 57,
+      "atk": 12.91,
+      "def": 7.94,
+      "agi": 7.08
+    },
+    "grow": {
+      "hp": 10.33,
+      "atk": 2.34,
+      "def": 1.44,
+      "agi": 1.28
+    },
+    "route": "다섯 석상을 찾아 비밀을 풀어라 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_LsC0khOc_39d3d901fcdff75279e51c2d7237bd080e8ffaa1.gif"
+  },
+  {
+    "name": "키파",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 49.32,
+      "atk": 10.76,
+      "def": 6.44,
+      "agi": 7.32
+    },
+    "grow": {
+      "hp": 10.17,
+      "atk": 2.22,
+      "def": 1.33,
+      "agi": 1.51
+    },
+    "route": "포우렌의 황금나무 퀘스트 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_i9JzAU0n_f0b75967b65c33d690c07e8e125941a74819a5fa.gif"
+  },
+  {
+    "name": "흑갈푸스",
+    "grade": "일반",
+    "attr": {
+      "화": 4,
+      "풍": 6
+    },
+    "init": {
+      "hp": 50.49,
+      "atk": 10.9,
+      "def": 6.14,
+      "agi": 8.47
+    },
+    "grow": {
+      "hp": 9.98,
+      "atk": 2.15,
+      "def": 1.21,
+      "agi": 1.67
+    },
+    "route": "마함마의 증표 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_JO6VXgkE_9a9d63f5fd30609594c8bc502f6fc3a7cb8b77be.gif"
+  },
+  {
+    "name": "쿠팡",
+    "grade": "일반",
+    "attr": {
+      "화": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 40.37,
+      "atk": 8.78,
+      "def": 4.43,
+      "agi": 6.71
+    },
+    "grow": {
+      "hp": 9.82,
+      "atk": 2.14,
+      "def": 1.08,
+      "agi": 1.63
+    },
+    "route": "포우렌 (동488, 남850) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_PoIevK1z_0c3e32aada64be8f5c10930ffaf85f4ba3413a07.gif"
+  },
+  {
+    "name": "쿠아",
+    "grade": "일반",
+    "attr": {
+      "수": 5,
+      "화": 5
+    },
+    "init": {
+      "hp": 50.49,
+      "atk": 10.09,
+      "def": 7.12,
+      "agi": 7.37
+    },
+    "grow": {
+      "hp": 9.98,
+      "atk": 2,
+      "def": 1.41,
+      "agi": 1.46
+    },
+    "route": "포우렌 (동488, 남850) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_pRzTPgnq_07977c50b125a6b96224a85399af29a5c9f412f8.gif"
+  },
+  {
+    "name": "밍코",
+    "grade": "일반",
+    "attr": {
+      "수": 6,
+      "화": 4
+    },
+    "init": {
+      "hp": 49.79,
+      "atk": 10.28,
+      "def": 6.53,
+      "agi": 7.93
+    },
+    "grow": {
+      "hp": 9.86,
+      "atk": 2.04,
+      "def": 1.29,
+      "agi": 1.57
+    },
+    "route": "포우렌 (동453, 남715) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_rR1gNcB2_5babead2c661618c5f8e5d5045050c801a13906f.gif"
+  },
+  {
+    "name": "크랩",
+    "grade": "일반",
+    "attr": {
+      "수": 10
+    },
+    "init": {
+      "hp": 53.23,
+      "atk": 10.03,
+      "def": 8.33,
+      "agi": 5.36
+    },
+    "grow": {
+      "hp": 11.03,
+      "atk": 2.08,
+      "def": 1.73,
+      "agi": 1.11
+    },
+    "route": "포우렌 (동492, 남712) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_gfpDaw1x_54a435ad92536ad9071c4ccde840ca31543b91b3.gif"
+  },
+  {
+    "name": "킹크랩",
+    "grade": "일반",
+    "attr": {
+      "화": 9,
+      "풍": 1
+    },
+    "init": {
+      "hp": 56.17,
+      "atk": 10.76,
+      "def": 10,
+      "agi": 1.78
+    },
+    "grow": {
+      "hp": 11.64,
+      "atk": 2.23,
+      "def": 2.07,
+      "agi": 0.37
+    },
+    "route": "포우렌 (동502, 남824) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_RGjYSZJM_f3dd50b650183e2a494087b5a18d57ccaf71eace.gif"
+  },
+  {
+    "name": "도라비스",
+    "grade": "일반",
+    "attr": {
+      "풍": 10
+    },
+    "init": {
+      "hp": 53.43,
+      "atk": 10.94,
+      "def": 6.96,
+      "agi": 9.75
+    },
+    "grow": {
+      "hp": 9.76,
+      "atk": 2,
+      "def": 1.27,
+      "agi": 1.78
+    },
+    "route": "황금색 페트(카난) 퀘스트 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_vPSX7guh_a62a76127ce5777df751d6772af4f3686f77e0bb.gif"
+  },
+  {
+    "name": "사루나",
+    "grade": "일반",
+    "attr": {
+      "화": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 41.74,
+      "atk": 8.14,
+      "def": 5.03,
+      "agi": 9.09
+    },
+    "grow": {
+      "hp": 9.35,
+      "atk": 1.82,
+      "def": 1.13,
+      "agi": 2.03
+    },
+    "route": "빛의 동굴 지하 3층 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_cwpCf0YF_335cdade98da52463e3d8fd52adbcf61d05e476a.gif"
+  },
+  {
+    "name": "지라크",
+    "grade": "일반",
+    "attr": {
+      "지": 10
+    },
+    "init": {
+      "hp": 49.34,
+      "atk": 10.67,
+      "def": 7.77,
+      "agi": 5.41
+    },
+    "grow": {
+      "hp": 10.19,
+      "atk": 2.2,
+      "def": 1.6,
+      "agi": 1.12
+    },
+    "route": "하이하모 (동175, 남498) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_nKT54wau_35f022eec2effa624dc279b7827aca074ccc9f12.gif"
+  },
+  {
+    "name": "포레스트크랩",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5
+    },
+    "init": {
+      "hp": 65.4,
+      "atk": 10.89,
+      "def": 10.89,
+      "agi": 2.28
+    },
+    "grow": {
+      "hp": 11.85,
+      "atk": 1.97,
+      "def": 1.97,
+      "agi": 0.41
+    },
+    "route": "하이하모 (동259, 남654) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_i3FacWKX_b161c85a0ac7f427fcf5a597191f547351b5929a.gif"
+  },
+  {
+    "name": "피피아",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5
+    },
+    "init": {
+      "hp": 45.88,
+      "atk": 9.17,
+      "def": 6.07,
+      "agi": 7.71
+    },
+    "grow": {
+      "hp": 9.88,
+      "atk": 1.97,
+      "def": 1.31,
+      "agi": 1.66
+    },
+    "route": "하이하모 (동324, 남552) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_tMX7c6b4_6104473b4b9d86bccdaae6c45885f308c6c4dc6f.gif"
+  },
+  {
+    "name": "포루나",
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6
+    },
+    "init": {
+      "hp": 49.1,
+      "atk": 9.69,
+      "def": 5.96,
+      "agi": 7.93
+    },
+    "grow": {
+      "hp": 10.14,
+      "atk": 2,
+      "def": 1.23,
+      "agi": 1.64
+    },
+    "route": "하이하모 (동145, 남826) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_YoMDzC3m_19fb6de69705f14282b7c781792548133ca2d202.gif"
+  },
+  {
+    "name": "보르비스",
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7
+    },
+    "init": {
+      "hp": 56.12,
+      "atk": 11.69,
+      "def": 8.09,
+      "agi": 8.88
+    },
+    "grow": {
+      "hp": 9.77,
+      "atk": 2.03,
+      "def": 1.41,
+      "agi": 1.54
+    },
+    "route": "빛의 대륙 하이하모를 찾아서 퀘스트 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_PH7OlgMx_cb7ae3988236161bd0f69e6d70385c093f8da15d.gif"
+  },
+  {
+    "name": "그린고르",
+    "grade": "일반",
+    "attr": {
+      "지": 10
+    },
+    "init": {
+      "hp": 58.62,
+      "atk": 10.79,
+      "def": 10.34,
+      "agi": 1.88
+    },
+    "grow": {
+      "hp": 11.61,
+      "atk": 2.14,
+      "def": 2.05,
+      "agi": 0.37
+    },
+    "route": "눈물의 동굴(앞마당) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_065VMJLN_722a94c33213b5218a7b5a9c1e696239d8af8d89.gif"
+  },
+  {
+    "name": "쿠로로",
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7
+    },
+    "init": {
+      "hp": 51.63,
+      "atk": 8.92,
+      "def": 6.85,
+      "agi": 7.71
+    },
+    "grow": {
+      "hp": 10.66,
+      "atk": 1.84,
+      "def": 1.41,
+      "agi": 1.59
+    },
+    "route": "초보자 초기 지원페트",
+    "channel": "기타",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_0ThUVE47_36898e71393c5db716be6485bc137fa4b2ced0ca.gif"
+  },
+  {
+    "name": "진주토로스",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5
+    },
+    "init": {
+      "hp": 51.41,
+      "atk": 7.93,
+      "def": 8.96,
+      "agi": 6.33
+    },
+    "grow": {
+      "hp": 10.62,
+      "atk": 1.64,
+      "def": 1.85,
+      "agi": 1.31
+    },
+    "route": "선견의 빛④ 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_jfJTuBIA_e5aa3756fed83e637711d3bafc2559fc49f0aedf.gif"
+  },
+  {
+    "name": "디로로크스",
+    "grade": "일반",
+    "attr": {
+      "화": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 51,
+      "atk": 9.53,
+      "def": 8.02,
+      "agi": 7.8
+    },
+    "grow": {
+      "hp": 10.09,
+      "atk": 1.89,
+      "def": 1.59,
+      "agi": 1.54
+    },
+    "route": "도티의 눈을 뜨게 하자 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_WrLfM9Cd_e9a7929c42cac840c9d86029c2bc8027d9af4156.gif"
+  },
+  {
+    "name": "실버로크스",
+    "grade": "일반",
+    "attr": {
+      "수": 5,
+      "화": 5
+    },
+    "init": {
+      "hp": 61.12,
+      "atk": 12.06,
+      "def": 8.23,
+      "agi": 8.62
+    },
+    "grow": {
+      "hp": 10.64,
+      "atk": 2.1,
+      "def": 1.43,
+      "agi": 1.5
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (샴기르)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_bIMrjlQN_83f14659f459bd6e7cea7a828b4fab613ed32d47.gif"
+  },
+  {
+    "name": "노로로크스",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 53.24,
+      "atk": 10.55,
+      "def": 7.03,
+      "agi": 8.62
+    },
+    "grow": {
+      "hp": 10.07,
+      "atk": 2,
+      "def": 1.33,
+      "agi": 1.63
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (후르도)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_nNH7Tlg6_fa041f0b457d8d960527043a92160a80988b804e.gif"
+  },
+  {
+    "name": "코리노로스",
+    "grade": "일반",
+    "attr": {
+      "화": 7,
+      "풍": 3
+    },
+    "init": {
+      "hp": 56.76,
+      "atk": 12.19,
+      "def": 7.43,
+      "agi": 8.04
+    },
+    "grow": {
+      "hp": 10.29,
+      "atk": 2.21,
+      "def": 1.35,
+      "agi": 1.46
+    },
+    "route": "모로모로의 회복을 돕자 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_E4iTJRDu_2905cd4ffdf155a4f5accd0778f6680cf6a36da2.gif"
+  },
+  {
+    "name": "푸토라지",
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7
+    },
+    "init": {
+      "hp": 60.12,
+      "atk": 11.62,
+      "def": 8.38,
+      "agi": 7.32
+    },
+    "grow": {
+      "hp": 10.9,
+      "atk": 2.11,
+      "def": 1.52,
+      "agi": 1.33
+    },
+    "route": "모로모로의 회복을 돕자 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_juzE0NlM_e87f0d310e00a3542bbd1cbd4bcdaedeeb76ac29.gif"
+  },
+  {
+    "name": "노리노스",
+    "grade": "일반",
+    "attr": {
+      "화": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 66.56,
+      "atk": 12.81,
+      "def": 9.94,
+      "agi": 10.88
+    },
+    "grow": {
+      "hp": 9.98,
+      "atk": 1.92,
+      "def": 1.49,
+      "agi": 1.63
+    },
+    "route": "모로모로의 회복을 돕자 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_IieKGY8T_69606553af831351464f397a1fce03cf7812faa8.gif"
+  },
+  {
+    "name": "파라프",
+    "grade": "상급",
+    "attr": {
+      "화": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 62.58,
+      "atk": 11.32,
+      "def": 10.31,
+      "agi": 11.34
+    },
+    "grow": {
+      "hp": 9.72,
+      "atk": 1.76,
+      "def": 1.6,
+      "agi": 1.76
+    },
+    "route": "마쥬의 우편배달 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_3xJtjkUN_56cecb1080fe2e3fb3fba8f9161bfffc3329f0ae.gif"
+  },
+  {
+    "name": "차이혼",
+    "grade": "상급",
+    "attr": {
+      "지": 3,
+      "수": 7
+    },
+    "init": {
+      "hp": 64.54,
+      "atk": 11.12,
+      "def": 10.87,
+      "agi": 10.78
+    },
+    "grow": {
+      "hp": 10.03,
+      "atk": 1.73,
+      "def": 1.69,
+      "agi": 1.67
+    },
+    "route": "마쥬의 우편배달 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_JgE2e5Yn_9dc311db07464e5f72784872d5e26027ec289003.gif"
+  },
+  {
+    "name": "푸룡",
+    "grade": "일반",
+    "attr": {
+      "수": 10
+    },
+    "init": {
+      "hp": 55.88,
+      "atk": 12.77,
+      "def": 6.69,
+      "agi": 7.88
+    },
+    "grow": {
+      "hp": 10.17,
+      "atk": 2.32,
+      "def": 1.22,
+      "agi": 1.43
+    },
+    "route": "한가위 상자 랜덤 보상",
+    "channel": "이벤트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_VmUTsQRM_fd287ccb725f40ed50256d8f20353dc630a7f5ba.gif"
+  },
+  {
+    "name": "지가로스",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 61.49,
+      "atk": 13.51,
+      "def": 9.3,
+      "agi": 7.15
+    },
+    "grow": {
+      "hp": 10.29,
+      "atk": 2.26,
+      "def": 1.56,
+      "agi": 1.2
+    },
+    "route": "퀴즈 마스터(카루타나) 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_AhVBZPJd_e692c103c5130c51c589d3e56a7c65130e8f04f8.gif"
+  },
+  {
+    "name": "노르곤",
+    "grade": "일반",
+    "attr": {
+      "화": 1,
+      "풍": 9
+    },
+    "init": {
+      "hp": 59.93,
+      "atk": 12.68,
+      "def": 8,
+      "agi": 9.75
+    },
+    "grow": {
+      "hp": 10.03,
+      "atk": 2.12,
+      "def": 1.34,
+      "agi": 1.63
+    },
+    "route": "퀴즈 마스터(마리너스) 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_9NF8y5dJ_3eb39530a3785990c1ba333680358999f8029e7c.gif"
+  },
+  {
+    "name": "칼로스",
+    "grade": "일반",
+    "attr": {
+      "화": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 61.75,
+      "atk": 13.46,
+      "def": 8.08,
+      "agi": 8.71
+    },
+    "grow": {
+      "hp": 10.33,
+      "atk": 2.25,
+      "def": 1.35,
+      "agi": 1.46
+    },
+    "route": "개인 듀얼 포인트 상점",
+    "channel": "듀얼",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_ZHijamI1_14a80e24f4000dae2b467c80d5f203995b3d7e35.gif"
+  },
+  {
+    "name": "쥬키",
+    "grade": "일반",
+    "attr": {
+      "화": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 35.1,
+      "atk": 7.03,
+      "def": 4.14,
+      "agi": 7.7
+    },
+    "grow": {
+      "hp": 9.39,
+      "atk": 1.88,
+      "def": 1.11,
+      "agi": 2.06
+    },
+    "route": "선견의 빛④ 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_QJ0Gk2fS_aab41589ce311a84b30c125560879c2d5702bd0f.gif"
+  },
+  {
+    "name": "푸타카",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8
+    },
+    "init": {
+      "hp": 37.9,
+      "atk": 6.36,
+      "def": 4.74,
+      "agi": 7.5
+    },
+    "grow": {
+      "hp": 10.14,
+      "atk": 1.7,
+      "def": 1.27,
+      "agi": 2.01
+    },
+    "route": "도티의 눈을 뜨게 하자 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_4luHQsnK_84474b5be64f75a9fdc0fc149d26f389e43424b1.gif"
+  },
+  {
+    "name": "타르쿠",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "풍": 3
+    },
+    "init": {
+      "hp": 36.7,
+      "atk": 6.54,
+      "def": 4.92,
+      "agi": 7.5
+    },
+    "grow": {
+      "hp": 9.82,
+      "atk": 1.75,
+      "def": 1.31,
+      "agi": 2.01
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (카루타나)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_Wue2NPRr_6f3474a554e7c59a029c41d05e64fb0ef882f90a.gif"
+  },
+  {
+    "name": "테라돈",
+    "grade": "일반",
+    "attr": {
+      "지": 1,
+      "수": 9
+    },
+    "init": {
+      "hp": 62.38,
+      "atk": 11.33,
+      "def": 7.73,
+      "agi": 9.12
+    },
+    "grow": {
+      "hp": 10.85,
+      "atk": 1.97,
+      "def": 1.35,
+      "agi": 1.59
+    },
+    "route": "도티의 눈을 뜨게 하자 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_CIn9PbUd_f38ba4bff3d53a1a0a1cc2b8d12043b019d4d2d2.gif"
+  },
+  {
+    "name": "골드테라곤",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 53.43,
+      "atk": 10.95,
+      "def": 7.21,
+      "agi": 9.49
+    },
+    "grow": {
+      "hp": 9.76,
+      "atk": 2,
+      "def": 1.32,
+      "agi": 1.73
+    },
+    "route": "천상의 맛 구름 솜사탕을 만들자 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_n8B7mAGY_36b930ddec4ff267136f2fce5d5a9d46b544619a.gif"
+  },
+  {
+    "name": "실버라곤",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5
+    },
+    "init": {
+      "hp": 61.49,
+      "atk": 12.01,
+      "def": 8.73,
+      "agi": 9.23
+    },
+    "grow": {
+      "hp": 10.29,
+      "atk": 2.01,
+      "def": 1.46,
+      "agi": 1.54
+    },
+    "route": "천상의 맛 구름 솜사탕을 만들자 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_OLe9IpKW_4f30d6e6d06d407da4b8e243fa5fa0f783c44cef.gif"
+  },
+  {
+    "name": "푸테라",
+    "grade": "일반",
+    "attr": {
+      "수": 8,
+      "화": 2
+    },
+    "init": {
+      "hp": 63.05,
+      "atk": 11.99,
+      "def": 8.01,
+      "agi": 9.49
+    },
+    "grow": {
+      "hp": 10.55,
+      "atk": 2.01,
+      "def": 1.34,
+      "agi": 1.59
+    },
+    "route": "천상의 맛 구름 솜사탕을 만들자 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_w9YDEv0A_76fe2a9c772fb4b719acea9b4d9bd72337417c55.gif"
+  },
+  {
+    "name": "실버로스",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5
+    },
+    "init": {
+      "hp": 79.12,
+      "atk": 10.26,
+      "def": 12.73,
+      "agi": 2.62
+    },
+    "grow": {
+      "hp": 13.77,
+      "atk": 1.78,
+      "def": 2.22,
+      "agi": 0.46
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (샴기르)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_ZaEhgICj_aac3e1d3c7034b0539b5e2640dec139aa446d185.gif"
+  },
+  {
+    "name": "만모드",
+    "grade": "일반",
+    "attr": {
+      "지": 10
+    },
+    "init": {
+      "hp": 68.62,
+      "atk": 10.51,
+      "def": 12.98,
+      "agi": 2.12
+    },
+    "grow": {
+      "hp": 11.94,
+      "atk": 1.83,
+      "def": 2.26,
+      "agi": 0.37
+    },
+    "route": "가우린 섬 (동105, 남145) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_KY4phJ6j_f66a452eb961b9a04130697f32f1c3e89f8dff36.gif"
+  },
+  {
+    "name": "푸모나스",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8
+    },
+    "init": {
+      "hp": 77.62,
+      "atk": 10.19,
+      "def": 12.44,
+      "agi": 2.38
+    },
+    "grow": {
+      "hp": 13.51,
+      "atk": 1.77,
+      "def": 2.17,
+      "agi": 0.41
+    },
+    "route": "가우린 섬 (동133, 남47) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_ZCmAuLBK_01f3e7d2783557323a80098b8209af36b295ad6a.gif"
+  },
+  {
+    "name": "메모스",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "수": 2
+    },
+    "init": {
+      "hp": 74.62,
+      "atk": 10.42,
+      "def": 13.12,
+      "agi": 2.38
+    },
+    "grow": {
+      "hp": 12.98,
+      "atk": 1.81,
+      "def": 2.28,
+      "agi": 0.41
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (후르도)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_xgqzKcpB_79f491aa0e5e39d93036a8b4e27a9f6b230bc65f.gif"
+  },
+  {
+    "name": "노라키토스",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 77.14,
+      "atk": 13.39,
+      "def": 13.89,
+      "agi": 4.06
+    },
+    "grow": {
+      "hp": 11.98,
+      "atk": 2.08,
+      "def": 2.16,
+      "agi": 0.63
+    },
+    "route": "마리너스 침공 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_TCadnBrm_948145db5155927e147c6310372c462b786cba83.gif"
+  },
+  {
+    "name": "브라키오스",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 75.74,
+      "atk": 12.87,
+      "def": 14.89,
+      "agi": 3.22
+    },
+    "grow": {
+      "hp": 11.77,
+      "atk": 2,
+      "def": 2.31,
+      "agi": 0.5
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (카루타나)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_k3O7Xou1_90cbc7d5a51d4b56d732fd914e8a7910ff4d735f.gif"
+  },
+  {
+    "name": "노보스",
+    "grade": "일반",
+    "attr": {
+      "화": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 51.1,
+      "atk": 9.44,
+      "def": 9.26,
+      "agi": 3.5
+    },
+    "grow": {
+      "hp": 11.11,
+      "atk": 2.05,
+      "def": 2.01,
+      "agi": 0.76
+    },
+    "route": "벽청의 동굴(나) 8층 (동19, 남13) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_G86ZDPeg_b06b558d6c78d265e35991f0dc8f9e1471e603d7.gif"
+  },
+  {
+    "name": "루보스",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3
+    },
+    "init": {
+      "hp": 53.5,
+      "atk": 9.14,
+      "def": 10.04,
+      "agi": 2.3
+    },
+    "grow": {
+      "hp": 11.64,
+      "atk": 1.99,
+      "def": 2.18,
+      "agi": 0.5
+    },
+    "route": "쿠르의 해저통로 (동47, 남32) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_Gz0ZK278_ea9d93f2cc6d0a6d88551ecd1af506a44c806ab0.gif"
+  },
+  {
+    "name": "가이",
+    "grade": "일반",
+    "attr": {
+      "수": 7,
+      "화": 3
+    },
+    "init": {
+      "hp": 57.7,
+      "atk": 9.36,
+      "def": 9.19,
+      "agi": 2.5
+    },
+    "grow": {
+      "hp": 12.55,
+      "atk": 2.04,
+      "def": 2,
+      "agi": 0.54
+    },
+    "route": "쟈루 섬 (동141, 남797) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_KPRViCqa_ca8b6a07f5747d4f9e1bb2b272503dc35e41c5fa.gif"
+  },
+  {
+    "name": "누이",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 51.1,
+      "atk": 9.11,
+      "def": 10.19,
+      "agi": 2.9
+    },
+    "grow": {
+      "hp": 11.11,
+      "atk": 1.98,
+      "def": 2.22,
+      "agi": 0.63
+    },
+    "route": "선견의 빛④ 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_IyVi50eA_a62b7b2d57160e476917dcc63f24be49d0400ee9.gif"
+  },
+  {
+    "name": "돌가로스",
+    "grade": "일반",
+    "attr": {
+      "지": 10
+    },
+    "init": {
+      "hp": 59.93,
+      "atk": 11.06,
+      "def": 11.76,
+      "agi": 3.25
+    },
+    "grow": {
+      "hp": 10.95,
+      "atk": 2.02,
+      "def": 2.15,
+      "agi": 0.59
+    },
+    "route": "아스마르 광산 6층 (동6, 남6) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_zZRWcF45_12df3ac588876b45feb562fe96b41efc12145a9b.gif"
+  },
+  {
+    "name": "노트로스",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 64.2,
+      "atk": 11.36,
+      "def": 10.93,
+      "agi": 3.48
+    },
+    "grow": {
+      "hp": 11.64,
+      "atk": 2.06,
+      "def": 1.98,
+      "agi": 0.63
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (스라인)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_DrpP0fA2_6858c34cd081036034ff1985773507e1ddce4495.gif"
+  },
+  {
+    "name": "기트로스",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 50.62,
+      "atk": 10.96,
+      "def": 8.03,
+      "agi": 3.62
+    },
+    "grow": {
+      "hp": 10.43,
+      "atk": 2.26,
+      "def": 1.65,
+      "agi": 0.75
+    },
+    "route": "마함마의 증표 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_PoLUejaX_bb5c4be6aa229806f9e9019166246d183a261ac4.gif"
+  },
+  {
+    "name": "라가로스",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3
+    },
+    "init": {
+      "hp": 54.28,
+      "atk": 10.9,
+      "def": 9.58,
+      "agi": 2.62
+    },
+    "grow": {
+      "hp": 11.24,
+      "atk": 2.26,
+      "def": 1.98,
+      "agi": 0.54
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (카루타나)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_36xy7apC_4bee61425008c7ad0f9940a58317403f5856e969.gif"
+  },
+  {
+    "name": "쟈하드",
+    "grade": "일반",
+    "attr": {
+      "화": 1,
+      "풍": 9
+    },
+    "init": {
+      "hp": 49.08,
+      "atk": 11.21,
+      "def": 6.68,
+      "agi": 6.36
+    },
+    "grow": {
+      "hp": 10.12,
+      "atk": 2.31,
+      "def": 1.38,
+      "agi": 1.31
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (쟈쟈)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_al7wY45g_e2776549a7fb7b1bfe081ff617b2a8f1ae41c5e9.gif"
+  },
+  {
+    "name": "판그",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3
+    },
+    "init": {
+      "hp": 48.36,
+      "atk": 10.48,
+      "def": 6.81,
+      "agi": 5.16
+    },
+    "grow": {
+      "hp": 10.38,
+      "atk": 2.25,
+      "def": 1.46,
+      "agi": 1.11
+    },
+    "route": "다섯 석상을 찾아 비밀을 풀어라 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_Uz4gM69c_91c2b564108902ae920668f9ccbc0d604a669a0b.gif"
+  },
+  {
+    "name": "판그라",
+    "grade": "일반",
+    "attr": {
+      "수": 4,
+      "화": 6
+    },
+    "init": {
+      "hp": 48.36,
+      "atk": 10.69,
+      "def": 6.37,
+      "agi": 5.4
+    },
+    "grow": {
+      "hp": 10.38,
+      "atk": 2.29,
+      "def": 1.37,
+      "agi": 1.16
+    },
+    "route": "선견의 빛④ 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_V3pf2KTJ_1c29cb294270ffe176793cfd7fd9359b106d4390.gif"
+  },
+  {
+    "name": "석화케스",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5
+    },
+    "init": {
+      "hp": 49.32,
+      "atk": 10.72,
+      "def": 6.62,
+      "agi": 5.16
+    },
+    "grow": {
+      "hp": 10.58,
+      "atk": 2.3,
+      "def": 1.42,
+      "agi": 1.11
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (샴기르)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_DNn3vKfT_6314faa04a36297630ef3f4c863b3ca9ce5b39ab.gif"
+  },
+  {
+    "name": "타르프스",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "수": 2
+    },
+    "init": {
+      "hp": 34.51,
+      "atk": 5.57,
+      "def": 7.58,
+      "agi": 2.17
+    },
+    "grow": {
+      "hp": 10.72,
+      "atk": 1.73,
+      "def": 2.36,
+      "agi": 0.67
+    },
+    "route": "다섯 석상을 찾아 비밀을 풀어라 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_WfVakcUt_9d97e36f9d897552597e8419e5a115c9ce60acdc.gif"
+  },
+  {
+    "name": "코발스",
+    "grade": "일반",
+    "attr": {
+      "수": 10
+    },
+    "init": {
+      "hp": 39.69,
+      "atk": 5.75,
+      "def": 6.63,
+      "agi": 2.17
+    },
+    "grow": {
+      "hp": 12.33,
+      "atk": 1.79,
+      "def": 2.06,
+      "agi": 0.67
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (마리너스)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_gTfNBUyL_d218c145a5d4fc2f6b96a58b0a1332e627ea0b35.gif"
+  },
+  {
+    "name": "노타스",
+    "grade": "일반",
+    "attr": {
+      "풍": 10
+    },
+    "init": {
+      "hp": 35.07,
+      "atk": 5.56,
+      "def": 6.95,
+      "agi": 3.43
+    },
+    "grow": {
+      "hp": 10.9,
+      "atk": 1.73,
+      "def": 2.16,
+      "agi": 1.07
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (카루타나)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_38G4utCv_adc1a8d9bcab921550d18ec70db33b18c802b437.gif"
+  },
+  {
+    "name": "타노프스",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8
+    },
+    "init": {
+      "hp": 38.01,
+      "atk": 5.6,
+      "def": 6.98,
+      "agi": 1.89
+    },
+    "grow": {
+      "hp": 11.81,
+      "atk": 1.74,
+      "def": 2.17,
+      "agi": 0.59
+    },
+    "route": "쟈루 섬 (동485, 남165) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_DpLI05Ye_d843f08db4b5a1589f507f3d79c6a19bb7dd3a27.gif"
+  },
+  {
+    "name": "페루루",
+    "grade": "일반",
+    "attr": {
+      "화": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 52.2,
+      "atk": 11.12,
+      "def": 6.8,
+      "agi": 8.76
+    },
+    "grow": {
+      "hp": 9.9,
+      "atk": 2.11,
+      "def": 1.29,
+      "agi": 1.66
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (마리너스)",
+    "channel": "복권",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_bC4Zgs6q_5d7670a5db65e53a62fb6ad357d936b42093c63c.gif"
+  },
+  {
+    "name": "고루루",
+    "grade": "일반",
+    "attr": {
+      "수": 5,
+      "화": 5
+    },
+    "init": {
+      "hp": 51,
+      "atk": 10.59,
+      "def": 6.49,
+      "agi": 8.28
+    },
+    "grow": {
+      "hp": 10.09,
+      "atk": 2.1,
+      "def": 1.28,
+      "agi": 1.64
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (쟈쟈)",
+    "channel": "복권",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_sQtozK2E_efe50daede614929696ef2ddbddb7809c7ca00d5.gif"
+  },
+  {
+    "name": "도르도르",
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7
+    },
+    "init": {
+      "hp": 51.96,
+      "atk": 10.61,
+      "def": 6.51,
+      "agi": 8.28
+    },
+    "grow": {
+      "hp": 10.28,
+      "atk": 2.1,
+      "def": 1.29,
+      "agi": 1.64
+    },
+    "route": "선견의 빛④ 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_jAO3eNFa_3bc25f5d4a4025b3d5c4419fb38122a9013eed66.gif"
+  },
+  {
+    "name": "바쿠",
+    "grade": "일반",
+    "attr": {
+      "지": 9,
+      "수": 1
+    },
+    "init": {
+      "hp": 37.71,
+      "atk": 8.01,
+      "def": 6.07,
+      "agi": 5.85
+    },
+    "grow": {
+      "hp": 9.53,
+      "atk": 2.03,
+      "def": 1.53,
+      "agi": 1.48
+    },
+    "route": "다섯 석상을 찾아 비밀을 풀어라 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_39xIsbQL_d16a231031e8408331f3654bd5a8b3a18ca074a7.gif"
+  },
+  {
+    "name": "푸쿠",
+    "grade": "일반",
+    "attr": {
+      "화": 9,
+      "풍": 1
+    },
+    "init": {
+      "hp": 34.11,
+      "atk": 7.49,
+      "def": 4.9,
+      "agi": 5.85
+    },
+    "grow": {
+      "hp": 9.38,
+      "atk": 2.06,
+      "def": 1.35,
+      "agi": 1.61
+    },
+    "route": "숲의 동굴 4층 (동14, 남8) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_pVYfHecL_19fda4f4c85410004a987df60b018d508b18f7f5.gif"
+  },
+  {
+    "name": "바쿠우",
+    "grade": "일반",
+    "attr": {
+      "수": 10
+    },
+    "init": {
+      "hp": 42.57,
+      "atk": 8.48,
+      "def": 6.05,
+      "agi": 6.21
+    },
+    "grow": {
+      "hp": 10.29,
+      "atk": 2.05,
+      "def": 1.46,
+      "agi": 1.5
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (마리너스)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_jS7eVTm5_bda45cb4e4f3f1b14160a41d7e377ec808d840c1.gif"
+  },
+  {
+    "name": "바카우",
+    "grade": "일반",
+    "attr": {
+      "화": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 34.29,
+      "atk": 7.34,
+      "def": 5.07,
+      "agi": 6.03
+    },
+    "grow": {
+      "hp": 9.43,
+      "atk": 2.02,
+      "def": 1.39,
+      "agi": 1.66
+    },
+    "route": "숲의 동굴 2층 (동27, 남34) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_aAcKTG4i_e3ba1015bb96863eb36fbf371c6b6a6ee766b81d.gif"
+  },
+  {
+    "name": "노보",
+    "grade": "상급",
+    "attr": {
+      "지": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 37.35,
+      "atk": 7.29,
+      "def": 6.32,
+      "agi": 4.41
+    },
+    "grow": {
+      "hp": 10.27,
+      "atk": 2.01,
+      "def": 1.74,
+      "agi": 1.21
+    },
+    "route": "황금색 페트①(카난) 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_uhEXzngs_7fbc044848191fa0cb77757502743ee4412d386a.gif"
+  },
+  {
+    "name": "타루쟈",
+    "grade": "일반",
+    "attr": {
+      "화": 10
+    },
+    "init": {
+      "hp": 37.35,
+      "atk": 8.29,
+      "def": 5.86,
+      "agi": 3.87
+    },
+    "grow": {
+      "hp": 10.27,
+      "atk": 2.28,
+      "def": 1.61,
+      "agi": 1.06
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (카루타나)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_rsgIWVHy_0313229a9006f9b815d3b2731021ffedf408a12f.gif"
+  },
+  {
+    "name": "푸보",
+    "grade": "상급",
+    "attr": {
+      "수": 10
+    },
+    "init": {
+      "hp": 39.33,
+      "atk": 7.31,
+      "def": 6.18,
+      "agi": 3.69
+    },
+    "grow": {
+      "hp": 10.82,
+      "atk": 2.01,
+      "def": 1.7,
+      "agi": 1.01
+    },
+    "route": "공룡박사의 연구②(베르가) 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_n2oqhOzQ_307fbd3e77a42e2bb707400b8c6e805f33fa6714.gif"
+  },
+  {
+    "name": "노라돈",
+    "grade": "일반",
+    "attr": {
+      "화": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 52.2,
+      "atk": 11.12,
+      "def": 7.66,
+      "agi": 5.88
+    },
+    "grow": {
+      "hp": 10.33,
+      "atk": 2.2,
+      "def": 1.52,
+      "agi": 1.16
+    },
+    "route": "가우린 섬 (동237, 남80) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_prMt9miC_5d6b31297fb327dead5a10b86b2ad003c17f2d79.gif"
+  },
+  {
+    "name": "고라돈",
+    "grade": "일반",
+    "attr": {
+      "지": 10
+    },
+    "init": {
+      "hp": 52.2,
+      "atk": 10.28,
+      "def": 8.98,
+      "agi": 5.4
+    },
+    "grow": {
+      "hp": 10.33,
+      "atk": 2.03,
+      "def": 1.78,
+      "agi": 1.07
+    },
+    "route": "폐허가 된 탄광 4층 (동45, 남27) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_uQWdzTpx_7d42d10136a92eeac29511d7863cd035b8ae7733.gif"
+  },
+  {
+    "name": "실버고르돈",
+    "grade": "일반",
+    "attr": {
+      "수": 8,
+      "화": 2
+    },
+    "init": {
+      "hp": 59.4,
+      "atk": 13.4,
+      "def": 7.78,
+      "agi": 6.36
+    },
+    "grow": {
+      "hp": 10.77,
+      "atk": 2.43,
+      "def": 1.41,
+      "agi": 1.15
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (스라인)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_NG39teAB_67cadb9c85041a5111cf036650f4ab6571a2dad4.gif"
+  },
+  {
+    "name": "철기돈",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3
+    },
+    "init": {
+      "hp": 54.12,
+      "atk": 10.73,
+      "def": 8.14,
+      "agi": 5.88
+    },
+    "grow": {
+      "hp": 10.71,
+      "atk": 2.12,
+      "def": 1.61,
+      "agi": 1.16
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (마리너스)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_WNXhQ4vn_107f7cdf53c8b592fe4968dc1719a8cd031ac9d6.gif"
+  },
+  {
+    "name": "카이비",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 38.3,
+      "atk": 7.36,
+      "def": 5.57,
+      "agi": 6.1
+    },
+    "grow": {
+      "hp": 9.86,
+      "atk": 1.9,
+      "def": 1.43,
+      "agi": 1.57
+    },
+    "route": "사이너스 섬 (동304, 남328) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_fp9HRxVB_24a9cf3128e880cc6d80f11837b090e9e10fd17a.gif"
+  },
+  {
+    "name": "키라비",
+    "grade": "일반",
+    "attr": {
+      "화": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 38.1,
+      "atk": 7.5,
+      "def": 4.8,
+      "agi": 6.5
+    },
+    "grow": {
+      "hp": 9.81,
+      "atk": 1.93,
+      "def": 1.24,
+      "agi": 1.67
+    },
+    "route": "사이너스 섬 (동304, 남328) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_e7odpTJr_ff887e6c65ee87e8410da93115f5b6089cecb830.gif"
+  },
+  {
+    "name": "연두큐이",
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "수": 4
+    },
+    "init": {
+      "hp": 38.9,
+      "atk": 7.37,
+      "def": 5.38,
+      "agi": 6.1
+    },
+    "grow": {
+      "hp": 10.02,
+      "atk": 1.9,
+      "def": 1.39,
+      "agi": 1.57
+    },
+    "route": "미선의 편지 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_4GeOBCM9_b145ccf81d717445ff53044e6c3a3d3fd2aba04f.gif"
+  },
+  {
+    "name": "블루카비트",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8
+    },
+    "init": {
+      "hp": 40.3,
+      "atk": 7.18,
+      "def": 5.03,
+      "agi": 6.5
+    },
+    "grow": {
+      "hp": 10.38,
+      "atk": 1.85,
+      "def": 1.29,
+      "agi": 1.67
+    },
+    "route": "선견의 빛④ 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_RkNClIQz_c7a0a0c980566c0f7db1deebb27a54d7ba83383e.gif"
+  },
+  {
+    "name": "범링",
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 37.48,
+      "atk": 7.11,
+      "def": 5.43,
+      "agi": 6.21
+    },
+    "grow": {
+      "hp": 10.03,
+      "atk": 1.9,
+      "def": 1.45,
+      "agi": 1.66
+    },
+    "route": "하로산의 약초 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_CYpkFiBc_fa060405432df692faad1b59978ad04c56f98173.gif"
+  },
+  {
+    "name": "토끼",
+    "grade": "일반",
+    "attr": {
+      "수": 10
+    },
+    "init": {
+      "hp": 40.72,
+      "atk": 7.23,
+      "def": 6.01,
+      "agi": 6.21
+    },
+    "grow": {
+      "hp": 10.42,
+      "atk": 1.85,
+      "def": 1.54,
+      "agi": 1.59
+    },
+    "route": "하이하모의 말라가는 대지를 지켜라 퀘스트 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_2yrIY1qF_0a34f6fc12e0b00626136cdc923e1aab2b22ca63.gif"
+  },
+  {
+    "name": "라스키",
+    "grade": "일반",
+    "attr": {
+      "화": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 35.95,
+      "atk": 6.88,
+      "def": 5.2,
+      "agi": 5.7
+    },
+    "grow": {
+      "hp": 10.05,
+      "atk": 1.92,
+      "def": 1.45,
+      "agi": 1.59
+    },
+    "route": "하이하모의 말라가는 대지를 지켜라 퀘스트 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_yGtlx2uY_bf84725ac53530d18da9e8d99622f98d7bd3963e.gif"
+  },
+  {
+    "name": "노스키",
+    "grade": "일반",
+    "attr": {
+      "화": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 34.94,
+      "atk": 6.22,
+      "def": 5.15,
+      "agi": 6.71
+    },
+    "grow": {
+      "hp": 9.76,
+      "atk": 1.74,
+      "def": 1.44,
+      "agi": 1.88
+    },
+    "route": "하이하모의 말라가는 대지를 지켜라 퀘스트 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_FctyaKsT_006eebd715185f0147be7c7be6f89daa6f01e60d.gif"
+  },
+  {
+    "name": "프로돈",
+    "grade": "일반",
+    "attr": {
+      "수": 10
+    },
+    "init": {
+      "hp": 64.12,
+      "atk": 12.79,
+      "def": 7.84,
+      "agi": 7.38
+    },
+    "grow": {
+      "hp": 11.16,
+      "atk": 2.23,
+      "def": 1.36,
+      "agi": 1.28
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (스라인)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_afudlgce_119247ee0c0259a1fdecd4b3d946e023b6bd9d73.gif"
+  },
+  {
+    "name": "기비노",
+    "grade": "일반",
+    "attr": {
+      "화": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 49.08,
+      "atk": 11.66,
+      "def": 6.47,
+      "agi": 6.12
+    },
+    "grow": {
+      "hp": 10.12,
+      "atk": 2.4,
+      "def": 1.34,
+      "agi": 1.26
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (후르도)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_VfFutPno_5f86a4cf3fa2c5d6b70704a771750e914a1eeb7c.gif"
+  },
+  {
+    "name": "기라노",
+    "grade": "일반",
+    "attr": {
+      "수": 2,
+      "화": 8
+    },
+    "init": {
+      "hp": 63.31,
+      "atk": 14.24,
+      "def": 8.39,
+      "agi": 7.15
+    },
+    "grow": {
+      "hp": 10.59,
+      "atk": 2.38,
+      "def": 1.4,
+      "agi": 1.2
+    },
+    "route": "가우린 섬 (동441, 남104) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_e7hW5GwZ_e5564be8f2a5ab595986da37ef6ddb63272b9638.gif"
+  },
+  {
+    "name": "주니",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 42.84,
+      "atk": 8.53,
+      "def": 5.96,
+      "agi": 7.5
+    },
+    "grow": {
+      "hp": 9.81,
+      "atk": 1.95,
+      "def": 1.36,
+      "agi": 1.72
+    },
+    "route": "다이몬족의 동굴 5층 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_cdsMb86v_32de73ecb64f5c0761c7c93c478ede03082abd97.gif"
+  },
+  {
+    "name": "기바바",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "수": 2
+    },
+    "init": {
+      "hp": 45.12,
+      "atk": 8.66,
+      "def": 7.46,
+      "agi": 5.99
+    },
+    "grow": {
+      "hp": 10.33,
+      "atk": 1.98,
+      "def": 1.71,
+      "agi": 1.37
+    },
+    "route": "도난 당한 수호석 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_lzNrMT5t_2497d74b227e968474b283e4b57d6a8cd5ec00e2.gif"
+  },
+  {
+    "name": "라루루",
+    "grade": "일반",
+    "attr": {
+      "화": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 42.84,
+      "atk": 8.88,
+      "def": 5.8,
+      "agi": 7.32
+    },
+    "grow": {
+      "hp": 9.81,
+      "atk": 2.03,
+      "def": 1.33,
+      "agi": 1.67
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (마리너스)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_T5kOB7Qi_175f724bbe523047c39ebd058bbd78e8cb9d2d9c.gif"
+  },
+  {
+    "name": "푸고고",
+    "grade": "일반",
+    "attr": {
+      "수": 8,
+      "화": 2
+    },
+    "init": {
+      "hp": 45.51,
+      "atk": 9.12,
+      "def": 5.87,
+      "agi": 6.75
+    },
+    "grow": {
+      "hp": 10.42,
+      "atk": 2.09,
+      "def": 1.34,
+      "agi": 1.54
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (쟈쟈)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_px90qw5O_493acc17b58e6e058d69634b6f9b27da35b46f3c.gif"
+  },
+  {
+    "name": "타로아",
+    "grade": "일반",
+    "attr": {
+      "수": 4,
+      "화": 6
+    },
+    "init": {
+      "hp": 41.1,
+      "atk": 9.41,
+      "def": 6.71,
+      "agi": 4.3
+    },
+    "grow": {
+      "hp": 10.17,
+      "atk": 2.33,
+      "def": 1.66,
+      "agi": 1.06
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (스라인)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_S8Bpq9D3_421b1a6da9040e6c6fb4d24e1065c398ab4a7058.gif"
+  },
+  {
+    "name": "기고아",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3
+    },
+    "init": {
+      "hp": 40.9,
+      "atk": 9.04,
+      "def": 7.06,
+      "agi": 4.1
+    },
+    "grow": {
+      "hp": 10.12,
+      "atk": 2.24,
+      "def": 1.75,
+      "agi": 1.01
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (쟈쟈)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_NtDZsrfL_61caee4ef477427025d6c26d53c936a542b9f05a.gif"
+  },
+  {
+    "name": "골드곤",
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "풍": 6
+    },
+    "init": {
+      "hp": 39.3,
+      "atk": 8.39,
+      "def": 6.41,
+      "agi": 4.5
+    },
+    "grow": {
+      "hp": 10.12,
+      "atk": 2.16,
+      "def": 1.65,
+      "agi": 1.16
+    },
+    "route": "도끼 전달(야무야무) 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_yGolQjJ6_d97b5a369dc8083785b54f5e67477d7af5e29ade.gif"
+  },
+  {
+    "name": "자라북",
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "수": 4
+    },
+    "init": {
+      "hp": 41.3,
+      "atk": 7.49,
+      "def": 10.19,
+      "agi": 1.3
+    },
+    "grow": {
+      "hp": 10.63,
+      "atk": 1.93,
+      "def": 2.62,
+      "agi": 0.33
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (마리너스)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_0luegno7_df7a9f0d67cc825a04b4bdc7704b10ee866d743c.gif"
+  },
+  {
+    "name": "철북이",
+    "grade": "일반",
+    "attr": {
+      "화": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 36.3,
+      "atk": 7.66,
+      "def": 8.56,
+      "agi": 2.3
+    },
+    "grow": {
+      "hp": 9.71,
+      "atk": 2.05,
+      "def": 2.29,
+      "agi": 0.62
+    },
+    "route": "다이몬족의 동굴 5층 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_f2L5d0mt_52588201a310f9cbc2be2916494dc444e1e00b13.gif"
+  },
+  {
+    "name": "물북이",
+    "grade": "일반",
+    "attr": {
+      "수": 10
+    },
+    "init": {
+      "hp": 44.7,
+      "atk": 7.25,
+      "def": 8.52,
+      "agi": 1.9
+    },
+    "grow": {
+      "hp": 11.51,
+      "atk": 1.87,
+      "def": 2.19,
+      "agi": 0.49
+    },
+    "route": "쿠오산 소동굴 4층 (동23, 남38) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_svUcfao2_8ffdde98d84556a0b5311d08763093790b9b3727.gif"
+  },
+  {
+    "name": "베로바드",
+    "grade": "일반",
+    "attr": {
+      "화": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 53.79,
+      "atk": 10.53,
+      "def": 9.74,
+      "agi": 5.17
+    },
+    "grow": {
+      "hp": 10.64,
+      "atk": 2.08,
+      "def": 1.93,
+      "agi": 1.02
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (샴기르)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_iVC6Ukt2_876dd991b4b287289d109e0ee1a5f6e5b4491408.gif"
+  },
+  {
+    "name": "베노투리",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 54.01,
+      "atk": 8.51,
+      "def": 11.08,
+      "agi": 5.17
+    },
+    "grow": {
+      "hp": 10.68,
+      "atk": 1.68,
+      "def": 2.19,
+      "agi": 1.02
+    },
+    "route": "선견의 빛④ 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_6VBdXDxS_e8112255e1f71be6f8aaae2b57a3447e838c9bb7.gif"
+  },
+  {
+    "name": "베톤",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "수": 2
+    },
+    "init": {
+      "hp": 58.85,
+      "atk": 8.39,
+      "def": 11.16,
+      "agi": 4.07
+    },
+    "grow": {
+      "hp": 11.64,
+      "atk": 1.66,
+      "def": 2.21,
+      "agi": 0.8
+    },
+    "route": "아름산의 동굴 지하 7층 (동42, 남23) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_Z6brXmWd_8d21441538744a382dadeb49f35ff5479d94a2c3.gif"
+  },
+  {
+    "name": "푸투",
+    "grade": "일반",
+    "attr": {
+      "수": 4,
+      "화": 6
+    },
+    "init": {
+      "hp": 27.68,
+      "atk": 5.14,
+      "def": 2.98,
+      "agi": 5.62
+    },
+    "grow": {
+      "hp": 9.87,
+      "atk": 1.83,
+      "def": 1.06,
+      "agi": 2.01
+    },
+    "route": "쟈쟈 앞마당 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_cTKvt6EP_38e6818b1ac9b0de7103e0d343bdb2d2303b24cf.gif"
+  },
+  {
+    "name": "노투투",
+    "grade": "일반",
+    "attr": {
+      "화": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 26.32,
+      "atk": 4.81,
+      "def": 2.79,
+      "agi": 5.92
+    },
+    "grow": {
+      "hp": 9.74,
+      "atk": 1.78,
+      "def": 1.03,
+      "agi": 2.19
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (쟈쟈)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_BbxoQGF6_6d2c21001424ecadc437b364d899881b4bac1976.gif"
+  },
+  {
+    "name": "푸투투",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8
+    },
+    "init": {
+      "hp": 33.23,
+      "atk": 5.79,
+      "def": 3.9,
+      "agi": 6.38
+    },
+    "grow": {
+      "hp": 10.08,
+      "atk": 1.76,
+      "def": 1.18,
+      "agi": 1.93
+    },
+    "route": "쟈쟈 앞마당 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_qpiyKL2a_8e156ba348493c07b866f78e95658c916a924cfd.gif"
+  },
+  {
+    "name": "포포",
+    "grade": "일반",
+    "attr": {
+      "화": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 27.38,
+      "atk": 5.28,
+      "def": 2.99,
+      "agi": 5.78
+    },
+    "grow": {
+      "hp": 9.76,
+      "atk": 1.88,
+      "def": 1.07,
+      "agi": 2.06
+    },
+    "route": "선견의 빛④ 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_H2B8hKcR_229bda6f07593ee8b4cc74f5b088e95017082280.gif"
+  },
+  {
+    "name": "푸미",
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6
+    },
+    "init": {
+      "hp": 60.88,
+      "atk": 12.27,
+      "def": 7.99,
+      "agi": 8.38
+    },
+    "grow": {
+      "hp": 10.59,
+      "atk": 2.13,
+      "def": 1.39,
+      "agi": 1.46
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (샴기르)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_fljOnSG6_7466e83c13353d1e8b48570bed0acca74620baf5.gif"
+  },
+  {
+    "name": "돌꼬비",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "수": 2
+    },
+    "init": {
+      "hp": 44.99,
+      "atk": 9.26,
+      "def": 6.48,
+      "agi": 6.49
+    },
+    "grow": {
+      "hp": 10.12,
+      "atk": 2.08,
+      "def": 1.46,
+      "agi": 1.46
+    },
+    "route": "마함마의 증표 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_b8l6YRpv_54fba85f76c974980869f4dbd70703667f417f9c.gif"
+  },
+  {
+    "name": "꼬이미",
+    "grade": "일반",
+    "attr": {
+      "화": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 44.99,
+      "atk": 9.48,
+      "def": 6.31,
+      "agi": 7.37
+    },
+    "grow": {
+      "hp": 9.71,
+      "atk": 2.05,
+      "def": 1.36,
+      "agi": 1.59
+    },
+    "route": "미선의 편지 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_g4HOdZFB_c9f4a56be71d4153510341d892cb55e026873d24.gif"
+  },
+  {
+    "name": "꼬꼬미",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 45.21,
+      "atk": 8.86,
+      "def": 6.68,
+      "agi": 6.93
+    },
+    "grow": {
+      "hp": 10.17,
+      "atk": 1.99,
+      "def": 1.5,
+      "agi": 1.56
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (후르도)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_yV9Wupx5_d8161fb0927c598c0eb3484f4724281cb3fbf8ee.gif"
+  },
+  {
+    "name": "깡우비",
+    "grade": "일반",
+    "attr": {
+      "화": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 55.56,
+      "atk": 12.85,
+      "def": 7.66,
+      "agi": 6.84
+    },
+    "grow": {
+      "hp": 10.07,
+      "atk": 2.33,
+      "def": 1.39,
+      "agi": 1.24
+    },
+    "route": "선견의 빛④ 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_mJbQzfsn_36545bf6d3642494de76be583bbd067d2cd129b9.gif"
+  },
+  {
+    "name": "푸이",
+    "grade": "일반",
+    "attr": {
+      "수": 10
+    },
+    "init": {
+      "hp": 58.92,
+      "atk": 11.31,
+      "def": 8.29,
+      "agi": 5.4
+    },
+    "grow": {
+      "hp": 11.17,
+      "atk": 2.14,
+      "def": 1.57,
+      "agi": 1.02
+    },
+    "route": "쟈루 섬 (동357, 남183) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_6HNIfCbq_9e5491ff758702dc92fa92152ac8ad31d9d45ee2.gif"
+  },
+  {
+    "name": "푸비",
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7
+    },
+    "init": {
+      "hp": 56.04,
+      "atk": 11.53,
+      "def": 8.93,
+      "agi": 5.4
+    },
+    "grow": {
+      "hp": 10.62,
+      "atk": 2.19,
+      "def": 1.69,
+      "agi": 1.02
+    },
+    "route": "맘모스 복권 2등 랜덤 페트 (쟈쟈)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_Xx2Zz6hK_2bf08caffb233c5809b5a1a2c70f8a0ba6fada4f.gif"
+  },
+  {
+    "name": "녹우리",
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 42.3,
+      "atk": 8.31,
+      "def": 6.7,
+      "agi": 5.9
+    },
+    "grow": {
+      "hp": 10.05,
+      "atk": 1.97,
+      "def": 1.59,
+      "agi": 1.4
+    },
+    "route": "마리너스 앞마당 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_hdcTOZXb_fb0910362c023f59ce42d279f993815c42ffc5ad.gif"
+  },
+  {
+    "name": "푸우리",
+    "grade": "일반",
+    "attr": {
+      "수": 9,
+      "화": 1
+    },
+    "init": {
+      "hp": 43.3,
+      "atk": 8.44,
+      "def": 5.2,
+      "agi": 6.7
+    },
+    "grow": {
+      "hp": 10.28,
+      "atk": 2,
+      "def": 1.23,
+      "agi": 1.59
+    },
+    "route": "우리스케의 사랑고백 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_mp8ojVaL_ef995b222f6a47df7dd8c946943f553eba74d2cf.gif"
+  },
+  {
+    "name": "복우리",
+    "grade": "상급",
+    "attr": {
+      "지": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 37.7,
+      "atk": 8.64,
+      "def": 5.22,
+      "agi": 4.5
+    },
+    "grow": {
+      "hp": 10.08,
+      "atk": 2.31,
+      "def": 1.4,
+      "agi": 1.2
+    },
+    "route": "맘모스 복권 1등 페트 (후르도)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_lEisStu0_82d5b50248a9be85228e1f1cc558cf7ca81a37b8.gif"
+  },
+  {
+    "name": "코리토르스",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3
+    },
+    "init": {
+      "hp": 36.01,
+      "atk": 5.93,
+      "def": 6.27,
+      "agi": 4.66
+    },
+    "grow": {
+      "hp": 10.14,
+      "atk": 1.67,
+      "def": 1.77,
+      "agi": 1.31
+    },
+    "route": "고야산 동굴 5층 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_KTWR5JH6_ef268b7c0981b6526a7667bc19854521c81f0753.gif"
+  },
+  {
+    "name": "란베르스",
+    "grade": "일반",
+    "attr": {
+      "수": 7,
+      "화": 3
+    },
+    "init": {
+      "hp": 41.9,
+      "atk": 6.81,
+      "def": 6.81,
+      "agi": 5.57
+    },
+    "grow": {
+      "hp": 10.27,
+      "atk": 1.67,
+      "def": 1.67,
+      "agi": 1.36
+    },
+    "route": "도둑의 동굴 지하 2층 (동42, 남9) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_5nBSq6Km_399434cc70e9afdc16ee5ce08d655f4bbe3f8bbb.gif"
+  },
+  {
+    "name": "바로로크스",
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6
+    },
+    "init": {
+      "hp": 41.47,
+      "atk": 6.67,
+      "def": 7.66,
+      "agi": 4.95
+    },
+    "grow": {
+      "hp": 10.08,
+      "atk": 1.62,
+      "def": 1.86,
+      "agi": 1.2
+    },
+    "route": "사이너스 섬 (동382, 남479) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_i9YJKMrz_221a7e38d7c89056d1ee581b9cac43377972b4fa.gif"
+  },
+  {
+    "name": "타르노로스",
+    "grade": "일반",
+    "attr": {
+      "수": 7,
+      "화": 3
+    },
+    "init": {
+      "hp": 62.22,
+      "atk": 10.17,
+      "def": 8.72,
+      "agi": 6.55
+    },
+    "grow": {
+      "hp": 11.77,
+      "atk": 1.92,
+      "def": 1.65,
+      "agi": 1.24
+    },
+    "route": "칠흑의 동굴 19층 (동34, 남25) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_CsYOQ0Ir_f7f5631f386923923c45919aa4e5e3a6a513e359.gif"
+  },
+  {
+    "name": "다이노로스",
+    "grade": "일반",
+    "attr": {
+      "수": 5,
+      "화": 5
+    },
+    "init": {
+      "hp": 61.32,
+      "atk": 10.75,
+      "def": 8.8,
+      "agi": 7.08
+    },
+    "grow": {
+      "hp": 11.11,
+      "atk": 1.95,
+      "def": 1.6,
+      "agi": 1.28
+    },
+    "route": "JOT 코스 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_4NO5GCYa_e87ccdf5aca23beb0cd76ec02f7361c0a5cda9f7.gif"
+  },
+  {
+    "name": "아리노스",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5
+    },
+    "init": {
+      "hp": 61.75,
+      "atk": 10,
+      "def": 9.77,
+      "agi": 6.11
+    },
+    "grow": {
+      "hp": 11.28,
+      "atk": 1.83,
+      "def": 1.78,
+      "agi": 1.12
+    },
+    "route": "JOT 코스 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_lKi7DZ0L_a7cd83d983df86c62e2ab75bb21aff1580f9b40d.gif"
+  },
+  {
+    "name": "아토라지",
+    "grade": "일반",
+    "attr": {
+      "수": 10
+    },
+    "init": {
+      "hp": 52.7,
+      "atk": 8.41,
+      "def": 7.51,
+      "agi": 5.5
+    },
+    "grow": {
+      "hp": 11.46,
+      "atk": 1.83,
+      "def": 1.63,
+      "agi": 1.2
+    },
+    "route": "JOT 코스 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_682ndyC9_75d4986a5d466f7921a9c5da04ef7284988740a5.gif"
+  },
+  {
+    "name": "스토라지",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8
+    },
+    "init": {
+      "hp": 50.51,
+      "atk": 8.07,
+      "def": 7.5,
+      "agi": 5.14
+    },
+    "grow": {
+      "hp": 11.42,
+      "atk": 1.83,
+      "def": 1.7,
+      "agi": 1.16
+    },
+    "route": "SOT 코스 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_mptdO1lR_04dea8fe8f89f685fee3d4ea75c581d9e3b4edab.gif"
+  },
+  {
+    "name": "라나프",
+    "grade": "상급",
+    "attr": {
+      "화": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 51.1,
+      "atk": 10.44,
+      "def": 9.93,
+      "agi": 9.38
+    },
+    "grow": {
+      "hp": 9.03,
+      "atk": 1.85,
+      "def": 1.76,
+      "agi": 1.66
+    },
+    "route": "JOT 코스 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_a7Q8iVfP_d5d0782c1f276e87bb4bd120b062ee6f22bed445.gif"
+  },
+  {
+    "name": "모나시프",
+    "grade": "상급",
+    "attr": {
+      "풍": 10
+    },
+    "init": {
+      "hp": 49.62,
+      "atk": 8.68,
+      "def": 8.91,
+      "agi": 8.12
+    },
+    "grow": {
+      "hp": 9.83,
+      "atk": 1.72,
+      "def": 1.76,
+      "agi": 1.61
+    },
+    "route": "채석장의 비밀 퀘스트 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_AXRjZiNf_af4ae6323845ffe6318efdb33f26d8e9cf2f2480.gif"
+  },
+  {
+    "name": "프이토",
+    "grade": "상급",
+    "attr": {
+      "지": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 47.71,
+      "atk": 8.7,
+      "def": 9.41,
+      "agi": 8.71
+    },
+    "grow": {
+      "hp": 9.08,
+      "atk": 1.66,
+      "def": 1.79,
+      "agi": 1.66
+    },
+    "route": "맘모스 복권 1등 페트 (쟈쟈)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_ie2xYmlq_9aa13cefff7006fd1b2201c7288180a2fedd4845.gif"
+  },
+  {
+    "name": "오가로스",
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "수": 4
+    },
+    "init": {
+      "hp": 55.8,
+      "atk": 11.84,
+      "def": 9.89,
+      "agi": 5.88
+    },
+    "grow": {
+      "hp": 10.11,
+      "atk": 2.15,
+      "def": 1.79,
+      "agi": 1.07
+    },
+    "route": "아스마르 광산 6층 (동37, 남38) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_almQcHRh_53a48c124082593c873515fa0a635af86c684a73.gif"
+  },
+  {
+    "name": "카키",
+    "grade": "일반",
+    "attr": {
+      "화": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 33.3,
+      "atk": 6.62,
+      "def": 4.46,
+      "agi": 7.5
+    },
+    "grow": {
+      "hp": 9.24,
+      "atk": 1.84,
+      "def": 1.24,
+      "agi": 2.08
+    },
+    "route": "사이너스 섬 (동608, 남206) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_9tS6FDwR_e7ee355b2a70a34059d75ec663994a9676b1c138.gif"
+  },
+  {
+    "name": "호르쿠",
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 35.7,
+      "atk": 6.3,
+      "def": 4.68,
+      "agi": 7.7
+    },
+    "grow": {
+      "hp": 9.55,
+      "atk": 1.69,
+      "def": 1.25,
+      "agi": 2.06
+    },
+    "route": "쟈루 섬 (동668, 남651) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_IdwQFAc2_2eaabe470bb407bb5821a53c51b0deced81984b9.gif"
+  },
+  {
+    "name": "쿠쿠",
+    "grade": "일반",
+    "attr": {
+      "풍": 10
+    },
+    "init": {
+      "hp": 34.3,
+      "atk": 6.45,
+      "def": 4.28,
+      "agi": 8.1
+    },
+    "grow": {
+      "hp": 9.18,
+      "atk": 1.72,
+      "def": 1.15,
+      "agi": 2.17
+    },
+    "route": "쟈루 섬 (동669, 남652) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_1iLuM6Y4_ab89702c8372f7edce2568408e5daf79afe84d4e.gif"
+  },
+  {
+    "name": "타키",
+    "grade": "일반",
+    "attr": {
+      "화": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 34.9,
+      "atk": 6.46,
+      "def": 4.29,
+      "agi": 7.9
+    },
+    "grow": {
+      "hp": 9.34,
+      "atk": 1.73,
+      "def": 1.15,
+      "agi": 2.11
+    },
+    "route": "사이너스 섬 (동549, 남146) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_bH5xLYnV_91d821f28f7221eaaad1bdfb895a65c2050eac0d.gif"
+  },
+  {
+    "name": "포이비스",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 54.36,
+      "atk": 11.05,
+      "def": 8.24,
+      "agi": 8.76
+    },
+    "grow": {
+      "hp": 9.85,
+      "atk": 2,
+      "def": 1.49,
+      "agi": 1.59
+    },
+    "route": "비룡의 동굴 지하 2층 (동35, 남15) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_sC8wUlEc_41322681b03f86c1c315eb0738ab7188a678f6c0.gif"
+  },
+  {
+    "name": "카르곤",
+    "grade": "일반",
+    "attr": {
+      "화": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 51.35,
+      "atk": 10.85,
+      "def": 6.64,
+      "agi": 8.97
+    },
+    "grow": {
+      "hp": 9.78,
+      "atk": 2.07,
+      "def": 1.26,
+      "agi": 1.71
+    },
+    "route": "환생 퀘스트 보상 페트",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_wA5UNYJ9_cd76782546d4d177f51175153d540973c81ffb9a.gif"
+  },
+  {
+    "name": "테라곤",
+    "grade": "일반",
+    "attr": {
+      "화": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 53.43,
+      "atk": 10.95,
+      "def": 7.21,
+      "agi": 9.49
+    },
+    "grow": {
+      "hp": 9.76,
+      "atk": 2,
+      "def": 1.32,
+      "agi": 1.73
+    },
+    "route": "SOT 코스 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_8cdQJ0pg_dd8bf17455b2fef939299a4d409e2832ebc6d0d9.gif"
+  },
+  {
+    "name": "만모로스",
+    "grade": "일반",
+    "attr": {
+      "수": 5,
+      "화": 5
+    },
+    "init": {
+      "hp": 74.88,
+      "atk": 10.58,
+      "def": 11.93,
+      "agi": 2.62
+    },
+    "grow": {
+      "hp": 13.03,
+      "atk": 1.84,
+      "def": 2.08,
+      "agi": 0.46
+    },
+    "route": "가우린 섬 (동105, 남145) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_9CBdb8Vz_986e146883942c81075c523ad2118d08f2ec5fe2.gif"
+  },
+  {
+    "name": "마모나스",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3
+    },
+    "init": {
+      "hp": 74.12,
+      "atk": 10.13,
+      "def": 12.61,
+      "agi": 2.62
+    },
+    "grow": {
+      "hp": 12.9,
+      "atk": 1.76,
+      "def": 2.19,
+      "agi": 0.46
+    },
+    "route": "가우린 섬 (동133, 남47) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_uLkIbNU5_f0618edf09214708405a2bb37dee5fbd2951e436.gif"
+  },
+  {
+    "name": "만모르",
+    "grade": "일반",
+    "attr": {
+      "수": 2,
+      "화": 8
+    },
+    "init": {
+      "hp": 68.28,
+      "atk": 11.02,
+      "def": 11.67,
+      "agi": 2.52
+    },
+    "grow": {
+      "hp": 12.38,
+      "atk": 2,
+      "def": 2.12,
+      "agi": 0.46
+    },
+    "route": "가우린 채석장 5층 (동25, 남26) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_KQj1sOu4_d4f5e5b5ba6ca71bdd917ec8db132f16cfaf1052.gif"
+  },
+  {
+    "name": "만모",
+    "grade": "일반",
+    "attr": {
+      "지": 9,
+      "수": 1
+    },
+    "init": {
+      "hp": 72.62,
+      "atk": 10.13,
+      "def": 13.06,
+      "agi": 2.62
+    },
+    "grow": {
+      "hp": 12.64,
+      "atk": 1.76,
+      "def": 2.27,
+      "agi": 0.46
+    },
+    "route": "가우린 채석장 3층 (동21, 남15) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_3HGYWRqD_0793a052e59f03a0eb74425691918f3a1be23b9a.gif"
+  },
+  {
+    "name": "프리토스",
+    "grade": "상급",
+    "attr": {
+      "화": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 76.58,
+      "atk": 13.32,
+      "def": 13.07,
+      "agi": 4.34
+    },
+    "grow": {
+      "hp": 11.9,
+      "atk": 2.07,
+      "def": 2.03,
+      "agi": 0.67
+    },
+    "route": "맘모스 복권 1등 페트 (샴기르)",
+    "channel": "복권",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_NAhSv0Oa_1ccb2762c70d767587f0afea51166f7a17221b94.gif"
+  },
+  {
+    "name": "스텐토스",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5
+    },
+    "init": {
+      "hp": 79.1,
+      "atk": 12.82,
+      "def": 13.32,
+      "agi": 2.66
+    },
+    "grow": {
+      "hp": 12.29,
+      "atk": 1.99,
+      "def": 2.07,
+      "agi": 0.41
+    },
+    "route": "선견의 빛④ 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_RvqmP1ox_30744b47d4ae7d1e4be71518e690a238764b5f87.gif"
+  },
+  {
+    "name": "프라키토스",
+    "grade": "일반",
+    "attr": {
+      "수": 2,
+      "화": 8
+    },
+    "init": {
+      "hp": 57.72,
+      "atk": 11.33,
+      "def": 9.82,
+      "agi": 2.52
+    },
+    "grow": {
+      "hp": 11.42,
+      "atk": 2.24,
+      "def": 1.94,
+      "agi": 0.5
+    },
+    "route": "세르노스 섬 전역 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_rjAahvHd_cee9f98193480a65cf904cdd39a881f336de9bf9.gif"
+  },
+  {
+    "name": "다이노스",
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7
+    },
+    "init": {
+      "hp": 74.75,
+      "atk": 11.46,
+      "def": 12.63,
+      "agi": 2.99
+    },
+    "grow": {
+      "hp": 12.51,
+      "atk": 1.92,
+      "def": 2.11,
+      "agi": 0.5
+    },
+    "route": "칠흑의 동굴 18층 전역 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_VbTwGg6C_b6e239d5a8ba953ef3c88fc26a865826a68bd1c8.gif"
+  },
+  {
+    "name": "다이노",
+    "grade": "일반",
+    "attr": {
+      "지": 9,
+      "수": 1
+    },
+    "init": {
+      "hp": 62.62,
+      "atk": 11.01,
+      "def": 11.68,
+      "agi": 2.62
+    },
+    "grow": {
+      "hp": 11.4,
+      "atk": 2,
+      "def": 2.13,
+      "agi": 0.48
+    },
+    "route": "SOT 코스 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_LsuAeP1X_f83e63890195062623582a9718dfad7fc7c0fcb5.gif"
+  },
+  {
+    "name": "투이",
+    "grade": "상급",
+    "attr": {
+      "수": 5,
+      "화": 5
+    },
+    "init": {
+      "hp": 63.24,
+      "atk": 11.35,
+      "def": 11.13,
+      "agi": 3.24
+    },
+    "grow": {
+      "hp": 11.46,
+      "atk": 2.06,
+      "def": 2.02,
+      "agi": 0.59
+    },
+    "route": "환생 퀘스트 보상 페트",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_Gb7JH0US_ced98a458b558fb2168c6d9e90003150ac859b51.gif"
+  },
+  {
+    "name": "씨보스",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8
+    },
+    "init": {
+      "hp": 56.8,
+      "atk": 9.18,
+      "def": 10.13,
+      "agi": 3.04
+    },
+    "grow": {
+      "hp": 11.77,
+      "atk": 1.9,
+      "def": 2.1,
+      "agi": 0.63
+    },
+    "route": "쟈루 섬 (동141, 남797) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_ilfxyGnb_13f0f67b92aeed226f92c2005413e03ee3883b32.gif"
+  },
+  {
+    "name": "무이",
+    "grade": "일반",
+    "attr": {
+      "수": 10
+    },
+    "init": {
+      "hp": 56.1,
+      "atk": 8.77,
+      "def": 9.3,
+      "agi": 2.9
+    },
+    "grow": {
+      "hp": 12.2,
+      "atk": 1.91,
+      "def": 2.02,
+      "agi": 0.63
+    },
+    "route": "쿠르의 해저통로 (동47, 남32) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_f3ah10Ic_fc7b09baac7c35334b33785c4981d59d75387f26.gif"
+  },
+  {
+    "name": "루이",
+    "grade": "일반",
+    "attr": {
+      "수": 8,
+      "화": 2
+    },
+    "init": {
+      "hp": 58.63,
+      "atk": 9.99,
+      "def": 10.19,
+      "agi": 3.19
+    },
+    "grow": {
+      "hp": 11.59,
+      "atk": 1.98,
+      "def": 2.02,
+      "agi": 0.63
+    },
+    "route": "벽청의 동굴(나) 8층 (동19, 남13) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_xGsnXC1F_d53f1642eec8d5a51ba1aa6ff3bdd7972eff1bb2.gif"
+  },
+  {
+    "name": "가가로스",
+    "grade": "일반",
+    "attr": {
+      "수": 2,
+      "화": 8
+    },
+    "init": {
+      "hp": 62.79,
+      "atk": 13.59,
+      "def": 10.55,
+      "agi": 5.07
+    },
+    "grow": {
+      "hp": 10.51,
+      "atk": 2.27,
+      "def": 1.77,
+      "agi": 0.85
+    },
+    "route": "잊혀진 땅 폐허 (동21, 남56) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_ioMkLRld_d83d565fd1285204a436d6dde7b9708ad579c93c.gif"
+  },
+  {
+    "name": "비트로스",
+    "grade": "일반",
+    "attr": {
+      "화": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 59.12,
+      "atk": 12.34,
+      "def": 10.09,
+      "agi": 6.38
+    },
+    "grow": {
+      "hp": 10.29,
+      "atk": 2.15,
+      "def": 1.76,
+      "agi": 1.11
+    },
+    "route": "아스마르 광산 6층 (동6, 남6) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_BUMDef5G_c790a5f08ff28a2df8303dd0b07f1152a3c80908.gif"
+  },
+  {
+    "name": "메가로스",
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6
+    },
+    "init": {
+      "hp": 58.92,
+      "atk": 11.73,
+      "def": 11.08,
+      "agi": 4.2
+    },
+    "grow": {
+      "hp": 10.68,
+      "atk": 2.13,
+      "def": 2.01,
+      "agi": 0.76
+    },
+    "route": "환생 퀘스트 보상 페트",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_LlFD8pIU_b51560c42c1a00b2964d88e49bf3424fd865a8cb.gif"
+  },
+  {
+    "name": "기가로스",
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 66.5,
+      "atk": 13.11,
+      "def": 12.61,
+      "agi": 6.86
+    },
+    "grow": {
+      "hp": 10.33,
+      "atk": 2.04,
+      "def": 1.96,
+      "agi": 1.07
+    },
+    "route": "잊혀진 땅 폐허 (동21, 남56) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_ftEaeUwD_af113f8cc4b88ad7be3220703943356836a4858e.gif"
+  },
+  {
+    "name": "판지",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8
+    },
+    "init": {
+      "hp": 42.3,
+      "atk": 8.76,
+      "def": 5.33,
+      "agi": 4.3
+    },
+    "grow": {
+      "hp": 10.89,
+      "atk": 2.25,
+      "def": 1.37,
+      "agi": 1.11
+    },
+    "route": "쟈루 섬 (동157, 남704) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_wHIWobE8_826e914a61c7f6edf28f010a2e5c7e1beed6e96b.gif"
+  },
+  {
+    "name": "쟈그",
+    "grade": "일반",
+    "attr": {
+      "수": 10
+    },
+    "init": {
+      "hp": 42.9,
+      "atk": 8.76,
+      "def": 5.16,
+      "agi": 4.3
+    },
+    "grow": {
+      "hp": 11.05,
+      "atk": 2.25,
+      "def": 1.33,
+      "agi": 1.11
+    },
+    "route": "해저터널 1층(쟈루) (동11, 남31) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_cCTl8JiR_ee2fa674e03e439e5624a2ba62fec04ef5ce821a.gif"
+  },
+  {
+    "name": "쟈그라",
+    "grade": "일반",
+    "attr": {
+      "수": 5,
+      "화": 5
+    },
+    "init": {
+      "hp": 40.1,
+      "atk": 8.89,
+      "def": 5.29,
+      "agi": 4.3
+    },
+    "grow": {
+      "hp": 10.33,
+      "atk": 2.29,
+      "def": 1.36,
+      "agi": 1.11
+    },
+    "route": "해저터널 1층(쿠오) (동20, 남35) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_K5nOBXv7_89e911e9c5d3bfe00a9a4b2e557eacb418908201.gif"
+  },
+  {
+    "name": "고반케스",
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6
+    },
+    "init": {
+      "hp": 40.7,
+      "atk": 8.72,
+      "def": 5.49,
+      "agi": 4.1
+    },
+    "grow": {
+      "hp": 10.48,
+      "atk": 2.25,
+      "def": 1.41,
+      "agi": 1.06
+    },
+    "route": "쟈루 섬 (동231, 남557) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_x3F7EMu8_a36ec5bab315f55193bb024e70ef1e6143aa740b.gif"
+  },
+  {
+    "name": "토르프스",
+    "grade": "일반",
+    "attr": {
+      "지": 10
+    },
+    "init": {
+      "hp": 26.95,
+      "atk": 4.28,
+      "def": 5.54,
+      "agi": 1.89
+    },
+    "grow": {
+      "hp": 10.68,
+      "atk": 1.7,
+      "def": 2.2,
+      "agi": 0.75
+    },
+    "route": "JOT 코스 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_VRSZhegK_289b0e03566a8f4acf5dd45ecc3e7bfac25df569.gif"
+  },
+  {
+    "name": "토리케라",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3
+    },
+    "init": {
+      "hp": 35.19,
+      "atk": 5.33,
+      "def": 6.95,
+      "agi": 2.61
+    },
+    "grow": {
+      "hp": 10.85,
+      "atk": 1.64,
+      "def": 2.14,
+      "agi": 0.8
+    },
+    "route": "마리너스 마을 근처 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_tWecEfhY_c2feca730436786646c24657e63770a35dc344b4.gif"
+  },
+  {
+    "name": "펜타스",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8
+    },
+    "init": {
+      "hp": 31.92,
+      "atk": 4.6,
+      "def": 6.19,
+      "agi": 2.48
+    },
+    "grow": {
+      "hp": 11.07,
+      "atk": 1.6,
+      "def": 2.15,
+      "agi": 0.86
+    },
+    "route": "마리너스 마을 근처 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_CjhqzUVn_e46df5c0ae38ca3410103255d549381550ab9235.gif"
+  },
+  {
+    "name": "토리노프스",
+    "grade": "일반",
+    "attr": {
+      "수": 3,
+      "화": 7
+    },
+    "init": {
+      "hp": 23.34,
+      "atk": 3.89,
+      "def": 4.43,
+      "agi": 1.98
+    },
+    "grow": {
+      "hp": 10.41,
+      "atk": 1.73,
+      "def": 1.98,
+      "agi": 0.88
+    },
+    "route": "쟈루 섬 (동485, 남165) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_T94jyZhF_6a5f695c008e8ecd9081184fc9de6dd760132f81.gif"
+  },
+  {
+    "name": "노르노르",
+    "grade": "상급",
+    "attr": {
+      "지": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 48.88,
+      "atk": 10.24,
+      "def": 7.32,
+      "agi": 8.38
+    },
+    "grow": {
+      "hp": 9.68,
+      "atk": 2.03,
+      "def": 1.45,
+      "agi": 1.66
+    },
+    "route": "맘모스 복권 1등 페트 (마리너스)",
+    "channel": "복권",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_DzMr9bKY_97a75680b30e7f9825f83dc5fd2b0b0a18935406.gif"
+  },
+  {
+    "name": "고르고르",
+    "grade": "일반",
+    "attr": {
+      "화": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 38.33,
+      "atk": 8.67,
+      "def": 5.27,
+      "agi": 6.62
+    },
+    "grow": {
+      "hp": 9.4,
+      "atk": 2.13,
+      "def": 1.29,
+      "agi": 1.62
+    },
+    "route": "가우린 섬 (동225, 남353) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_HAZ9fWdU_724424f84428a4a130964aea03ac6fe5ceaa1f7f.gif"
+  },
+  {
+    "name": "베루루",
+    "grade": "일반",
+    "attr": {
+      "화": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 42.9,
+      "atk": 9.3,
+      "def": 5.78,
+      "agi": 7.47
+    },
+    "grow": {
+      "hp": 9.6,
+      "atk": 2.08,
+      "def": 1.29,
+      "agi": 1.67
+    },
+    "route": "쟈루 섬 (동357, 남680) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_7gnSzQIp_fbfc5b19f417f5fbf794341add2eca900a10c868.gif"
+  },
+  {
+    "name": "베르가",
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "수": 4
+    },
+    "init": {
+      "hp": 47.16,
+      "atk": 9.53,
+      "def": 6.29,
+      "agi": 7.32
+    },
+    "grow": {
+      "hp": 10.12,
+      "atk": 2.05,
+      "def": 1.35,
+      "agi": 1.57
+    },
+    "route": "쟈루 섬 (동442, 남634) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_nGxXmAzT_13664c3f516df3aca3292ce4aba3a29f7ed3dc76.gif"
+  },
+  {
+    "name": "카우",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "풍": 3
+    },
+    "init": {
+      "hp": 28.48,
+      "atk": 5.75,
+      "def": 5.75,
+      "agi": 5.18
+    },
+    "grow": {
+      "hp": 8.96,
+      "atk": 1.81,
+      "def": 1.81,
+      "agi": 1.63
+    },
+    "route": "숲의 동굴 4층 (동14, 남8) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_qxn8o0Sz_189ea9dc860a4158cc42708b9d414a6eddd1ff75.gif"
+  },
+  {
+    "name": "바우",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 29.66,
+      "atk": 5.75,
+      "def": 5.29,
+      "agi": 5.53
+    },
+    "grow": {
+      "hp": 9.34,
+      "atk": 1.81,
+      "def": 1.67,
+      "agi": 1.74
+    },
+    "route": "숲의 동굴 2층 (동27, 남34) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_I4mfCJA2_531dd7e407a6a1bf6f73fd80c18acc7afc156796.gif"
+  },
+  {
+    "name": "바카",
+    "grade": "일반",
+    "attr": {
+      "화": 4,
+      "풍": 6
+    },
+    "init": {
+      "hp": 36.5,
+      "atk": 7.59,
+      "def": 6.33,
+      "agi": 6.5
+    },
+    "grow": {
+      "hp": 9.4,
+      "atk": 1.95,
+      "def": 1.63,
+      "agi": 1.67
+    },
+    "route": "쟈루 섬 (동90, 남1090) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_pIMkO7tJ_a2897da7dcf0ba95fd1fcb0467006b46fb3901d8.gif"
+  },
+  {
+    "name": "카쿠",
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7
+    },
+    "init": {
+      "hp": 41.31,
+      "atk": 7.47,
+      "def": 6.83,
+      "agi": 6.57
+    },
+    "grow": {
+      "hp": 9.98,
+      "atk": 1.81,
+      "def": 1.65,
+      "agi": 1.59
+    },
+    "route": "쟈루 섬 (동81, 남1140) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_5sdgxhA7_14ad60c4e249aeea4a7d48eb1758fcf003c0f9d6.gif"
+  },
+  {
+    "name": "부르보",
+    "grade": "일반",
+    "attr": {
+      "화": 4,
+      "풍": 6
+    },
+    "init": {
+      "hp": 38.5,
+      "atk": 7.26,
+      "def": 7.09,
+      "agi": 4.9
+    },
+    "grow": {
+      "hp": 9.91,
+      "atk": 1.87,
+      "def": 1.82,
+      "agi": 1.26
+    },
+    "route": "페트와 이야기 하고 싶어 퀘스트 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_gBAuGzwj_cb7f72be8e508ef8aaef93d9736553fe51bff263.gif"
+  },
+  {
+    "name": "토로쟈",
+    "grade": "일반",
+    "attr": {
+      "수": 3,
+      "화": 7
+    },
+    "init": {
+      "hp": 41.69,
+      "atk": 7.86,
+      "def": 7.67,
+      "agi": 4.3
+    },
+    "grow": {
+      "hp": 10.22,
+      "atk": 1.93,
+      "def": 1.88,
+      "agi": 1.06
+    },
+    "route": "속임수의 동굴 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_LKcWaleF_ae44004786b2637e1bf308bf5bb78b43f4dc7f82.gif"
+  },
+  {
+    "name": "쿠보",
+    "grade": "상급",
+    "attr": {
+      "수": 5,
+      "화": 5
+    },
+    "init": {
+      "hp": 51.12,
+      "atk": 9.42,
+      "def": 9.42,
+      "agi": 5.38
+    },
+    "grow": {
+      "hp": 10.12,
+      "atk": 1.86,
+      "def": 1.86,
+      "agi": 1.06
+    },
+    "route": "공룡박사의 연구②(베르가) 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_sNPZyYBx_fbbb0d00ef8ce1e151ac7fc5996c8638911dcdf5.gif"
+  },
+  {
+    "name": "포보",
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7
+    },
+    "init": {
+      "hp": 39.23,
+      "atk": 6.6,
+      "def": 7.11,
+      "agi": 3.52
+    },
+    "grow": {
+      "hp": 10.63,
+      "atk": 1.79,
+      "def": 1.93,
+      "agi": 0.95
+    },
+    "route": "고야산 동굴 4층 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_JF4EIAPG_be67334ec260cb605d31ae54fd587d3de565dfe7.gif"
+  },
+  {
+    "name": "휴보",
+    "grade": "상급",
+    "attr": {
+      "지": 8,
+      "수": 2
+    },
+    "init": {
+      "hp": 36.81,
+      "atk": 7.11,
+      "def": 6.63,
+      "agi": 3.69
+    },
+    "grow": {
+      "hp": 10.12,
+      "atk": 1.96,
+      "def": 1.82,
+      "agi": 1.01
+    },
+    "route": "황금색 페트①(카난) 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_zCI5dYPw_fa23f31ba8bf4a6996141add114eadedf7b9b91d.gif"
+  },
+  {
+    "name": "고르고",
+    "grade": "일반",
+    "attr": {
+      "화": 9,
+      "풍": 1
+    },
+    "init": {
+      "hp": 43.32,
+      "atk": 9.41,
+      "def": 6.61,
+      "agi": 4.92
+    },
+    "grow": {
+      "hp": 10.02,
+      "atk": 2.18,
+      "def": 1.53,
+      "agi": 1.14
+    },
+    "route": "폐허가 된 탄광 4층 (동45, 남27) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_rZLHGqWa_5442ad78b76394b0410f014fd288fa76689e573c.gif"
+  },
+  {
+    "name": "투르돈",
+    "grade": "일반",
+    "attr": {
+      "수": 3,
+      "화": 7
+    },
+    "init": {
+      "hp": 46.92,
+      "atk": 9.27,
+      "def": 6.68,
+      "agi": 4.92
+    },
+    "grow": {
+      "hp": 10.46,
+      "atk": 2.07,
+      "def": 1.49,
+      "agi": 1.1
+    },
+    "route": "가우린 섬 (동237, 남80) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_brnqQoRG_511839791fcafd61dd47d6b74ac33fe3b0b131a9.gif"
+  },
+  {
+    "name": "기라돈",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "수": 2
+    },
+    "init": {
+      "hp": 51.72,
+      "atk": 10.22,
+      "def": 8.27,
+      "agi": 5.64
+    },
+    "grow": {
+      "hp": 10.24,
+      "atk": 2.02,
+      "def": 1.64,
+      "agi": 1.12
+    },
+    "route": "폐허가 된 탄광 4층 (동45, 남27) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_tzVClieG_82473e81914eabfbd4ebbd2fdbcb30282c218bba.gif"
+  },
+  {
+    "name": "고르돈",
+    "grade": "일반",
+    "attr": {
+      "지": 10
+    },
+    "init": {
+      "hp": 51,
+      "atk": 10.23,
+      "def": 8.72,
+      "agi": 5.4
+    },
+    "grow": {
+      "hp": 10.09,
+      "atk": 2.02,
+      "def": 1.73,
+      "agi": 1.07
+    },
+    "route": "가우린 섬 (동166, 남356) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_BgeoTbqr_4b93844ae7c2141e1ef775682a5f74c777ef8321.gif"
+  },
+  {
+    "name": "골드카비트",
+    "grade": "일반",
+    "attr": {
+      "풍": 10
+    },
+    "init": {
+      "hp": 30.3,
+      "atk": 5.74,
+      "def": 5.06,
+      "agi": 6.17
+    },
+    "grow": {
+      "hp": 8.85,
+      "atk": 1.68,
+      "def": 1.48,
+      "agi": 1.8
+    },
+    "route": "샴기르 마을 근처 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_rTRiNvkF_26046ef0d710dd222482dc0cbc788c0e3499b8de.gif"
+  },
+  {
+    "name": "큐이",
+    "grade": "일반",
+    "attr": {
+      "화": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 21.82,
+      "atk": 4.48,
+      "def": 4.08,
+      "agi": 4.42
+    },
+    "grow": {
+      "hp": 8.37,
+      "atk": 1.72,
+      "def": 1.56,
+      "agi": 1.7
+    },
+    "route": "샴기르 마을 근처 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_9WEXhinr_7877904c7f6afae65627ba79eefbc2e344b3e809.gif"
+  },
+  {
+    "name": "케이비",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 30.5,
+      "atk": 5.86,
+      "def": 5.86,
+      "agi": 6.3
+    },
+    "grow": {
+      "hp": 8.77,
+      "atk": 1.68,
+      "def": 1.68,
+      "agi": 1.81
+    },
+    "route": "마리너스 초기 지원페트",
+    "channel": "기타",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_c9XAujZK_c1a00396706971eccaca3d912d75625b1ce0b3d2.gif"
+  },
+  {
+    "name": "카비트",
+    "grade": "일반",
+    "attr": {
+      "화": 7,
+      "풍": 3
+    },
+    "init": {
+      "hp": 27.45,
+      "atk": 5.27,
+      "def": 5.27,
+      "agi": 5.67
+    },
+    "grow": {
+      "hp": 8.77,
+      "atk": 1.68,
+      "def": 1.68,
+      "agi": 1.81
+    },
+    "route": "사이너스 섬 (동304, 남328) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_cDWNbBvo_740b526fa67d7e9b07bcc5850877588d96dfb20c.gif"
+  },
+  {
+    "name": "모가로스",
+    "grade": "일반",
+    "attr": {
+      "수": 2,
+      "화": 8
+    },
+    "init": {
+      "hp": 56.62,
+      "atk": 13.13,
+      "def": 7.96,
+      "agi": 8.12
+    },
+    "grow": {
+      "hp": 9.85,
+      "atk": 2.28,
+      "def": 1.38,
+      "agi": 1.41
+    },
+    "route": "퀴즈 마스터(카루타나) 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_T4P0KzGk_57a6a1830461891348ea2904ab86b34ae8e0c4b2.gif"
+  },
+  {
+    "name": "오르곤",
+    "grade": "일반",
+    "attr": {
+      "수": 9,
+      "화": 1
+    },
+    "init": {
+      "hp": 55.99,
+      "atk": 11.25,
+      "def": 6.69,
+      "agi": 7.15
+    },
+    "grow": {
+      "hp": 11.07,
+      "atk": 2.22,
+      "def": 1.32,
+      "agi": 1.41
+    },
+    "route": "퀴즈 마스터(마리너스) 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_tawMUspx_52485725e5fe04bebd303a47cb50d0c8185944b7.gif"
+  },
+  {
+    "name": "리스키",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8
+    },
+    "init": {
+      "hp": 33.74,
+      "atk": 5.02,
+      "def": 5.48,
+      "agi": 4.84
+    },
+    "grow": {
+      "hp": 10.62,
+      "atk": 1.58,
+      "def": 1.72,
+      "agi": 1.52
+    },
+    "route": "카루타나 마을 근처 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_EeN5wPxW_639e05fb910d79f6f3621c24e5a6ba9b4c0e4670.gif"
+  },
+  {
+    "name": "포링",
+    "grade": "일반",
+    "attr": {
+      "수": 4,
+      "화": 6
+    },
+    "init": {
+      "hp": 32.67,
+      "atk": 5.55,
+      "def": 5.22,
+      "agi": 5.13
+    },
+    "grow": {
+      "hp": 10.07,
+      "atk": 1.71,
+      "def": 1.61,
+      "agi": 1.58
+    },
+    "route": "쟈루 섬 (동512, 남336) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_ALqIKvp2_a3ba00b54a55bccbbb447ba06a63cae5cfad8785.gif"
+  },
+  {
+    "name": "쿠쿠르",
+    "grade": "일반",
+    "attr": {
+      "수": 7,
+      "화": 3
+    },
+    "init": {
+      "hp": 38.5,
+      "atk": 6.25,
+      "def": 6.07,
+      "agi": 6.1
+    },
+    "grow": {
+      "hp": 10.3,
+      "atk": 1.67,
+      "def": 1.62,
+      "agi": 1.63
+    },
+    "route": "쟈쟈 초기 지원페트",
+    "channel": "기타",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_u7qMde0K_3ea4493276541cae334227a0f838ed755ffd970f.gif"
+  },
+  {
+    "name": "쿠링",
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "수": 4
+    },
+    "init": {
+      "hp": 36.01,
+      "atk": 5.95,
+      "def": 6.29,
+      "agi": 5.42
+    },
+    "grow": {
+      "hp": 10.14,
+      "atk": 1.68,
+      "def": 1.77,
+      "agi": 1.52
+    },
+    "route": "카루타나 마을 근처 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_VFXlyp6j_1ea4659393285d3344e07fa66ca32d53135fda23.gif"
+  },
+  {
+    "name": "부르돈",
+    "grade": "일반",
+    "attr": {
+      "화": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 51.12,
+      "atk": 11.43,
+      "def": 6.71,
+      "agi": 7.12
+    },
+    "grow": {
+      "hp": 10.12,
+      "atk": 2.26,
+      "def": 1.33,
+      "agi": 1.41
+    },
+    "route": "오형제의 시험 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_6Qtb3xOr_1479dc83ff35f7f88248e8793cb6a713ae661ab7.gif"
+  },
+  {
+    "name": "반기노",
+    "grade": "일반",
+    "attr": {
+      "화": 10
+    },
+    "init": {
+      "hp": 52.39,
+      "atk": 12.64,
+      "def": 7.49,
+      "agi": 6.37
+    },
+    "grow": {
+      "hp": 9.97,
+      "atk": 2.41,
+      "def": 1.43,
+      "agi": 1.21
+    },
+    "route": "가우린 섬 (동441, 남104) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_2Iedy0bU_548ca7349692cee0b9726576015ac1cdb3630362.gif"
+  },
+  {
+    "name": "반보로",
+    "grade": "일반",
+    "attr": {
+      "화": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 55.48,
+      "atk": 12.9,
+      "def": 7.8,
+      "agi": 6.88
+    },
+    "grow": {
+      "hp": 10.17,
+      "atk": 2.36,
+      "def": 1.43,
+      "agi": 1.26
+    },
+    "route": "오형제의 시험 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_RJMP5rtx_a829546f8c5134f70838447da3de67eeb8ab0da0.gif"
+  },
+  {
+    "name": "얀기로",
+    "grade": "일반",
+    "attr": {
+      "수": 8,
+      "화": 2
+    },
+    "init": {
+      "hp": 59.88,
+      "atk": 12.49,
+      "def": 7.73,
+      "agi": 6.84
+    },
+    "grow": {
+      "hp": 10.85,
+      "atk": 2.26,
+      "def": 1.4,
+      "agi": 1.24
+    },
+    "route": "가우린 섬 (동526, 남101) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_uSmpzPqY_4d45edb29fe82755ab8b3486f802d895c620ac6d.gif"
+  },
+  {
+    "name": "리비노",
+    "grade": "일반",
+    "attr": {
+      "지": 10
+    },
+    "init": {
+      "hp": 53.12,
+      "atk": 12.02,
+      "def": 7.97,
+      "agi": 5.38
+    },
+    "grow": {
+      "hp": 10.09,
+      "atk": 2.28,
+      "def": 1.51,
+      "agi": 1.02
+    },
+    "route": "유리의 동굴 13층 (동29, 남19) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_O24Fg130_356b23efd974859e9d7975fda44466e613ac7b4d.gif"
+  },
+  {
+    "name": "카르기안",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 39.9,
+      "atk": 6.84,
+      "def": 9.37,
+      "agi": 2.9
+    },
+    "grow": {
+      "hp": 10.27,
+      "atk": 1.76,
+      "def": 2.41,
+      "agi": 0.75
+    },
+    "route": "칠흑의 동굴 5층 (동13, 남56) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_P1lz6ewa_af6a50029969a003b95608af90663ce59685d95c.gif"
+  },
+  {
+    "name": "쿠타스",
+    "grade": "일반",
+    "attr": {
+      "수": 6,
+      "화": 4
+    },
+    "init": {
+      "hp": 48.07,
+      "atk": 8.2,
+      "def": 9.78,
+      "agi": 2.09
+    },
+    "grow": {
+      "hp": 11.25,
+      "atk": 1.92,
+      "def": 2.29,
+      "agi": 0.49
+    },
+    "route": "칠흑의 동굴 11층 (동56, 남38) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_tsakOeTZ_977a86ce7d49c75205d970a57114f262174d3f99.gif"
+  },
+  {
+    "name": "아이카스",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5
+    },
+    "init": {
+      "hp": 49.17,
+      "atk": 7.91,
+      "def": 11.28,
+      "agi": 2.09
+    },
+    "grow": {
+      "hp": 11.06,
+      "atk": 1.78,
+      "def": 2.54,
+      "agi": 0.47
+    },
+    "route": "칠흑의 동굴 9층 (동40, 남42) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_R8htKv5T_fe3450ca753c98744983b3dad8f2de272feb23f3.gif"
+  },
+  {
+    "name": "램가스",
+    "grade": "일반",
+    "attr": {
+      "지": 9,
+      "수": 1
+    },
+    "init": {
+      "hp": 48.3,
+      "atk": 7.86,
+      "def": 12.71,
+      "agi": 1.9
+    },
+    "grow": {
+      "hp": 10.51,
+      "atk": 1.71,
+      "def": 2.77,
+      "agi": 0.41
+    },
+    "route": "SOT 코스 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_D7vRxGtm_53c8131118fcc6a48cdbe1abaaaa77db285483b5.gif"
+  },
+  {
+    "name": "로기안",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 45.88,
+      "atk": 7.91,
+      "def": 11.43,
+      "agi": 2.65
+    },
+    "grow": {
+      "hp": 10.27,
+      "atk": 1.77,
+      "def": 2.56,
+      "agi": 0.59
+    },
+    "route": "유리의 동굴 13층 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_OYi7T2wq_e56dad647cb4f0592d0dac50cb9f0126f6b3270f.gif"
+  },
+  {
+    "name": "코로카스",
+    "grade": "일반",
+    "attr": {
+      "수": 4,
+      "화": 6
+    },
+    "init": {
+      "hp": 36.63,
+      "atk": 6.54,
+      "def": 8.22,
+      "agi": 1.61
+    },
+    "grow": {
+      "hp": 10.67,
+      "atk": 1.9,
+      "def": 2.39,
+      "agi": 0.47
+    },
+    "route": "도둑의 동굴 지하 4층 (동15, 남4) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_cwCd84GT_8644604324ca759ec895c8b70d10bdea9aa0271f.gif"
+  },
+  {
+    "name": "쿠카스",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "수": 2
+    },
+    "init": {
+      "hp": 45.21,
+      "atk": 7.38,
+      "def": 10.94,
+      "agi": 2.31
+    },
+    "grow": {
+      "hp": 10.58,
+      "atk": 1.73,
+      "def": 2.56,
+      "agi": 0.54
+    },
+    "route": "동쿠링 탄광 2층 (동5, 남7) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_8Nzb35eQ_eb9e2e347bd0bb6752d99039059b47be61a4da72.gif"
+  },
+  {
+    "name": "카타르카스",
+    "grade": "일반",
+    "attr": {
+      "지": 10
+    },
+    "init": {
+      "hp": 44.11,
+      "atk": 8,
+      "def": 11.17,
+      "agi": 2.09
+    },
+    "grow": {
+      "hp": 10.33,
+      "atk": 1.87,
+      "def": 2.61,
+      "agi": 0.49
+    },
+    "route": "동쿠링 탄광 1층 (동30, 남45) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_1wCObohp_4ca9f432dd0af9ad5ee06623fe3b69b5856ac446.gif"
+  },
+  {
+    "name": "루니",
+    "grade": "일반",
+    "attr": {
+      "지": 10
+    },
+    "init": {
+      "hp": 43.45,
+      "atk": 7.62,
+      "def": 8.01,
+      "agi": 5.83
+    },
+    "grow": {
+      "hp": 10.17,
+      "atk": 1.78,
+      "def": 1.88,
+      "agi": 1.36
+    },
+    "route": "사이너스 섬 (동526, 남144) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_iSQ4znZ7_9ffb49bcd84dffd784a91605b37856ebed20eaa9.gif"
+  },
+  {
+    "name": "토루루",
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 38.28,
+      "atk": 6.78,
+      "def": 6.61,
+      "agi": 5.99
+    },
+    "grow": {
+      "hp": 9.97,
+      "atk": 1.77,
+      "def": 1.72,
+      "agi": 1.56
+    },
+    "route": "SOT 코스 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_tyJfa4q8_1a77e8033480c1434b3f606635c4946ea49e7b1e.gif"
+  },
+  {
+    "name": "후바바",
+    "grade": "일반",
+    "attr": {
+      "화": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 45.72,
+      "atk": 8.65,
+      "def": 7.13,
+      "agi": 7.8
+    },
+    "grow": {
+      "hp": 9.81,
+      "atk": 1.86,
+      "def": 1.53,
+      "agi": 1.67
+    },
+    "route": "사이너스 섬 (동526, 남144) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_UmxXGa67_8760658bdf9b58829316c62350a5e3fc5c1d7bc7.gif"
+  },
+  {
+    "name": "라고고",
+    "grade": "일반",
+    "attr": {
+      "화": 10
+    },
+    "init": {
+      "hp": 43.81,
+      "atk": 8.93,
+      "def": 6.65,
+      "agi": 7.01
+    },
+    "grow": {
+      "hp": 9.81,
+      "atk": 2,
+      "def": 1.49,
+      "agi": 1.57
+    },
+    "route": "가우린 섬 (동461, 남523) 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_j7MQuvgA_e97a2b5d79f30075a8356befacc5cf605f715674.gif"
+  },
+  {
+    "name": "보크곤",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 41.5,
+      "atk": 9.86,
+      "def": 6.99,
+      "agi": 5.7
+    },
+    "grow": {
+      "hp": 9.44,
+      "atk": 2.24,
+      "def": 1.59,
+      "agi": 1.3
+    },
+    "route": "몽환의 동굴(낮) (동45, 남55) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_oAbUkaJG_46d15f3da2e033ec24bc9c068ac6e533cf18730a.gif"
+  },
+  {
+    "name": "다고스",
+    "grade": "일반",
+    "attr": {
+      "수": 8,
+      "화": 2
+    },
+    "init": {
+      "hp": 43.7,
+      "atk": 9.9,
+      "def": 7.21,
+      "agi": 4.5
+    },
+    "grow": {
+      "hp": 9.94,
+      "atk": 2.25,
+      "def": 1.64,
+      "agi": 1.02
+    },
+    "route": "사이너스 섬 (동186, 남153) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_hjb938Fv_5e566bc58ea434508e964e9aaa8a4c1b9d67bda1.gif"
+  },
+  {
+    "name": "타로곤",
+    "grade": "일반",
+    "attr": {
+      "화": 7,
+      "풍": 3
+    },
+    "init": {
+      "hp": 42.5,
+      "atk": 9.72,
+      "def": 7.75,
+      "agi": 4.5
+    },
+    "grow": {
+      "hp": 9.67,
+      "atk": 2.21,
+      "def": 1.76,
+      "agi": 1.02
+    },
+    "route": "사이너스 섬 (동186, 남153) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_Z35OEY7f_33ca32f36a0db7926c0dbbc596608637e39b2691.gif"
+  },
+  {
+    "name": "네고스",
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6
+    },
+    "init": {
+      "hp": 43.3,
+      "atk": 9.74,
+      "def": 7.76,
+      "agi": 4.5
+    },
+    "grow": {
+      "hp": 9.85,
+      "atk": 2.22,
+      "def": 1.77,
+      "agi": 1.02
+    },
+    "route": "쟈루 섬 (동275, 남495) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_wZ0P5RJe_9db8482973a57158cac070b922aad082545eaa9d.gif"
+  },
+  {
+    "name": "아고아",
+    "grade": "일반",
+    "attr": {
+      "수": 3,
+      "화": 7
+    },
+    "init": {
+      "hp": 42.7,
+      "atk": 10.1,
+      "def": 7.39,
+      "agi": 4.7
+    },
+    "grow": {
+      "hp": 9.71,
+      "atk": 2.3,
+      "def": 1.68,
+      "agi": 1.07
+    },
+    "route": "진홍의 지하 동굴(나) 6층 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_MysrlPH8_73a868e29c7910fc5612a6d69f6fd9213da8353a.gif"
+  },
+  {
+    "name": "돌북이",
+    "grade": "일반",
+    "attr": {
+      "지": 9,
+      "풍": 1
+    },
+    "init": {
+      "hp": 37.5,
+      "atk": 6.25,
+      "def": 10.21,
+      "agi": 1.7
+    },
+    "grow": {
+      "hp": 10.03,
+      "atk": 1.67,
+      "def": 2.73,
+      "agi": 0.45
+    },
+    "route": "쿠오산 소동굴 4층 (동23, 남38) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_sucLBinI_f24483cfd5b2afb113e817a2196d1d8e804add2f.gif"
+  },
+  {
+    "name": "깡북이",
+    "grade": "일반",
+    "attr": {
+      "화": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 21.3,
+      "atk": 4.23,
+      "def": 5.21,
+      "agi": 1.14
+    },
+    "grow": {
+      "hp": 9.85,
+      "atk": 1.96,
+      "def": 2.41,
+      "agi": 0.53
+    },
+    "route": "쿠오산 소동굴 3층 (동15, 남20) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_2Tu9nCDg_5fe224e05f4f23f0f83778e0f3e8beac25759eb0.gif"
+  },
+  {
+    "name": "북이",
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 24.99,
+      "atk": 4.28,
+      "def": 6.3,
+      "agi": 1.33
+    },
+    "grow": {
+      "hp": 9.91,
+      "atk": 1.7,
+      "def": 2.5,
+      "agi": 0.53
+    },
+    "route": "사이너스 섬 (동570, 남416) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_JN8vxXW5_ff3b076b2f4cb56de9ed58a727f54a768c50a213.gif"
+  },
+  {
+    "name": "노북이",
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 24.85,
+      "atk": 4.13,
+      "def": 6.15,
+      "agi": 1.47
+    },
+    "grow": {
+      "hp": 9.85,
+      "atk": 1.64,
+      "def": 2.44,
+      "agi": 0.58
+    },
+    "route": "사이너스 섬 (동545, 남389) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_i4GmKhwz_81a15ffada2c69c111d8267f07d6e8499d0c6623.gif"
+  },
+  {
+    "name": "베로포리",
+    "grade": "일반",
+    "attr": {
+      "수": 3,
+      "화": 7
+    },
+    "init": {
+      "hp": 53.35,
+      "atk": 8.42,
+      "def": 10.4,
+      "agi": 4.29
+    },
+    "grow": {
+      "hp": 11.03,
+      "atk": 1.74,
+      "def": 2.15,
+      "agi": 0.89
+    },
+    "route": "속임수의 동굴 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_gWfexzOd_4d0d17de316972a5552004b82ffe77c6972b8bd0.gif"
+  },
+  {
+    "name": "베로보크",
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7
+    },
+    "init": {
+      "hp": 57.84,
+      "atk": 7.3,
+      "def": 11.02,
+      "agi": 4.25
+    },
+    "grow": {
+      "hp": 11.44,
+      "atk": 1.44,
+      "def": 2.18,
+      "agi": 0.84
+    },
+    "route": "아름산의 동굴 지하 7층 (동42, 남23) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_0Shw3OaK_a41f28a50c0e2cf3fcfd12f4aba2c6e797c28e90.gif"
+  },
+  {
+    "name": "베로로크",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3
+    },
+    "init": {
+      "hp": 49.49,
+      "atk": 6.28,
+      "def": 9.36,
+      "agi": 4.08
+    },
+    "grow": {
+      "hp": 11.33,
+      "atk": 1.44,
+      "def": 2.14,
+      "agi": 0.94
+    },
+    "route": "쿠링으로의 길 1층 (동9, 남12) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_GoYiTP07_15b9a94d12fd7e7031f5669992f90898ba74786c.gif"
+  },
+  {
+    "name": "베론",
+    "grade": "일반",
+    "attr": {
+      "수": 10
+    },
+    "init": {
+      "hp": 62.52,
+      "atk": 7.43,
+      "def": 11.32,
+      "agi": 5.16
+    },
+    "grow": {
+      "hp": 11.85,
+      "atk": 1.41,
+      "def": 2.15,
+      "agi": 0.98
+    },
+    "route": "쿠링으로의 길 1층 (동12, 남21) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_hSR9pIU1_eeacaabd1983372ea337fd4692a5388a3695cb77.gif"
+  },
+  {
+    "name": "오투투",
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 35.1,
+      "atk": 5.92,
+      "def": 5.21,
+      "agi": 6.9
+    },
+    "grow": {
+      "hp": 9.74,
+      "atk": 1.64,
+      "def": 1.44,
+      "agi": 1.91
+    },
+    "route": "카루타나 초기 지원페트",
+    "channel": "기타",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_Csq3FT7Q_3e346c4f303c37a373489d04a83cf64bf3af5f5e.gif"
+  },
+  {
+    "name": "투투",
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7
+    },
+    "init": {
+      "hp": 30.52,
+      "atk": 5.44,
+      "def": 3.3,
+      "agi": 5.18
+    },
+    "grow": {
+      "hp": 10.32,
+      "atk": 1.84,
+      "def": 1.12,
+      "agi": 1.75
+    },
+    "route": "쟈루 섬 (동295, 남368) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_faWuQqy1_e83a4073dd78959b015531cb325e87ff9051235b.gif"
+  },
+  {
+    "name": "우푸",
+    "grade": "일반",
+    "attr": {
+      "화": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 24.68,
+      "atk": 4.76,
+      "def": 2.73,
+      "agi": 5.47
+    },
+    "grow": {
+      "hp": 9.46,
+      "atk": 1.82,
+      "def": 1.05,
+      "agi": 2.1
+    },
+    "route": "쟈쟈 앞마당 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_qsSVlmiN_438920ce221d7a8f16e4527660245f13dd51fab5.gif"
+  },
+  {
+    "name": "푸푸",
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 21.39,
+      "atk": 3.88,
+      "def": 2.48,
+      "agi": 4.88
+    },
+    "grow": {
+      "hp": 9.46,
+      "atk": 1.72,
+      "def": 1.1,
+      "agi": 2.16
+    },
+    "route": "쟈쟈 앞마당 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_yY09jroQ_529c18dd6284801e80d0ba6003eff6b689c9517f.gif"
+  },
+  {
+    "name": "꼬꼬비",
+    "grade": "일반",
+    "attr": {
+      "화": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 41.03,
+      "atk": 8.5,
+      "def": 5.92,
+      "agi": 7.15
+    },
+    "grow": {
+      "hp": 9.6,
+      "atk": 1.99,
+      "def": 1.39,
+      "agi": 1.67
+    },
+    "route": "라토토의 동굴 3-4층 (동8, 남19) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_1iAxmjrz_b465347c1370be3d64d3228b179a3afdd545b058.gif"
+  },
+  {
+    "name": "꼬비오",
+    "grade": "일반",
+    "attr": {
+      "풍": 10
+    },
+    "init": {
+      "hp": 41.03,
+      "atk": 8.29,
+      "def": 5.91,
+      "agi": 7.37
+    },
+    "grow": {
+      "hp": 9.6,
+      "atk": 1.94,
+      "def": 1.38,
+      "agi": 1.73
+    },
+    "route": "라토토의 동굴 3-3층 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_vpo2ycMR_d2534c5d1d8c76692351cf12617cd452943d8e69.gif"
+  },
+  {
+    "name": "꼬비",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 41.91,
+      "atk": 8.33,
+      "def": 6.35,
+      "agi": 6.93
+    },
+    "grow": {
+      "hp": 9.81,
+      "atk": 1.95,
+      "def": 1.49,
+      "agi": 1.62
+    },
+    "route": "라토토의 복도 (동147, 남42) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_1wVc8pJ0_f3190b99f7163a74ed50491c2687cb542d121e87.gif"
+  },
+  {
+    "name": "꼬미",
+    "grade": "일반",
+    "attr": {
+      "화": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 41.69,
+      "atk": 8.51,
+      "def": 5.93,
+      "agi": 6.93
+    },
+    "grow": {
+      "hp": 9.76,
+      "atk": 1.99,
+      "def": 1.39,
+      "agi": 1.62
+    },
+    "route": "라토토의 복도 (동196, 남123) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_dZUN37vG_53439c8b44bf9a62fddfbb9d9814414e4390b5e8.gif"
+  },
+  {
+    "name": "얼룩부이비",
+    "grade": "상급",
+    "attr": {
+      "지": 10
+    },
+    "init": {
+      "hp": 49.1,
+      "atk": 8.98,
+      "def": 6.08,
+      "agi": 5.63
+    },
+    "grow": {
+      "hp": 11,
+      "atk": 2.01,
+      "def": 1.36,
+      "agi": 1.26
+    },
+    "route": "퀴즈 마스터(마리너스) 퀘스트 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_xWGsqTbE_afb869c514e87732ebf36efcffcc792f3e708ad4.gif"
+  },
+  {
+    "name": "부이비",
+    "grade": "일반",
+    "attr": {
+      "수": 4,
+      "화": 6
+    },
+    "init": {
+      "hp": 34.96,
+      "atk": 5.96,
+      "def": 4.37,
+      "agi": 3.6
+    },
+    "grow": {
+      "hp": 11.25,
+      "atk": 1.92,
+      "def": 1.41,
+      "agi": 1.16
+    },
+    "route": "쟈루 섬 (동357, 남183) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_ItECbSej_25a779be55239370776ffd200ca386b38b273bb8.gif"
+  },
+  {
+    "name": "부이",
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "수": 4
+    },
+    "init": {
+      "hp": 56.65,
+      "atk": 7.32,
+      "def": 6.33,
+      "agi": 3.85
+    },
+    "grow": {
+      "hp": 13.26,
+      "atk": 1.71,
+      "def": 1.48,
+      "agi": 0.9
+    },
+    "route": "사이너스 섬 (동608, 남208) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_LcCOlmJ5_f327b13b99f77590f59d6fe231888504cbbe811f.gif"
+  },
+  {
+    "name": "골드부비",
+    "grade": "상급",
+    "attr": {
+      "화": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 54.88,
+      "atk": 8.13,
+      "def": 10.83,
+      "agi": 4.12
+    },
+    "grow": {
+      "hp": 10.87,
+      "atk": 1.61,
+      "def": 2.14,
+      "agi": 0.82
+    },
+    "route": "퀴즈 마스터(카루타나) 퀘스트 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_HNIbwTex_3eb0a064985a8038c9f8949d425ef64b80c135ed.gif"
+  },
+  {
+    "name": "부비",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "수": 2
+    },
+    "init": {
+      "hp": 37.12,
+      "atk": 4.8,
+      "def": 4.26,
+      "agi": 2.48
+    },
+    "grow": {
+      "hp": 12.75,
+      "atk": 1.65,
+      "def": 1.46,
+      "agi": 0.85
+    },
+    "route": "사이너스 섬 (동608, 남208) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_qnx2GF3J_e9978394d946bc5bc96a4d322e660f2669c4faf8.gif"
+  },
+  {
+    "name": "환생얼룩우리",
+    "grade": "최상급",
+    "attr": {
+      "지": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 56.62,
+      "atk": 9.13,
+      "def": 9.81,
+      "agi": 7.12
+    },
+    "grow": {
+      "hp": 10.31,
+      "atk": 1.66,
+      "def": 1.78,
+      "agi": 1.3
+    },
+    "route": "환생 퀘스트 보상 페트",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_saF03wpu_bae16d8fd1610a46cdbcfbf1f5f7056a67ed9939.gif"
+  },
+  {
+    "name": "실버우리",
+    "grade": "상급",
+    "attr": {
+      "지": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 38.5,
+      "atk": 6.71,
+      "def": 7.08,
+      "agi": 6.3
+    },
+    "grow": {
+      "hp": 9.53,
+      "atk": 1.66,
+      "def": 1.75,
+      "agi": 1.56
+    },
+    "route": "맘모스 복권 1등 페트 (카루타나)",
+    "channel": "복권",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_m71Bnyk3_1c695c0c54ed825f2bb4f6a98b96870e8e6218f3.gif"
+  },
+  {
+    "name": "불그리",
+    "grade": "상급",
+    "attr": {
+      "화": 7,
+      "풍": 3
+    },
+    "init": {
+      "hp": 20.65,
+      "atk": 3.47,
+      "def": 3.11,
+      "agi": 3.75
+    },
+    "grow": {
+      "hp": 9.81,
+      "atk": 1.65,
+      "def": 1.48,
+      "agi": 1.78
+    },
+    "route": "SOT 코스 퀘스트 랜덤 보상",
+    "channel": "퀘스트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_b6xpa7WP_9a8cadec435d1ba782b753424dc1bd016bc0c2c9.gif"
+  },
+  {
+    "name": "얼룩우리",
+    "grade": "일반",
+    "attr": {
+      "지": 10
+    },
+    "init": {
+      "hp": 25.88,
+      "atk": 4.14,
+      "def": 4.41,
+      "agi": 3.23
+    },
+    "grow": {
+      "hp": 9.92,
+      "atk": 1.59,
+      "def": 1.69,
+      "agi": 1.24
+    },
+    "route": "마리너스 앞마당 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_nVKZBWfj_27345386ba690819d486abf98069aa0be3529c83.gif"
+  },
+  {
+    "name": "두리",
+    "grade": "일반",
+    "attr": {
+      "수": 4,
+      "화": 6
+    },
+    "init": {
+      "hp": 35.3,
+      "atk": 6.62,
+      "def": 4.46,
+      "agi": 5.5
+    },
+    "grow": {
+      "hp": 10.15,
+      "atk": 1.9,
+      "def": 1.28,
+      "agi": 1.58
+    },
+    "route": "샴기르 초기 지원페트",
+    "channel": "기타",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_9fILlNBw_6b33b123c8e097574eee4897503c9b59aacadcc4.gif"
+  },
+  {
+    "name": "우리",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "수": 2
+    },
+    "init": {
+      "hp": 16.35,
+      "atk": 2.24,
+      "def": 2.51,
+      "agi": 2.95
+    },
+    "grow": {
+      "hp": 9.4,
+      "atk": 1.29,
+      "def": 1.44,
+      "agi": 1.7
+    },
+    "route": "마리너스 앞마당 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/69a4a14b3f4c5839b7292aef0c8409f6_Ifm3laSX_7d3230621992baa4a71a70b6dc3df08eaece525d.gif"
+  },
+  {
+    "name": "체루루",
+    "grade": "일반",
+    "attr": {
+      "화": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 56.55,
+      "atk": 12.28,
+      "def": 7.13,
+      "agi": 9.49
+    },
+    "grow": {
+      "hp": 9.9,
+      "atk": 2.15,
+      "def": 1.25,
+      "agi": 1.66
+    },
+    "route": "개인 듀얼 포인트 상점",
+    "channel": "듀얼",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/157bf01a1746a3749294bca554ba4c34_vok4DzBj_633e051141204fa70bbedca76083b78c7c78c048.gif"
+  },
+  {
+    "name": "메피노",
+    "grade": "일반",
+    "attr": {
+      "수": 6,
+      "화": 4
+    },
+    "init": {
+      "hp": 59.38,
+      "atk": 13.21,
+      "def": 8.26,
+      "agi": 7.62
+    },
+    "grow": {
+      "hp": 10.33,
+      "atk": 2.3,
+      "def": 1.44,
+      "agi": 1.33
+    },
+    "route": "탐욕의 방 (메피노) 레이드 랜덤 보상",
+    "channel": "레이드",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_ir2QAvIE_5fbaf3d324f02f6cdb07ff79500a10046c23a171.gif"
+  },
+  {
+    "name": "흑기린",
+    "grade": "일반",
+    "attr": {
+      "수": 1,
+      "화": 9
+    },
+    "init": {
+      "hp": 51.96,
+      "atk": 12.26,
+      "def": 7.51,
+      "agi": 5.64
+    },
+    "grow": {
+      "hp": 10.28,
+      "atk": 2.43,
+      "def": 1.49,
+      "agi": 1.12
+    },
+    "route": "오만의 방 (흑기린) 레이드 랜덤 보상",
+    "channel": "레이드",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_S4Mlf6eY_daa8b60bbabad644c30d61f04476e0f145d5c9d1.gif"
+  },
+  {
+    "name": "테르가",
+    "grade": "상급",
+    "attr": {
+      "화": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 50.71,
+      "atk": 11.09,
+      "def": 5.75,
+      "agi": 8.91
+    },
+    "grow": {
+      "hp": 10.03,
+      "atk": 2.19,
+      "def": 1.14,
+      "agi": 1.76
+    },
+    "route": "금빛 상자 랜덤 페트",
+    "channel": "이벤트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/157bf01a1746a3749294bca554ba4c34_tLiNdbBC_07bcf62486c61a34b1323f1d6d58444dafb856f3.gif"
+  },
+  {
+    "name": "테이노스",
+    "grade": "상급",
+    "attr": {
+      "수": 8,
+      "화": 2
+    },
+    "init": {
+      "hp": 63.88,
+      "atk": 13.54,
+      "def": 8.37,
+      "agi": 6.88
+    },
+    "grow": {
+      "hp": 11.11,
+      "atk": 2.36,
+      "def": 1.46,
+      "agi": 1.2
+    },
+    "route": "금빛 상자 랜덤 페트",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_zN7InWc1_8f35bddcf2484230887c07113a789d23a64df71d.gif"
+  },
+  {
+    "name": "테이토스",
+    "grade": "상급",
+    "attr": {
+      "수": 5,
+      "화": 5
+    },
+    "init": {
+      "hp": 69.12,
+      "atk": 12.88,
+      "def": 12.21,
+      "agi": 2.12
+    },
+    "grow": {
+      "hp": 12.03,
+      "atk": 2.24,
+      "def": 2.12,
+      "agi": 0.37
+    },
+    "route": "금빛 상자 랜덤 페트",
+    "channel": "이벤트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/157bf01a1746a3749294bca554ba4c34_RZLw6uTB_079888658b7c79f83f0e43194b33ed469843f789.gif"
+  },
+  {
+    "name": "젖소",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 48.29,
+      "atk": 10.18,
+      "def": 6.42,
+      "agi": 6.49
+    },
+    "grow": {
+      "hp": 10.43,
+      "atk": 2.2,
+      "def": 1.39,
+      "agi": 1.4
+    },
+    "route": "한가위 이벤트 한정 포획",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_0uWDsF9g_c07194b77dd7b7028a18066fcb657808c407850f.gif"
+  },
+  {
+    "name": "화우",
+    "grade": "일반",
+    "attr": {
+      "화": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 51.41,
+      "atk": 11.79,
+      "def": 7.03,
+      "agi": 6.33
+    },
+    "grow": {
+      "hp": 10.17,
+      "atk": 2.33,
+      "def": 1.39,
+      "agi": 1.25
+    },
+    "route": "한가위 이벤트 한정 포획",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_2lB5yzuD_7118d9d1ddc61be91d49b3d27623ae7d2117cfb9.gif"
+  },
+  {
+    "name": "하누",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5
+    },
+    "init": {
+      "hp": 51.37,
+      "atk": 10.71,
+      "def": 6.95,
+      "agi": 6.05
+    },
+    "grow": {
+      "hp": 10.62,
+      "atk": 2.21,
+      "def": 1.44,
+      "agi": 1.25
+    },
+    "route": "한가위 이벤트 한정 포획",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_vPqzlu78_82a4199bfdc4bfc32e5f8018965f67d8a450003a.gif"
+  },
+  {
+    "name": "흑우",
+    "grade": "일반",
+    "attr": {
+      "수": 5,
+      "화": 5
+    },
+    "init": {
+      "hp": 52.09,
+      "atk": 11.37,
+      "def": 7.02,
+      "agi": 6.55
+    },
+    "grow": {
+      "hp": 10.31,
+      "atk": 2.25,
+      "def": 1.39,
+      "agi": 1.3
+    },
+    "route": "한가위 이벤트 한정 포획",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_3TndFzPY_e39a6b349cc08ee7e4ef57217bb3daaf2ac7a0d9.gif"
+  },
+  {
+    "name": "하트링",
+    "grade": "일반",
+    "attr": {
+      "화": 4,
+      "풍": 6
+    },
+    "init": {
+      "hp": 47.41,
+      "atk": 9.71,
+      "def": 5.75,
+      "agi": 7.59
+    },
+    "grow": {
+      "hp": 10.24,
+      "atk": 2.1,
+      "def": 1.24,
+      "agi": 1.64
+    },
+    "route": "한가위 이벤트 한정 포획",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_Z6kptRxC_89e7a8908ceafad6238def3d31ba0eb5fda2c1ca.gif"
+  },
+  {
+    "name": "초코링",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 52.44,
+      "atk": 11.79,
+      "def": 7.25,
+      "agi": 5.88
+    },
+    "grow": {
+      "hp": 10.38,
+      "atk": 2.33,
+      "def": 1.44,
+      "agi": 1.16
+    },
+    "route": "한가위 이벤트 한정 포획",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_jGgqyOsV_6c7d15c4da3a72dce009e14c56a0e0b011c832cc.gif"
+  },
+  {
+    "name": "한복메이",
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "풍": 6
+    },
+    "init": {
+      "hp": 51.35,
+      "atk": 10.81,
+      "def": 6.36,
+      "agi": 8.19
+    },
+    "grow": {
+      "hp": 10.17,
+      "atk": 2.14,
+      "def": 1.26,
+      "agi": 1.62
+    },
+    "route": "한가위 페트 병 랜덤 보상",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_Qw05PCSk_bed832f36022bbbfb607b743f469538316aaa872.gif"
+  },
+  {
+    "name": "한복밍코",
+    "grade": "일반",
+    "attr": {
+      "수": 5,
+      "화": 5
+    },
+    "init": {
+      "hp": 56.55,
+      "atk": 12.04,
+      "def": 7.36,
+      "agi": 9.49
+    },
+    "grow": {
+      "hp": 9.9,
+      "atk": 2.11,
+      "def": 1.29,
+      "agi": 1.66
+    },
+    "route": "한가위 페트 병 랜덤 보상",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_YJy6HWgi_39e0629ed147e3a28d4427f4e8f8b38cf1c04021.gif"
+  },
+  {
+    "name": "핑코",
+    "grade": "일반",
+    "attr": {
+      "수": 2,
+      "화": 8
+    },
+    "init": {
+      "hp": 53.59,
+      "atk": 12.58,
+      "def": 7.23,
+      "agi": 7.96
+    },
+    "grow": {
+      "hp": 9.83,
+      "atk": 2.31,
+      "def": 1.33,
+      "agi": 1.46
+    },
+    "route": "한가위 상자 랜덤 보상",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_xPjSlqvn_78745ad0afaf9a80630032035b23579d8cbd1f4a.gif"
+  },
+  {
+    "name": "토룡",
+    "grade": "일반",
+    "attr": {
+      "지": 9,
+      "수": 1
+    },
+    "init": {
+      "hp": 51.35,
+      "atk": 11.56,
+      "def": 6.65,
+      "agi": 7.15
+    },
+    "grow": {
+      "hp": 10.17,
+      "atk": 2.29,
+      "def": 1.32,
+      "agi": 1.42
+    },
+    "route": "한가위 상자 랜덤 보상",
+    "channel": "이벤트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/157bf01a1746a3749294bca554ba4c34_OvhHinza_26ba5c56b6f8c636fe5d3493e7e21f89b5da3ec8.gif"
+  },
+  {
+    "name": "도철",
+    "grade": "상급",
+    "attr": {
+      "수": 4,
+      "화": 6
+    },
+    "init": {
+      "hp": 57.72,
+      "atk": 12.7,
+      "def": 8.17,
+      "agi": 6.84
+    },
+    "grow": {
+      "hp": 10.46,
+      "atk": 2.3,
+      "def": 1.48,
+      "agi": 1.24
+    },
+    "route": "금빛 상자 랜덤 페트",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_YwNvg7Rq_9b8237502f79db3d7569e2f924d999b9226925df.gif"
+  },
+  {
+    "name": "고로",
+    "grade": "상급",
+    "attr": {
+      "화": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 65.88,
+      "atk": 11.71,
+      "def": 12.14,
+      "agi": 2.76
+    },
+    "grow": {
+      "hp": 11.94,
+      "atk": 2.12,
+      "def": 2.2,
+      "agi": 0.5
+    },
+    "route": "금빛 상자 랜덤 페트",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_7FtiN4gY_f06337f849a47187d1caa6e0cf2629c44ebb3ccb.gif"
+  },
+  {
+    "name": "가스트",
+    "grade": "상급",
+    "attr": {
+      "지": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 54.6,
+      "atk": 12.64,
+      "def": 8.11,
+      "agi": 7.56
+    },
+    "grow": {
+      "hp": 9.9,
+      "atk": 2.29,
+      "def": 1.47,
+      "agi": 1.37
+    },
+    "route": "금빛 상자 랜덤 페트",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_Ha1BX3D8_3ef546653063eb346b21184c80216d1027b31cce.gif"
+  },
+  {
+    "name": "해태",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5
+    },
+    "init": {
+      "hp": 57,
+      "atk": 12.26,
+      "def": 8.59,
+      "agi": 7.08
+    },
+    "grow": {
+      "hp": 10.33,
+      "atk": 2.22,
+      "def": 1.56,
+      "agi": 1.28
+    },
+    "route": "은빛 상자 랜덤 페트",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_KRnB6lME_981cb45c9e3a1a8613d337662a3ec87127e8aeaa.gif"
+  },
+  {
+    "name": "키로",
+    "grade": "일반",
+    "attr": {
+      "지": 1,
+      "수": 9
+    },
+    "init": {
+      "hp": 66.12,
+      "atk": 11.48,
+      "def": 12.34,
+      "agi": 2.04
+    },
+    "grow": {
+      "hp": 11.98,
+      "atk": 2.08,
+      "def": 2.24,
+      "agi": 0.37
+    },
+    "route": "은빛 상자 랜덤 페트",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_8EVBd4YP_e75bf6ca917af1d60bc12d603d63c669f4e2f687.gif"
+  },
+  {
+    "name": "로코",
+    "grade": "일반",
+    "attr": {
+      "수": 1,
+      "화": 9
+    },
+    "init": {
+      "hp": 63.72,
+      "atk": 12.94,
+      "def": 10.78,
+      "agi": 2.52
+    },
+    "grow": {
+      "hp": 11.55,
+      "atk": 2.35,
+      "def": 1.95,
+      "agi": 0.46
+    },
+    "route": "은빛 상자 랜덤 페트",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_WloDJ3Bj_558012dd85fb263e51c32c71fc31705a5ad3e254.gif"
+  },
+  {
+    "name": "테라탄",
+    "grade": "일반",
+    "attr": {
+      "화": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 48.36,
+      "atk": 10.04,
+      "def": 6.15,
+      "agi": 8.28
+    },
+    "grow": {
+      "hp": 9.97,
+      "atk": 2.07,
+      "def": 1.27,
+      "agi": 1.71
+    },
+    "route": "은빛 상자 랜덤 페트",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_WYvPoyOI_3310b86625b8415d1e6591db6aea0102d9eff1f3.gif"
+  },
+  {
+    "name": "게이블",
+    "grade": "일반",
+    "attr": {
+      "지": 1,
+      "수": 9
+    },
+    "init": {
+      "hp": 59.64,
+      "atk": 11.29,
+      "def": 10.64,
+      "agi": 5.88
+    },
+    "grow": {
+      "hp": 10.81,
+      "atk": 2.05,
+      "def": 1.93,
+      "agi": 1.07
+    },
+    "route": "은빛 상자 랜덤 페트",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_Q9Cwp6Tn_b5e7e8a6e3a4e8a9c072aedc95f06ac7e9185fe5.gif"
+  },
+  {
+    "name": "해치",
+    "grade": "일반",
+    "attr": {
+      "화": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 50.28,
+      "atk": 10.79,
+      "def": 6.26,
+      "agi": 8.52
+    },
+    "grow": {
+      "hp": 9.95,
+      "atk": 2.14,
+      "def": 1.24,
+      "agi": 1.69
+    },
+    "route": "은빛 상자 랜덤 페트",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_y0uL5pQg_9a12b36ab6d63a90b2ea39ee86b5f96badec688b.gif"
+  },
+  {
+    "name": "쟈무시",
+    "grade": "일반",
+    "attr": {
+      "지": 10
+    },
+    "init": {
+      "hp": 63,
+      "atk": 11.03,
+      "def": 13.63,
+      "agi": 1.8
+    },
+    "grow": {
+      "hp": 11.42,
+      "atk": 2,
+      "def": 2.47,
+      "agi": 0.33
+    },
+    "route": "지원 / 마일리지 포인트 상점",
+    "channel": "지원",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_zBtpLcDi_0ee8b9b6b04ac549a1a51ec8ff55e05aae91fca9.gif"
+  },
+  {
+    "name": "샤우트",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 64.92,
+      "atk": 12.13,
+      "def": 11.91,
+      "agi": 2.52
+    },
+    "grow": {
+      "hp": 11.77,
+      "atk": 2.2,
+      "def": 2.16,
+      "agi": 0.46
+    },
+    "route": "지원 / 마일리지 포인트 상점",
+    "channel": "지원",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_dQxPZtkh_8e99ccd7fa454eacbb06534fb6efd8469e030d5b.gif"
+  },
+  {
+    "name": "마스타로",
+    "grade": "일반",
+    "attr": {
+      "수": 4,
+      "화": 6
+    },
+    "init": {
+      "hp": 56.12,
+      "atk": 12.78,
+      "def": 6.71,
+      "agi": 8.12
+    },
+    "grow": {
+      "hp": 10.21,
+      "atk": 2.33,
+      "def": 1.22,
+      "agi": 1.48
+    },
+    "route": "지원 / 마일리지 포인트 상점",
+    "channel": "지원",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/157bf01a1746a3749294bca554ba4c34_djiWyaNn_3ecb4e4bbb51339ffff4111227fdcd40c98cafca.gif"
+  },
+  {
+    "name": "구루마루",
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 59.38,
+      "atk": 12.94,
+      "def": 7.77,
+      "agi": 8.38
+    },
+    "grow": {
+      "hp": 10.33,
+      "atk": 2.25,
+      "def": 1.35,
+      "agi": 1.46
+    },
+    "route": "지원 / 마일리지 포인트 상점",
+    "channel": "지원",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_TlHX8RPu_9db12f003ae79cc16b3ecd27284fb600d068504f.gif"
+  },
+  {
+    "name": "기로아치",
+    "grade": "일반",
+    "attr": {
+      "수": 7,
+      "화": 3
+    },
+    "init": {
+      "hp": 54.12,
+      "atk": 11.65,
+      "def": 7.76,
+      "agi": 6.36
+    },
+    "grow": {
+      "hp": 10.26,
+      "atk": 2.21,
+      "def": 1.47,
+      "agi": 1.21
+    },
+    "route": "폐기물 광산 7층 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_FC7EoTWq_f6f72fbdad986e2ae6b9638daa1b92c43cbc0056.gif"
+  },
+  {
+    "name": "호르카",
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "수": 4
+    },
+    "init": {
+      "hp": 51.17,
+      "atk": 10.69,
+      "def": 6.96,
+      "agi": 7.25
+    },
+    "grow": {
+      "hp": 10.12,
+      "atk": 2.11,
+      "def": 1.38,
+      "agi": 1.43
+    },
+    "route": "얼음성 입구 홀 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_1R5PMUTI_f9bfddb225461cd61cdb05fa79e194d1db8ac5cc.gif"
+  },
+  {
+    "name": "펠트르돈",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8
+    },
+    "init": {
+      "hp": 55.51,
+      "atk": 12.23,
+      "def": 7.55,
+      "agi": 6.89
+    },
+    "grow": {
+      "hp": 10.14,
+      "atk": 2.23,
+      "def": 1.38,
+      "agi": 1.26
+    },
+    "route": "크로아치의 방 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_uYQ9L3dt_223830566f9e3ab297aa569e1fe950eb8725b964.gif"
+  },
+  {
+    "name": "타키온",
+    "grade": "일반",
+    "attr": {
+      "지": 1,
+      "수": 9
+    },
+    "init": {
+      "hp": 52.78,
+      "atk": 10.47,
+      "def": 6.33,
+      "agi": 7.93
+    },
+    "grow": {
+      "hp": 10.44,
+      "atk": 2.07,
+      "def": 1.25,
+      "agi": 1.57
+    },
+    "route": "오만의 방 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_HvXmuV51_ae26d652cde2ef03ebbc2f6648b07617bde516cb.gif"
+  },
+  {
+    "name": "푸타푸타",
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 42.35,
+      "atk": 8.29,
+      "def": 5.12,
+      "agi": 8.69
+    },
+    "grow": {
+      "hp": 9.53,
+      "atk": 1.86,
+      "def": 1.15,
+      "agi": 1.96
+    },
+    "route": "교만의 방 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_tMcrPB0i_3a78fd557b585da8d7e0651b7dfeee7b91d0b755.gif"
+  },
+  {
+    "name": "라이쿠스",
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7
+    },
+    "init": {
+      "hp": 56.23,
+      "atk": 10.53,
+      "def": 10.53,
+      "agi": 2.65
+    },
+    "grow": {
+      "hp": 11.12,
+      "atk": 2.08,
+      "def": 2.08,
+      "agi": 0.52
+    },
+    "route": "탐욕의 방 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_Paz1xmGb_98f8de52d3e6bc802f11c8f065e2a09adb90dee7.gif"
+  },
+  {
+    "name": "라피노",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8
+    },
+    "init": {
+      "hp": 54.99,
+      "atk": 11.94,
+      "def": 7.26,
+      "agi": 6.89
+    },
+    "grow": {
+      "hp": 10.47,
+      "atk": 2.27,
+      "def": 1.38,
+      "agi": 1.31
+    },
+    "route": "전리품의 방 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/157bf01a1746a3749294bca554ba4c34_XKL9ZpdB_ad5156247dd6d88470a2d7c2644ff539bcf62fa6.gif"
+  },
+  {
+    "name": "카멜로돈",
+    "grade": "일반",
+    "attr": {
+      "화": 9,
+      "풍": 1
+    },
+    "init": {
+      "hp": 56.26,
+      "atk": 11.76,
+      "def": 7.31,
+      "agi": 8.45
+    },
+    "grow": {
+      "hp": 10.28,
+      "atk": 2.15,
+      "def": 1.34,
+      "agi": 1.54
+    },
+    "route": "진홍의 지하 동굴(나) 7층 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_GZbrjCa7_4fe8e1e5e8415a47cb1fe5c296aa6994d840aae3.gif"
+  },
+  {
+    "name": "아비시니안",
+    "grade": "일반",
+    "attr": {
+      "화": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 49.53,
+      "atk": 11.04,
+      "def": 6.83,
+      "agi": 7.67
+    },
+    "grow": {
+      "hp": 9.81,
+      "atk": 2.19,
+      "def": 1.35,
+      "agi": 1.52
+    },
+    "route": "천지의 동굴 8층 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_IMA3JxpT_cd17fb6eccf2dddbe2cf6e87601910b9ec025bea.gif"
+  },
+  {
+    "name": "뉴로아",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5
+    },
+    "init": {
+      "hp": 50.26,
+      "atk": 9.8,
+      "def": 7.94,
+      "agi": 5.17
+    },
+    "grow": {
+      "hp": 10.38,
+      "atk": 2.02,
+      "def": 1.64,
+      "agi": 1.07
+    },
+    "route": "벽청의 동굴(나) 8층 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_pEAc0MgI_c5a6fd27fb3747b5b913ce4f9df16acec4ea324a.gif"
+  },
+  {
+    "name": "호크곤",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3
+    },
+    "init": {
+      "hp": 55.56,
+      "atk": 10.77,
+      "def": 8.39,
+      "agi": 5.16
+    },
+    "grow": {
+      "hp": 11,
+      "atk": 2.13,
+      "def": 1.66,
+      "agi": 1.02
+    },
+    "route": "유리의 동굴 13층 (동29, 남19) 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_IZ3KdXCv_9e1fbc047835fd3956bde2d7262337906adcf193.gif"
+  },
+  {
+    "name": "아르마루",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5
+    },
+    "init": {
+      "hp": 57.12,
+      "atk": 12.67,
+      "def": 8.17,
+      "agi": 7.88
+    },
+    "grow": {
+      "hp": 9.94,
+      "atk": 2.2,
+      "def": 1.42,
+      "agi": 1.37
+    },
+    "route": "분노의 방 전역 포획",
+    "channel": "포획",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_qbfxWlE2_43f7cc679bf80bcb9594f1f2a80d5033e8ac66c8.gif"
+  },
+  {
+    "name": "우라노스",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "풍": 3
+    },
+    "init": {
+      "hp": 50.35,
+      "atk": 10.86,
+      "def": 6.24,
+      "agi": 8.23
+    },
+    "grow": {
+      "hp": 9.98,
+      "atk": 2.15,
+      "def": 1.24,
+      "agi": 1.63
+    },
+    "route": "질투의 방 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_viT2F1So_3344a90806dd1455fbe3a12146bae605ae1baf53.gif"
+  },
+  {
+    "name": "그램고르",
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6
+    },
+    "init": {
+      "hp": 57.96,
+      "atk": 9.95,
+      "def": 10.17,
+      "agi": 1.8
+    },
+    "grow": {
+      "hp": 11.95,
+      "atk": 2.05,
+      "def": 2.1,
+      "agi": 0.37
+    },
+    "route": "그램고르의 방 전역 포획",
+    "channel": "포획",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_4OwHAi6B_6ec4b82934102f3b1a05e158e5038723a9c204cc.gif"
+  },
+  {
+    "name": "흑룡",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 56.12,
+      "atk": 11.83,
+      "def": 6.66,
+      "agi": 9.12
+    },
+    "grow": {
+      "hp": 10.21,
+      "atk": 2.15,
+      "def": 1.21,
+      "agi": 1.66
+    },
+    "route": "나태의 방 (흑룡) 레이드 랜덤 보상",
+    "channel": "레이드",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_9djFYVDm_cb8758362fb43058c1deba63b22e9fa3fe440ab6.gif"
+  },
+  {
+    "name": "바우트",
+    "grade": "일반",
+    "attr": {
+      "수": 1,
+      "화": 9
+    },
+    "init": {
+      "hp": 67.38,
+      "atk": 13.09,
+      "def": 12.42,
+      "agi": 1.88
+    },
+    "grow": {
+      "hp": 11.72,
+      "atk": 2.28,
+      "def": 2.16,
+      "agi": 0.33
+    },
+    "route": "지원 / 마일리지 포인트 상점",
+    "channel": "지원",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_EFLbyWO8_8482c40fc34d474c24eef52a23abcf6d7041d0bd.gif"
+  },
+  {
+    "name": "토우트",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8
+    },
+    "init": {
+      "hp": 74.62,
+      "atk": 11.84,
+      "def": 12.74,
+      "agi": 2.38
+    },
+    "grow": {
+      "hp": 12.98,
+      "atk": 2.06,
+      "def": 2.22,
+      "agi": 0.41
+    },
+    "route": "지원 / 마일리지 포인트 상점",
+    "channel": "지원",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_74oed5SI_b4f00ccf47921dee7ed656d1e83138ed511a9db4.gif"
+  },
+  {
+    "name": "아리",
+    "grade": "일반",
+    "attr": {
+      "화": 1,
+      "풍": 9
+    },
+    "init": {
+      "hp": 53.4,
+      "atk": 10.69,
+      "def": 6.15,
+      "agi": 11.16
+    },
+    "grow": {
+      "hp": 9.68,
+      "atk": 1.94,
+      "def": 1.11,
+      "agi": 2.02
+    },
+    "route": "지원 / 마일리지 포인트 상점",
+    "channel": "지원",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/1edfce9ea2ad6b672e8453ca35a782f3_P0Bv7VXS_4b6625b6a08a5e748651c73595c105266d40cb3c.gif"
+  },
+  {
+    "name": "노르푸스",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 53.16,
+      "atk": 11.8,
+      "def": 6.4,
+      "agi": 8.52
+    },
+    "grow": {
+      "hp": 10.08,
+      "atk": 2.24,
+      "def": 1.21,
+      "agi": 1.62
+    },
+    "route": "정규 듀얼 보상",
+    "channel": "듀얼",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_uQBwZWgj_40697d4799f79799f57281ccca1e6e45ef4d71bd.gif"
+  },
+  {
+    "name": "카무르",
+    "grade": "일반",
+    "attr": {
+      "화": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 53.38,
+      "atk": 12.73,
+      "def": 7.33,
+      "agi": 6.62
+    },
+    "grow": {
+      "hp": 10.14,
+      "atk": 2.42,
+      "def": 1.39,
+      "agi": 1.26
+    },
+    "route": "정규 듀얼 보상",
+    "channel": "듀얼",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_UoVczZr7_6c4b6dce8b5d8afbd05dc8e79aa609df649ec9dc.gif"
+  },
+  {
+    "name": "다이피노",
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "풍": 4
+    },
+    "init": {
+      "hp": 57.59,
+      "atk": 13.07,
+      "def": 7.69,
+      "agi": 8.19
+    },
+    "grow": {
+      "hp": 10.08,
+      "atk": 2.29,
+      "def": 1.35,
+      "agi": 1.43
+    },
+    "route": "정규 듀얼 보상",
+    "channel": "듀얼",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_SdkDiyGU_b088174bdbd96ef07396b928ca38b61e2a0521e1.gif"
+  },
+  {
+    "name": "봉봉",
+    "grade": "일반",
+    "attr": {
+      "화": 3,
+      "풍": 7
+    },
+    "init": {
+      "hp": 53.43,
+      "atk": 12.17,
+      "def": 7.49,
+      "agi": 6.89
+    },
+    "grow": {
+      "hp": 10.17,
+      "atk": 2.32,
+      "def": 1.43,
+      "agi": 1.31
+    },
+    "route": "정규 듀얼 보상",
+    "channel": "듀얼",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_COtEFcZy_764ebdd4c797e2a87389d0106754fa737ebc84b5.gif"
+  },
+  {
+    "name": "엘르벨",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "풍": 5
+    },
+    "init": {
+      "hp": 58.37,
+      "atk": 12.32,
+      "def": 7.17,
+      "agi": 9.23
+    },
+    "grow": {
+      "hp": 10.21,
+      "atk": 2.16,
+      "def": 1.25,
+      "agi": 1.62
+    },
+    "route": "전쟁의 전리품 랜덤 보상",
+    "channel": "듀얼",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_oONDdmea_6e802987872253798dad9dc06ad3e2d270bea857.gif"
+  },
+  {
+    "name": "가르마루",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 55.48,
+      "atk": 12.36,
+      "def": 7.26,
+      "agi": 7.96
+    },
+    "grow": {
+      "hp": 10.17,
+      "atk": 2.27,
+      "def": 1.33,
+      "agi": 1.46
+    },
+    "route": "전쟁의 전리품 랜덤 보상",
+    "channel": "듀얼",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_Jdr83B0t_6cf3cb6ceacfa9733d8e4dcd1911e3134d78a7a9.gif"
+  },
+  {
+    "name": "헤르마루",
+    "grade": "일반",
+    "attr": {
+      "화": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 55.48,
+      "atk": 12.62,
+      "def": 7.27,
+      "agi": 7.7
+    },
+    "grow": {
+      "hp": 10.17,
+      "atk": 2.31,
+      "def": 1.33,
+      "agi": 1.41
+    },
+    "route": "전쟁의 전리품 랜덤 보상",
+    "channel": "듀얼",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_AWvymfL2_ee022d48b53478e5903d7b3c2c97936ea28e85e1.gif"
+  },
+  {
+    "name": "베르마루",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 50.57,
+      "atk": 11.04,
+      "def": 6.36,
+      "agi": 8.19
+    },
+    "grow": {
+      "hp": 10.02,
+      "atk": 2.19,
+      "def": 1.26,
+      "agi": 1.62
+    },
+    "route": "전쟁의 전리품 랜덤 보상",
+    "channel": "듀얼",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_Ri1ZFghI_ce2789c864d36e31443a70b61755c1aa1793f7ca.gif"
+  },
+  {
+    "name": "화이트골로스",
+    "grade": "일반",
+    "attr": {
+      "수": 5,
+      "화": 5
+    },
+    "init": {
+      "hp": 60.38,
+      "atk": 13.72,
+      "def": 8.54,
+      "agi": 6.88
+    },
+    "grow": {
+      "hp": 10.51,
+      "atk": 2.39,
+      "def": 1.49,
+      "agi": 1.2
+    },
+    "route": "전쟁의 전리품 랜덤 보상",
+    "channel": "듀얼",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_VWf3A182_1e678c7f39a3887fe86498c861e7587313d08b8f.gif"
+  },
+  {
+    "name": "현무",
+    "grade": "일반",
+    "attr": {
+      "지": 9,
+      "수": 1
+    },
+    "init": {
+      "hp": 71.62,
+      "atk": 11.82,
+      "def": 13.17,
+      "agi": 2.88
+    },
+    "grow": {
+      "hp": 12.46,
+      "atk": 2.06,
+      "def": 2.29,
+      "agi": 0.5
+    },
+    "route": "격전의 알 랜덤 보상",
+    "channel": "듀얼",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_0fJgMXQV_c48303cfcf49ea2456391596238aa848faac999a.gif"
+  },
+  {
+    "name": "청룡",
+    "grade": "일반",
+    "attr": {
+      "수": 9,
+      "화": 1
+    },
+    "init": {
+      "hp": 62.38,
+      "atk": 13.49,
+      "def": 7.87,
+      "agi": 7.88
+    },
+    "grow": {
+      "hp": 10.85,
+      "atk": 2.35,
+      "def": 1.37,
+      "agi": 1.37
+    },
+    "route": "격전의 알 랜덤 보상",
+    "channel": "듀얼",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_ed3ub5Kr_491bdfe6d8cdb1347724162de320d443bd6ecfb2.gif"
+  },
+  {
+    "name": "주작",
+    "grade": "일반",
+    "attr": {
+      "화": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 58.62,
+      "atk": 13.12,
+      "def": 6.82,
+      "agi": 9.38
+    },
+    "grow": {
+      "hp": 10.2,
+      "atk": 2.28,
+      "def": 1.19,
+      "agi": 1.63
+    },
+    "route": "격전의 알 랜덤 보상",
+    "channel": "듀얼",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_kNpbJcGM_1bf07d5d5a84f2249eea914f8c732255b793c3c8.gif"
+  },
+  {
+    "name": "풍백",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 53.38,
+      "atk": 11.51,
+      "def": 6.56,
+      "agi": 8.62
+    },
+    "grow": {
+      "hp": 10.14,
+      "atk": 2.19,
+      "def": 1.25,
+      "agi": 1.64
+    },
+    "route": "격전의 알 랜덤 보상",
+    "channel": "듀얼",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_8CUw2ucl_dc67fa0cdb41d3b81fd61877e9dce1f2d9d818f1.gif"
+  }
+]

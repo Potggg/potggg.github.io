@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>초구 / 강화 시뮬레이터</title>
+<link rel="shortcut icon" href="#">
+<script>
+  (function() {
+    const originalWarn = console.warn;
+    console.warn = function(...args) {
+      if (typeof args[0] === 'string' && (
+        args[0].includes('cdn.tailwindcss.com') || 
+        args[0].includes('in-browser Babel transformer')
+      )) { return; }
+      originalWarn.apply(console, args);
+    };
+  })();
+</script>
+
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    // Tailwind가 기존 시뮬레이터 스타일을 초기화하지 않도록 설정
+    tailwind.config = {
+        corePlugins: {
+            preflight: false,
+        }
+    }
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.6.0/decimal.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* === [공통 및 시뮬레이터 스타일] === */
+  :root {
+    --input-padding-y: 9px;
+    --button-padding-y: 10px;
+    --border-width: 1px;
+  }
+  body {
+    background:#0b1426;
+    color:#eaf2ff;
+    font-family:'Noto Sans KR', sans-serif; 
+    margin:0;
+    padding:15px;
+    text-align:center;
+    font-size: 15px;
+  }
+  h1 {color:#ffd447;margin-bottom:15px;}
+
+  /* 탭 버튼 영역 */
+  .tab-buttons{display:flex;justify-content:center;gap:10px;margin-bottom:15px; flex-wrap: wrap;}
+  .tab-buttons button{
+    /* 선택되지 않은 버튼: 흰색 배경, 회색 글씨, 회색 테두리 (다른 스타일을 강제 오버라이드하기 위해 !important 추가) */
+    background:rgba(15,25,45,0.9) !important; 
+    border: 1px solid #ffd447 !important; 
+    color:#ffd447 !important;
+    
+    font-weight:700;
+    border-radius:10px;
+    padding:10px 20px;
+    cursor:pointer;
+    transition:all .2s ease;
+  }
+
+  .tab-buttons button.active{
+    /* 선택된 버튼: 노란색 배경, 검은색 글씨, 노란색 테두리 (강제 오버라이드) */
+    background:#ffd447 !important;
+    color:#111 !important;
+    border: 1px solid #ffd447 !important;
+  }
+  
+  /* 탭 컨텐츠 */
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
+  
+  /* 공통 Input/Button (시뮬레이터용) */
+  input:not(.input-compact){background:rgba(15,25,45,0.9);color:#fff;border:1px solid #3ba4f7;padding:10px 14px;border-radius:8px;width:260px;margin-bottom:8px;}
+  button:not(.px-3){background:#ffd447;color:#111;font-weight:700;border:none;border-radius:8px;padding:10px 14px;cursor:pointer;margin:4px;transition:all .2s ease;}
+  button:hover{filter:brightness(1.1);}
+  
+  /* 검색창 그룹 */
+  .search-group {display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap;}
+  #suggestions {display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; max-width: 700px; margin: 8px auto 0;}
+
+  /* 검색 인풋/버튼 오버라이드 */
+  #petName {padding: var(--input-padding-y) 10px; font-size: 14px; border: var(--border-width) solid #3ba4f7; border-radius: 8px; background: #1e2b40; color: #fff; box-sizing: border-box; width: 240px; margin-bottom: 0 !important;}
+  #btnSearch {padding: var(--button-padding-y) 14px; background: #3ba4f7; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin: 0 !important;}
+  #btnClearInput {padding: var(--button-padding-y) 14px; background: #4a5d7c; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin: 0 !important;}
+  
+  #sgrade {font-size: 14px;}
+  .panel{margin-top:10px;background:rgba(15,25,45,0.9);border:1px solid #24324b;border-radius:10px;padding:10px;display: inline-block;}
+  
+  .result, #poisonResult{margin-top:15px; text-align:left; display:none; background:rgba(15,25,45,0.85); border-radius:10px; padding:14px; border:1px solid #24324b; font-family:"JetBrains Mono",monospace; font-size: 14px; line-height: 1.8;}
+  
+  /* 소수점 결과 그리드 */
+  .decimal-grid {display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 5px 5px; padding: 5px 0;}
+  .decimal-grid span:nth-child(4n-3), .decimal-grid span:nth-child(4n-1) {text-align: left;}
+  .decimal-grid span:nth-child(4n-2), .decimal-grid span:nth-child(4n) {text-align: right; padding-right: 5px;}
+  
+  #costDisplay{margin-top:10px;color:#ffd447;font-weight:700;}
+  .plus{color:#ff6b81;font-weight:700;}
+  .minus{color:#3ba4f7;font-weight:700;}
+  .zero{color:#a9b5cc;}
+
+  /* 경험치 계산기 레이아웃 */
+  .wrapper{display:flex;justify-content:center;gap:10px;max-width:900px;margin:auto; flex-wrap: wrap;}
+  .card{background:rgba(20,30,50,0.9);border:1px solid #24324b;border-radius:16px;padding:16px;box-shadow:0 0 12px rgba(25,60,100,.25);}
+  .card h2 {margin-top: 0; margin-bottom: 15px;}
+  #expTab .card:first-child {min-width: 300px; max-width: 450px;}
+  #expTab .card:last-child {min-width: 300px; max-width: 300px;}
+  
+  /* 맹독 계산기 스타일 */
+  #expTab .search-group {display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: nowrap; margin-bottom: 0;}
+  #poisonPetName {width: 180px; padding: var(--input-padding-y) 10px; font-size: 14px; border: var(--border-width) solid #3ba4f7; border-radius: 8px; background: #1e2b40; color: #fff; box-sizing: border-box; margin-bottom: 0;}
+  #btnPoisonSearch {padding: var(--button-padding-y) 14px; background: #ffd447; color: #111; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin: 0;}
+
+  label{color:#a9b5cc;font-weight:600;font-size:14px;}
+  .row{display:grid;gap:6px;margin:0;}
+  .input-grid {display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; padding: 0;}
+  input[type="number"]:not(.input-compact){width: auto; padding:10px 8px; border:1px solid #3ba4f7; border-radius:10px; background:rgba(15,25,45,0.85); color:#fff; outline:none; font-size:15px; margin-bottom: 0; text-align: center;}
+  
+  select {background:rgba(15,25,45,0.9); color:#fff; border:1px solid #3ba4f7; padding:10px 14px; border-radius:8px; width: auto; font-size: 14px; padding: 10px 12px;}
+  .row.buttons{display:flex;justify-content:space-between;gap:10px;margin-top:8px;padding: 0;}
+  .row.buttons button{flex:1;width:48%;padding:10px 0;border-radius:8px;font-weight:700;}
+  .results{display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-top:10px; padding: 0;}
+  .stat{background:rgba(15,25,45,0.9);border:1px solid #24324b;border-radius:14px;padding:8px;text-align:center;}
+  .stat small{display:block;color:#a9b5cc;}
+  .stat strong{display:block;margin-top:4px;font-size:13.3333px;color:#ffd447;}
+
+  .result-header, .result-row {display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; font-family: "JetBrains Mono", monospace; column-gap: 40px;}
+  .result-header {color: #3ba4f7; font-weight: 700; margin-top: 6px; border-bottom: 1px solid #24324b; padding-bottom: 3px;}
+  .result-row {margin-top: 4px;}
+  
+  /* 강화 시뮬레이터 스타일 */
+  #enhancementStats {display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap;}
+  .stat-box {background: #1e2b40; border: 1px solid #3ba4f7; border-radius: 8px; padding: 10px 15px; text-align: center; min-width: 100px;}
+  .stat-box small {display: block; color: #a9b5cc; font-size: 12px;}
+  .stat-box strong {display: block; font-size: 18px; color: #ffd447; margin-top: 2px;}
+  #enhancementLog {margin-top: 5px; background: rgba(15, 25, 45, 0.85); border-radius: 10px; padding: 8px; border: 1px solid #24324b; font-family: "JetBrains Mono", monospace; font-size: 13px; line-height: 1.6; max-width: 500px; margin-left: auto; margin-right: auto; text-align: left; max-height: 350px; overflow-y: auto; display: none;}
+  #enhancementLog b { color: #ffffff; }
+  .enh-success { color: #00ffff; }
+  .enh-fail { color: #ff6b81; }
+  .enh-destroy { color: #ff00ff; }
+  .enh-controls {display: flex; justify-content: center; gap: 15px; margin-top: 15px; flex-wrap: wrap; max-width: 560px; margin-left: auto; margin-right: auto;}
+  .enh-controls .control-group {display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 130px;}
+  .enh-controls select {width: 100%; margin-left: 0;}
+  .enh-controls label {margin-bottom: 5px; text-align: center;}
+
+  /* === [포인트 계산기 전용 스타일 (React)] === */
+  /* 요청 디자인 기반 다크 테마 적용 */
+
+  #pointCalcRoot {
+      /* 시뮬레이터 공통 Dark Panel 스타일 사용 */
+      background: rgba(15, 25, 45, 0.9);
+      border: 1px solid #24324b;
+      border-radius: 10px;
+      color: #eaf2ff; /* 폰트 색상 밝게 */
+      
+      width: 90%; 
+      max-width: 400px; 
+      margin: 10px auto;
+      padding: 10px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 11px;
+  }
+
+  /* 인풋박스 스타일: 높이 22px로 납작하게, 다크 테마 */
+  .input-compact {
+      outline: none;
+      font-size: 11px;
+      height: 22px !important;
+      padding: 0;
+      color: #fff; /* 글씨 색상 흰색 */
+      border-radius: 4px;
+      line-height: 20px;
+      background-color: #1e2b40;
+      border: 1px solid #3ba4f7;
+  }
+  .input-compact:focus {
+      box-shadow: 0 0 0 1px #ffd447; /* 포커스 시 노란색 테두리 */
+      border-color: #ffd447 !important;
+      background-color: #1e2b40 !important;
+      z-index: 10;
+  }
+
+  /* ReadOnly Result Input Style */
+  #pointCalcRoot input[type=number][readonly], 
+  #pointCalcRoot input[type=text][readonly] {
+      background-color: #0d1629;
+      color: #a9b5cc;
+      border: 1px solid #1c263c !important;
+      cursor: default;
+  }
+
+  /* Total Row (Strong Highlight) */
+  .total-input-highlight input {
+      background-color: #3ba4f7 !important; /* 파란색 배경 */
+      color: #0b1426 !important; /* 검정색 폰트 */
+      border: 1px solid #ffd447 !important; /* 노란색 테두리 */
+      font-weight: 900 !important;
+  }
+
+  /* 숫자 입력창 화살표 제거 및 스타일 */
+  #pointCalcRoot input[type=number], 
+  #pointCalcRoot input[type=text] {
+      -moz-appearance: textfield;
+      width: 100%; 
+      margin: 0;
+      text-align: center;
+      padding: 0 !important; 
+      height: 22px !important; /* 높이 강제 고정 */
+  }
+  #pointCalcRoot input.bg-white { background-color: #1e2b40 !important; } /* Editable Input background color */
+  #pointCalcRoot input::-webkit-outer-spin-button,
+  #pointCalcRoot input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+  /* 모바일 최적화 */
+  @media (max-width: 600px) {
+    body {font-size: 14px; padding: 10px;}
+    h1 {font-size: 22px; margin-bottom: 10px;}
+    input:not(.input-compact), select {font-size: 14px !important; padding: 8px 10px !important;}
+    
+    .decimal-grid {grid-template-columns: auto 1fr; gap: 5px 10px;}
+    #enhancementStats {display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 400px; margin: 15px auto;}
+    .enh-controls {flex-direction: row; justify-content: center; gap: 10px; max-width: 400px; margin: 15px auto;}
+    .enh-controls .control-group {flex: 1; min-width: unset; flex-direction: column; align-items: center;}
+    
+    /* 탭 버튼 모바일 줄바꿈 -> 2x2 Grid로 수정 */
+    .tab-buttons { 
+      display: grid; /* Grid 레이아웃 적용 */
+      grid-template-columns: 1fr 1fr; /* 2열 설정 */
+      gap: 8px; /* 간격 조정 */
+      margin-bottom: 15px; /* 기존 간격 유지 */
+    }
+    .tab-buttons button { 
+      padding: 10px 5px; /* 터치 영역 확보 및 높이 조정 */ 
+      font-size: 14px; /* 글꼴 크기 조정 */
+      width: auto; /* Grid item에 맞게 조정 */
+      flex-grow: unset; /* 기존 flex-grow 제거 */
+    }
+
+    /* 포인트 계산기 모바일 */
+    #pointCalcRoot { padding: 10px; }
+    
+    /* 경험치 계산기 입력 그리드 */
+    .input-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+    #expTab input[type="number"] {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .row.buttons {
+        padding: 0;
+    }
+    .results {
+        padding: 0;
+    }
+
+    /* 강화 로그 */
+    #enhancementLog {
+        font-size: 12px;
+        padding: 4px;
+        line-height: 1.4;
+        max-height: 250px;
+        letter-spacing: -0.4px; 
+    }
+
+    /* 초구 결과 창 (#result)의 간격 축소 (맹독은 제외) */
+    #result {
+        font-size: 12px;
+        line-height: 1.4 !important;
+        letter-spacing: -0.5px !important;
+  }
+    
+  }
+  
+  #notice {margin-top: 20px; font-size: 14px;}
+</style>
+</head>
+<body>
+<h1>🕹️ 노바서버 시뮬레이터</h1>
+
+<div class="tab-buttons">
+  <button id="tabSim" class="active">🎲 초구 시뮬레이터</button>
+  <button id="tabEnh">🏹 강화 시뮬레이터</button> 
+  <button id="tabExp">📘 경험치 / 소수점 계산</button>
+  <button id="tabPoint">🔄 환포 계산기</button>
+</div>
+
+<div id="simTab" class="tab-content active">
+  <div class="search-group">
+    <input id="petName" placeholder="🔍 페트를 입력해 주세요." />
+    <button id="btnSearch">검색</button>
+    <button id="btnClearInput">초기화</button>
+  </div>
+  <div id="suggestions" style="margin-top:8px;"></div>
+  <div id="sgrade" class="panel">페트를 입력하면 S급 기준 능력치가 표시됩니다.</div>
+  <div style="margin-top:10px;">
+    <button id="sim1">🎲 초구 1회</button>
+    <button id="sim5">🎲 초구 5회</button>
+    <button id="simUntil">🔥 정석 뽑기</button>
+    <button id="clear">🧹</button>
+  </div>
+  <div id="costDisplay">💰 총 소모 : 0원</div>
+  <div id="result" class="result" style="display:none;"></div>
+  <div id="notice">제작도움 : 노바서버 지원(sup_bot)님</div>
+</div>
+
+<div id="enhTab" class="tab-content">
+  <div class="enh-controls">
+    <div class="control-group">
+        <label for="initialEnhancementLevel">시작 등급</label>
+        <select id="initialEnhancementLevel">
+            <option value="0">+0</option>
+            <option value="1">+1</option>
+            <option value="2">+2</option>
+            <option value="3">+3</option>
+            <option value="4">+4</option>
+            <option value="5">+5</option>
+            <option value="6">+6</option>
+            <option value="7">+7</option>
+            <option value="8">+8</option>
+            <option value="9">+9</option>
+        </select>
+    </div>
+    <div class="control-group">
+        <label for="enhancementCube">사용 큐브</label>
+        <select id="enhancementCube">
+            <option value="NORMAL_CUBE" data-rate-increase="0">일반 큐브 (+0%)</option>
+            <option value="ADVANCED_CUBE" data-rate-increase="5">고급 큐브 (+5%)</option>
+        </select>
+    </div>
+    <div class="control-group">
+        <label for="enhancementAid">강화 보조제</label>
+        <select id="enhancementAid">
+            <option value="NONE" data-rate-increase="0">미사용 (+0%)</option>
+            <option value="AID_5" data-rate-increase="5">강화 보조제 (+5%)</option>
+            <option value="AID_10" data-rate-increase="10">강화 보조제 (+10%)</option>
+            <option value="AID_15" data-rate-increase="15">강화 보조제 (+15%)</option>
+            <option value="AID_20" data-rate-increase="20">강화 보조제 (+20%)</option>
+        </select>
+    </div>
+  </div>
+  <div id="enhancementStats">
+    <div class="stat-box"><small>현재 등급</small><strong id="enhCurrentLevel">+0</strong></div>
+    <div class="stat-box"><small>소모 큐브</small><strong id="enhTotalCubes">0 개</strong></div> 
+    <div class="stat-box"><small>장비 파괴</small><strong id="enhDestroyedCount">0 개</strong></div>
+    <div class="stat-box"><small>소모 스톤</small><strong id="enhTotalCost">0 S</strong></div>
+  </div>
+  <div style="margin-top:15px;" id="enhancementButtons">
+    <button id="enhSim1">🧊 강화하기</button>
+    <button id="enhSimUntilMax">🔥 +10강 도전</button>
+    <button id="enhReset">🧹 초기화</button>
+  </div>
+  <div id="enhancementRates" style="margin-top:0px; font-weight:700; font-size: 14px;">
+    시도 확률
+  </div>
+  <div id="enhancementLog" style="display:none;">
+    <b>🏹 강화 시뮬레이션 로그</b><br>────────────────────<br>
+  </div>
+</div>
+
+<div id="expTab" class="tab-content">
+  <div class="wrapper">
+    <div class="card"> <h2>📘 경험치 계산기</h2>
+      <div class="input-grid">
+        <div class="row"><label for="currentLevel">현재 레벨</label><input id="currentLevel" type="number" placeholder="예: 120" /></div>
+        <div class="row"><label for="targetLevel">목표 레벨</label><input id="targetLevel" type="number" placeholder="예: 140" /></div>
+        <div class="row"><label for="currentPercent">현재 경험치(%)</label><input id="currentPercent" type="number" placeholder="예: 20" /></div>
+        <div class="row"><label for="xpPerHour">시간당 경험치</label><input id="xpPerHour" type="number" placeholder="예: 1,200,000"  /></div>
+      </div>
+      <div class="row buttons">
+        <button id="run">계산</button>
+        <button id="reset">초기화</button>
+      </div>
+      <div class="results" id="results" hidden>
+        <div class="stat"><small>남은 경험치</small><strong id="statRemain">-</strong></div>
+        <div class="stat"><small>예상 소요 시간 (일)</small><strong id="statTimeAndDays">-</strong></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>☠️ 소수점 / 맹독 계산기</h2>
+      <div class="search-group">
+        <input id="poisonPetName" placeholder="🔍 페트를 입력해 주세요." />
+        <button id="btnPoisonSearch">검색</button>
+      </div>
+      <div id="poisonResult" class="result" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+
+<div id="pointTab" class="tab-content">
+    <div id="pointCalcRoot"></div>
+</div>
+
+<script type="text/babel">
+    const { useState, useEffect, useMemo, useCallback } = React;
+    const clone = _.clone;
+
+    // [수정] 읽기 전용 인풋: 높이 22px 고정 및 다크 테마 반영
+    function ReadOnlyInput({ id, value, highlight }) {
+        return (
+            <div className="flex items-center justify-center w-full">
+                <input
+                    // input-compact 적용 및 h-[22px] 등 중복 스타일 제거
+                    className="input-compact w-full text-center font-medium cursor-default text-[11px] leading-none"
+                    type="number"
+                    id={id}
+                    value={value}
+                    readOnly={true}
+                    tabIndex="-1"
+                />
+            </div>
+        );
+    }
+
+    // [수정] 편집 가능 인풋: 높이 22px 고정 및 다크 테마 반영
+    function EditableInput({ value, leftValue, readOnly = false, onUpdate, tabIndex }) {
+        const displayValue = value === 0 ? "" : value.toString();
+        
+        return (
+            <div className="flex items-center justify-center w-full">
+                <input
+                    className={`input-compact w-full h-[22px] text-center font-semibold rounded text-[11px] leading-none placeholder:text-slate-500 ${
+                        readOnly 
+                        ? "cursor-not-allowed" 
+                        : "bg-white"
+                    }`}
+                    type="text"
+                    value={displayValue}
+                    readOnly={readOnly}
+                    tabIndex={tabIndex}
+                    onChange={t => {
+                        let rawInput = t.target.value;
+                        if (rawInput === "") {
+                            onUpdate && onUpdate(0);
+                            return;
+                        }
+                        let numericValue = Number(rawInput);
+                        if (!Number.isNaN(numericValue) && onUpdate) {
+                            onUpdate(numericValue);
+                        }
+                    }}
+                    onFocus={(e) => {
+                         if (value === 0) e.target.select();
+                    }}
+                />
+            </div>
+        );
+    }
+
+    function renderReadOnlyRow(t, e, highlightStartIdx = -1) {
+        return e.slice(0, 5).map((val, idx) => (
+            <td key={`${t}-${idx}`} className="p-[1px] align-middle">
+                <ReadOnlyInput id={`${t}${idx}`} value={val} highlight={idx >= highlightStartIdx && highlightStartIdx !== -1} />
+            </td>
+        ));
+    }
+    
+    function renderEditableRow({ idPrefix, values, handler, isIntValue = false, leftValues, tabOffset }) {
+        return values.slice(0, 5).map((val, idx) => {
+            const computedTabIndex = tabOffset ? (idx + 1) * 20 + tabOffset : undefined;
+            return (
+                <td key={`${idPrefix}-${idx}`} className="p-[1px] align-middle">
+                    {leftValues ? (
+                        <EditableInput
+                            value={isIntValue ? Math.trunc(val) : val}
+                            leftValue={leftValues[idx]}
+                            onUpdate={newVal => handler(idx, newVal)}
+                            tabIndex={computedTabIndex}
+                        />
+                    ) : (
+                        <EditableInput
+                            value={isIntValue ? Math.trunc(val) : val}
+                            onUpdate={newVal => handler(idx, newVal)}
+                            tabIndex={computedTabIndex}
+                        />
+                    )}
+                </td>
+            );
+        });
+    }
+
+    // 계산 로직
+    const u = (t, e, s, n) => Math.trunc(n / 12 + s / 4 + (t - 85 * e) / 4);
+    const h = (t, e) => {
+        if (e < 0) return t;
+        let s = 10 ** (e - 1);
+        return t * s + 0.5 / s;
+    };
+    function k(t, e, s) {
+        if (e === 0) return 0;
+        return Math.trunc(100 * h(t / e * s, 1)) / 100 || 0;
+    }
+    function P(t, e, s, n) {
+        return Math.trunc((Math.trunc(t) + Math.trunc(e) + Math.trunc(s) + Math.trunc(n)) * 100) / 100;
+    }
+
+    function Calculator({ data: initialData, onSave, onLoad, onPresetLoad }) {
+        const [c0, setC0] = useState(initialData.initStats[0]); 
+        const [j, m] = useState(initialData.levels);
+        const [v, f] = useState({ vits: initialData.stats.vits, strs: initialData.stats.strs, tghs: initialData.stats.tghs, dexs: initialData.stats.dexs });
+        const [b, g] = useState(initialData.extraStats);
+        const [N, p] = useState(initialData.questSum);
+
+        useEffect(() => {
+            setC0(initialData.initStats[0]);
+            m(initialData.levels);
+            f({ vits: initialData.stats.vits, strs: initialData.stats.strs, tghs: initialData.stats.tghs, dexs: initialData.stats.dexs });
+            g(initialData.extraStats);
+            p(initialData.questSum);
+        }, [initialData]);
+
+        const S = v.vits.map((t, e) => t + v.strs[e] + v.tghs[e] + v.dexs[e]);
+        const y = v.vits.map((t, e) => Math.trunc(t) + Math.trunc(v.strs[e]) + Math.trunc(v.tghs[e]) + Math.trunc(v.dexs[e]));
+
+        const w = S.map((t, e) => {
+            if (0 === t) return 0;
+            const cumulativeLevel = j.slice(0, e + 1).reduce((acc, curr) => acc + curr, 0);
+            return u(cumulativeLevel, e + 1, N[e], t);
+        });
+
+        const C = {
+            vits: v.vits.map((t, e) => k(t, S[e], w[e])),
+            strs: v.strs.map((t, e) => k(t, S[e], w[e])),
+            tghs: v.tghs.map((t, e) => k(t, S[e], w[e])),
+            dexs: v.dexs.map((t, e) => k(t, S[e], w[e])),
+        };
+
+        // [수정] 중요: 이전 환생의 결과값이 변경되면, 자동으로 다음 환생 입력값에 소수점을 반영하는 로직
+        useEffect(() => {
+            // 현재 상태 복제 (vits, strs 등 배열을 새로 생성하여 불변성 유지)
+            const newStats = {
+                vits: [...v.vits],
+                strs: [...v.strs],
+                tghs: [...v.tghs],
+                dexs: [...v.dexs]
+            };
+            let hasChanges = false;
+
+            // 2환생(idx 1)부터 5환생(idx 4)까지 순회
+            for (let i = 1; i < 5; i++) {
+                ['vits', 'strs', 'tghs', 'dexs'].forEach(statKey => {
+                    // 이전 단계의 계산 결과 (C는 렌더링 중 계산됨)
+                    const prevResult = C[statKey][i - 1];
+                    // 소수점 추출 (예: 61.5 -> 0.5)
+                    const decimalPart = prevResult ? prevResult - Math.floor(prevResult) : 0;
+                    
+                    // 현재 저장된 스탯 값
+                    const currentVal = newStats[statKey][i];
+                    // 사용자가 입력한 정수부라고 가정 (Math.floor)
+                    const currentInt = Math.floor(currentVal);
+                    
+                    // 올바른 값 = 정수부 + 이전 단계 소수점
+                    const correctVal = currentInt + decimalPart;
+
+                    // 현재 값과 계산된 값이 다르면 (부동소수점 오차 고려) 업데이트
+                    if (Math.abs(currentVal - correctVal) > 0.00001) {
+                        newStats[statKey][i] = correctVal;
+                        hasChanges = true;
+                    }
+                });
+            }
+
+            // 변경사항이 있다면 상태 업데이트
+            if (hasChanges) {
+                f(newStats);
+            }
+        }, [v, j, N, b]); // C를 구성하는 의존성들이 변할 때 실행
+
+        const V = C.vits.map((t, e) => {
+            const baseRebirthPoint = P(C.vits[e], C.strs[e], C.tghs[e], C.dexs[e]);
+            return baseRebirthPoint + b[e];
+        });
+
+        const fullTotals = C.vits.map((t, e) => {
+            const rawSum = t + C.strs[e] + C.tghs[e] + C.dexs[e] + b[e];
+            return Math.round(rawSum * 100) / 100;
+        });
+
+        const derivedInitStats = [c0, V[0], V[1], V[2], V[3]];
+
+        const M = derivedInitStats.map((t, e) => {
+            let n = j[e];
+            let r = y[e];
+            return 0 === n ? 0 : Math.trunc(t) + 3 * (n - 1) - r;
+        });
+
+        const handleInitStatChange = (val) => { setC0(val); };
+        const E = (t, e) => { let s = clone(j); s[t] = Math.trunc(e); m(s); };
+        function O(t, e, s) {
+            let n = clone(v);
+            let r = C[t][e - 1]; 
+            if (r) n[t][e] = r - Math.floor(r) + Number(s);
+            else n[t][e] = Number(s);
+            f(n);
+        }
+        
+        const handleSaveWrapper = useCallback(() => {
+            const dataToSave = {
+                levels: j,
+                initStats: [c0, 0, 0, 0, 0], // 저장 시에는 1환생 초기스탯만 저장
+                stats: v,
+                extraStats: b,
+                questSum: N
+            };
+            onSave(dataToSave);
+        }, [j, c0, v, b, N, onSave]);
+
+        const handleReset = useCallback(() => {
+            if (window.confirm("초기화하시겠습니까?")) {
+                setC0(20); // 초기 스탯 기본값
+                m([0, 0, 0, 0, 0]); // 레벨
+                f({ // 주요 스탯
+                    vits: [0, 0, 0, 0, 0],
+                    strs: [0, 0, 0, 0, 0],
+                    tghs: [0, 0, 0, 0, 0],
+                    dexs: [0, 0, 0, 0, 0]
+                });
+                g([10, 20, 30, 40, 50]);
+                p([20, 40, 60, 80, 100]);
+            };
+        }, []);
+
+        // [수정] 남은 스탯 행 (Dark Theme)
+        const renderLeftStatRow = (t, e) => {
+            return e.slice(0, 5).map((val, idx) => {
+                const isZeroLevel = j[idx] === 0;
+                let styleClass = "";
+
+                if (isZeroLevel) {
+                    // 레벨 0
+                    styleClass = "!bg-slate-900 !text-slate-400 !border-slate-700";
+                } else if (val < 0) {
+                    // 마이너스 (스탯 초과): 진한 빨강
+                    styleClass = "!bg-red-900 !text-red-200 !border-red-500"; 
+                } else if (val > 0) {
+                    // 플러스 (스탯 남음): 진한 주황
+                    styleClass = "!bg-orange-900 !text-orange-200 !border-orange-500";
+                } else {
+                    // 0 (딱 맞음)
+                    styleClass = "!bg-slate-900 !text-slate-400 !border-slate-700";
+                }
+
+                return (
+                    <td key={`${t}-${idx}`} className="p-[1px] align-middle">
+                        <div className="flex items-center justify-center w-full">
+                            <input 
+                                className={`input-compact w-full text-center text-[11px] cursor-default border ${styleClass}`} 
+                                type="number" 
+                                value={val} 
+                                readOnly={true} 
+                            />
+                        </div>
+                    </td>
+                );
+            });
+        };
+
+        // [수정] 초기 스탯 행 (Dark Theme)
+        const renderInitStatRow = () => {
+            const highlightClasses = "font-bold text-yellow-300 bg-slate-800 border-yellow-500"; // New highlight
+            return derivedInitStats.map((val, idx) => {
+                if (idx === 0) {
+                    // 1환생 초기스탯(입력 가능 칸)은 EditableInput 사용 (이미 직사각형 통일)
+                    return (<td key={`init-${idx}`} className="p-[1px] align-middle"><EditableInput value={val} onUpdate={handleInitStatChange} readOnly={true} tabIndex={0}/></td>); 
+                }
+                return (
+                    <td key={`init-${idx}`} className="p-[1px] align-middle">
+                            <div className="relative flex items-center justify-center group w-full">
+                            {idx > 0 && (<div className="absolute -left-1 text-yellow-600 text-[8px] z-10">▶</div>)}
+                            {/* input-compact 적용 및 통일 */}
+                            <input className={`input-compact w-full text-center cursor-default text-[11px] ${highlightClasses}`} type="number" value={val} readOnly={true} />
+                        </div>
+                    </td>
+                );
+            });
+        };
+
+        // [수정] 헤더 스타일 (Dark Theme)
+        const headerStyles = [
+            "bg-yellow-800 text-yellow-300 border-yellow-700", 
+            "bg-green-800 text-green-300 border-green-700", 
+            "bg-sky-800 text-sky-300 border-sky-700", 
+            "bg-rose-800 text-rose-300 border-rose-700", 
+            "bg-purple-800 text-purple-300 border-purple-700"
+        ];
+        
+        // [수정] 라벨 열 너비 70px로 변경 및 다크 테마 적용
+        const RowHeader = ({ label }) => (
+            <td className="text-center py-0 px-1.5 whitespace-nowrap text-[10px] font-semibold text-ffd447 bg-slate-700 border-r border-slate-600 w-[70px] align-middle h-[24px]">
+                {label}
+            </td>
+        );
+
+        return (
+            <div className="select-none">
+                <h2 className="text-xl mt-0 font-bold text-ffd447 text-center mb-1">🔄 환생 포인트 계산기</h2>
+                <div className="bg-transparent rounded-lg shadow overflow-hidden">
+                    <div className="bg-slate-900/70">
+                        {/* table-fixed 사용 및 w-full (하지만 부모가 540px이므로 540px로 고정됨) */}
+                        <table className="w-full border-collapse table-fixed">
+                            {/* [수정] 테이블 헤드 (Dark Theme & Text Update) */}
+                            <thead>
+                                <tr className="bg-slate-800 border-b border-slate-700 text-[10px]">
+                                    <th className="py-1 px-1 border-r border-slate-700 w-[70px]">환생 단계</th>
+                                    {["1환생", "2환생", "3환생", "4환생", "5환생"].map((text, i) => (
+                                        <th key={i} className="py-1 px-0 h-[24px] align-middle">
+                                            <span className={`inline-block px-1.5 py-0.5 rounded text-[9px] font-bold border ${headerStyles[i]}`}>{text}</span>
+                                        </th>
+                                    ))}
+                                </tr>
+                            </thead>
+                            {/* [수정] 테이블 바디 (Dark Theme & Label Update) */}
+                            <tbody className="divide-y divide-slate-800 text-[10px] bg-slate-900">
+                                <tr><RowHeader label="초기 스탯" />{renderInitStatRow()}</tr>
+                                <tr><RowHeader label="레벨" />{renderEditableRow({ idPrefix: "level", values: j, handler: E, tabOffset: 1 })}</tr>
+                                <tr><RowHeader label="체력" />{renderEditableRow({ idPrefix: "vit", values: v.vits, handler: (t, e) => O("vits", t, e), isIntValue: !0, leftValues: M, tabOffset: 2 })}</tr>
+                                <tr><RowHeader label="완력" />{renderEditableRow({ idPrefix: "str", values: v.strs, handler: (t, e) => O("strs", t, e), isIntValue: !0, leftValues: M, tabOffset: 3 })}</tr>
+                                <tr><RowHeader label="건강" />{renderEditableRow({ idPrefix: "tgh", values: v.tghs, handler: (t, e) => O("tghs", t, e), isIntValue: !0, leftValues: M, tabOffset: 4 })}</tr>
+                                <tr><RowHeader label="순발" />{renderEditableRow({ idPrefix: "dex", values: v.dexs, handler: (t, e) => O("dexs", t, e), isIntValue: !0, leftValues: M, tabOffset: 5 })}</tr>
+                                <tr className="bg-slate-800/50"><RowHeader label="남은 스탯" />{renderLeftStatRow("leftStat", M)}</tr>
+                                <tr><RowHeader label="총 스탯" />{renderReadOnlyRow("intTotalStat", y)}</tr>
+                                {/* 결과 섹션 구분자 */}
+                                <tr className="bg-slate-800"><td colSpan="6" className="py-0.5 text-[11px] font-bold text-ffd447 text-center border-y border-slate-700 h-[20px] align-middle">결과는 자동으로 계산됩니다.</td></tr>
+                                
+                                <tr className="border-t border-slate-700">
+                                    <RowHeader label="환포퀘(누적)" />
+                                    {[10, 20, 30, 40, 50].map((value, idx) => (
+                                        <td key={`questFixed-${idx}`} className="p-[1px] align-middle">
+                                            <ReadOnlyInput value={value} />
+                                        </td>
+                                    ))}
+                                </tr>
+                                <tr><RowHeader label="보너스 스탯" />{renderReadOnlyRow("extraStat", b)}</tr>
+                                <tr><RowHeader label="계산식" />{renderReadOnlyRow("transPoint", w)}</tr>
+                                <tr><RowHeader label="체력" />{renderReadOnlyRow("afterStat-vits", C.vits)}</tr>
+                                <tr><RowHeader label="완력" />{renderReadOnlyRow("afterStat-strs", C.strs)}</tr>
+                                <tr><RowHeader label="건강" />{renderReadOnlyRow("afterStat-tghs", C.tghs)}</tr>
+                                <tr><RowHeader label="순발" />{renderReadOnlyRow("afterStat-dexs", C.dexs)}</tr>
+                                {/* 총 환포 행 (하이라이트) */}
+                                <tr className="total-input-highlight font-bold border-t border-slate-700">
+                                    <RowHeader label="총 환포" />
+                                    {V.slice(0, 5).map((val, idx) => (
+                                        <td key={`total-${idx}`} className="p-[1px] align-middle">
+                                            <div className="flex flex-col items-center justify-center w-full py-0.5">
+                                                {/* input-compact 적용 및 통일 */}
+                                                <input className="input-compact w-full text-center font-bold cursor-default text-[11px] leading-none" type="number" value={val} readOnly={true} />
+                                                {/* 아래의 소수점 값 표시는 검은색 배경에 맞게 색상 수정 */}
+                                                <span className="text-[9px] text-slate-400 leading-none mt-0.5">({fullTotals[idx]})</span>
+                                            </div>
+                                        </td>
+                                    ))}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    {/* [수정] 버튼 영역 (Dark Theme) */}
+                    <div className="bg-slate-700 p-2 border-t border-slate-600 flex items-center justify-center gap-2">
+                        <button className="px-3 py-1 bg-rose-600 border border-rose-500 rounded shadow-sm text-[10px] text-white hover:bg-rose-700" onClick={handleReset}>초기화</button>
+                        <button className="px-3 py-1 bg-slate-600 border border-slate-500 rounded shadow-sm text-[10px] text-white hover:bg-slate-700" onClick={() => onLoad()}>불러오기</button>
+                        <button className="px-3 py-1 bg-blue-600 border border-blue-500 rounded shadow-sm text-[10px] text-white hover:bg-blue-700" onClick={() => handleSaveWrapper()}>저장하기</button>
+                        <button className="px-3 py-1 bg-purple-600 border border-purple-500 rounded shadow-sm text-[10px] text-white hover:bg-purple-700" onClick={() => onPresetLoad('perfectStr')}>193 완캐</button>
+                        <button className="px-3 py-1 bg-teal-600 border border-teal-500 rounded shadow-sm text-[10px] text-white hover:bg-teal-700" onClick={() => onPresetLoad('perfectAgi')}>193 순캐</button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    function App() {
+        const defaultData = {
+            levels: [0, 0, 0, 0, 0],
+            initStats: [20, 0, 0, 0, 0],
+            stats: { vits: [0, 0, 0, 0, 0], strs: [0, 0, 0, 0, 0], tghs: [0, 0, 0, 0, 0], dexs: [0, 0, 0, 0, 0] },
+            extraStats: [10, 20, 30, 40, 50],
+            questSum: [20, 40, 60, 80, 100]
+        };
+        const storageKey = "transCalculatorData";
+        const [data, setData] = useState(defaultData);
+        
+        // --- 프리셋 데이터 정의 ---
+        const presets = useMemo(() => ({
+            perfectStr: { // 193 완캐
+                levels: [140, 140, 140, 140, 140],
+                initStats: [20, 0, 0, 0, 0], 
+                stats: {
+                    vits: [0, 3.5, 13.05, 0, 2.5],
+                    strs: [437, 473.5, 476.82, 547.98, 573.5],
+                    tghs: [0, 3.5, 13.05, 0, 2.5],
+                    dexs: [0, 3.5, 13.05, 0, 0.5]
+                },
+                extraStats: [10, 20, 30, 40, 50],
+                questSum: [20, 40, 60, 80, 100]
+            },
+            perfectAgi: { // 193 순캐
+                levels: [140, 140, 140, 140, 140],
+                initStats: [20, 0, 0, 0, 0], 
+                stats: {
+                    vits: [87, 127.44, 54.769999999999996, 0, 124.5],
+                    strs: [0, 3.5, 13.05, 0, 0.5],
+                    tghs: [0, 3.5, 13.05, 0, 2.5],
+                    dexs: [350, 349.55, 435.11, 547.98, 451.5]
+                },
+                extraStats: [10, 20, 30, 40, 50],
+                questSum: [20, 40, 60, 80, 100]
+            }
+        }), []);
+        // -----------------------------
+
+        const handleSave = useCallback((t) => {
+            if (!window.localStorage.getItem(storageKey) || window.confirm("덮어씌우시겠습니까?")) {
+                window.localStorage.setItem(storageKey, JSON.stringify(t));
+                alert("저장되었습니다.");
+            }
+        }, []);
+
+        const handleLoad = useCallback(() => {
+            let t = window.localStorage.getItem(storageKey);
+            if (!t) { alert("저장된 데이터가 없습니다."); return; }
+            setData(JSON.parse(t));
+            alert("로드되었습니다.");
+        }, []);
+        
+        // --- 프리셋 로드 핸들러 추가 ---
+        const handlePresetLoad = useCallback((presetName) => {
+            const preset = presets[presetName];
+            if (preset) {
+                if (window.confirm(`${presetName === 'perfectStr' ? '193 완캐' : '193 순캐'} 프리셋을 불러오시겠습니까?\n(현재 데이터는 저장되지 않습니다.)`)) {
+                    setData(_.cloneDeep(preset));
+                }
+            } else {
+                alert("프리셋 데이터를 찾을 수 없습니다.");
+            }
+        }, [presets]);
+        // -----------------------------
+
+        return <Calculator data={data} onSave={handleSave} onLoad={handleLoad} onPresetLoad={handlePresetLoad} />; // onPresetLoad 전달
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('pointCalcRoot'));
+    root.render(<App />);
+</script>
+
+<script>
+Decimal.set({ precision:50, rounding: Decimal.ROUND_DOWN });
+
+function cutDecimal(num, places) {
+  let decimal = new Decimal(num).toDP(places, Decimal.ROUND_DOWN);
+  return decimal.toString();
+}
+  
+function computeS0RealFromKU(k, u) {
+  const fac = k / 100;
+  const hpB  = (u.hp + 4.5) * fac;
+  const atkB = (u.atk + 4.5) * fac;
+  const defB = (u.def + 4.5) * fac;
+  const agiB = (u.agi + 4.5) * fac;
+  const hp  = hpB * 4 + atkB + defB + agiB;
+  const atk = hpB * 0.1 + atkB + defB * 0.1 + agiB * 0.05;
+  const def = hpB * 0.1 + atkB * 0.1 + defB + agiB * 0.05;
+  const agi = agiB;
+  return { hp, atk, def, agi };
+}
+
+function getAverageEValueFromU(u) {
+  const sumU = u.hp + u.atk + u.def + u.agi;
+  let minE, maxE; 
+  if (sumU >= 110) { minE = 410; maxE = 460; } 
+  else if (sumU >= 105) { minE = 430; maxE = 480; } 
+  else if (sumU >= 100) { minE = 450; maxE = 500; } 
+  else if (sumU >= 95) { minE = 470; maxE = 520; } 
+  else if (sumU >= 90) { minE = 490; maxE = 540; } 
+  else if (sumU >= 85) { minE = 510; maxE = 560; } 
+  else if (sumU >= 80) { minE = 530; maxE = 580; } 
+  else { minE = 550; maxE = 600; }
+  const avgE = (minE + maxE) / 2;
+  return { e: avgE }; 
+}
+
+function computeSGRealFromE(u, e_value) {
+  const fac = e_value / 10000;
+  const uHp  = u.hp + 4.5;
+  const uAtk = u.atk + 4.5;
+  const uDef = u.def + 4.5;
+  const uAgi = u.agi + 4.5;
+  const hp  = fac * (uHp * 4 + uAtk + uDef + uAgi);
+  const atk = fac * (uHp * 0.1 + uAtk + uDef * 0.1 + uAgi * 0.05);
+  const def = fac * (uHp * 0.1 + uAtk * 0.1 + uDef + uAgi * 0.05);
+  const agi = fac * uAgi;
+  return { hp, atk, def, agi };
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  /* 탭 전환 로직 수정: pointTab 추가 */
+  const showTab = id => {
+    document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));
+    document.querySelectorAll(".tab-buttons button").forEach(b=>b.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    
+    let btnId = "tabSim";
+    if (id === "enhTab") btnId = "tabEnh";
+    else if (id === "expTab") btnId = "tabExp";
+    else if (id === "pointTab") btnId = "tabPoint";
+    
+    document.getElementById(btnId).classList.add("active"); 
+  };
+  
+  document.getElementById("tabSim").onclick=()=>showTab("simTab");
+  document.getElementById("tabEnh").onclick=()=>showTab("enhTab"); 
+  document.getElementById("tabExp").onclick=()=>showTab("expTab");
+  document.getElementById("tabPoint").onclick=()=>showTab("pointTab"); // 추가됨
+  showTab("simTab");
+
+  /* 강화 시뮬레이터 로직 */
+  const ENH_STATS = [
+    { level: +1, success: 1.00, destroy: 0.00, cost: 35000 },
+    { level: +2, success: 0.80, destroy: 0.00, cost: 59800 },
+    { level: +3, success: 0.60, destroy: 0.00, cost: 106400 },
+    { level: +4, success: 0.50, destroy: 0.00, cost: 152710 },
+    { level: +5, success: 0.40, destroy: 0.60, cost: 273600 },
+    { level: +6, success: 0.40, destroy: 0.60, cost: 468530 },
+    { level: +7, success: 0.30, destroy: 0.70, cost: 552800 },
+    { level: +8, success: 0.20, destroy: 0.80, cost: 698470 },
+    { level: +9, success: 0.20, destroy: 0.80, cost: 857200 },
+    { level: +10, success: 0.10, destroy: 0.90, cost: 1195390 },
+  ];
+  
+  const CUBE_DATA = {
+    'NORMAL_CUBE': { name: '일반 큐브', rate_increase: 0, cost_multiplier: 1.0 },
+    'ADVANCED_CUBE': { name: '고급 큐브', rate_increase: 5, cost_multiplier: 2.0 },
+  };
+
+  const AID_DATA = {
+    'NONE': { name: '사용 안 함', rate_increase: 0 },
+    'AID_5': { name: '강화 보조제 (+5%)', rate_increase: 5 },
+    'AID_10': { name: '강화 보조제 (+10%)', rate_increase: 10 },
+    'AID_15': { name: '강화 보조제 (+15%)', rate_increase: 15 },
+    'AID_20': { name: '강화 보조제 (+20%)', rate_increase: 20 },
+  };
+
+  let isMaxSimulationRunning = false; 
+  let currentEnhLevel = 0;
+  let totalEnhCost = 0;
+  let totalCubes = 0; 
+  let destroyedCount = 0;
+  let enhancementLogEntries = []; 
+
+  const enhCurrentLevelDisplay = document.getElementById("enhCurrentLevel");
+  const enhTotalCubesDisplay = document.getElementById("enhTotalCubes"); 
+  const enhDestroyedCountDisplay = document.getElementById("enhDestroyedCount");
+  const enhTotalCostDisplay = document.getElementById("enhTotalCost");
+  const enhLog = document.getElementById("enhancementLog");
+  const initialEnhancementLevelInput = document.getElementById("initialEnhancementLevel"); 
+  const cubeSelect = document.getElementById("enhancementCube");
+  const aidSelect = document.getElementById("enhancementAid");
+  const enhancementRatesDisplay = document.getElementById("enhancementRates");
+  
+  const fmt = n => n.toLocaleString('ko-KR');
+
+  function updateEnhancementRatesDisplay(level) {
+      if (level >= 10) {
+          enhancementRatesDisplay.textContent = "";
+          return;
+      }
+      const nextLevel = level + 1;
+      const dataIndex = nextLevel - 1;
+      const enhData = ENH_STATS[dataIndex];
+      const selectedCube = CUBE_DATA[cubeSelect.value];
+      const selectedAid = AID_DATA[aidSelect.value];
+      
+      let baseSuccessRate = enhData.success * 100; 
+      const cubeBonus = selectedCube.rate_increase;
+      const aidBonus = selectedAid.rate_increase;
+      let finalSuccessRate = baseSuccessRate + cubeBonus + aidBonus;
+      if (baseSuccessRate === 100) finalSuccessRate = 100;
+      else if (finalSuccessRate > 100) finalSuccessRate = 100;          
+      
+      const successRate = finalSuccessRate.toFixed(0);
+      const failRate = (100 - finalSuccessRate).toFixed(0);
+      const failType = nextLevel >= 5 ? "파괴" : "유지";
+      
+      enhancementRatesDisplay.innerHTML = `[+${level} → +${nextLevel}] <span style="color:#00ffff;">성공: ${successRate}%  <span style="color:#ff6b81;">실패(${failType}): ${failRate}%`;
+  }
+
+  function updateEnhLogDisplay() {
+    let logHtml = `<b>🏹 강화 시뮬레이션 로그</b><br>────────────────────<br>`;
+    const maxLogs = 100; 
+    const startIndex = enhancementLogEntries.length > maxLogs ? enhancementLogEntries.length - maxLogs : 0;
+    for (let i = startIndex; i < enhancementLogEntries.length; i++) logHtml += enhancementLogEntries[i];
+    enhLog.innerHTML = logHtml;
+    enhLog.scrollTop = enhLog.scrollHeight;
+  }
+  
+  function updateEnhUI() {
+    enhCurrentLevelDisplay.textContent = `+${currentEnhLevel}`;
+    enhTotalCostDisplay.textContent = `${fmt(totalEnhCost)} S`;
+    enhTotalCubesDisplay.textContent = `${fmt(totalCubes)} 개`; 
+    enhDestroyedCountDisplay.textContent = `${fmt(destroyedCount)} 개`;
+    updateEnhancementRatesDisplay(currentEnhLevel);
+  }
+  
+  function resetEnhancement(initialLevel = 0) {
+    if (initialLevel < 0) initialLevel = 0;
+    if (initialLevel > 9) initialLevel = 9; 
+    currentEnhLevel = initialLevel;
+    totalEnhCost = 0;
+    totalCubes = 0; 
+    destroyedCount = 0;
+    isMaxSimulationRunning = false; 
+    enhancementLogEntries = []; 
+    if (initialLevel > 0) {
+        enhancementLogEntries.push(`+${initialLevel} 상태로 시작<br>`);
+    }
+    enhLog.style.display = "none";
+    updateEnhLogDisplay();
+    updateEnhUI();
+  }
+  
+  resetEnhancement(parseInt(initialEnhancementLevelInput.value) || 0); 
+
+  function enhance(simulateUntilMax = false) {
+    if (currentEnhLevel >= 10) {
+        if (!simulateUntilMax) alert("+10 강화가 완료되었습니다. 초기화 후 다시 시작하세요.");
+        return;
+    }
+    enhLog.style.display = "inline-block";
+    isMaxSimulationRunning = simulateUntilMax;
+    
+    const selectedCube = CUBE_DATA[cubeSelect.value];
+    const selectedAid = AID_DATA[aidSelect.value];
+    const initialLevelFromInput = parseInt(initialEnhancementLevelInput.value) || 0; 
+
+    const runEnhancementStep = (level, targetLevel) => {
+        const CHUNK_SIZE = isMaxSimulationRunning ? 500 : 1; 
+        let attempts = 0;
+        while (level < targetLevel && attempts < CHUNK_SIZE) {
+            const nextLevel = level + 1;
+            const dataIndex = nextLevel - 1; 
+            const enhData = ENH_STATS[dataIndex];
+            if (!enhData) break; 
+            
+            let baseSuccessRate = enhData.success * 100; 
+            const cubeBonus = selectedCube.rate_increase;
+            const aidBonus = selectedAid.rate_increase;
+            let finalSuccessRate = baseSuccessRate + cubeBonus + aidBonus;
+            if (baseSuccessRate === 100) finalSuccessRate = 100;
+            else if (finalSuccessRate > 100) finalSuccessRate = 100;          
+
+            const pSuccess = finalSuccessRate / 100.0; 
+            const cost = Math.round(enhData.cost * selectedCube.cost_multiplier);
+            
+            totalEnhCost += cost;
+            totalCubes += 1; 
+            attempts++;
+
+            const roll = Math.random();
+            const logEntry = `[+${level} → +${nextLevel}] (확률 ${Math.round(finalSuccessRate)}%) : `;
+            let newLog = "";
+            
+            if (roll < pSuccess) {
+                level = nextLevel;
+                if (!isMaxSimulationRunning) newLog = `${logEntry}<span class="enh-success">✅ 성공! (+${nextLevel})</span> (스톤 ${fmt(cost)} S)<br>`;
+            } else {
+                const isDestructiveLevel = nextLevel >= 5; 
+                if (isDestructiveLevel) {
+                    level = initialLevelFromInput;
+                    destroyedCount++;
+                    if (!isMaxSimulationRunning) newLog = `${logEntry}<span class="enh-destroy">💥 파괴!</span> (스톤 ${fmt(cost)} S)<br>`;
+                } else {
+                    if (!isMaxSimulationRunning) newLog = `${logEntry}<span class="enh-fail">❌ 실패!</span> (스톤 ${fmt(cost)} S)<br>`;
+                }
+            }
+            if (newLog) enhancementLogEntries.push(newLog);
+            if (level >= 10) break; 
+        } 
+        
+        currentEnhLevel = level;
+        updateEnhUI(); 
+        updateEnhLogDisplay(); 
+        
+        if (simulateUntilMax && currentEnhLevel < 10) {
+             setTimeout(() => runEnhancementStep(currentEnhLevel, 10), 0);
+        } else if (currentEnhLevel >= 10) {
+             isMaxSimulationRunning = false;
+             if (simulateUntilMax) {
+               enhancementLogEntries.push(`<b style="color: #3ba4f7;">🎉 +10 강화 성공!</b> (큐브 ${fmt(totalCubes)}개 소모)<br>`);
+               updateEnhLogDisplay();
+             }
+        }
+    };
+    
+    if (simulateUntilMax) runEnhancementStep(currentEnhLevel, 10); 
+    else runEnhancementStep(currentEnhLevel, currentEnhLevel + 1); 
+  }
+
+  document.getElementById("enhSim1").onclick = () => enhance(false);
+  document.getElementById("enhSimUntilMax").onclick = () => {
+    if (currentEnhLevel >= 10) { alert("+10 강화가 완료되었습니다. 초기화 후 다시 시작하세요."); return; }
+    if (isMaxSimulationRunning) return;
+    const initialLevel = parseInt(initialEnhancementLevelInput.value) || 0;
+    resetEnhancement(initialLevel);
+    enhance(true);
+  };
+  document.getElementById("enhReset").onclick = () => {
+    const initialLevel = parseInt(initialEnhancementLevelInput.value) || 0;
+    resetEnhancement(initialLevel);
+  };
+  initialEnhancementLevelInput.onchange = (e) => {
+    const level = parseInt(e.target.value) || 0;
+    resetEnhancement(level); 
+  };
+  cubeSelect.onchange = () => { updateEnhancementRatesDisplay(currentEnhLevel); }; 
+  aidSelect.onchange = () => { updateEnhancementRatesDisplay(currentEnhLevel); }; 
+
+  /* 초구 시뮬레이터 로직 */
+  async function loadPetData(){
+    const DATA_PATH = "data/pets.json"; 
+    try{
+      const pets = await fetch(DATA_PATH).then(r => {
+        if (!r.ok) throw new Error(`HTTP Error: ${r.status}`);
+        return r.json();
+      }); 
+      console.log("✅ JSON 로드 완료:", Object.keys(pets).length);
+      return pets;
+    }catch(e){
+      console.error("❌ JSON 불러오기 실패:",e);
+      alert("페트 데이터를 불러오지 못했습니다.\npets.json 파일을 '/data' 폴더에 배치했는지 확인하세요.");
+      return {}; 
+    }
+  }
+
+  let PETS = {}, currentBase = null;
+  const sgradeBox=document.getElementById("sgrade");
+  const nameInput=document.getElementById("petName");
+  const resultBox=document.getElementById("result");
+  const costDisplay=document.getElementById("costDisplay");
+  let totalCost=0;
+  let totalCostPerfect = 0;
+
+  loadPetData().then(d => { 
+      PETS = d; 
+      const input = document.getElementById("poisonPetName");
+      const btn = document.getElementById("btnPoisonSearch");
+      const result = document.getElementById("poisonResult");
+
+      input.onkeydown = (e) => { if(e.key === "Enter") btn.click(); };
+      btn.onclick = () => {
+        const name = input.value.trim();
+        const p = PETS[name];
+        if (!p || !p.k || !p.u) {
+          result.style.display = "block";
+          result.textContent = "❌ 페트를 찾을 수 없습니다.";
+          return;
+        }
+        const k = p.k;
+        const u = p.u;
+        const S0real = computeS0RealFromKU(k, u);
+        const { e: avgE } = getAverageEValueFromU(u);
+        const SGreal = computeSGRealFromE(u, avgE);
+
+        let decimalResult = `
+          <b>📢 초기치 상세</b>
+          <div class="decimal-grid">
+            <span>내구력</span><span>${cutDecimal(S0real.hp, 8)}</span>
+            <span>공격력</span><span>${cutDecimal(S0real.atk, 8)}</span>
+            <span>방어력</span><span>${cutDecimal(S0real.def, 8)}</span>
+            <span>순발력</span><span>${cutDecimal(S0real.agi, 8)}</span>
+          </div>
+          <b>📢 성장률 상세</b>
+          <div class="decimal-grid">
+            <span>내구력</span><span>${cutDecimal(SGreal.hp, 8)}</span>
+            <span>공격력</span><span>${cutDecimal(SGreal.atk, 8)}</span>
+            <span>방어력</span><span>${cutDecimal(SGreal.def, 8)}</span>
+            <span>순발력</span><span>${cutDecimal(SGreal.agi, 8)}</span>
+          </div>
+        `;
+        let poisonStats = { hp: u.hp + 2, atk: u.atk + 2, def: u.def + 2, agi: u.agi + 2 };
+        for (let i = 0; i < 10; i++) {
+          const r = Math.floor(Math.random() * 4);
+          if (r === 0) poisonStats.hp++;
+          else if (r === 1) poisonStats.atk++;
+          else if (r === 2) poisonStats.def++;
+          else poisonStats.agi++;
+        }
+        const total = k * poisonStats.hp + k * poisonStats.atk + k * poisonStats.def + k * poisonStats.agi;
+        let down = (total / 100 - 20) / 4;
+        if (down < 1) down = 1;
+        down = down.toFixed(2);
+        const poisonResult = `💀 <b>맹독 데미지 = ${down}</b>`;
+        result.style.display = "block";
+        result.innerHTML = decimalResult + poisonResult;
+      };
+  });
+
+  const safeName = s => (s || "").toLowerCase().trim();
+  nameInput.onkeydown = e => { if(e.key === "Enter") updatePet(); };
+  document.getElementById("btnSearch").onclick = updatePet;
+  nameInput.onchange = updatePet;
+  
+  function showPetInfo(key) {
+    const s = PETS[key].s0;
+    currentBase = { name: key, hp: s.hp, atk: s.atk, def: s.def, agi: s.agi };
+    sgradeBox.innerHTML = `<b>${key} S급 기준</b><br>내구력 <b>${s.hp}</b> | 공격력 <b>${s.atk}</b> | 방어력 <b>${s.def}</b> | 순발력 <b>${s.agi}</b>`;
+    totalCost = 0;
+    costDisplay.textContent = "💰 총 소모 : 0원";
+    resultBox.innerHTML = "";
+    resultBox.style.display = "none";
+  }
+
+  function updatePet() {
+    const n = safeName(nameInput.value);
+    const sugBox = document.getElementById("suggestions");
+    sugBox.innerHTML = "";
+    if (!n) return;
+    let key = Object.keys(PETS).find(k => safeName(k) === n);
+    if (!key) {
+      const partial = Object.keys(PETS).filter(k => safeName(k).includes(n));
+      if (partial.length === 1) key = partial[0];
+      else if (partial.length > 1) {
+        partial.forEach(k => {
+          const btn = document.createElement("button");
+          btn.textContent = k;
+          btn.style.background = "#24324b";
+          btn.style.color = "#ffd447";
+          btn.style.margin = "3px";
+          btn.style.padding = "6px 12px";
+          btn.style.borderRadius = "8px";
+          btn.style.border = "1px solid #3ba4f7";
+          btn.style.cursor = "pointer";
+          btn.onclick = () => { nameInput.value = k; sugBox.innerHTML = ""; showPetInfo(k); };
+          sugBox.appendChild(btn);
+        });
+        currentBase = null;
+        return;
+      }
+    }
+    if (!key) {
+      sgradeBox.innerHTML = `<b style="color:#ff6b81">⚠️ [${n}] 데이터 없음</b>`;
+      currentBase = null;
+      return;
+    }
+    showPetInfo(key);
+  }
+
+  function simulate(t = 1) {
+    if (!currentBase) { alert("페트 이름을 먼저 입력하세요."); return; }
+    resultBox.style.display = "inline-block";
+    let o = `<b>${currentBase.name} 시뮬레이션</b><br>────────────────────<br>`;
+    o += `<div class="result-header"><span>내구력</span><span>공격력</span><span>방어력</span><span>순발력</span></div>`;
+
+    for (let i = 1; i <= t; i++) {
+      const p = PETS[currentBase.name];
+      const tp = { ...p.u };
+      tp.hp += Math.floor(Math.random() * 5) - 2;
+      tp.atk += Math.floor(Math.random() * 5) - 2;
+      tp.def += Math.floor(Math.random() * 5) - 2;
+      tp.agi += Math.floor(Math.random() * 5) - 2;
+
+      for (let j = 0; j < 10; j++) {
+        const r = Math.floor(Math.random() * 4);
+        if (r === 0) tp.hp++;
+        else if (r === 1) tp.atk++;
+        else if (r === 2) tp.def++;
+        else tp.agi++;
+      }
+
+      const base = { hp: p.k * tp.hp / 100, atk: p.k * tp.atk / 100, def: p.k * tp.def / 100, agi: p.k * tp.agi / 100 };
+      const shown = {
+        hp: Math.floor(base.hp * 4 + base.atk + base.def + base.agi),
+        atk: Math.floor(base.hp * 0.1 + base.atk + base.def * 0.1 + base.agi * 0.05),
+        def: Math.floor(base.hp * 0.1 + base.atk * 0.1 + base.def + base.agi * 0.05),
+        agi: Math.floor(base.agi)
+      };
+      const SstatRaw = p.s0 || { hp: 0, atk: 0, def: 0, agi: 0 };
+      const SstatInt = { hp: Math.floor(SstatRaw.hp), atk: Math.floor(SstatRaw.atk), def: Math.floor(SstatRaw.def), agi: Math.floor(SstatRaw.agi) };
+      const delta = { hp: shown.hp - SstatInt.hp, atk: shown.atk - SstatInt.atk, def: shown.def - SstatInt.def, agi: shown.agi - SstatInt.agi };
+      const formatDelta = n => {
+        if (n > 0) return `<span style="color:#00ffff;">(+${n})</span>`;
+        if (n < 0) return `<span style="color:#ff0000;">(${n})</span>`;
+        return `<span style="color:#ffffff;">(0)</span>`;
+      };
+      o += `<div class="result-row">
+              <span>${shown.hp} ${formatDelta(delta.hp)}</span>
+              <span>${shown.atk} ${formatDelta(delta.atk)}</span>
+              <span>${shown.def} ${formatDelta(delta.def)}</span>
+              <span>${shown.agi} ${formatDelta(delta.agi)}</span>
+            </div>`;
+    }
+    resultBox.innerHTML=o;
+  }
+  
+  function simulateUntilPerfect() {
+    if (!currentBase) { alert("페트 이름을 먼저 입력하세요."); return; }
+    totalCost = 0; totalCostPerfect = 0;
+    costDisplay.textContent = "💰 총 소모 : 0원";
+    resultBox.style.display = "inline-block";
+    const p = PETS[currentBase.name];
+    let runCount = 0;
+    const BATCH_SIZE = 5000;
+    const MAX_RUNS = 100000; 
+    resultBox.innerHTML = `<b>${currentBase.name} 시뮬레이션</b><br>────────────────────<br>🔥 정석 이상 검색 중... 잠시만 기다려 주세요.<br>`;
+    costDisplay.textContent = `💰 총 소모 : ${totalCostPerfect.toLocaleString()}원 (0회 시도 중...)`;
+
+    const formatDelta = n => {
+      if (n > 0) return `<span style="color:#00ffff;">(+${n})</span>`;
+      if (n < 0) return `<span style="color:#ff0000;">(${n})</span>`;
+      return `<span style="color:#ffffff;">(0)</span>`;
+    };
+
+    function runBatch() {
+      for (let i = 0; i < BATCH_SIZE; i++) {
+        runCount++;
+        totalCostPerfect += 1000;
+        if (runCount > MAX_RUNS) {
+          totalCostPerfect = 0;
+          resultBox.innerHTML = `<b>${currentBase.name} 시뮬레이션</b><br>────────────────────<br>🚫 정석이 발견되지 않아 검색을 중단합니다.`;
+          costDisplay.textContent = `🚫 해당 페트는 정석이 존재하지 않습니다.`;
+          return;
+        }
+        const tp = { ...p.u };
+        tp.hp += Math.floor(Math.random() * 5) - 2;
+        tp.atk += Math.floor(Math.random() * 5) - 2;
+        tp.def += Math.floor(Math.random() * 5) - 2;
+        tp.agi += Math.floor(Math.random() * 5) - 2;
+        for (let j = 0; j < 10; j++) {
+          const r = Math.floor(Math.random() * 4);
+          if (r === 0) tp.hp++;
+          else if (r === 1) tp.atk++;
+          else if (r === 2) tp.def++;
+          else tp.agi++;
+        }
+        const base = { hp: p.k * tp.hp / 100, atk: p.k * tp.atk / 100, def: p.k * tp.def / 100, agi: p.k * tp.agi / 100 };
+        const shown = {
+          hp: Math.floor(base.hp * 4 + base.atk + base.def + base.agi),
+          atk: Math.floor(base.hp * 0.1 + base.atk + base.def * 0.1 + base.agi * 0.05),
+          def: Math.floor(base.hp * 0.1 + base.atk * 0.1 + base.def + base.agi * 0.05),
+          agi: Math.floor(base.agi)
+        };
+        const SstatRaw = p.s0 || { hp: 0, atk: 0, def: 0, agi: 0 };
+        const SstatInt = { hp: Math.floor(SstatRaw.hp), atk: Math.floor(SstatRaw.atk), def: Math.floor(SstatRaw.def), agi: Math.floor(SstatRaw.agi) };
+        const delta = { hp: shown.hp - SstatInt.hp, atk: shown.atk - SstatInt.atk, def: shown.def - SstatInt.def, agi: shown.agi - SstatInt.agi };
+
+        if (delta.hp >= 0 && delta.atk >= 0 && delta.def >= 0 && delta.agi >= 0) {
+          let o = `<b>${currentBase.name} 시뮬레이션</b><br>────────────────────<br>🔥 정석 발견! (${runCount.toLocaleString()}회 시도)<br>`;
+          o += `<div class="result-header"><span>내구력</span><span>공격력</span><span>방어력</span><span>순발력</span></div>`;
+          o += `<div class="result-row">
+                  <span>${shown.hp} ${formatDelta(delta.hp)}</span>
+                  <span>${shown.atk} ${formatDelta(delta.atk)}</span>
+                  <span>${shown.def} ${formatDelta(delta.def)}</span>
+                  <span>${shown.agi} ${formatDelta(delta.agi)}</span>
+                </div>`;
+            resultBox.innerHTML = o;
+            costDisplay.textContent = `💰 총 소모 : ${totalCostPerfect.toLocaleString()}원`;
+            return; 
+          }
+        } 
+        costDisplay.textContent = `💰 총 소모 : ${totalCostPerfect.toLocaleString()}원 (${runCount.toLocaleString()}회 시도 중...)`;
+        setTimeout(runBatch, 0); 
+      }
+      runBatch();
+    }
+
+  document.getElementById("sim1").onclick = () => {
+    if (!currentBase) { resultBox.style.display = "inline-block"; resultBox.innerHTML = `<b style="color:#ff6b81;">⚠️ 먼저 페트 이름을 입력하세요.</b>`; return; }
+    simulate(1);
+    totalCost += 1000;
+    costDisplay.textContent = `💰 총 소모 : ${totalCost.toLocaleString()}원`;
+  };
+  document.getElementById("sim5").onclick = () => {
+    if (!currentBase) { resultBox.style.display = "inline-block"; resultBox.innerHTML = `<b style="color:#ff6b81;">⚠️ 먼저 페트 이름을 입력하세요.</b>`; return; }
+    simulate(5);
+    totalCost += 5000;
+    costDisplay.textContent = `💰 총 소모 : ${totalCost.toLocaleString()}원`;
+  };
+  document.getElementById("simUntil").onclick = () => {
+    if (!currentBase) { resultBox.style.display = "inline-block"; resultBox.innerHTML = `<b style="color:#ff6b81;">⚠️ 먼저 페트 이름을 입력하세요.</b>`; return; }
+    totalCost=0; totalCostPerfect = 0;
+    costDisplay.textContent="💰 총 소모 : 0원";
+    simulateUntilPerfect();
+  };
+  document.getElementById("clear").onclick=()=>{ resultBox.innerHTML=""; totalCost=0; totalCostPerfect = 0; costDisplay.textContent="💰 총 소모 : 0원"; resultBox.style.display="none"; };
+  document.getElementById("btnClearInput").onclick = () => {
+    nameInput.value = ""; 
+    document.getElementById("suggestions").innerHTML = "";
+    sgradeBox.innerHTML = "페트를 입력하면 S급 기준 능력치가 표시됩니다.";
+    currentBase = null;
+    resultBox.innerHTML=""; totalCost=0; totalCostPerfect = 0; costDisplay.textContent="💰 총 소모 : 0원"; resultBox.style.display="none"; 
+  };
+
+  /* 경험치 계산기 로직 */
+  const $=s=>document.querySelector(s);
+  const fmtNum=n=>isFinite(n)?Number(n).toLocaleString():"-";
+  const EXP_TABLE={1:2,2:6,3:17,4:37,5:67,6:111,7:169,8:247,9:344,10:464,11:609,12:783,13:985,
+  14:1221,15:1491,16:1799,17:2145,18:2535,19:2968,20:3448,21:3977,22:4559,23:5193,24:5885,
+  25:6635,26:7447,27:8321,28:9263,29:10272,30:11352,31:12506,32:13734,33:15042,34:16429,
+  35:17899,36:19454,37:21098,38:22830,39:24656,40:26576,41:28594,42:30710,43:32930,44:35253,
+  45:37683,46:40222,47:42874,48:45638,49:48520,50:51520,51:54642,52:57886,53:61258,54:64757,
+  55:68387,56:72150,57:76050,58:80086,59:84264,60:106110,61:113412,62:121149,63:129352,
+  64:138044,65:147256,66:157019,67:167366,68:178334,69:189958,70:202282,71:215348,72:229205,
+  73:243901,74:259495,75:276041,76:293606,77:312258,78:332071,79:353126,80:375511,81:399318,
+  82:424655,83:451631,84:480370,85:511007,86:543686,87:578571,88:616838,89:655680,90:698312,
+  91:743970,92:795918,93:842442,94:901869,95:962553,96:1026899,97:1098354,98:1174419,99:1256664,
+  100:1407463,101:1576358,102:1765521,103:1977384,104:2214670,105:2480430,106:2778082,107:3111451,
+  108:3484825,109:3903005,110:4371365,111:4895929,112:5483440,113:6141453,114:6878428,115:7703839,
+  116:8628300,117:9663695,118:10823339,119:12122140,120:13576796,121:15206012,122:17030733,
+  123:19074421,124:21363352,125:23926954,126:26798189,127:30013971,128:33615648,129:37649526,
+  130:42167469,131:47227565,132:52894873,133:59242257,134:66351328,135:74313488,136:83231106,
+  137:93218839,138:104405100,139:116933712};
+  const getTotalExp=(s,t)=>{let sum=0;for(let lv=s;lv<t;lv++)if(EXP_TABLE[lv])sum+=EXP_TABLE[lv];return sum;};
+  $("#run").onclick=()=>{
+    try{
+      const c=+$("#currentLevel").value,cp=+($("#currentPercent").value)||0,t=+$("#targetLevel").value,ph=+$("#xpPerHour").value;
+      if(!c||!t||!ph)throw new Error("입력이 부족합니다.");
+      if(t<=c)throw new Error("목표 레벨은 현재보다 커야 합니다.");
+      const rem1=EXP_TABLE[c]*(1-(cp/100)),rem2=getTotalExp(c+1,t),remain=rem1+rem2;
+      const hrs=remain/ph,days=hrs/24,h=Math.floor(hrs),m=Math.round((hrs-h)*60);
+      $("#statRemain").textContent=fmtNum(remain.toFixed(0));
+      $("#statTimeAndDays").textContent=`${h}시간 ${m}분 (${days.toFixed(2)}일)`;
+      $("#results").hidden=false;
+    }catch(e){alert(e.message);}
+  };
+  $("#reset").onclick=()=>{document.querySelectorAll("#expTab input").forEach(i=>i.value="");$("#results").hidden=true;};
+});
+</script>
+</body>
+</html>
