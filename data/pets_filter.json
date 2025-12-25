@@ -7997,5 +7997,389 @@
     "channel": "듀얼",
     "mount": false,
     "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_8CUw2ucl_dc67fa0cdb41d3b81fd61877e9dce1f2d9d818f1.gif"
+  },
+  {
+    "name": "크람푸스",
+    "grade": "일반",
+    "attr": {
+      "수": 2,
+      "화": 8
+    },
+    "init": {
+      "hp": 52.2,
+      "atk": 11.32,
+      "def": 6.35,
+      "agi": 9
+    },
+    "grow": {
+      "hp": 9.9,
+      "atk": 2.15,
+      "def": 1.2,
+      "agi": 1.71
+    },
+    "route": "크리스마스 눈덩이 교환",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_GANsbUTo_02d612ebe573f1069e0315792caf4bbfbbfb98e2.gif"
+  },
+  {
+    "name": "프로스비",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8
+    },
+    "init": {
+      "hp": 54.12,
+      "atk": 11.29,
+      "def": 6.79,
+      "agi": 8.38
+    },
+    "grow": {
+      "hp": 10.28,
+      "atk": 2.15,
+      "def": 1.29,
+      "agi": 1.59
+    },
+    "route": "크리스마스 눈덩이 교환",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_j9knQVFl_0b7665c4a3beb515cb486a6c93ac2004127a0b46.gif"
+  },
+  {
+    "name": "푸로비",
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "풍": 2
+    },
+    "init": {
+      "hp": 53.43,
+      "atk": 11.16,
+      "def": 6.95,
+      "agi": 8.45
+    },
+    "grow": {
+      "hp": 10.17,
+      "atk": 2.12,
+      "def": 1.32,
+      "agi": 1.61
+    },
+    "route": "크리스마스 눈덩이 교환",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_KSE0f6wp_d0fada0f6da2709806aaadb586bd4d150160c215.gif"
+  },
+  {
+    "name": "아이스만모",
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8
+    },
+    "init": {
+      "hp": 74.41,
+      "atk": 9.9,
+      "def": 11.55,
+      "agi": 1.96
+    },
+    "grow": {
+      "hp": 14.07,
+      "atk": 1.87,
+      "def": 2.18,
+      "agi": 0.37
+    },
+    "route": "크리스마스 이벤트",
+    "channel": "이벤트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_CaVNrjyK_52c7dcd42746da49a04c67016ea03ee5f448fe6c.gif"
+  },
+  {
+    "name": "링코링",
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5
+    },
+    "init": {
+      "hp": 51.17,
+      "atk": 9.41,
+      "def": 7.55,
+      "agi": 7.93
+    },
+    "grow": {
+      "hp": 10.12,
+      "atk": 1.86,
+      "def": 1.49,
+      "agi": 1.57
+    },
+    "route": "크리스마스 한정 포획",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_kuLzxdFj_5e8b27c1776ae960f3e048f8973cf20fa1566f59.gif"
+  },
+  {
+    "name": "프로링",
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "풍": 6
+    },
+    "init": {
+      "hp": 54.85,
+      "atk": 9.96,
+      "def": 7.69,
+      "agi": 8.39
+    },
+    "grow": {
+      "hp": 10.37,
+      "atk": 1.88,
+      "def": 1.45,
+      "agi": 1.59
+    },
+    "route": "크리스마스 한정 포획",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_kuLzxdFj_5e8b27c1776ae960f3e048f8973cf20fa1566f59.gif"
+  },
+  {
+    "name": "만모링",
+    "grade": "일반",
+    "attr": {
+      "수": 6,
+      "화": 4
+    },
+    "init": {
+      "hp": 68.19,
+      "atk": 11.9,
+      "def": 10.45,
+      "agi": 1.96
+    },
+    "grow": {
+      "hp": 12.9,
+      "atk": 2.25,
+      "def": 1.98,
+      "agi": 0.37
+    },
+    "route": "크리스마스 한정 포획",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_Au8w3W27_af99411c8143c2136d099616bba84ad389834ed6.gif"
+  },
+  {
+    "name": "만모베베",
+    "grade": "일반",
+    "attr": {
+      "수": 4,
+      "화": 6
+    },
+    "init": {
+      "hp": 60.38,
+      "atk": 10.74,
+      "def": 8.25,
+      "agi": 5.41
+    },
+    "grow": {
+      "hp": 11.42,
+      "atk": 2.03,
+      "def": 1.56,
+      "agi": 1.02
+    },
+    "route": "크리스마스 한정 포획",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_oPgTGti2_c9bd1768dc1d0e40cd01bef06310c611b2f6ffba.gif"
+  },
+  {
+    "name": "돌프",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "풍": 3
+    },
+    "init": {
+      "hp": 56.7,
+      "atk": 10.88,
+      "def": 7.78,
+      "agi": 7.47
+    },
+    "grow": {
+      "hp": 10.72,
+      "atk": 2.06,
+      "def": 1.47,
+      "agi": 1.41
+    },
+    "route": "크리스마스 한정 포획",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_VrpFWOHQ_ed055ff3c9b661a49ed9d5c5ccf69b26334980f6.gif"
+  },
+  {
+    "name": "흑돌",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3
+    },
+    "init": {
+      "hp": 59.91,
+      "atk": 10.57,
+      "def": 8.92,
+      "agi": 6.33
+    },
+    "grow": {
+      "hp": 11.33,
+      "atk": 2,
+      "def": 1.69,
+      "agi": 1.2
+    },
+    "route": "크리스마스 한정 포획",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_KS3D8epw_0b16fcbca2972372d3711db1bdc79b0548651730.gif"
+  },
+  {
+    "name": "펭펭",
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "풍": 6
+    },
+    "init": {
+      "hp": 57.16,
+      "atk": 10.98,
+      "def": 9.53,
+      "agi": 5.17
+    },
+    "grow": {
+      "hp": 10.81,
+      "atk": 2.08,
+      "def": 1.8,
+      "agi": 0.98
+    },
+    "route": "크리스마스 한정 포획",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_nxzVF5km_3fecb11c0e5d94b22b29cfd9c8a123a548497290.gif"
+  },
+  {
+    "name": "산타링코",
+    "grade": "일반",
+    "attr": {
+      "수": 7,
+      "화": 3
+    },
+    "init": {
+      "hp": 51.38,
+      "atk": 9.29,
+      "def": 6.82,
+      "agi": 8.38
+    },
+    "grow": {
+      "hp": 10.17,
+      "atk": 1.84,
+      "def": 1.35,
+      "agi": 1.66
+    },
+    "route": "크리스마스 한정 포획",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_zDe3ZlIW_04580be07531a4a140e47ffe36305f3b4ce7c31a.gif"
+  },
+  {
+    "name": "시어룬",
+    "grade": "일반",
+    "attr": {
+      "화": 2,
+      "풍": 8
+    },
+    "init": {
+      "hp": 47.27,
+      "atk": 10.08,
+      "def": 5.53,
+      "agi": 8.86
+    },
+    "grow": {
+      "hp": 9.76,
+      "atk": 2.08,
+      "def": 1.14,
+      "agi": 1.83
+    },
+    "route": "크리스마스 이벤트",
+    "channel": "이벤트",
+    "mount": true,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_drlD0GM5_bd79ef73ad3902db5f37832bf8aa724457dd34cc.gif"
+  },
+  {
+    "name": "산타베르가",
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3
+    },
+    "init": {
+      "hp": 55.32,
+      "atk": 12.35,
+      "def": 6.74,
+      "agi": 9
+    },
+    "grow": {
+      "hp": 10.03,
+      "atk": 2.24,
+      "def": 1.22,
+      "agi": 1.63
+    },
+    "route": "크리스마스 이벤트",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_DzVtxWpY_ad6966d1c26efed572ed15be7799bec7172617a5.gif"
+  },
+  {
+    "name": "산타로스",
+    "grade": "일반",
+    "attr": {
+      "수": 4,
+      "화": 6
+    },
+    "init": {
+      "hp": 56.23,
+      "atk": 12.31,
+      "def": 10.03,
+      "agi": 4.25
+    },
+    "grow": {
+      "hp": 10.64,
+      "atk": 2.33,
+      "def": 1.9,
+      "agi": 0.8
+    },
+    "route": "크리스마스 이벤트",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/463212e2e862a2a9d1307090ddece376_ca3hP1t8_053549c696810e608bd9f3c2c405c9dd6e26df18.gif"
+  },
+  {
+    "name": "백여우",
+    "grade": "일반",
+    "attr": {
+      "수": 6,
+      "화": 4
+    },
+    "init": {
+      "hp": 53.38,
+      "atk": 12.29,
+      "def": 8.02,
+      "agi": 6.38
+    },
+    "grow": {
+      "hp": 10.14,
+      "atk": 2.34,
+      "def": 1.52,
+      "agi": 1.21
+    },
+    "route": "크리스마스 이벤트",
+    "channel": "이벤트",
+    "mount": false,
+    "img": "https://stoneage001.com/data/file/board23/79e672bac5e812940ceb857c119d9530_eQh64LVx_02d25c780ecf91195021b4385b17a71d34cf1c4d.gif"
   }
 ]
