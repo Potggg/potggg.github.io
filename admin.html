@@ -336,48 +336,67 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
   if(sessValid()){ unlock(); return; }
 
-  async function tryLogin(){
-    err.textContent = "";
-    const p = pass.value ?? "";
-    if(!p){ err.textContent="비밀번호를 입력하세요."; pass.focus(); return; }
+function korToEng(str) {
+  const kor = [
+    'ㅂ','ㅈ','ㄷ','ㄱ','ㅅ','ㅛ','ㅕ','ㅑ','ㅐ','ㅔ',
+    'ㅁ','ㄴ','ㅇ','ㄹ','ㅎ','ㅗ','ㅓ','ㅏ','ㅣ',
+    'ㅋ','ㅌ','ㅊ','ㅍ','ㅠ','ㅜ','ㅡ',
+    'ㅃ','ㅉ','ㄸ','ㄲ','ㅆ','ㅒ','ㅖ'
+  ];
+  const eng = [
+    'q','w','e','r','t','y','u','i','o','p',
+    'a','s','d','f','g','h','j','k','l',
+    'z','x','c','v','b','n','m',
+    'Q','W','E','R','T','O','P'
+  ];
+  
+  return str.split('').map(char => {
+    const idx = kor.indexOf(char);
+    return idx !== -1 ? eng[idx] : char;
+  }).join('');
+}
 
-    const loadingSpinner = `<div class="loader"></div>`;
-    btn.innerHTML = loadingSpinner + " 확인 중";
-    btn.disabled = true;
+async function tryLogin(){
+  err.textContent = "";
+  // 입력된 값을 가져와서 한글일 경우 영문으로 변환
+  let p = pass.value ?? "";
+  p = korToEng(p); 
 
-    try{
-      const hex = await sha256Hex(p); // 1. 클라이언트에서 비밀번호 해시 계산
+  if(!p){ err.textContent="비밀번호를 입력하세요."; pass.focus(); return; }
 
-      // 2. ⭐️ Worker의 인증 엔드포인트 호출 (기존 WORKER_URL 사용)
-      const res = await fetch(`${WORKER_URL}/api/auth/verify`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ hash: hex }) // 계산된 해시 전송
-      });
-      
-      btn.innerHTML = "입장";
-      btn.disabled = false;
+  const loadingSpinner = `<div class="loader"></div>`;
+  btn.innerHTML = loadingSpinner + " 확인 중";
+  btn.disabled = true;
 
-      if(res.ok){
-        // 3. 성공 응답 (200 OK)
-        if(rem && rem.checked) setSess(); // 세션 저장
-        unlock();
-      }else if(res.status === 401){
-        // 4. 인증 실패 (401 Unauthorized)
-        err.textContent = "비밀번호가 올바르지 않습니다.";
-        pass.value = ""; pass.focus();
-      }else{
-        // 5. 기타 Worker 오류 처리
-        const errorText = await res.text().catch(()=>res.statusText);
-        err.textContent = `Worker 오류: ${res.status} ${errorText}`;
-      }
-    }catch(e){
-      btn.innerHTML = "입장";
-      btn.disabled = false;
-      err.textContent = "인증 서버 연결 오류: " + e.message;
-      console.error(e);
+  try{
+    const hex = await sha256Hex(p); // 변환된 영문 값으로 해시 계산
+
+    const res = await fetch(`${WORKER_URL}/api/auth/verify`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ hash: hex })
+    });
+    
+    btn.innerHTML = "입장";
+    btn.disabled = false;
+
+    if(res.ok){
+      if(rem && rem.checked) setSess();
+      unlock();
+    }else if(res.status === 401){
+      err.textContent = "비밀번호가 올바르지 않습니다.";
+      pass.value = ""; pass.focus();
+    }else{
+      const errorText = await res.text().catch(()=>res.statusText);
+      err.textContent = `Worker 오류: ${res.status} ${errorText}`;
     }
+  }catch(e){
+    btn.innerHTML = "입장";
+    btn.disabled = false;
+    err.textContent = "인증 서버 연결 오류: " + e.message;
+    console.error(e);
   }
+}
 
   btn.addEventListener("click", tryLogin);
   pass.addEventListener("keydown", e=>{ if(e.key==="Enter") tryLogin(); });
