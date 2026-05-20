@@ -464,7 +464,7 @@ transform="rotate(-90 50 50)" stroke-dasharray="0 1" stroke-dashoffset="0" style
             ? "home"
             : pathname.replace(/\W+/g, "_").toLowerCase(); // 비문자열을 '_'로 대체하고 소문자로 변환
 
-        const pageKey = `${baseKey}_${dateKey}`; // 누적 방문자 수를 계산하고 싶다면,  _${dateKey} 부분을 제거
+        const pageKey = `${baseKey}`; // 누적 방문자 수를 계산하고 싶다면,  _${dateKey} 부분을 제거
     
         // 2. Worker 호출 (필수 수정: POST 메서드 사용)
         fetch(`https://page-counter.potg.workers.dev/hit/${pageKey}`, {
@@ -483,7 +483,7 @@ transform="rotate(-90 50 50)" stroke-dasharray="0 1" stroke-dashoffset="0" style
             // 결과값 표시
             const count = d.value || 0;
             document.getElementById("visitCounter").textContent =
-                `👋 오늘 방문자 수 : ${count.toLocaleString()}명`;
+                `👋 누적 방문자 수 : ${count.toLocaleString()}명`;
         })
         .catch(err => {
             console.error("방문자 카운터 에러:", err);
