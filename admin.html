@@ -655,6 +655,47 @@ function inferKU_STRICT(S0, SG){
   return null;
 }
 
+/* ====== 비엄격 폴백: S0/SG 중 최대한 맞는 후보 반환 ====== */
+function inferKU_BEST(S0, SG){
+  const S0int = S0.map(x=>Math.floor(x));
+  // SG 우선: SG를 만족하는 e/u를 찾고, 그 중 S0와 가장 가까운 k를 선택
+  let bestCandidates = [];
+
+  for(const e of ESET){
+    const sol = solveUFromSG_STRICT(SG, e);
+    if(!sol) continue;
+    for(let k=10;k<=100;k++){
+      const s = s0_from_k_u_jjyal(k, sol.u);
+      const mismatches = [0,1,2,3].filter(i=>s[i]!==S0int[i]);
+      if(mismatches.length===0) return {k, u:sol.u, e:sol.e, exact:true};
+      // 최대 1개 불일치까지 후보로 수집 (S0 3개 이상 일치)
+      if(mismatches.length<=1){
+        bestCandidates.push({k, u:sol.u, e:sol.e, mismatches, s0Pred:s});
+      }
+    }
+  }
+
+  if(bestCandidates.length===0){
+    // 허용 불일치 2개로 확장
+    for(const e of ESET){
+      const sol = solveUFromSG_STRICT(SG, e);
+      if(!sol) continue;
+      for(let k=10;k<=100;k++){
+        const s = s0_from_k_u_jjyal(k, sol.u);
+        const mismatches = [0,1,2,3].filter(i=>s[i]!==S0int[i]);
+        if(mismatches<=2){
+          bestCandidates.push({k, u:sol.u, e:sol.e, mismatches, s0Pred:s});
+        }
+      }
+    }
+  }
+
+  if(bestCandidates.length===0) return null;
+  // 불일치 수 최소 → k 작은 순
+  bestCandidates.sort((a,b)=> a.mismatches.length-b.mismatches.length || a.k-b.k);
+  return {...bestCandidates[0], exact:false};
+}
+
 /* ====== R8 집계 엔진 (원래 u 사용) ====== */
 function collectR8ObsForKU(k,u){
   Decimal.set({ precision:30, rounding: Decimal.ROUND_HALF_UP });
@@ -957,17 +998,39 @@ $("btnSolve").addEventListener("click", ()=>{
     return;
   }
   
-  const sol = inferKU_STRICT([f.s0.hp,f.s0.atk,f.s0.def,f.s0.agi], f.sg);
+  const S0arr = [f.s0.hp, f.s0.atk, f.s0.def, f.s0.agi];
+  const sol = inferKU_STRICT(S0arr, f.sg);
 
   const box = $("consistency");
   box.style.display = "block";
   
   if(!sol){
-    box.className = "callout bad";
-    box.innerHTML = `<b>추정 실패</b>: 입력된 S0/SG 값에 맞는 k/u 쌍을 찾을 수 없습니다 (STRICT 해 없음).`;
-    $("ku_k").value = $("ku_hp").value = $("ku_atk").value = $("ku_def").value = $("ku_agi").value = "";
-    $("ovr_check").checked = false;
-    //updateConsistency();
+    // 폴백: 최선 후보 탐색
+    const best = inferKU_BEST(S0arr, f.sg);
+    const statNames = ['체(HP)','공(ATK)','방(DEF)','순(AGI)'];
+    if(!best){
+      box.className = "callout bad";
+      box.innerHTML = `<b>추정 실패</b>: 입력된 S0/SG 값에 맞는 k/u 쌍을 전혀 찾을 수 없습니다.<br>
+        <span class="note">S0 또는 SG 값 중 잘못 입력된 값이 있는지 확인하세요.</span>`;
+      $("ku_k").value = $("ku_hp").value = $("ku_atk").value = $("ku_def").value = $("ku_agi").value = "";
+      $("ovr_check").checked = false;
+      return;
+    }
+    // 불일치 항목 표시
+    const s0int = S0arr.map(x=>Math.floor(x));
+    const mismatchDesc = best.mismatches.map(i =>
+      `<b>${statNames[i]}</b>: 예측 <span class="mono">${best.s0Pred[i]}</span> vs 입력 <span class="mono">${s0int[i]}</span>`
+    ).join(', ');
+    box.className = "callout warn";
+    box.innerHTML = `<b>근사값 발견</b> (완전 일치 없음): k=<b>${best.k}</b>, u=(${best.u.hp},${best.u.atk},${best.u.def},${best.u.agi}), e≈${best.e}<br>
+      <span class="note">불일치 항목: ${mismatchDesc}</span><br>
+      <span class="note">S0와 SG가 서로 다른 버전/측정값일 수 있습니다. 이 근사값을 수동 오버라이드로 적용하려면 아래 필드에 직접 입력하세요.</span>`;
+    // 근사값을 필드에 자동 채워주되 오버라이드는 체크하지 않음 (사용자가 직접 확인 후 체크)
+    $("ku_k").value   = best.k;
+    $("ku_hp").value  = best.u.hp;
+    $("ku_atk").value = best.u.atk;
+    $("ku_def").value = best.u.def;
+    $("ku_agi").value = best.u.agi;
     return;
   }
   
